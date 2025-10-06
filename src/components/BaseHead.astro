@@ -70,46 +70,55 @@ import { AstroFont } from 'astro-font'
 <AstroFont
 	config={[
 		{
-			preload: false,
+			preload: true,
 			display: 'swap',
-			name: 'Manrope',
+			name: 'Outfit',
 			fallback: 'sans-serif',
 			src: [
 				{
+					weight: '100',
+					style: 'normal',
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-ExtraLight.woff2')
+				},
+				{
 					weight: '200',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-ExtraLight.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Light.woff2')
 				},
 				{
 					weight: '300',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Light.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-LightMedium.woff2')
 				},
 				{
 					weight: '400',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Regular.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Regular.woff2')
 				},
 				{
 					weight: '500',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Medium.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Medium.woff2')
 				},
 				{
 					weight: '600',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-SemiBold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-SemiBold.woff2')
 				},
 				{
 					weight: '700',
-					preload: true,
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Bold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Bold.woff2')
 				},
 				{
 					weight: '800',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Manrope-ExtraBold.woff2')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-ExtraBold.woff2')
+				},
+				{
+					weight: '900',
+					style: 'normal',
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Black.woff2')
 				}
 			]
 		}

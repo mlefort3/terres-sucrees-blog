@@ -1,5 +1,5 @@
 <h1 align="center">
- Astro Theme OpenBLOG
+ Terres Sucrées
 </h1>
 
 <div align="center">

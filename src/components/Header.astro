@@ -7,59 +7,128 @@ import ToggleTheme from './ToggleTheme.astro'
 import { SOCIALNETWORKS } from '@/data/links'
 ---
 
-<header class='relative flex items-center h-12 font-semibold'>
-	<a class='text-lg mr-auto' href='/'>Home</a>
-
-	<div
-		id='astro-header-drawer'
-		class='shadow rounded-l-lg md:bg-transparent dark:md:bg-transparent bg-white dark:bg-[#0a0910] md:shadow-none md:rounded-none md:border-none md:h-auto md:static absolute transition-transform duration-300 ease-in translate-x-96 md:translate-x-0 top-12 -right-5 pl-4 pt-6 pb-4 md:p-0 h-[200px] w-[200px] z-50'
-	>
-		<nav
-			class='flex h-full flex-col justify-between gap-12 text-left md:flex-row md:w-full md:gap-5'
-		>
-			<div
-				class='flex flex-col gap-4 md:flex-row md:border-r-2 border-black pr-4 dark:border-white'
-			>
-				<HeaderLink href='/tags' class='flex items-center gap-1 text-2xl md:text-base'>
-					<TagIcon /> Tags
-				</HeaderLink>
+<header class='fixed top-0 left-0 right-0 bg-white dark:bg-[#0a0910] rounded-b-xl shadow-md z-50'>
+	<div class='max-w-7xl mx-auto flex items-center justify-between h-20 px-4 md:px-8'>
+		<!-- LEFT: Logo + Title -->
+		<div class='flex items-center gap-4'>
+			<a href='/'>
+				<img src='/images/logo.png' alt='Terres Sucrées' class='h-16 w-auto' />
+			</a>
+			<div class='flex flex-col'>
+				<span class='text-3xl font-bold text-primary'>Terres Sucrées</span>
+				<span class='text-sm text-gray-500 dark:text-gray-400 ml-1'
+					>Recettes de pâtisserie végétale</span
+				>
 			</div>
+		</div>
 
-			<div class='flex justify-center items-center md:justify-end gap-3 md:p-0'>
+		<!-- CENTER: Main Navigation -->
+		<nav class='hidden md:flex items-center gap-6'>
+			<div class='relative group'>
+				<button
+					class='flex items-center gap-1 font-medium text-lg focus:outline-none cursor-pointer'
+				>
+					Créations
+					<svg
+						class='w-4 h-4 transition-transform group-hover:rotate-180'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+						></path>
+					</svg>
+				</button>
+				<ul
+					class='absolute hidden group-hover:block bg-white dark:bg-[#0a0910] rounded-md shadow-lg mt-2 py-2 min-w-[180px] z-50'
+				>
+					<li>
+						<a
+							href='/tags/entremet'
+							class='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800'>Entremets</a>
+					</li>
+					<li>
+						<a href='/tags/tarte' class='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800'
+							>Tartes</a>
+					</li>
+					<li>
+						<a
+							href='/tags/gateau-voyage'
+							class='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800'>Gâteaux de voyage</a>
+					</li>
+					<li>
+						<a href='/tags/autre' class='block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-800'
+							>Autres</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- RIGHT: Search / Social / Theme / Mobile Menu -->
+		<div class='flex items-center gap-3'>
+			<Search />
+			<ToggleTheme />
+			<div class='hidden md:flex gap-3'>
 				{
 					SOCIALNETWORKS.map((network) => (
-						<HeaderLink class='' href={network.url} target='_blank' aria-label={network.name}>
-							<span>{<network.icon />} </span>
+						<HeaderLink href={network.url} target='_blank' aria-label={network.name}>
+							<network.icon />
 						</HeaderLink>
 					))
 				}
 			</div>
-		</nav>
-	</div>
-
-	<div class='flex items-center gap-3 md:pl-3' transition:persist='navbar'>
-		<div>
-			<Search />
+			<button id='astro-header-drawer-button' type='button' class='md:hidden'>
+				<MenuIcon />
+				<span class='sr-only'>Menu</span>
+			</button>
 		</div>
-		<ToggleTheme />
-		<button id='astro-header-drawer-button' type='button' class='md:ml-6 md:hidden'>
-			<MenuIcon />
-			<span class='sr-only'>Show Menu</span>
-		</button>
 	</div>
 </header>
-<script>
-	document.addEventListener('click', (event) => {
-		const menu = document.getElementById('astro-header-drawer')
-		const menuButton = document.getElementById('astro-header-drawer-button')
-		const isClickInside =
-			menu?.contains(event.target as HTMLDivElement) ||
-			menuButton?.contains(event.target as HTMLButtonElement)
 
-		if (isClickInside) {
-			menu?.classList.toggle('translate-x-96')
-		} else {
-			menu?.classList.add('translate-x-96')
+<!-- MOBILE DRAWER -->
+<div
+	id='astro-header-drawer'
+	class='fixed top-0 right-0 w-64 h-full bg-white dark:bg-[#0a0910] transform translate-x-full transition-transform duration-300 z-50 md:hidden p-6'
+>
+	<nav class='flex flex-col gap-4'>
+		<HeaderLink href='/tags/entremet'>Entremets</HeaderLink>
+		<HeaderLink href='/tags/tarte'>Tartes</HeaderLink>
+		<HeaderLink href='/tags/gateau-voyage'>Gâteaux de voyage</HeaderLink>
+		<HeaderLink href='/tags/autre'>Autres</HeaderLink>
+		<div class='flex gap-3 mt-4'>
+			{
+				SOCIALNETWORKS.map((network) => (
+					<HeaderLink href={network.url} target='_blank' aria-label={network.name}>
+						<network.icon />
+					</HeaderLink>
+				))
+			}
+		</div>
+	</nav>
+</div>
+
+<script>
+	// Drawer toggle
+	const menu = document.getElementById('astro-header-drawer')
+	const menuButton = document.getElementById('astro-header-drawer-button')
+
+	menuButton.addEventListener('click', (e) => {
+		menu.classList.toggle('translate-x-full')
+		e.stopPropagation()
+	})
+
+	document.addEventListener('click', (e) => {
+		if (!menu.contains(e.target) && !menuButton.contains(e.target)) {
+			menu.classList.add('translate-x-full')
 		}
+	})
+
+	// Mobile dropdowns (if needed for nested menu)
+	document.querySelectorAll('.group > button').forEach((btn) => {
+		btn.addEventListener('click', (e) => {
+			const dropdown = btn.nextElementSibling
+			if (dropdown) dropdown.classList.toggle('hidden')
+			e.stopPropagation()
+		})
 	})
 </script>

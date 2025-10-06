@@ -7,10 +7,25 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				white: '#f8f9fa'
+				white: {
+					DEFAULT: '#f9f7f8',
+					dark: '#1f1f1f'
+				},
+				black: {
+					DEFAULT: '#01052d',
+					dark: '#fff'
+				},
+				primary: {
+					DEFAULT: '#6f6bae', // light mode main color (sky-500)
+					dark: '#6f6bae'     // dark mode main color
+				},
+				secondary: {
+					DEFAULT: '#708F7a', // purple accent
+					dark: '#708F7a'
+				}
 			},
 			fontFamily: {
-				body: ['Manrope', ...defaultTheme.fontFamily.sans]
+				body: ["Outfit", ...defaultTheme.fontFamily.sans]
 			},
 			gridTemplateColumns: {
 				list: 'repeat(auto-fill, minmax(400px, max-content))'
