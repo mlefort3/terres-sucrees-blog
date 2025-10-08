@@ -1,37 +1,42 @@
 ---
-import ListCategories from '@/components/ListCategories'
-import ListPosts from '@/components/ListPosts'
-import TitlePage from '@/components/TitlePage'
 import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import ListCategories from '@/components/ListCategories'
+import TitlePage from '@/components/TitlePage'
+import Pagination from '@/components/Pagination'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
+import ArrowRight from 'src/components/icons/ArrowRight.astro'
 
-const MAX_POSTS = 5 // max number of posts to show on the home page
-const posts = await getPosts(MAX_POSTS)
+const allPosts = await getPosts()
+
+const firstPageSize = 5
+const otherPageSize = 6
+
+// Compute first page manually
+const pageData = allPosts.slice(0, firstPageSize)
+const currentPage = 1
+const remainingPosts = allPosts.slice(firstPageSize)
+const totalOtherPages = Math.ceil(remainingPosts.length / otherPageSize)
+const lastPage = 1 + totalOtherPages
 ---
 
-<BaseLayout title='Home'>
-	<TitlePage title={siteConfig.title} />
+<BaseLayout title={`Toutes les recettes`}>
+	<TitlePage title='Toutes les recettes' />
 	<ListCategories />
-	<div>
-		<ListPosts FirstBig={true} posts={posts} />
-	</div>
+	<ListPosts FirstBig={true} posts={pageData} />
+
+	<!-- Pagination -->
+	<nav class='flex gap-5 md:gap-1 justify-around md:justify-end'>
+		{
+			currentPage < lastPage && (
+				<a
+					href={`/all/${currentPage + 1}`}
+					class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+				>
+					<ArrowRight />
+				</a>
+			)
+		}
+	</nav>
 </BaseLayout>
-
-<script>
-	import { animate } from 'motion'
-	const showAnimations = localStorage.getItem('animations') === 'true'
-
-	if (showAnimations) {
-		animate(
-			'.title',
-			{ y: [80, 0], opacity: [0, 1] },
-			{
-				duration: 2.5,
-				opacity: { duration: 3 },
-
-				offset: [0, 0.55, 0.75]
-			}
-		)
-	}
-</script>

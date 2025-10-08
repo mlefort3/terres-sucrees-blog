@@ -1,0 +1,89 @@
+---
+import BaseLayout from '@/layouts/BaseLayout'
+import ListPosts from '@/components/ListPosts'
+import ListCategories from '@/components/ListCategories'
+import TitlePage from '@/components/TitlePage'
+import Pagination from '@/components/Pagination'
+import { getPosts } from '@/utils'
+import { siteConfig } from '@/site-config'
+import ArrowLeft from 'src/components/icons/ArrowLeft.astro'
+import ArrowRight from 'src/components/icons/ArrowRight.astro'
+
+export async function getStaticPaths({ paginate }: any) {
+	const allPosts = await getPosts()
+
+	const firstPageSize = 5
+	const otherPageSize = 6
+
+	// total posts and pages
+	const remaining = allPosts.length - firstPageSize
+	const totalOtherPages = Math.ceil(remaining / otherPageSize)
+
+	// ✅ Build a single array of all pages' data
+	const allPages = []
+
+	// Page 1 (5 posts)
+	allPages.push(allPosts.slice(0, firstPageSize))
+
+	// Page 2+ (6 posts each)
+	for (let i = 0; i < totalOtherPages; i++) {
+		const start = firstPageSize + i * otherPageSize
+		const end = start + otherPageSize
+		allPages.push(allPosts.slice(start, end))
+	}
+
+	// ✅ Create paths manually
+	return allPages.map((pageData, i) => ({
+		params: { page: String(i + 1) },
+		props: { pageData, currentPage: i + 1, lastPage: allPages.length }
+	}))
+}
+
+const { pageData, currentPage, lastPage } = Astro.props
+---
+
+<BaseLayout title={`Toutes les recettes - Page ${currentPage}`}>
+	<TitlePage title='Toutes les recettes' />
+	<ListCategories />
+	<ListPosts FirstBig={currentPage === 1} posts={pageData} />
+
+	<!-- Previous Button -->
+	<nav class='flex gap-5 md:gap-1 justify-around md:justify-end'>
+		{
+			currentPage > 1 && (
+				<a
+					href={`/all/${currentPage - 1}`}
+					class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+				>
+					<ArrowLeft />
+				</a>
+			)
+		}
+		{
+			currentPage < lastPage && (
+				<a
+					href={`/all/${currentPage + 1}`}
+					class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white'
+				>
+					<ArrowRight />
+				</a>
+			)
+		}
+	</nav>
+</BaseLayout>
+
+<script>
+	import { animate } from 'motion'
+	const showAnimations = localStorage.getItem('animations') === 'true'
+	if (showAnimations) {
+		animate(
+			'.title',
+			{ y: [80, 0], opacity: [0, 1] },
+			{
+				duration: 2.5,
+				opacity: { duration: 3 },
+				offset: [0, 0.55, 0.75]
+			}
+		)
+	}
+</script>
