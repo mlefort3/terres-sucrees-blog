@@ -30,10 +30,10 @@ const articleDate = pubDate.toISOString()
 			<div class='flex flex-col gap-2'>
 				<div class='flex items-center justify-center gap-x-1'>
 					<p class='text-center text-sm text-opacity-50'>
-						Published <FormattedDate date={pubDate} />
+						Publié le <FormattedDate date={pubDate} />
 					</p>
 					<p class='text-center text-sm text-opacity-50 font-bold'>
-						- {readTime}
+						- {readTime.replace('read', 'de lecture')}
 					</p>
 				</div>
 				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>
@@ -41,7 +41,7 @@ const articleDate = pubDate.toISOString()
 				</h1>
 			</div>
 
-			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5'>
+			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5 capitalize'>
 				{tags.map((tag) => <Tag tag={tag} />)}
 			</div>
 		</header>

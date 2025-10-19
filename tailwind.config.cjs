@@ -22,6 +22,10 @@ module.exports = {
 				secondary: {
 					DEFAULT: '#708F7a', // purple accent
 					dark: '#708F7a'
+				},
+				primary_second: {
+					DEFAULT: '#bdb7fd',
+					dark: '#bdb7fd'
 				}
 			},
 			fontFamily: {
