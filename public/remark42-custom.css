@@ -1,7 +1,11 @@
 :root {
-  --primary-color: #6f6bae;
-  --primary-hover-color: #bdb7fd;
-  --link-color: #6f6bae;
-  --bg-color: #f9f7f8;
-  --text-color: #01052d;
+  --primary-color: #ff5f2e;
+  --primary-hover-color: #e94f22;
+}
+
+.remark42__send-button,
+.remark42__btn {
+  background: #ff5f2e !important;
+  border-color: #ff5f2e !important;
+  color: white !important;
 }
