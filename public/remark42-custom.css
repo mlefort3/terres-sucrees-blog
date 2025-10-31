@@ -1,12 +1,39 @@
-:root {
-  --primary-color: #ff5f2e;
-  --primary-hover-color: #e94f22;
+/* LOGIN PANEL */
+.auth.N_A {
+    background: #fff4ef !important;
+    padding: 10px !important;
+    border-radius: 8px !important;
 }
 
-.remark42__send-button,
-.remark42,
-.remark42__btn {
-  background: #ff5f2e !important;
-  border-color: #ff5f2e !important;
-  color: white !important;
+.auth-button.C_A {
+    background-color: #ff5f2e !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 6px !important;
+    padding: 8px 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+}
+
+.auth-button.C_A svg {
+    color: white !important;
+}
+
+/* TEXTAREA */
+.comment-form__field {
+    border: 2px solid #ff5f2e !important;
+    border-radius: 8px !important;
+    padding: 10px !important;
+}
+
+/* TOOLBAR */
+.comment-form__toolbar-icon {
+    color: #ff5f2e !important;
+}
+
+/* SORT PICKER */
+.select.M_A {
+    border: 1px solid #ff5f2e !important;
+    border-radius: 6px !important;
+    padding: 4px 8px !important;
 }
