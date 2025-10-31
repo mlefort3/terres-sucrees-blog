@@ -16,7 +16,7 @@ const { posts } = Astro.props
 		posts.length > 0 ? (
 			posts.map((post) => {
 				return (
-					<div class='flex flex-wrap gap-2'>
+					<div class='flex flex-wrap gap-2' style='background-color: green; border-radius:25%;'>
 						<div class='min-h-full'>
 							<Image
 								src={post.data.heroImage}
