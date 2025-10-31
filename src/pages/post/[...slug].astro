@@ -7,8 +7,6 @@ import Share from '@/components/Share'
 import TableOfContents from '@/components/TableOfContents'
 import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
-import Disqus from '@/components/Disqus'
-import { disqusConfig } from '@/data/disqus.config'
 
 const posts = await getCollection('blog')
 export async function getStaticPaths() {
@@ -34,8 +32,6 @@ const getRelatedPosts = (post: Props) => {
 const relatedPosts = getRelatedPosts(post)
 
 const { Content, headings, remarkPluginFrontmatter } = await post.render()
-
-const disqusEnabled = disqusConfig.enabled
 ---
 
 <BlogPost
@@ -66,5 +62,33 @@ const disqusEnabled = disqusConfig.enabled
 		</article>
 	</div>
 
-	{disqusEnabled && <Disqus />}
+	<script type='text/javascript'>
+		window.remark_config = {
+			host: 'https://comments.terres-sucrees.fr',
+			site_id: 'terres-sucrees-blog-5',
+			components: ['embed'],
+			theme: 'light',
+			locale: 'fr'
+		}
+	</script>
+
+	<script type='text/javascript'>
+		!(function (e, n) {
+			for (var o = 0; o < e.length; o++) {
+				var r = n.createElement('script'),
+					c = '.js',
+					d = n.head || n.body
+				;('noModule' in r ? ((r.type = 'module'), (c = '.mjs')) : (r.async = !0),
+					(r.defer = !0),
+					(r.src = window.remark_config.host + '/web/' + e[o] + c),
+					d.appendChild(r))
+			}
+		})(window.remark_config.components || ['embed'], document)
+	</script>
+
+	<!-- Comments container -->
+
+	<div class='mt-10'>
+		<div id='remark42'></div>
+	</div>
 </BlogPost>
