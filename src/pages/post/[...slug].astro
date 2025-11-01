@@ -63,13 +63,91 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 	</div>
 
 	<script type='text/javascript'>
-		window.remark_config = {
-			host: 'https://comments.terres-sucrees.fr',
-			site_id: 'terres-sucrees-blog-7',
-			components: ['embed', 'css'],
-			theme: 'light',
-			locale: 'fr'
-		}
+		;(function () {
+			const REMARK_SCRIPT_SRC = 'https://comments.terres-sucrees.fr/web/embed.js'
+			const REMARK_SCRIPT_ATTR = 'data-remark42-script'
+
+			function isDarkMode() {
+				return document.documentElement.classList.contains('dark')
+			}
+
+			// Load the widget
+			function loadRemark42() {
+				const container = document.getElementById('remark42')
+				if (!container) return
+
+				window.remark_config = {
+					host: 'https://comments.terres-sucrees.fr',
+					site_id: 'terres-sucrees-blog-7',
+					components: ['embed', 'css'],
+					theme: isDarkMode() ? 'dark' : 'light',
+					locale: 'fr'
+				}
+
+				const script = document.createElement('script')
+				script.src = REMARK_SCRIPT_SRC
+				script.defer = true
+				script.setAttribute(REMARK_SCRIPT_ATTR, 'true')
+				document.body.appendChild(script)
+			}
+
+			// Remove widget but keep the container in place
+			function unloadRemark42() {
+				document.querySelectorAll(`script[${REMARK_SCRIPT_ATTR}]`).forEach((s) => s.remove())
+				const container = document.getElementById('remark42')
+				if (container) container.innerHTML = ''
+			}
+
+			let lastDark = null
+
+			// Loads only when the <html> theme is correct
+			function ensureCorrectInitialTheme() {
+				const currentDark = isDarkMode()
+
+				// First run and dark mode not detected yet?
+				if (lastDark === null) {
+					lastDark = currentDark
+					unloadRemark42()
+					loadRemark42()
+					return true
+				}
+
+				return false
+			}
+
+			// Detect theme changes after initial load
+			function reloadOnThemeChange() {
+				const nowDark = isDarkMode()
+				if (nowDark === lastDark) return
+				lastDark = nowDark
+
+				unloadRemark42()
+				requestAnimationFrame(loadRemark42)
+			}
+
+			// 1. Wait until the theme class is correctly applied (fixes "first page load" bug)
+			const themeWaiter = setInterval(() => {
+				if (isDarkMode() || !isDarkMode()) {
+					// always true, but ensures class detection
+					clearInterval(themeWaiter)
+					ensureCorrectInitialTheme()
+				}
+			}, 10) // check very fast until <html> has the expected theme
+
+			// 2. Watch theme changes via MutationObserver
+			const observer = new MutationObserver((mutations) => {
+				for (const m of mutations) {
+					if (m.attributeName === 'class') {
+						reloadOnThemeChange()
+					}
+				}
+			})
+
+			observer.observe(document.documentElement, {
+				attributes: true,
+				attributeFilter: ['class']
+			})
+		})()
 	</script>
 
 	<script type='text/javascript'>
@@ -88,27 +166,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 
 	<!-- Comments container -->
 
-	<div class='mt-10;'>
+	<div class='mt-40;' style='margin-top:20px'>
 		<div id='remark42'></div>
 	</div>
-
-	<style>
-		.custom-wrapper {
-			background-color: #f9f9f9;
-			padding: 20px;
-			border-radius: 12px;
-			border: 1px solid #eee;
-		}
-
-		#remark42 {
-			margin-top: 15px;
-			background-color: white;
-			padding: 10px;
-			border-radius: 8px;
-		}
-
-		#auth N_A {
-			background-color: white;
-		}
-	</style>
 </BlogPost>

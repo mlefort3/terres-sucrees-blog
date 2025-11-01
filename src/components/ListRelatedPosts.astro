@@ -1,6 +1,5 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-
 import { cn } from '@/utils'
 import { Image } from 'astro:assets'
 
@@ -11,32 +10,41 @@ type Props = {
 const { posts } = Astro.props
 ---
 
-<section class={cn(`flex flex-col md:flex-row sm:justify-between gap-8`)}>
+<section class={cn(`grid gap-6 sm:grid-cols-2 lg:grid-cols-3`)}>
 	{
 		posts.length > 0 ? (
 			posts.map((post) => {
 				return (
-					<div class='flex flex-wrap gap-2' style='background-color: green; border-radius:25%;'>
-						<div class='min-h-full'>
-							<Image
-								src={post.data.heroImage}
-								width={200}
-								height={200}
-								format='webp'
-								class='w-16 h-16 object-cover rounded-full  '
-								alt={`img of ${post.data.title}`}
-							/>
-						</div>
-						<header class='flex justify-center items-center'>
-							<a class='font-medium  hover:underline' href={`/post/${post.slug}/`}>
-								{post.data.title}
-							</a>
-						</header>
-					</div>
+					<a
+						href={`/post/${post.slug}/`}
+						class='
+              group flex items-center gap-4 p-4 
+              rounded-xl
+              bg-[#e5e4f4] dark:bg-[#4c4a6b]
+              shadow-sm hover:shadow transition-shadow
+              dark:shadow-none dark:hover:shadow-md
+            '
+					>
+						<Image
+							src={post.data.heroImage}
+							width={200}
+							height={200}
+							format='webp'
+							alt={`Image of ${post.data.title}`}
+							class='w-16 h-16 rounded-full object-cover'
+						/>
+
+						<h3
+							class='font-semibold text-lg group-hover:underline line-clamp-2 
+                       text-gray-900 dark:text-gray-100'
+						>
+							{post.data.title}
+						</h3>
+					</a>
 				)
 			})
 		) : (
-			<span class='text-gray-500'>There are no related posts yet. 😢</span>
+			<span class='text-gray-500 dark:text-gray-400'>There are no related posts yet. 😢</span>
 		)
 	}
 </section>
