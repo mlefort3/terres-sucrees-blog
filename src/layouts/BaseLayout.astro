@@ -12,11 +12,22 @@ const { title, description, image, articleDate } = Astro.props
 <html lang='fr' class='scroll-smooth'>
 	<head>
 		<BaseHead title={title} description={description} ogImage={image} articleDate={articleDate} />
-		<script src='https://app.rybbit.io/api/script.js' data-site-id='62a2dd88e8a6' defer></script>
-		<script
-			data-goatcounter='https://goatcounter-terres-sucrees.onrender.com/count'
-			async
-			src='https://goatcounter-terres-sucrees.onrender.com/count.js'></script>
+		<script is:inline>
+			const s = document.createElement('script')
+			s.src = 'https://app.rybbit.io/api/script.js'
+			s.dataset.siteId = '62a2dd88e8a6'
+			document.head.appendChild(s)
+		</script>
+
+		<script is:inline>
+			;(function () {
+				const s = document.createElement('script')
+				s.src = 'https://goatcounter-terres-sucrees.onrender.com/count.js'
+				s.async = true
+				s.setAttribute('data-goatcounter', 'https://goatcounter-terres-sucrees.onrender.com/count')
+				document.head.appendChild(s)
+			})()
+		</script>
 		<ProviderTheme />
 		<ProviderAnimations />
 	</head>
