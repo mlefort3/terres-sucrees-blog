@@ -81,7 +81,8 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 					site_id: 'terres-sucrees-blog-15',
 					components: ['embed', 'css'],
 					theme: isDarkMode() ? 'dark' : 'light',
-					locale: 'fr'
+					locale: 'fr',
+					mode: 'popup'
 				}
 
 				const script = document.createElement('script')
