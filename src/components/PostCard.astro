@@ -27,16 +27,15 @@ const {
 			<div class='flex items-center justify-between gap-x-1 text-white px-6 py-4'>
 				<div class='flex flex-col gap-1 items-left justify-center'>
 					<span class='text-m font-bold'> {title}</span>
-					<FormattedDate date={pubDate} />
+					<span class='pb-4'>{category}</span>
 				</div>
-
-				<span class='pb-4'>{category}</span>
 			</div>
 		</div>
 	</a>
 
 	<div class='flex justify-between flex-col gap-2 md:gap-0 py-6'>
 		<div class='flex flex-col py-0'>
+			<FormattedDate date={pubDate} />
 			<p
 				class='overflow-hidden line-clamp-3 text-gray-700 dark:text-white mb-1 font-[400] md:pr-[15%]'
 			>
