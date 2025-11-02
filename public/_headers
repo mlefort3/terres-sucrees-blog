@@ -1,0 +1,8 @@
+/*
+  Cache-Control: no-store
+  Content-Security-Policy: \
+    default-src 'self'; \
+    script-src 'self' https://goatcounter-terres-sucrees.onrender.com https://gc.zgo.at https://app.rybbit.io https://comments.terres-sucrees.fr; \
+    connect-src 'self' https://goatcounter-terres-sucrees.onrender.com; \
+    img-src 'self' data:; \
+    style-src 'self' 'unsafe-inline';
