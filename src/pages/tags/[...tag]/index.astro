@@ -2,7 +2,7 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import TitlePage from '@/components/TitlePage'
-import { getTags, getPostByTag } from '@/utils'
+import { unsluglify, getTags, getPostByTag } from '@/utils'
 
 export async function getStaticPaths() {
 	const tags = await getTags()
@@ -15,10 +15,12 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props
 
+const unsluglifyNameTag = unsluglify(tag.toLowerCase())
+
 const posts = await getPostByTag(tag)
 ---
 
-<BaseLayout title={tag}>
-	<TitlePage title={tag} />
+<BaseLayout title={unsluglifyNameTag}>
+	<TitlePage title={unsluglifyNameTag} />
 	<ListPosts posts={posts} />
 </BaseLayout>
