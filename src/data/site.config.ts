@@ -10,7 +10,7 @@ interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-	site: 'https://blog-template-gray.vercel.app/', // Write here your website url
+	site: 'https://terres-sucrees.fr/', // Write here your website url
 	author: 'Terres Sucrées', // Site author
 	title: 'Toutes les recettes', // Site title.
 	description: 'Recettes de pâtisserie végétale.', // Description to display in the meta tags

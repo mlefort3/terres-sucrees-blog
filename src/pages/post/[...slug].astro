@@ -53,12 +53,6 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 			<div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
 				<Content components={{ pre: Code, SButton }} />
 			</div>
-
-			<!-- related posts -->
-			<footer>
-				<h2 class='font-bold text-lg dark:text-white mb-6'>Recettes recommandées</h2>
-				<ListRelatedPosts posts={relatedPosts} />
-			</footer>
 		</article>
 	</div>
 
