@@ -1,8 +1,13 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
-# npm
-# npx lint-staged
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
 
-# pnpm
-pnpm exec lint-staged
+# force une version de Node
+nvm use default >/dev/null 2>&1 || nvm use 20 >/dev/null 2>&1
+
+node -v || exit 1
+npm -v || exit 1
+pnpm -v || exit 1
+
+pnpm lint-staged

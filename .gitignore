@@ -24,3 +24,7 @@ pnpm-debug.log*
 .DS_Store
 
 node_modules
+package-lock.json
+.husky/pre-commit
+package.json
+pnpm-lock.yaml
