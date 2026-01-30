@@ -13,8 +13,10 @@ export async function getStaticPaths({ paginate }: any) {
 
 	return categories.flatMap((category: string) => {
 		const unsluglifyNameCategory = unsluglify(category!.toLowerCase())
-		const filteredPosts = allPosts.filter(
-			(post) => post.data.category.toLowerCase() === unsluglifyNameCategory
+		const filteredPosts = allPosts.filter((post) =>
+			(post.data.categories || [])
+				.map((c: string) => c.toLowerCase())
+				.includes(unsluglifyNameCategory)
 		)
 
 		return paginate(filteredPosts, {
@@ -36,7 +38,7 @@ const posts = page.data
 ---
 
 <BaseLayout title={categoryName}>
-	<TitlePage title={categoryName} />
+	<TitlePage title={categoryName ?? ''} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />
 	<Pagination page={page} />

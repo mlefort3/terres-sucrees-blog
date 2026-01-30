@@ -38,10 +38,14 @@ export default defineConfig({
 					{
 						type: 'string',
 						required: true,
-						name: 'category',
-						label: 'Category',
-						description: 'Select an category for this post',
-						options: [...CATEGORIES]
+						name: 'categories',
+						label: 'Categories',
+						description: 'Select one or more categories for this post',
+						options: [...CATEGORIES],
+						list: true,
+						ui: {
+							component: 'tags'
+						}
 					},
 					{
 						type: 'string',
