@@ -8,9 +8,16 @@ export interface Props {
 	description?: string
 	ogImage?: string | undefined
 	articleDate?: string | undefined
+	noindex?: boolean
 }
 
-const { title, description = siteConfig.description, ogImage, articleDate } = Astro.props
+const {
+	title,
+	description = siteConfig.description,
+	ogImage,
+	articleDate,
+	noindex = false
+} = Astro.props
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url).href
 
@@ -30,6 +37,9 @@ import { AstroFont } from 'astro-font'
 
 <!-- Canonical URL -->
 <link rel='canonical' href={canonicalURL} />
+
+<!-- Robots Meta -->
+{noindex && <meta name='robots' content='noindex, follow' />}
 
 <!-- Primary Meta Tags -->
 <title>{siteTitle}</title>

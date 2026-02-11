@@ -1,2 +1,52 @@
 [build]
   command = 'pnpm build'
+
+# Redirect old WordPress URLs with query parameters
+# ?paged=X&cat=Y -> redirect to home (or specific category if detectable)
+[[redirects]]
+  from = "/?paged=*&cat=*"
+  to = "/"
+  status = 301
+  force = true
+
+# ?paged=X -> redirect to pagination
+[[redirects]]
+  from = "/?paged=*"
+  to = "/"
+  status = 301
+  force = true
+
+# ?cat=X -> redirect to home
+[[redirects]]
+  from = "/?cat=*"
+  to = "/"
+  status = 301
+  force = true
+
+# ?p=X -> redirect to home (post IDs)
+[[redirects]]
+  from = "/?p=*"
+  to = "/"
+  status = 301
+  force = true
+
+# ?author=* -> redirect to home
+[[redirects]]
+  from = "/?author=*"
+  to = "/"
+  status = 301
+  force = true
+
+# Redirect old WordPress date-based URLs (/YYYY/MM/DD/slug/) to new format (/post/slug/)
+[[redirects]]
+  from = "/:year/:month/:day/:slug/"
+  to = "/post/:slug/"
+  status = 301
+  force = true
+
+# Redirect old WordPress date-based URLs without trailing slash
+[[redirects]]
+  from = "/:year/:month/:day/:slug"
+  to = "/post/:slug/"
+  status = 301
+  force = true

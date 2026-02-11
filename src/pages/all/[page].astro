@@ -42,7 +42,7 @@ export async function getStaticPaths({ paginate }: any) {
 const { pageData, currentPage, lastPage } = Astro.props
 ---
 
-<BaseLayout title={`Toutes les recettes - Page ${currentPage}`}>
+<BaseLayout title={`Toutes les recettes - Page ${currentPage}`} noindex={currentPage > 1}>
 	<TitlePage title='Toutes les recettes' />
 	<ListCategories />
 	<ListPosts FirstBig={currentPage === 1} posts={pageData} />

@@ -35,9 +35,10 @@ const categoryName = (await getCategories()).find(
 	(category) => category.toLowerCase() === unsluglifyNameCategory
 )
 const posts = page.data
+const isSecondaryPage = page.currentPage > 1
 ---
 
-<BaseLayout title={categoryName}>
+<BaseLayout title={categoryName} noindex={isSecondaryPage}>
 	<TitlePage title={categoryName ?? ''} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />

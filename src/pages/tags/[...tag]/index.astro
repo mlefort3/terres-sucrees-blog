@@ -20,7 +20,7 @@ const unsluglifyNameTag = unsluglify(tag.toLowerCase())
 const posts = await getPostByTag(tag)
 ---
 
-<BaseLayout title={unsluglifyNameTag}>
+<BaseLayout title={unsluglifyNameTag} noindex={false}>
 	<TitlePage title={unsluglifyNameTag} />
 	<ListPosts posts={posts} />
 </BaseLayout>
