@@ -63,8 +63,8 @@ const finalToc = hasRecipeSection
 	: toc
 ---
 
-<nav class='max-w-xs dark:text-black'>
-	<p class='font-bold mb-3 text-2xl dark:text-white'>Index</p>
+<nav class='w-full'>
+	<p class='font-bold mb-6 text-2xl text-primary dark:text-primary'>Table des matières</p>
 	<ul class='[text-wrap:balance] flex flex-col gap-1'>
 		{finalToc.map((heading) => <TableOfContentsHeading heading={heading} />)}
 	</ul>

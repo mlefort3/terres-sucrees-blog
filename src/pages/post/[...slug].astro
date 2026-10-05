@@ -46,7 +46,7 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 		<aside class='md:flex flex-col gap-8 hidden'>
 			<div class='sticky top-24 self-start transition-all duration-200'>
 				<div
-					class='bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow'
+					class='bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow'
 				>
 					{
 						headings && headings.length > 0 && (
@@ -61,14 +61,18 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 		</aside>
 
 		<!-- post -->
-		<article class='max-w-full w-full'>
-			<div class='prose prose-lg md:prose-xl dark:prose-invert mb-12 min-w-full'>
+		<article
+			class='max-w-full w-full bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 md:p-12 shadow-sm'
+		>
+			<div
+				class='prose prose-lg md:prose-xl dark:prose-invert prose-h2:!bg-transparent dark:prose-h2:!bg-transparent mb-12 min-w-full'
+			>
 				<Content components={{ pre: Code, SButton }} />
 			</div>
 
 			{
 				post.data.recipeIngredients && post.data.recipeIngredients.length > 0 && (
-					<div class='bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-900 dark:to-slate-800 rounded-lg border border-amber-200 dark:border-amber-700 p-8 shadow-sm hover:shadow-md transition-shadow mt-12'>
+					<div class='border-t border-slate-200 dark:border-slate-800 pt-8 mt-8'>
 						<RecipeIngredientsDisplay recipeIngredientIds={post.data.recipeIngredients} />
 					</div>
 				)
