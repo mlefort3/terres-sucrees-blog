@@ -1,0 +1,18 @@
+name: "Crêpes dentelles"
+description: "Crêpes dentelles végétalienne croustillantes"
+source:
+  title: "La cuisine végétar-l-ienne de Jeanne"
+  url: "https://jeanne-cuisine.over-blog.com/2016/11/crepes-dentelles-gavottes-vegetaliennes.html"
+ingredients:
+  - item: "85 mL de lait de soja"
+  - item: "20 g de margarine"
+  - item: "30 g de farine"
+  - item: "10 g de maïzena"
+  - item: "10 g de sucre"
+  - item: "1 pincée de sel"
+steps:
+  - "Faire fondre la margarine dans le lait"
+  - "Mélanger ensemble le reste des ingrédients"
+  - "Y ajouter petit à petit le mélange lait/margarine"
+  - "Étaler sur du papier cuisson, le plus finement possible"
+  - "Cuire 45-50 min à 150°C"

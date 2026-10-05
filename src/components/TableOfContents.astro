@@ -1,7 +1,13 @@
 ---
+import { getCollection } from 'astro:content'
 import TableOfContentsHeading from '@/components/TabletOfContentsHeading'
 
-const { headings } = Astro.props
+interface Props {
+	headings: any[]
+	recipeIngredients?: string[]
+}
+
+const { headings, recipeIngredients = [] } = Astro.props
 
 type TableOfContent = {
 	depth: number
@@ -26,11 +32,40 @@ function buildToc(headings: TableOfContent[]) {
 	})
 	return toc
 }
+
+// Charger les ingrédients de recettes si disponibles
+let ingredientsList = []
+if (recipeIngredients && recipeIngredients.length > 0) {
+	const allIngredients = await getCollection('recipeIngredients')
+	ingredientsList = recipeIngredients
+		.map((id) => allIngredients.find((ing) => ing.id === id))
+		.filter((ing) => ing !== undefined)
+		.map((ing) => ({
+			depth: 3,
+			text: ing.data.name,
+			slug: `ingredient-${ing.id}`,
+			subheadings: []
+		}))
+}
+
+// Ajouter une section Recette au TOC si des ingrédients sont présents
+const hasRecipeSection = ingredientsList.length > 0
+const finalToc = hasRecipeSection
+	? [
+			...toc,
+			{
+				depth: 2,
+				text: 'Recette',
+				slug: 'recette',
+				subheadings: ingredientsList
+			}
+		]
+	: toc
 ---
 
 <nav class='max-w-xs dark:text-black'>
 	<p class='font-bold mb-3 text-2xl dark:text-white'>Index</p>
 	<ul class='[text-wrap:balance] flex flex-col gap-1'>
-		{toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+		{finalToc.map((heading) => <TableOfContentsHeading heading={heading} />)}
 	</ul>
 </nav>

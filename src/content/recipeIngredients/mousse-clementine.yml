@@ -1,0 +1,18 @@
+name: "Mousse clémentine"
+description: "Mousse légère à la clémentine et vanille"
+ingredients:
+  - item: "200 g de purée de clémentine"
+  - item: "40 g de sucre"
+  - item: "2 g de pectine NH"
+  - item: "200 g de crème végétale liquide (30% de MG)"
+  - item: "1 gousse de vanille (ou 1/2 c. à café d'extrait de vanille)"
+steps:
+  - "Mélanger la pectine et le sucre"
+  - "Faire chauffer la purée de clémentine"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter à ébullition pour 1-2 min"
+  - "Ajouter la vanille"
+  - "Retirez du feu et laissez refroidir jusqu'à température ambiante"
+  - "Monter la crème en chantilly"
+  - "Incorporer petit à petit la purée de clémentine à la crème"
+  - "Réserver"

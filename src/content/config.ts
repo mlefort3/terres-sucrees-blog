@@ -15,8 +15,35 @@ const blog = defineCollection({
 			heroImage: image(),
 			categories: z.array(z.enum(CATEGORIES)),
 			tags: z.array(z.string()),
-			draft: z.boolean().default(false)
+			draft: z.boolean().default(false),
+			// References to recipe ingredients (optional)
+			recipeIngredients: z.array(z.string()).optional()
 		})
 })
 
-export const collections = { blog }
+const recipeIngredients = defineCollection({
+	type: 'data',
+	schema: z.object({
+		name: z.string(),
+		description: z.string().optional(),
+		ingredients: z.array(
+			z.object({
+				item: z.string(),
+				quantity: z.string().optional()
+			})
+		),
+		steps: z.array(z.string()),
+		source: z
+			.union([
+				z.string(),
+				z.object({
+					title: z.string(),
+					url: z.string().url()
+				})
+			])
+			.optional(),
+		notes: z.string().optional()
+	})
+})
+
+export const collections = { blog, recipeIngredients }
