@@ -1,4 +1,5 @@
 name: "Insert framboise piment d'Espelette"
+category: insert
 description: "Insert gélifié framboise relevé au piment d'Espelette"
 ingredients:
   - item: "150 g de purée de framboise"

@@ -1,4 +1,5 @@
 name: "Pâte à cookie"
+category: pâte
 description: "Pâte à cookies vegan aux pépites de chocolat et aux noisettes"
 ingredients:
   - item: "120 g de margarine végétale"

@@ -1,4 +1,5 @@
 name: "Insert crémeux noisette"
+category: insert
 description: "Insert crémeux à la purée de noisettes"
 ingredients:
   - item: "125 ml de lait végétal"

@@ -25,6 +25,17 @@ const recipeIngredients = defineCollection({
 	type: 'data',
 	schema: z.object({
 		name: z.string(),
+		category: z.enum([
+			'pâte',
+			'biscuit',
+			'sirop',
+			'croustillant',
+			'insert',
+			'mousse',
+			'glaçage',
+			'décor',
+			'autre'
+		]),
 		description: z.string().optional(),
 		ingredients: z.array(
 			z.object({

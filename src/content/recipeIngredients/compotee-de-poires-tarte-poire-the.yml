@@ -1,4 +1,5 @@
 name: "Compotée de poires"
+category: insert
 description: "Compotée de poires légèrement gélifiée à la vanille"
 ingredients:
   - item: "300 g de purée de poires"

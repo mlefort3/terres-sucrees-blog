@@ -1,4 +1,5 @@
 name: "Appareil à flan à la vanille"
+category: insert
 description: "Appareil à flan vanille sans soja, crémeux et 100% végétal"
 ingredients:
   - item: "400 g d'eau (1)"

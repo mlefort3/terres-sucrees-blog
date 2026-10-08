@@ -1,4 +1,5 @@
 name: "Galette"
+category: biscuit
 description: "Assemblage de la galette des rois à la frangipane"
 ingredients:
   - item: "Des pâtes feuilletées vegan du commerce (option)"

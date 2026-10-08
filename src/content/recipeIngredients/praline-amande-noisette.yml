@@ -1,4 +1,5 @@
 name: "Praliné amande/noisette"
+category: insert
 description: "Praliné maison aux amandes et noisettes torréfiées"
 ingredients:
   - item: "100 g d'amandes"

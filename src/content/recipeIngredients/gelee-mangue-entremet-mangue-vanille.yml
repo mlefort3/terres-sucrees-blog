@@ -1,4 +1,5 @@
 name: "Gelée mangue"
+category: insert
 description: "Gelée de purée de mangue au citron"
 ingredients:
   - item: "400 g de purée de mangue"

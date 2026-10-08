@@ -1,4 +1,5 @@
 name: "Crémeux praliné"
+category: insert
 description: "Crémeux onctueux au praliné amande/noisette"
 ingredients:
   - item: "150 g de praliné amande/noisette"

@@ -1,4 +1,5 @@
 name: "Gel fraise"
+category: insert
 description: "Gelée de fraise à la pectine NH"
 ingredients:
   - item: "300 g de purée de fraise"

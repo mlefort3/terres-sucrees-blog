@@ -1,4 +1,5 @@
 name: "Croustillant noisette"
+category: croustillant
 description: "Croustillant à la purée de noisette, chocolat blanc et crêpes dentelles"
 ingredients:
   - item: "80 g de purée de noisette (100% noisette, non sucrée)"

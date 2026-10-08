@@ -1,4 +1,5 @@
 name: "Croustillant chocolat blanc"
+category: croustillant
 description: "Couche croustillante au chocolat blanc et riz soufflé"
 ingredients:
   - item: "30 g de chocolat blanc (vegan)"

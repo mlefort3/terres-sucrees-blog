@@ -1,4 +1,5 @@
 name: "Mousse chocolat noir fève tonka"
+category: mousse
 description: "Mousse au chocolat noir parfumée à la fève tonka"
 ingredients:
   - item: "100 g de chocolat noir"

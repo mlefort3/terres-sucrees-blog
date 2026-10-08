@@ -1,4 +1,5 @@
 name: "Praliné noix de pécan"
+category: insert
 description: "Praliné maison aux noix de pécan torréfiées"
 ingredients:
   - item: "200 g de noix de pécan"

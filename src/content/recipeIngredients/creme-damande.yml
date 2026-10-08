@@ -1,4 +1,5 @@
 name: "Crème d'amande"
+category: mousse
 description: "Crème d'amande vegan à la poudre d'amandes"
 ingredients:
   - item: "90 g de margarine"

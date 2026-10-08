@@ -1,4 +1,5 @@
 name: "Biscuit cacao olive et huile d’olive"
+category: biscuit
 description: "Biscuit moelleux au cacao et olives de Kalamata"
 ingredients:
   - item: "15 g d’olives de Kalamata (dénoyautées et hachées finement)"

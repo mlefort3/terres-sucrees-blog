@@ -1,4 +1,5 @@
 name: "Cookies chocolat noisette"
+category: biscuit
 description: "Cookies moelleux au chocolat et à la noisette"
 ingredients:
   - item: "120 g de margarine végétale"

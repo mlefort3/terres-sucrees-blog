@@ -1,4 +1,5 @@
 name: "Croustillant chocolat noir"
+category: croustillant
 description: "Couche croustillante au chocolat noir et à la purée d'amandes"
 ingredients:
   - item: "50 g de chocolat noir (vegan)"

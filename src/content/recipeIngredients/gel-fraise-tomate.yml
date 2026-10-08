@@ -1,4 +1,5 @@
 name: "Gel fraise/tomate"
+category: insert
 description: "Gel sucré à la fraise et à la tomate"
 ingredients:
   - item: "250 g de purée de fraise"

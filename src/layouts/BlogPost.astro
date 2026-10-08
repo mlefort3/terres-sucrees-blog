@@ -83,12 +83,15 @@ const articleDate = pubDate.toISOString()
 
 				if (entry.isIntersecting) {
 					index?.classList.remove('bg-slate-200', 'dark:bg-slate-800') // remove bg
-					index?.classList.add('text-white', 'font-bold', 'transition-colors', 'duration-200')
+					// `!text-primary` reste lisible sur la carte claire comme sur la carte
+					// sombre, contrairement à `text-white` qui disparaissait en mode clair ;
+					// le `!` lui permet de gagner face à `text-slate-900` de la carte.
+					index?.classList.add('!text-primary', 'font-bold', 'transition-colors', 'duration-200')
 				} else {
 					index?.classList.remove(
 						'bg-indigo-600',
 						'dark:bg-indigo-700',
-						'text-white',
+						'!text-primary',
 						'font-bold',
 						'transition-colors',
 						'duration-200'

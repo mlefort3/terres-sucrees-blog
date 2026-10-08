@@ -1,4 +1,5 @@
 name: "Crème pâtissière"
+category: mousse
 description: "Crème pâtissière vanille vegan"
 ingredients:
   - item: "100 g lait de soja"

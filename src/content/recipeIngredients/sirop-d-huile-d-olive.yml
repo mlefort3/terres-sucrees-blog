@@ -1,4 +1,5 @@
 name: "Sirop d'huile d'olive"
+category: sirop
 description: "Sirop d'huile d'olive pour imbiber la génoise"
 ingredients:
   - item: "50 g de d'eau"

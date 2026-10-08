@@ -1,4 +1,5 @@
 name: "Mousse clémentine"
+category: mousse
 description: "Mousse légère à la clémentine et vanille"
 ingredients:
   - item: "200 g de purée de clémentine"

@@ -1,4 +1,5 @@
 name: "Frangipane"
+category: insert
 description: "Frangipane obtenue en mélangeant la crème pâtissière et la crème d'amande"
 ingredients:
   - item: "La crème pâtissière réalisée"

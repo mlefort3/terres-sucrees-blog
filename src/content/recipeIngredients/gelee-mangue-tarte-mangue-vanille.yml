@@ -1,4 +1,5 @@
 name: "Gelée mangue"
+category: insert
 description: "Gelée légère à la mangue"
 ingredients:
   - item: "265 g de purée de mangue"

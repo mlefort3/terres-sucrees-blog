@@ -1,4 +1,5 @@
 name: "Mousse noisette"
+category: mousse
 description: "Mousse légère à la purée de noisette et vanille"
 ingredients:
   - item: "140 g de purée de noisette"

@@ -1,4 +1,5 @@
 name: "Gel fraise"
+category: insert
 description: "Gel gélifié à la fraise, légèrement citronné"
 ingredients:
   - item: "300 g de purée de fraise"

@@ -1,4 +1,5 @@
 name: "Gelée de grenade"
+category: insert
 description: "Gelée de jus de grenade au citron"
 ingredients:
   - item: "250 mL de jus de grenade"

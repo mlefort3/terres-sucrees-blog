@@ -1,4 +1,5 @@
 name: "Croustillant chocolat noir noisette"
+category: croustillant
 description: "Couche croustillante au chocolat noir, purée et éclats de noisettes"
 ingredients:
   - item: "80 g de purée de noisette (100% noisette, non sucrée)"

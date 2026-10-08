@@ -1,4 +1,5 @@
 name: "Sirop"
+category: sirop
 description: "Sirop parfumé à la fleur d'oranger et à l'eau de rose"
 ingredients:
   - item: "80 ml d'eau"

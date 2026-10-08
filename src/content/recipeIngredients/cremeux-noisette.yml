@@ -1,4 +1,5 @@
 name: "Crémeux noisette"
+category: insert
 description: "Crémeux onctueux à la purée de noisette"
 ingredients:
   - item: "125 ml de lait de noisette (ou autre lait végétal)"

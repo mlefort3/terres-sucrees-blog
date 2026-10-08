@@ -1,4 +1,5 @@
 name: "Caramel beurre salé"
+category: insert
 description: "Caramel onctueux au beurre salé"
 ingredients:
   - item: "200 g de sucre"
