@@ -1,0 +1,14 @@
+name: "Insert pomme poire"
+description: "Insert gélifié pomme-poire"
+ingredients:
+  - item: "125 g de purée de poire"
+  - item: "125 g de purée de pomme"
+  - item: "40 g de sucre"
+  - item: "3 g de pectine NH"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Faire chauffer les purées de fruit"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter à ébullition pendant 2min"
+  - "Réserver"
+notes: "Pour fabriquer vos purées de fruits : compter 225 g de fruits pour 25 g de sucre, cuire les fruits en morceaux avec un peu d'eau et du sucre jusqu'à ce qu'ils soient tendres, puis mixer."

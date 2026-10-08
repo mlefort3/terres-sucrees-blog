@@ -1,0 +1,11 @@
+name: "Croustillant chocolat noir"
+description: "Couche croustillante au chocolat noir et à la purée d'amandes"
+ingredients:
+  - item: "50 g de chocolat noir (vegan)"
+  - item: "45 g de purée d’amandes"
+  - item: "50 g de sablés vegan ou de crêpes dentelles vegan (voir recette de crêpes dentelles vegan)"
+steps:
+  - "Étaler sur la pâte cuite"
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée d’amandes et mélanger"
+  - "Ajouter les sablés (ou les crêpes dentelles) en morceaux et mélanger"

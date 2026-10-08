@@ -1,0 +1,12 @@
+name: "Croustillant sablé citron"
+description: "Couche croustillante au chocolat blanc, sablé et citron"
+ingredients:
+  - item: "50 g de chocolat blanc vegan"
+  - item: "40 g de biscuit sablé vegan"
+  - item: "1 cuillère à soupe d'huile d'olive"
+  - item: "Zeste d'un citron"
+steps:
+  - "Faire fondre le chocolat blanc au bain marie"
+  - "Ajouter le sablé en morceaux"
+  - "Ajouter l'huile d'olive et le zeste d'un citron"
+  - "Étaler sur le biscuit"

@@ -1,0 +1,17 @@
+name: "Génoise"
+description: "Génoise vegan au mix Yumgo (pour un cercle de 24 cm de diamètre)"
+source:
+  title: "Yumgo"
+  url: "https://yumgo.fr/blogs/recettes/lettre-a-elise-tartelettes-x-yumgo?srsltid=AU7gw4Vy7cNbCJoYbJrrrzoHc3IcifN_SuRDXlI172TOS6aMk0_1ibIT"
+ingredients:
+  - item: "45 g de mix Yumgo génoise"
+  - item: "228 g d'eau"
+  - item: "164 g de sucre"
+  - item: "164 g de farine"
+steps:
+  - "Mélanger le mix Yumgo génoise et le sucre"
+  - "Ajouter l'eau et mélanger"
+  - "Monter au batteur (ou au robot) jusqu'à obtenir un bec d'oiseau (10 - 15min)"
+  - "Incorporer petit à petit la maryse, de manière délicate"
+  - "Cuire 20 minutes à 160°C"
+notes: "Alternative : recette de génoise de France Végétalienne (https://francevegetalienne.fr/blog/2016/1/20/gnoise-vgtalien-vegan)."

@@ -1,0 +1,13 @@
+name: "Croustillant caramel"
+description: "Croustillant au chocolat blanc, purée d'amandes et caramel beurre salé"
+ingredients:
+  - item: "100 g de crêpes dentelles"
+  - item: "80 g de chocolat blanc vegan"
+  - item: "80 g de purée d'amandes"
+  - item: "40 g de caramel beurre salé"
+steps:
+  - "Faire fondre le chocolat blanc au bain-marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le caramel et mélanger"
+  - "Ajouter les gavottes"
+  - "Étaler sur le biscuit"

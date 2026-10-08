@@ -1,0 +1,12 @@
+name: "Compotée de poires"
+description: "Compotée de poires gélifiée à la pectine"
+ingredients:
+  - item: "300 g de purée de poires"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Mettre à chauffer la purée de poires"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter à ébullition pour 1-2 min"
+  - "Réserver"

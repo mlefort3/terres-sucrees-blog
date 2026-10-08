@@ -1,0 +1,15 @@
+name: "Caramel beurre salé"
+description: "Caramel beurre salé vegan, version serrée"
+source:
+  title: "Arts et Gastronomie"
+  url: "https://www.arts-et-gastronomie.com/recette/mille-feuille-mousse-caramel-beurre-sale/"
+ingredients:
+  - item: "200 g de sucre"
+  - item: "300 g de crème végétale liquide"
+  - item: "50 g de margarine"
+steps:
+  - "Réaliser un caramel à sec avec le sucre"
+  - "Ajouter la crème végétale liquide chaude et mélanger"
+  - "Mélanger et laisser refroidir"
+  - "Ajouter le beurre, mixer et réserver au frais"
+notes: "Variante Oh Faon : 45 g de sucre, 45 g de glucose, 65 g de crème, 20 g d'huile de coco. Variante caramel serré : 200 g de sucre, 120 g de crème végétale (au lieu de 300 g), 40 g de margarine (type Flora), 2 g de sel."

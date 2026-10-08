@@ -1,0 +1,15 @@
+name: "Croustillant sésame noir"
+description: "Couche croustillante au chocolat blanc et à la pâte de sésame noir"
+ingredients:
+  - item: "80 g de chocolat blanc"
+  - item: "60 g de pâte de sésame noir"
+  - item: "40 g de riz soufflé (ou crêpes dentelles vegan, ou biscuits sablés vegan)"
+  - item: "15 g de graines de sésame noir"
+  - item: "1 pincée de sel"
+steps:
+  - "Faire fondre le chocolat blanc au bain-marie"
+  - "Ajouter la pâte de sésame noir et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Ajouter le sésame noir et mélanger"
+  - "Ajouter le sel et mélanger"
+  - "Étaler sur la pâte sucrée cuite"

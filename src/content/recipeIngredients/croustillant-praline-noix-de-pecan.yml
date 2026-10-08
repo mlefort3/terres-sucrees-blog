@@ -1,0 +1,11 @@
+name: "Croustillant praliné noix de pécan"
+description: "Couche croustillante au chocolat blanc, praliné de noix de pécan et riz soufflé"
+ingredients:
+  - item: "50 g de chocolat blanc (vegan)"
+  - item: "45 g de praliné noix de pécan"
+  - item: "20 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Étaler sur la pâte cuite"

@@ -1,0 +1,20 @@
+name: "Praliné amandes sarrasin"
+description: "Praliné maison aux amandes et au sarrasin torréfié"
+source:
+  title: "Femina"
+  url: "https://www.femina.fr/recette/praline-au-sarrasin-et-aux-amandes"
+ingredients:
+  - item: "340 g d'amandes"
+  - item: "226 g de sarrasin torréfié (kasha)"
+  - item: "170 g de sucre"
+  - item: "1 gousse de vanille"
+  - item: "5,6 cL d'huile neutre (de tournesol ou de pépin de raisin)"
+  - item: "5,6 cL d'eau"
+steps:
+  - "Si les amandes ne sont pas torréfiées, les faire cuire 20 min à 160°C"
+  - "Si le sarrasin n'est pas torréfié, le faire cuire 1h à 160°C"
+  - "Faire un caramel avec le sucre et l'eau"
+  - "Verser le caramel sur les amandes et le sarrasin torréfiés"
+  - "Laisser refroidir"
+  - "Mixer le tout avec les grains de la gousse de vanille"
+  - "Pendant le mélange, ajouter petit à petit l'huile jusqu'à obtenir la texture désirée"

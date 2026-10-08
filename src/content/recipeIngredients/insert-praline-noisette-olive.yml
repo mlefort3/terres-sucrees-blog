@@ -1,0 +1,18 @@
+name: "Insert praliné noisette olive"
+description: "Insert praliné noisette parfumé aux olives Kalamata"
+source: "Nina Métayer, hors série n°17 du magazine Fou de Pâtisserie"
+ingredients:
+  - item: "375 g de noisettes"
+  - item: "187 g de sucre"
+  - item: "60 g d'eau"
+  - item: "1 cuillère à soupe d'huile de pépins de raisin"
+  - item: "15 g de crème d'olives Kalamata"
+  - item: "30 g d'olives de Kalamata"
+steps:
+  - "Torréfier les noisettes à 150 °C pendant 10 min"
+  - "Réaliser un caramel avec le sucre et l'eau"
+  - "Verser sur les noisettes"
+  - "Mixer le tout"
+  - "Ajouter l'huile"
+  - "Incorporer les olives et la crème d'olive"
+  - "Réserver dans un moule à insert"

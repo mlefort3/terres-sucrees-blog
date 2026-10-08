@@ -1,0 +1,13 @@
+name: "Praliné amande/noisette"
+description: "Praliné maison aux amandes et noisettes torréfiées"
+ingredients:
+  - item: "100 g d'amandes"
+  - item: "100 g de noisettes"
+  - item: "200 g de sucre"
+  - item: "Huile de pépins de raisins"
+steps:
+  - "Torréfier les noisettes et les amandes 10 min à 180°C"
+  - "Réaliser un caramel à sec avec le sucre"
+  - "Verser le caramel en une fine couche sur un papier sulfurisé et laisser durcir"
+  - "Verser les noisettes, les amandes et le caramel en morceaux dans un mixeur"
+  - "Mixer jusqu'à obtenir la consistance désirée (comme une pâte à tartiner), ajouter de l'huile de pépins de raisins si besoin"

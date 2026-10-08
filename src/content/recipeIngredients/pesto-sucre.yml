@@ -1,0 +1,13 @@
+name: "Pesto sucré"
+description: "Pesto sucré au basilic, à l'huile d'olive et au sirop d'agave"
+source:
+  title: "The French Pâtissier"
+  url: "https://thefrenchpatissier.com/tartelette-fraises-basilic-clou-de-girofle/"
+ingredients:
+  - item: "50 g de feuilles de basilic frais"
+  - item: "6 g de pâte d'amande 50%"
+  - item: "30 g d'huile d'olive extra vierge"
+  - item: "8 g de sirop d'agave"
+  - item: "6 g de jus de citron"
+steps:
+  - "Mixer ensemble les différents ingrédients"

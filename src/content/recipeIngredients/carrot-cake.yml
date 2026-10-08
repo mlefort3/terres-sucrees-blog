@@ -1,0 +1,23 @@
+name: "Carrot cake"
+description: "Carrot cake vegan moelleux aux noix de pécan"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/carrot-cake-vegan/"
+notes: "Recette sans les raisins secs."
+ingredients:
+  - item: "200 g de carottes râpées très finement"
+  - item: "180 g de farine T45"
+  - item: "130 g de sucre roux"
+  - item: "50 g de poudre d’amandes"
+  - item: "4 g de levure chimique"
+  - item: "1 grosse pincée de sel"
+  - item: "Une bonne cuillère à café d’épices à pain d’épices"
+  - item: "50 g de noix de pécan en morceaux"
+  - item: "100 g de yaourt de soja"
+  - item: "40 g de lait de soja (ou autre lait végétal)"
+  - item: "74 g d’huile de pépins de raisins"
+steps:
+  - "Mélanger les carottes, la farine, le sucre, la poudre d’amandes, la levure chimique, le sel, les épices et les noix de pécan"
+  - "Ajouter le yaourt, le lait, l'huile et mélanger"
+  - "Verser dans votre moule préalablement graissé"
+  - "Cuire 45 min à 180°C"

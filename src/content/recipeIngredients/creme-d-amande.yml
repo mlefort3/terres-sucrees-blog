@@ -1,0 +1,18 @@
+name: "Crème d'amande"
+description: "Crème d'amande onctueuse cuite, façon amandine"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/tarte-bourdaloue-ou-amandine-aux-poires-vegan/"
+ingredients:
+  - item: "70 g de margarine"
+  - item: "50 g de sucre"
+  - item: "70 g de poudre d'amandes"
+  - item: "Quelques gouttes d'arôme d'amande amère"
+  - item: "60 mL de crème végétale"
+  - item: "10 g de fécule de maïs"
+steps:
+  - "Mélanger ensemble la margarine, le sucre, la poudre d’amandes et l’arôme d’amande amère"
+  - "Ajoutez la crème végétale en trois fois tout en mélangeant"
+  - "Ajouter la fécule et mélanger"
+  - "Faire cuire jusqu'à épaississement"
+  - "Étaler sur le fond de tarte cuit"

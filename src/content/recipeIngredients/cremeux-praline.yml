@@ -1,0 +1,17 @@
+name: "Crémeux praliné"
+description: "Crémeux onctueux au praliné amande/noisette"
+ingredients:
+  - item: "150 g de praliné amande/noisette"
+  - item: "150 g de lait de soja (ou autre lait végétal)"
+  - item: "80 g de crème végétale"
+  - item: "6 g de pectine NH nappage"
+  - item: "30 g de sucre"
+  - item: "20 g de margarine"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Dans une casserole, faire chauffer le lait et la crème"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter à ébullition pour 1-2 min"
+  - "Hors du feu, ajouter le praliné et mélanger"
+  - "Hors du feu, ajouter la margarine et mélanger"
+  - "Mixer pour obtenir un résultat homogène (facultatif si tout se mélange bien)"

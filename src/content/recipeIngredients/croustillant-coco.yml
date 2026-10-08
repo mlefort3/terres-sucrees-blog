@@ -1,0 +1,12 @@
+name: "Croustillant coco"
+description: "Couche croustillante au chocolat blanc et à la noix de coco"
+ingredients:
+  - item: "50 g de chocolat blanc (vegan)"
+  - item: "45 g de pâte à tartiner vegan à la noix de coco"
+  - item: "25 g de riz soufflé (ou autre croustillant)"
+  - item: "1,5 c. à soupe d’huile d’olive"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la pâte à tartiner et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux et mélanger"
+  - "Étaler sur la pâte cuite"

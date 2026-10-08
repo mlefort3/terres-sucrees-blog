@@ -1,0 +1,18 @@
+name: "Biscuit à l'amande"
+description: "Biscuit moelleux à l'amande de type dacquoise"
+source:
+  title: "Un gâteau presque parfait"
+  url: "https://www.youtube.com/watch?v=DP8lU9zxiuc"
+ingredients:
+  - item: "130 g de Yumgo blanc (13 g de Yumgo blanc en poudre + 117 g d'eau pour réhydrater la poudre)"
+  - item: "150 g de sucre"
+  - item: "25 g de farine"
+  - item: "5 g de poudre à lever (ou levure chimique)"
+  - item: "150 g de poudre d'amandes"
+steps:
+  - "Réhydrater le Yumgo blanc si nécessaire"
+  - "Le monter en neige en ajoutant petit à petit le sucre dans le mélange pendant qu'il monte pour obtenir une meringue"
+  - "Mélanger dans un autre récipient la farine, la poudre d'amandes et la poudre à lever"
+  - "Incorporer petit à petit la meringue aux poudres mélangées, doucement jusqu'à incorporation"
+  - "Pocher ou étaler le mélange sur une toile de cuisson (ou papier sulfurisé) pour former 2 cercles"
+  - "Cuire 25min à 170°C"

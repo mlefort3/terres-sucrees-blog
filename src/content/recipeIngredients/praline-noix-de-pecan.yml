@@ -1,0 +1,15 @@
+name: "Praliné noix de pécan"
+description: "Praliné maison aux noix de pécan torréfiées"
+ingredients:
+  - item: "200 g de noix de pécan"
+  - item: "200 g de sucre"
+  - item: "1 gousse de vanille"
+  - item: "1 pincée de sel"
+  - item: "Huile de pépin de raisin (ou autre huile neutre)"
+steps:
+  - "Si les noix de pécan ne sont pas torréfiées, les faire cuire 20 min à 160°C"
+  - "Faire un caramel à sec avec le sucre"
+  - "Verser le caramel sur un papier sulfurisé, en fine couche"
+  - "Laisser refroidir"
+  - "Mixer le tout avec les grains de la gousse de vanille et la pincée de sel"
+  - "Pendant le mélange, ajouter petit à petit l’huile (si nécessaire) jusqu’à obtenir la texture désirée"

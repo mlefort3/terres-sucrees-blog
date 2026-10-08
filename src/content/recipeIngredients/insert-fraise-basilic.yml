@@ -1,0 +1,15 @@
+name: "Insert fraise basilic"
+description: "Insert gélifié à la fraise et au basilic"
+ingredients:
+  - item: "300 g de purée de fraise"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+  - item: "Quelques feuilles de basilic hachées (selon goût)"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de fraises"
+  - "Ajouter le basilic"
+  - "Une fois chaude, ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Enlever du feu et réserver"

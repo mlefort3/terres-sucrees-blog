@@ -1,0 +1,20 @@
+name: "Génoise"
+description: "Génoise vegan moelleuse au yaourt de soja pour le fraisier"
+source:
+  title: "France Végétalienne"
+  url: "https://francevegetalienne.fr/blog/2016/1/20/gnoise-vgtalien-vegan"
+ingredients:
+  - item: "150 g de farine"
+  - item: "150 g de sucre blond"
+  - item: "250 g de yaourt de soja"
+  - item: "2 cuillère à soupe d'eau"
+  - item: "5 g de levure chimique"
+  - item: "1 cuillère à soupe d'extrait de vanille"
+steps:
+  - "Mélanger le yaourt de soja et l'eau"
+  - "Ajouter progressivement le sucre"
+  - "Ajouter l'extrait de vanille"
+  - "Mélanger ensemble la farine et la levure"
+  - "Incorporer petit à petit le mélange farine/levure au reste des ingrédients, tout en mélangeant"
+  - "Verser la préparation dans un moule"
+  - "Faire cuire 15 à 20 min à 200°C"

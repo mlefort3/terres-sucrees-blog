@@ -1,0 +1,12 @@
+name: "Croustillant à la purée de châtaigne"
+description: "Croustillant chocolat blanc, purée de châtaigne et crêpes dentelles"
+ingredients:
+  - item: "80 g de purée de châtaignes"
+  - item: "50 g de chocolat blanc vegan"
+  - item: "40 g de crêpes dentelle"
+  - item: "1 pincée de sel"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée de châtaignes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux, le sel et mélanger"
+  - "Étaler sur la pâte sablée cuite"

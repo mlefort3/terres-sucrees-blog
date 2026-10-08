@@ -1,0 +1,11 @@
+name: "Croustillant chocolat noir"
+description: "Couche croustillante au chocolat noir et praliné"
+ingredients:
+  - item: "30 g de chocolat noir (vegan)"
+  - item: "25 g de praliné"
+  - item: "20 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Étaler sur la pâte cuite"

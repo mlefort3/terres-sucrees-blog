@@ -1,0 +1,12 @@
+name: "Caramel beurre salé"
+description: "Caramel onctueux au beurre salé"
+ingredients:
+  - item: "200 g de sucre"
+  - item: "120 g de crème végétale"
+  - item: "40 g de beurre végétal"
+  - item: "1 pincée de sel"
+steps:
+  - "Réaliser un caramel à sec avec le sucre"
+  - "Ajouter la crème végétale liquide chaude et mélanger"
+  - "Mélanger et laisser refroidir"
+  - "Ajouter le beurre, le sel, mixer et réserver au frais"

@@ -1,0 +1,14 @@
+name: "Gelée de poires"
+description: "Gelée de poires à la vanille"
+ingredients:
+  - item: "300 g de purée de poires"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "1 petite gousse de vanille"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Mettre à chauffer la purée de poires avec la gousse de vanille et ses grains grattés"
+  - "Ajouter le mélange sucre/pectine et bien mélanger"
+  - "Porter à ébullition pour 1-2 min"
+  - "Retirer la gousse de vanille"
+  - "Réserver"

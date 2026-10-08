@@ -1,0 +1,19 @@
+name: "Insert abricot lavande"
+description: "Insert gélifié à l'abricot et à la lavande"
+source:
+  title: "Empreinte Sucrée"
+  url: "https://empreintesucree.fr/entremets-abricot-romarin/"
+ingredients:
+  - item: "300 g de purée d'abricot"
+  - item: "3,5 g de pectine NH"
+  - item: "37 g de sucre"
+  - item: "1 cuillère à café de jus de citron"
+  - item: "0,7 g de graines de lavande"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Faire chauffer la purée d’abricot"
+  - "Ajouter le mélange sucre/pectine"
+  - "Ajouter le jus de citron"
+  - "Porter à ébullition pendant 1-2min"
+  - "Ajouter la lavande"
+  - "Réserver au froid"

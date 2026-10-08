@@ -1,0 +1,22 @@
+name: "Pâte sucrée"
+description: "Pâte sucrée vegan à base de substitut d'œuf Yumgo"
+source:
+  title: "Yumgo"
+  url: "https://yumgo.fr/blogs/recettes/pate-sucree?srsltid=AfmBOoqMxnh9QhvHSMeGTHT-zAb0heeFzSJA1AX7anIlXuhrFwcgH2y_"
+ingredients:
+  - item: "200 g de farine"
+  - item: "120 g de margarine"
+  - item: "96 g de sucre glace"
+  - item: "36 g de poudre d'amande"
+  - item: "0,5 g de sel"
+  - item: "60 g de fécule de pomme de terre"
+  - item: "7 g de Yumgo entier en poudre"
+  - item: "40 g d'eau (pour réhydrater le Yumgo)"
+steps:
+  - "Réhydrater le Yumgo entier en mélangeant la poudre et l'eau"
+  - "Mélanger ensemble les différentes poudres (farine, fécule, sucre glace, sel)"
+  - "Ajouter la margarine en morceaux"
+  - "Sabler la pâte du bout des doigts ou à l'aide d'un batteur jusqu'à complète incorporation de la margarine"
+  - "Ajouter le Yumgo réhydraté"
+  - "Mélanger jusqu'à ce que le mélange soit homogène"
+  - "Réserver au frais"

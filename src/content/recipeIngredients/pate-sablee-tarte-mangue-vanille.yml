@@ -1,0 +1,19 @@
+name: "Pâte sablée"
+description: "Pâte sablée vegan à base de poudre d'amandes"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/tarte-bourdaloue-ou-amandine-aux-poires-vegan/"
+ingredients:
+  - item: "90 g de margarine"
+  - item: "180 g de farine T55"
+  - item: "60 g de sucre glace"
+  - item: "30 g de poudre d’amandes"
+  - item: "Une pincée de sel"
+  - item: "32 ml de lait de soja"
+steps:
+  - "Mélanger la farine, le sucre glace, la poudre d’amandes et le sel"
+  - "Ajouter la margarine coupée en morceaux"
+  - "Mélanger l’ensemble du bout des doigts jusqu’à obtenir une pâte sableuse"
+  - "Étaler la pâte"
+  - "Foncer la pâte dans votre moule ou votre cercle"
+  - "Cuire 15 min à 180°C"

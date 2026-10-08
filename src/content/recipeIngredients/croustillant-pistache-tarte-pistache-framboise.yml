@@ -1,0 +1,11 @@
+name: "Croustillant pistache"
+description: "Couche croustillante au chocolat blanc et à la pistache"
+ingredients:
+  - item: "40 g de chocolat blanc vegan"
+  - item: "35 g de pâte de pistache (ou crème de pistache)"
+  - item: "15 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat blanc au bain-marie"
+  - "Ajouter la pâte (ou crème) de pistache et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Étaler sur la pâte sucrée cuite"

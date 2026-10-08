@@ -1,0 +1,22 @@
+name: "Crémeux citron yuzu"
+description: "Crémeux citron au yuzu, inspiré d'un lemon curd vegan"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/lemon-curd-ou-creme-au-citron-vegan/"
+notes: "Recette de lemon curd de Perle en Sucre, à laquelle j'ai ajouté un peu de jus de yuzu."
+ingredients:
+  - item: "130 g de jus de citron"
+  - item: "20 g de jus de yuzu"
+  - item: "Le zeste de 2 citrons"
+  - item: "90 ml de lait végétal"
+  - item: "110 g de sucre"
+  - item: "15 g de fécule de maïs"
+  - item: "60 g de margarine"
+steps:
+  - "Dans une casserole, mélanger le sucre et la fécule de maïs"
+  - "Ajouter le lait petit à petit tout en mélangeant"
+  - "Ajouter les zestes, le jus de citron et le jus de yuzu"
+  - "Faire cuire sur feu moyen tout en mélangeant, jusqu'à épaississement"
+  - "Porter à ébullition pour 1 min"
+  - "Retirer du feu, ajouter la margarine et mélanger jusqu'à ce qu'elle soit complètement fondue"
+  - "Transvaser dans un récipient et laisser reposer au frais"

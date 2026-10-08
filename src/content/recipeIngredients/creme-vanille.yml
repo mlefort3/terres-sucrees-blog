@@ -1,0 +1,18 @@
+name: "Crème vanille"
+description: "Crème vanille onctueuse à base de substitut d'œuf Yumgo"
+source:
+  title: "Un gâteau presque parfait"
+  url: "https://www.youtube.com/watch?v=DP8lU9zxiuc"
+ingredients:
+  - item: "80 g de Yumgo jaune réhydraté (8 g de Yumgo jaune en poudre + 64 g d'eau + 8 g d'huile neutre)"
+  - item: "50 ml de crème liquide végétale (30% de matières grasses)"
+  - item: "75 g de sucre"
+  - item: "1 cuillère à café d'arôme vanille"
+  - item: "125 g de margarine"
+steps:
+  - "Réhydrater le Yumgo jaune si nécessaire"
+  - "Dans une casserole, mélanger la crème végétale, le Yumgo jaune réhydraté, le sucre et la vanille"
+  - "Faire chauffer à feu doux et arrêter aux premiers signes d'ébullition"
+  - "Filmer le tout et mettre au frais au moins 2 heures"
+  - "Ajouter la margarine ramollie (en pommade)"
+  - "Mixer le tout"

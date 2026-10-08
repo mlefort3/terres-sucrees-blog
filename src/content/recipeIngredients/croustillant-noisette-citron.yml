@@ -1,0 +1,10 @@
+name: "Croustillant noisette"
+description: "Couche croustillante au chocolat blanc et à la purée de noisettes"
+ingredients:
+  - item: "30 g de chocolat blanc vegan"
+  - item: "25 g de purée de noisettes"
+  - item: "15 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat blanc"
+  - "Ajouter les autres ingrédients et mélanger"
+  - "Étaler sur le sablé reconstitué"

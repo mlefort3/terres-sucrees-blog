@@ -1,0 +1,16 @@
+name: "Mousse au chocolat"
+description: "Mousse au chocolat noir légère"
+source:
+  title: "Empreinte Sucrée"
+  url: "https://empreintesucree.fr/royal-au-chocolat/"
+ingredients:
+  - item: "75 g de lait de soja"
+  - item: "200 g de chocolat noir"
+  - item: "300 g de crème végétale liquide"
+steps:
+  - "Faire fondre le chocolat au bain-marie"
+  - "Faire chauffer le lait et verser le sur le chocolat"
+  - "Mélanger le tout jusqu'à obtenir un mélange homogène"
+  - "Monter la crème en chantilly"
+  - "Lorsque la ganache est à environ 50 degrés, incorporer petit à petit la crème"
+  - "Mélanger délicatement jusqu'à obtenir un mélange homogène"

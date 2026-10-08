@@ -1,0 +1,14 @@
+name: "Gelée de grenade"
+description: "Gelée de jus de grenade au citron"
+ingredients:
+  - item: "250 mL de jus de grenade"
+  - item: "50 g de sucre"
+  - item: "5 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+steps:
+  - "Mélanger ensemble le sucre et la pectine"
+  - "Faire chauffer le jus de grenade"
+  - "Ajouter le mélange sucre/pectine et mélanger"
+  - "Ajouter le jus de citron et mélanger"
+  - "Porter à ébullition pour 1-2 min"
+  - "Réserver et verser dans votre moule à insert, au congélateur"

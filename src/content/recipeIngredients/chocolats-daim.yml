@@ -1,0 +1,22 @@
+name: 'Chocolats "Daim"'
+description: "Caramel aux amandes enrobé de chocolat, façon daims maison"
+source:
+  title: "On dîne chez Nanou"
+  url: "https://ondinecheznanou.blogspot.com/2020/11/daims-maison.html"
+ingredients:
+  - item: "100 gr d'amandes mondées (sans la peau)"
+  - item: "100 gr de margarine"
+  - item: "250 gr de sucre"
+  - item: "70 gr de sirop d'agave"
+  - item: "Chocolat au lait vegan (ou à défaut, chocolat noir vegan)"
+steps:
+  - "Couper les amandes en très petits morceaux"
+  - "Dans une casserole, verser le sucre, la margarine et le sirop d'agave"
+  - "Faire fondre le tout jusqu'à avoir une coloration marron clair"
+  - "Hors du feu, ajouter les amandes, mélanger et remettre sur le feu 2 minutes"
+  - "Couler la préparation sur un papier sulfurisé et lisser le tout"
+  - "Laisser durcir pendant 1 heure"
+  - "Casser le caramel obtenu en petits morceaux"
+  - "Faire fondre le chocolat au lait"
+  - "Tremper les morceaux de caramel dans le chocolat et les déposer sur un papier sulfurisé"
+  - "Laisser cristalliser pendant au moins 2 heures"

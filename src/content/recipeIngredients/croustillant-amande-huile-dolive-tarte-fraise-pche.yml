@@ -1,0 +1,12 @@
+name: "Croustillant amande huile d'olive"
+description: "Couche croustillante au chocolat blanc, purée d'amandes et huile d'olive"
+ingredients:
+  - item: "50 g de chocolat blanc (vegan)"
+  - item: "45 g de purée d'amandes"
+  - item: "25 g de riz soufflé (ou autre croustillant)"
+  - item: "1,5 c. à soupe d'huile d'olive"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée d'amandes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux et mélanger"
+  - "Étaler sur la pâte cuite"
