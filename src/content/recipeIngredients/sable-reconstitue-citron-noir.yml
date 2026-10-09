@@ -1,5 +1,5 @@
 name: "Sablé reconstitué"
-category: biscuit
+category: pâte
 description: "Base croustillante reconstituée à partir de pâte sucrée cuite et de beurre de cacao"
 ingredients:
   - item: "200 g de pâte sucrée cuite"
