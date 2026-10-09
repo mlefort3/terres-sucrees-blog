@@ -1,0 +1,18 @@
+name: "Crème chocolat au lait"
+category: mousse
+description: "Crème onctueuse au chocolat au lait vegan"
+ingredients:
+  - item: "200 g chocolat au lait vegan"
+  - item: "200 g lait de soja"
+  - item: "12 g fécule de maïs"
+  - item: "15 g sucre"
+  - item: "1 pincée de sel"
+  - item: "20 g de margarine"
+steps:
+  - "Mélanger dans une casserole le lait avec la fécule, le sucre et le sel"
+  - "Faire chauffer jusqu'à épaississement"
+  - "Verser sur le chocolat en morceaux"
+  - "Attendre que le chocolat fonde et bien mélanger"
+  - "Ajouter la margarine"
+  - "Attendre que la margarine fondre et bien mélanger"
+  - "Filmer au contact et laisser reposer au froid"

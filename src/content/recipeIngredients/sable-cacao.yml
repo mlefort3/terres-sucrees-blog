@@ -1,0 +1,18 @@
+name: "Sablé cacao"
+category: biscuit
+description: "Sablé cacao croustillant, base de l'entremet"
+source: "Nina Métayer, hors série n°17 du magazine Fou de Pâtisserie"
+ingredients:
+  - item: "82 g de margarine"
+  - item: "90g de cassonade"
+  - item: "95 g de farine T55"
+  - item: "30 g de cacao en poudre"
+  - item: "1,5 g de sel"
+steps:
+  - "Mettre la margarine à température ambiante"
+  - "Mélanger les autres ingrédients ensemble"
+  - "Ajouter la margarine"
+  - "Sabler le mélange"
+  - "Étaler sur une plaque de cuisson"
+  - "Détailler le pour obtenir la forme désirée"
+  - "Cuire 15 min à 150°C"

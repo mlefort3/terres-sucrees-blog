@@ -1,0 +1,15 @@
+name: "Gel fraise/tomate"
+category: insert
+description: "Gel sucré à la fraise et à la tomate"
+ingredients:
+  - item: "250 g de purée de fraise"
+  - item: "50 g de purée de tomate"
+  - item: "25 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "25 g de jus de citron"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de fraise et la purée de tomate"
+  - "Une fois chaude, ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Enlever du feu et réserver"

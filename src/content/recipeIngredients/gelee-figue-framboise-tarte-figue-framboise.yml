@@ -1,0 +1,18 @@
+name: "Gelée figue framboise"
+category: insert
+description: "Gelée de figues fraîches et de framboise"
+source:
+  title: "Empreinte Sucrée"
+  url: "https://empreintesucree.fr/entremets-figues-et-framboises/"
+ingredients:
+  - item: "250 g de figues fraîches"
+  - item: "150 g de purée de framboise"
+  - item: "40 g de sucre"
+  - item: "5 g de pectine NH"
+steps:
+  - "Mélangez la pectine avec le sucre"
+  - "Faites chauffer les morceaux de figues avec la purée de framboise"
+  - "Faire cuire autant que souhaité"
+  - "Ajouter le mélange sucre/pectine (la compotée digue framboise doit être chaude, mais pas trop)"
+  - "Portez à ébullition pour 1-2 minutes"
+  - "Réserver"

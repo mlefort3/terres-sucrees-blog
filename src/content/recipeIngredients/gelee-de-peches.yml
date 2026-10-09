@@ -1,0 +1,17 @@
+name: "Gelée de pêches"
+category: insert
+description: "Gelée de pêches parfumée à la lavande"
+ingredients:
+  - item: "400 g de purée de pêche"
+  - item: "50 g de sucre"
+  - item: "5 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+  - item: "Quelques brins de lavande (facultatif, si souhaité)"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de pêche"
+  - "Ajouter la lavande (si souhaité)"
+  - "Une fois chaude, ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Mixer le tout"
+  - "Enlever du feu et réserver"

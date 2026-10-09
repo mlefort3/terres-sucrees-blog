@@ -1,0 +1,18 @@
+name: "Mousse abricot à la fleur d'oranger"
+category: mousse
+description: "Mousse légère à l'abricot parfumée à la fleur d'oranger"
+ingredients:
+  - item: "250 gr de purée d’abricot"
+  - item: "60 gr de sucre en poudre"
+  - item: "9 gr de pectine NH"
+  - item: "300 gr de crème liquide végétale (au moins 30% de matières grasses)"
+  - item: "1 cuillère à soupe d’eau de fleur d’oranger (ajuster selon sa préférence) (facultatif)"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Porter à ébullition la moitié de la purée d’abricot"
+  - "Ajouter le sucre et la pectine, bien mélanger pendant 1 – 2 min"
+  - "Retirer du feu"
+  - "Verser la purée froide par dessus, mélanger et laisser tiédir (28°C)"
+  - "Monter la crème en chantilly"
+  - "Incorporer la purée d’abricot à la crème montée en plusieurs fois"
+  - "Ajouter la fleur d’oranger (facultatif)"

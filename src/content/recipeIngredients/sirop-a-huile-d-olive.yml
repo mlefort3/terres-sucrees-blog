@@ -1,0 +1,12 @@
+name: "Sirop à huile d'olive"
+category: sirop
+description: "Sirop à l'huile d'olive et au citron pour le dessus de l'entremet"
+source:
+  title: "Ouliva"
+  url: "https://ouliva.fr/blogs/les-recettes-ouliva/gateau-a-l-orange-sirop-a-l-huile-d-olive-huile-d-olive-noire-ouliva?srsltid=AfmBOoouDC-uZco-eZWayHzXqhiQX-CAf6reGiGQFh5tAefJdSQZ6fqM"
+ingredients:
+  - item: "2 cuillères à soupe de sirop d'agave"
+  - item: "2 cuillères à soupe de jus de citron"
+  - item: "4 cuillères à soupe d'huile d'olive"
+steps:
+  - "Mélanger ensemble les ingrédients jusqu'à obtenir un mélange homogène"

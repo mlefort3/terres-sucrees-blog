@@ -1,0 +1,14 @@
+name: "Gelée mangue"
+category: insert
+description: "Gelée de purée de mangue au citron"
+ingredients:
+  - item: "400 g de purée de mangue"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de mangue"
+  - "Ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 min"
+  - "Réserver"

@@ -1,0 +1,18 @@
+name: "Ganache montée chocolat noisette"
+category: mousse
+description: "Ganache montée au chocolat noir et à la purée de noisettes"
+source:
+  title: "Olivia Pâtisse"
+  url: "https://oliviapatisse.com/2018/09/29/tarte-chocolat-praline-noisettes-recette/"
+ingredients:
+  - item: "90 g de crème végétale"
+  - item: "76 g de chocolat noir"
+  - item: "186 g de crème végétale froide"
+  - item: "80 g de purée de noisettes (la plus lisse possible, sinon du praliné)"
+steps:
+  - "Porter les 90 g de crème à ébullition"
+  - "La verser sur le chocolat noir déjà fondu"
+  - "Ajouter la purée de noisettes"
+  - "Ajouter les 186 g de crème végétale froide"
+  - "Mixer le tout"
+  - "Filmer au contact et réserver toute une nuit au froid"

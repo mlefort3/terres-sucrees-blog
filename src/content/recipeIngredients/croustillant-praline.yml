@@ -1,0 +1,12 @@
+name: "Croustillant praliné"
+category: croustillant
+description: "Couche croustillante au chocolat blanc et praliné amandes sarrasin"
+ingredients:
+  - item: "50 g de chocolat blanc végétal"
+  - item: "45 g de praliné amandes sarrasin"
+  - item: "25 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Étaler sur la pâte cuite"

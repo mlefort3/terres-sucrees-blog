@@ -1,0 +1,18 @@
+name: "Gel tomate framboise"
+category: insert
+description: "Gel de tomate et framboise légèrement acidulé au vinaigre balsamique"
+source: "Emily Misson et Thibaut Lefils, « Gâteaux trompe-l'œil », Fou de Pâtisserie n°71"
+ingredients:
+  - item: "180 g de tomates allongées"
+  - item: "40 g de framboises"
+  - item: "50 g de sucre"
+  - item: "3 g de pectine"
+  - item: "8 g de vinaigre balsamique"
+steps:
+  - "Mélanger la pectine avec le sucre"
+  - "Mixer les tomates et les framboises"
+  - "Faire chauffer à feu doux"
+  - "Ajouter le mélange sucre pectine"
+  - "Porter à ébullition pour 1-2 min"
+  - "Hors du feu, ajouter le vinaigre"
+  - "Verser dans son moule à insert et mettre au congélateur"

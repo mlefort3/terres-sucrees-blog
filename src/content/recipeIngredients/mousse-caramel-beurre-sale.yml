@@ -1,0 +1,25 @@
+name: "Mousse caramel au beurre salé"
+category: mousse
+description: "Mousse légère au caramel beurre salé, adaptée en version vegan"
+source:
+  title: "Arts et Gastronomie"
+  url: "https://www.arts-et-gastronomie.com/recette/mille-feuille-mousse-caramel-beurre-sale/"
+ingredients:
+  - item: "200 g de sucre (1)"
+  - item: "300 g de crème végétale liquide (1)"
+  - item: "3 g de pectine NH"
+  - item: "10 g de sucre (2)"
+  - item: "50 g de margarine"
+  - item: "400 g de crème végétale liquide (2)"
+steps:
+  - "Réaliser un caramel à sec avec le sucre (1)"
+  - "Mélanger le sucre (2) et la pectine"
+  - "Faire chauffer la crème végétale (1)"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter le tout à ébullition"
+  - "Verser doucement la crème chaude sur le caramel et mélanger"
+  - "Ajouter la margarine en morceaux"
+  - "Laisser fondre et mélanger"
+  - "Laisser refroidir le caramel beurre salé obtenu"
+  - "Monter la crème (2) en chantilly"
+  - "Ajouter petit à petit le caramel dans la crème en chantilly"

@@ -1,0 +1,12 @@
+name: "Croustillant chocolat noir framboise"
+category: croustillant
+description: "Croustillant au chocolat noir framboise, purée d'amandes et crêpes dentelles"
+ingredients:
+  - item: "100 g de chocolat noir framboise vegan"
+  - item: "40 g de purée d’amandes"
+  - item: "60 g de de crêpes dentelles"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée d'amandes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux et mélanger"
+  - "Étaler sur le biscuit cuit"

@@ -1,0 +1,21 @@
+name: "Mousse noisette"
+category: mousse
+description: "Mousse légère à la purée de noisette et vanille"
+ingredients:
+  - item: "140 g de purée de noisette"
+  - item: "200 ml de lait de soja (ou autre lait végétal)"
+  - item: "200 ml de crème végétale (j'utilise la crème Flora)"
+  - item: "50 g de sucre"
+  - item: "5 g de pectine NH"
+  - item: "1 pincée de sel"
+  - item: "1 c. à café d'extrait de vanille"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer le lait"
+  - "Lorsqu'il commence à chauffer, incorporer le mélange sucre/pectine"
+  - "Porter à ébullition pendant au moins 1-2 min"
+  - "Retirer du feu"
+  - "Ajouter la purée de noisettes, le sel et l'extrait de vanille"
+  - "Monter la crème en chantilly"
+  - "Incorporez le mélange des ingrédients restants à la crème montée"
+  - "Mélanger doucement pour bien incorporer le tout"

@@ -1,0 +1,12 @@
+name: "Croustillant noisette"
+category: croustillant
+description: "Couche croustillante au chocolat blanc, purée de noisette et riz soufflé"
+ingredients:
+  - item: "50 g de chocolat blanc vegan de couverture"
+  - item: "45 g de purée de noisette (100% noisette, non sucrée)"
+  - item: "20 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée de noisettes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux, les noisettes en morceau, le sel et mélanger"
+  - "Étaler sur la pâte sablée cuite"

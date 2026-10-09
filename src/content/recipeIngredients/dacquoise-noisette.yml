@@ -1,0 +1,19 @@
+name: "Dacquoise noisette"
+category: biscuit
+description: "Dacquoise moelleuse aux amandes et à la vanille"
+ingredients:
+  - item: "5,5 g de Yumgo blanc en poudre"
+  - item: "61,5 g d'eau (pour réhydrater le Yumgo)"
+  - item: "5 g de sucre"
+  - item: "57 g d'amandes en poudre"
+  - item: "15 g de fécule de pomme de terre"
+  - item: "56 g de sucre glace"
+  - item: "Quelques grains de vanille"
+steps:
+  - "Réhydrater le Yumgo blanc avec l'eau"
+  - "Monter le blanc en neige avec le sucre"
+  - "Dans un autre bol, tamiser la poudre d’amandes, le sucre glace, la fécule de pomme de terre et les grains de vanille"
+  - "Ajouter ces poudres au blanc monté en neige et mélanger délicatement"
+  - "Étaler dans votre moule"
+  - "Cuire 15-20 min à 180°C"
+  - "Réserver"

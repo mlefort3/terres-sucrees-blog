@@ -1,0 +1,594 @@
+---
+import { getCollection } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout'
+import RecipeSlotSelect from '@/components/RecipeSlotSelect'
+import {
+	RECIPE_KINDS,
+	RECIPE_KIND_ORDER,
+	optionSlots,
+	primarySlots,
+	requiredSlotKeys,
+	type RecipeSlot
+} from '../utils/recipeSlots'
+
+// Charge tous les éléments modulaires et range-les par catégorie.
+const allIngredients = await getCollection('recipeIngredients')
+
+type BuilderIngredient = {
+	id: string
+	name: string
+	category: string
+	description: string | null
+	source: { title: string; url: string } | string | null
+	ingredients: { item: string; quantity: string | null }[]
+	steps: string[]
+}
+
+const components: BuilderIngredient[] = allIngredients.map((ingredient) => ({
+	id: ingredient.id,
+	name: ingredient.data.name,
+	category: ingredient.data.category,
+	description: ingredient.data.description ?? null,
+	source: ingredient.data.source ?? null,
+	ingredients: ingredient.data.ingredients.map((i) => ({
+		item: i.item,
+		quantity: i.quantity ?? null
+	})),
+	steps: ingredient.data.steps
+}))
+
+const optionsByCategory: Record<string, BuilderIngredient[]> = {}
+for (const component of components) {
+	;(optionsByCategory[component.category] ??= []).push(component)
+}
+
+// Un même nom peut exister en plusieurs variantes : on n'en garde qu'une par nom
+// pour ne pas noyer les menus déroulants, en préférant la plus complète.
+for (const category of Object.keys(optionsByCategory)) {
+	const byName = new Map<string, BuilderIngredient>()
+	for (const component of optionsByCategory[category]) {
+		const name = component.name.trim().toLowerCase()
+		const current = byName.get(name)
+		if (!current || component.ingredients.length > current.ingredients.length) {
+			byName.set(name, component)
+		}
+	}
+	optionsByCategory[category] = [...byName.values()].sort((a, b) =>
+		a.name.localeCompare(b.name, 'fr')
+	)
+}
+
+const optionsFor = (slot: RecipeSlot) => optionsByCategory[slot.category] ?? []
+
+// Le script client a besoin de l'ordre des couches et des slots obligatoires.
+const kindConfig = Object.fromEntries(
+	RECIPE_KINDS.map((kind) => [
+		kind.key,
+		{ order: RECIPE_KIND_ORDER[kind.key], required: requiredSlotKeys(kind.key) }
+	])
+)
+---
+
+<BaseLayout title='Créer ma recette'>
+	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
+		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
+			<div class='flex flex-col gap-2'>
+				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>Créer ma recette</h1>
+				<p class='text-center text-slate-600 dark:text-ink-muted'>
+					Choisissez le type de recette, puis un élément dans chaque catégorie : ils s'assemblent
+					pour former une nouvelle recette.
+				</p>
+			</div>
+		</header>
+
+		<hr />
+
+		<!-- Carte du haut : le type de recette, puis les menus déroulants -->
+		<section
+			class='bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
+		>
+			<div class='flex flex-wrap items-center justify-between gap-4 mb-6'>
+				<h2 class='text-2xl font-semibold text-primary'>Composez votre recette</h2>
+				<button
+					id='builder-reset'
+					type='button'
+					class='px-4 py-2 rounded-lg border border-slate-300 dark:border-ink-line text-sm font-medium hover:bg-slate-100 dark:hover:bg-ink-raised transition'
+				>
+					Réinitialiser
+				</button>
+			</div>
+
+			<label class='flex flex-col gap-2 max-w-xs'>
+				<span class='font-semibold text-primary'>Type de recette</span>
+				<div class='relative'>
+					<select
+						id='builder-kind'
+						class='w-full appearance-none rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 pr-9 text-base focus:outline-none focus:ring-2 focus:ring-primary'
+					>
+						<option value=''>Pas de sélection</option>
+						{RECIPE_KINDS.map((kind) => <option value={kind.key}>{kind.label}</option>)}
+					</select>
+					<svg
+						class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+						></path>
+					</svg>
+				</div>
+				<span class='text-xs text-slate-500 dark:text-ink-faint'>
+					Le type détermine les couches nécessaires à la recette.
+				</span>
+			</label>
+
+			{
+				RECIPE_KINDS.map((kind) => (
+					<div data-kind-block={kind.key} hidden class='mt-6'>
+						<div class='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
+							{primarySlots(kind.key).map((slot) => (
+								<RecipeSlotSelect
+									kind={kind.key}
+									slot={slot}
+									options={optionsFor(slot)}
+									showOptionalBadge
+								/>
+							))}
+						</div>
+
+						{optionSlots(kind.key).length > 0 && (
+							<div class='mt-6 rounded-xl border border-dashed border-slate-300 dark:border-ink-line bg-slate-50/60 dark:bg-ink-raised/40 p-4 md:p-5'>
+								<div class='flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4'>
+									<p class='text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-ink-muted'>
+										Options
+									</p>
+									<span class='text-xs text-slate-500 dark:text-ink-faint'>
+										Ces couches s'ajoutent dans l'ordre du montage.
+									</span>
+								</div>
+								<div class='grid gap-4 md:grid-cols-2 lg:grid-cols-4'>
+									{optionSlots(kind.key).map((slot) => (
+										<RecipeSlotSelect kind={kind.key} slot={slot} options={optionsFor(slot)} />
+									))}
+								</div>
+							</div>
+						)}
+					</div>
+				))
+			}
+
+			<p
+				id='builder-status'
+				class='text-sm text-slate-500 dark:text-ink-muted mt-5'
+				aria-live='polite'
+			>
+			</p>
+		</section>
+
+		<!-- Grille : sommaire à gauche, recette à droite -->
+		<div class='grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 mt-8'>
+			<aside class='md:flex flex-col gap-8 hidden'>
+				<div class='sticky top-24 self-start transition-all duration-200'>
+					<div
+						class='bg-gradient-to-br from-slate-50 to-slate-100 dark:bg-none dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-shadow'
+					>
+						<nav class='w-full'>
+							<p class='font-bold mb-6 text-2xl text-primary dark:text-primary'>
+								Table des matières
+							</p>
+							<ul id='builder-toc' class='[text-wrap:balance] flex flex-col gap-1'>
+								<li class='text-slate-500 dark:text-ink-muted text-sm italic'>
+									Aucun élément sélectionné
+								</li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</aside>
+
+			<article
+				class='max-w-full w-full bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-8 md:p-12 shadow-sm dark:shadow-none'
+			>
+				<div id='composed'>
+					<p class='text-slate-500 dark:text-ink-muted italic'>
+						Choisissez d'abord le type de recette, puis ses éléments : la recette apparaîtra ici.
+					</p>
+				</div>
+			</article>
+		</div>
+	</article>
+
+	<script define:vars={{ components, kindConfig }}>
+		const kindSelect = document.getElementById('builder-kind')
+		const output = document.getElementById('composed')
+		const tocEl = document.getElementById('builder-toc')
+		const statusEl = document.getElementById('builder-status')
+
+		const blocks = {}
+		for (const block of document.querySelectorAll('[data-kind-block]')) {
+			blocks[block.getAttribute('data-kind-block') || ''] = block
+		}
+
+		// --- Menus déroulants avec recherche (autocomplétion) ------------------
+		// Le champ texte filtre la liste de sa propre boîte ; la valeur retenue
+		// reste dans l'<input type=hidden data-slot>, donc la suite de la page
+		// (render, réinitialisation) continue de lire `.value` comme avant.
+		const withoutAccents = (value) =>
+			value
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+
+		const ACTIVE_OPTION_CLASSES = ['bg-slate-100', 'dark:bg-ink-raised']
+
+		const setupCombobox = (root) => {
+			const input = root.querySelector('[data-combobox-input]')
+			const hidden = root.querySelector('input[type="hidden"][data-slot]')
+			const list = root.querySelector('[role="listbox"]')
+			const empty = root.querySelector('[data-combobox-empty]')
+			const chevron = root.querySelector('[data-combobox-chevron]')
+			if (!input || !hidden || !list) return null
+
+			const options = () => [...list.querySelectorAll('[role="option"]')]
+			const visibleOptions = () => options().filter((option) => !option.hidden)
+			const labelOf = (option) => option.getAttribute('data-label') || ''
+			const selectedOption = () =>
+				options().find((option) => option.getAttribute('data-value') === hidden.value)
+
+			let open = false
+			let active = null
+
+			// Texte affiché dans le champ : le nom choisi, ou rien (le placeholder
+			// reprend alors sa place) quand aucune couche n'est sélectionnée.
+			const displayText = () => {
+				const chosen = selectedOption()
+				return hidden.value && chosen ? labelOf(chosen) : ''
+			}
+
+			// L'option surlignée peut être hors du cadre quand la liste est longue :
+			// on ne fait défiler que la liste, jamais la page.
+			const revealActive = () => {
+				if (!open || !active || list.hidden || !list.clientHeight) return
+				const top = active.offsetTop
+				const bottom = top + active.offsetHeight
+				if (top < list.scrollTop) {
+					list.scrollTop = top - 4
+				} else if (bottom > list.scrollTop + list.clientHeight) {
+					list.scrollTop = bottom - list.clientHeight + 4
+				}
+			}
+
+			const paintActive = (option) => {
+				active = option || null
+				for (const item of options()) {
+					for (const className of ACTIVE_OPTION_CLASSES) {
+						item.classList.toggle(className, item === active)
+					}
+				}
+				if (active) {
+					input.setAttribute('aria-activedescendant', active.id)
+				} else {
+					input.removeAttribute('aria-activedescendant')
+				}
+				revealActive()
+			}
+
+			// Ouvre vers le haut quand la place manque en dessous, sinon la liste
+			// s'affiche sous la ligne de flottaison.
+			const positionPopup = () => {
+				const field = root.getBoundingClientRect()
+				const below = window.innerHeight - field.bottom
+				const flip = below < 264 && field.top > below
+				for (const popup of [list, empty]) {
+					if (!popup) continue
+					popup.style.top = flip ? 'auto' : '100%'
+					popup.style.bottom = flip ? '100%' : 'auto'
+					popup.style.marginTop = flip ? '0' : '0.25rem'
+					popup.style.marginBottom = flip ? '0.25rem' : '0'
+				}
+			}
+
+			const paintOpen = () => {
+				const matches = visibleOptions().length
+				list.hidden = !open || matches === 0
+				if (empty) empty.hidden = !open || matches > 0
+				input.setAttribute('aria-expanded', String(open))
+				chevron?.classList.toggle('rotate-180', open)
+				revealActive()
+			}
+
+			// Filtre insensible à la casse et aux accents (« creme » trouve « Crème »).
+			const filter = (query) => {
+				const needle = withoutAccents(query.trim())
+				for (const option of options()) {
+					option.hidden = needle ? !withoutAccents(labelOf(option)).includes(needle) : false
+				}
+			}
+
+			const openList = ({ showAll = false } = {}) => {
+				open = true
+				// Rouvrir en gardant la valeur affichée dans le champ ne montrerait que
+				// cette valeur : on repart de la liste complète.
+				filter(showAll ? '' : input.value)
+				const chosen = selectedOption()
+				paintActive(chosen && !chosen.hidden ? chosen : visibleOptions()[0] || null)
+				positionPopup()
+				paintOpen()
+			}
+
+			const closeList = () => {
+				open = false
+				paintActive(null)
+				paintOpen()
+				input.value = displayText()
+			}
+
+			const commit = (option) => {
+				if (!option) return
+				hidden.value = option.getAttribute('data-value') || ''
+				for (const item of options()) {
+					item.setAttribute('aria-selected', String(item === option && hidden.value !== ''))
+				}
+				closeList()
+				hidden.dispatchEvent(new Event('change', { bubbles: true }))
+			}
+
+			// La liste ne s'ouvre ni au focus ni au passage au clavier (Tab), pour ne
+			// pas masquer les champs voisins : clic, saisie ou flèche l'ouvrent.
+			input.addEventListener('click', () => {
+				if (open) return
+				// Sélectionner le texte affiché : taper remplace la valeur en cours.
+				if (input.value) input.select()
+				openList({ showAll: true })
+			})
+
+			input.addEventListener('input', () => {
+				open = true
+				filter(input.value)
+				paintActive(visibleOptions()[0] || null)
+				paintOpen()
+			})
+
+			input.addEventListener('keydown', (event) => {
+				const matches = visibleOptions()
+				if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+					event.preventDefault()
+					if (!open) {
+						openList({ showAll: true })
+						return
+					}
+					if (!matches.length) return
+					const index = matches.indexOf(active)
+					const next =
+						event.key === 'ArrowDown'
+							? matches[Math.min(index + 1, matches.length - 1)]
+							: matches[Math.max(index - 1, 0)]
+					paintActive(next)
+				} else if (event.key === 'Enter') {
+					if (!open) return
+					event.preventDefault()
+					// Entrée retient la proposition surlignée, sinon la seule restante.
+					commit(active || matches[0] || null)
+				} else if (event.key === 'Escape') {
+					if (!open) return
+					event.preventDefault()
+					closeList()
+				} else if (event.key === 'Tab') {
+					closeList()
+				} else if (
+					!open &&
+					event.key.length === 1 &&
+					!event.ctrlKey &&
+					!event.metaKey &&
+					!event.altKey
+				) {
+					// Première frappe dans un champ déjà rempli : elle remplace la valeur
+					// affichée au lieu de s'y insérer au milieu.
+					input.select()
+				}
+			})
+
+			// Quitter le champ annule une recherche restée sans choix : la valeur
+			// affichée redevient celle réellement sélectionnée.
+			input.addEventListener('blur', () => closeList())
+
+			list.addEventListener('mousedown', (event) => {
+				// Garder le focus dans le champ, sinon le blur fermerait la liste avant
+				// que le clic n'ait pu retenir l'option.
+				if (event.target.closest('[role="option"]')) event.preventDefault()
+			})
+
+			list.addEventListener('click', (event) => {
+				commit(event.target.closest('[role="option"]'))
+			})
+
+			return {
+				reset: () => {
+					hidden.value = ''
+					input.value = ''
+					filter('')
+					for (const item of options()) item.setAttribute('aria-selected', 'false')
+					closeList()
+				}
+			}
+		}
+
+		const comboboxes = []
+		for (const root of document.querySelectorAll('[data-combobox]')) {
+			const combobox = setupCombobox(root)
+			if (combobox) comboboxes.push(combobox)
+		}
+
+		if (kindSelect && output && tocEl) {
+			const byId = new Map(components.map((component) => [component.id, component]))
+
+			const escape = (value) =>
+				String(value).replace(/[&<>"']/g, (c) => {
+					switch (c) {
+						case '&':
+							return '&amp;'
+						case '<':
+							return '&lt;'
+						case '>':
+							return '&gt;'
+						case '"':
+							return '&quot;'
+						default:
+							return '&#39;'
+					}
+				})
+
+			const sourceHtml = (source) => {
+				if (!source) return ''
+				if (typeof source === 'string') {
+					return `<p class='text-sm text-slate-600 dark:text-ink-muted italic mb-3'>Basé sur la recette de ${escape(source)}</p>`
+				}
+				return `<p class='text-sm text-slate-600 dark:text-ink-muted italic mb-3'>Basé sur la recette de <a href='${escape(source.url)}' target='_blank' rel='noopener noreferrer' class='text-primary hover:underline font-medium'>${escape(source.title)}</a></p>`
+			}
+
+			// Reprend la structure de RecipeIngredientsDisplay : un bloc par élément,
+			// avec le titre ancré sur `ingredient-<id>` pour que le sommaire fonctionne.
+			const componentHtml = (component) => {
+				const ingredients = component.ingredients.length
+					? component.ingredients
+							.map(
+								(ing) =>
+									`<li class='text-slate-700 dark:text-ink-body text-base'><span class='text-primary font-light'>– </span>${escape(ing.item)}${
+										ing.quantity
+											? ` <span class='text-slate-500 dark:text-ink-faint text-sm'>(${escape(ing.quantity)})</span>`
+											: ''
+									}</li>`
+							)
+							.join('')
+					: `<li class='text-slate-500'>Aucun ingrédient</li>`
+
+				const steps = component.steps.length
+					? component.steps
+							.map(
+								(step, idx) =>
+									`<li class='text-slate-700 dark:text-ink-body text-base'><span class='font-semibold text-primary'>${idx + 1}. </span>${escape(step)}</li>`
+							)
+							.join('')
+					: `<li class='text-slate-500'>Aucune étape</li>`
+
+				return `
+					<div class='pb-8 last:pb-0'>
+						<h3 id='ingredient-${escape(component.id)}' class='text-2xl font-semibold mb-2 text-primary'>${escape(component.name)}</h3>
+						${sourceHtml(component.source)}
+						${component.description ? `<p class='text-slate-700 dark:text-ink-body text-base mb-4'>${escape(component.description)}</p>` : ''}
+						<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+							<div>
+								<h4 class='font-semibold text-base text-primary uppercase tracking-wide mb-4'>Ingrédients</h4>
+								<ul class='space-y-3'>${ingredients}</ul>
+							</div>
+							<div>
+								<h4 class='font-semibold text-base text-primary uppercase tracking-wide mb-4'>Étapes</h4>
+								<ol class='space-y-3'>${steps}</ol>
+							</div>
+						</div>
+					</div>`
+			}
+
+			const tocHeadingHtml = (text, slug, depth) =>
+				depth === 2
+					? `<a href='#${slug}' class='font-semibold text-base text-slate-900 dark:text-ink-text hover:text-primary py-2 px-0 transition-colors'>${escape(text)}</a>`
+					: `<a href='#${slug}' class='text-base text-slate-600 dark:text-ink-muted hover:text-primary py-1.5 px-0 transition-colors ml-2'>${escape(text)}</a>`
+
+			const renderToc = (chosen) => {
+				if (!chosen.length) {
+					tocEl.innerHTML = `<li class='text-slate-500 dark:text-ink-muted text-sm italic'>Aucun élément sélectionné</li>`
+					return
+				}
+				tocEl.innerHTML = `
+					<li class='flex flex-col mb-2'>${tocHeadingHtml('Montage', 'montage', 2)}</li>
+					<li class='flex flex-col mb-2'>
+						${tocHeadingHtml('Recette', 'recette', 2)}
+						<ul class='flex flex-col'>
+							${chosen.map((component) => `<li class='flex flex-col mb-2'>${tocHeadingHtml(component.name, `ingredient-${component.id}`, 3)}</li>`).join('')}
+						</ul>
+					</li>`
+			}
+
+			// Le champ caché du menu déroulant : c'est lui qui porte la valeur.
+			const slotSelect = (kind, key) => blocks[kind]?.querySelector(`[data-slot="${key}"]`) ?? null
+
+			const placeholder = (text) =>
+				`<p class='text-slate-500 dark:text-ink-muted italic'>${text}</p>`
+
+			const render = () => {
+				const kind = kindSelect.value
+				for (const key of Object.keys(blocks)) {
+					blocks[key].hidden = key !== kind
+				}
+
+				if (!kind) {
+					renderToc([])
+					if (statusEl) statusEl.textContent = ''
+					output.innerHTML = placeholder(
+						"Choisissez d'abord le type de recette : tarte ou entremet."
+					)
+					return
+				}
+
+				const config = kindConfig[kind] || { order: [], required: [] }
+
+				// L'ordre du montage est celui de la config, du bas du gâteau vers le haut.
+				const chosen = config.order
+					.map((key) => {
+						const value = slotSelect(kind, key)?.value
+						return value ? byId.get(value) : null
+					})
+					.filter(Boolean)
+
+				const missing = config.required.filter((key) => !slotSelect(kind, key)?.value)
+
+				renderToc(chosen)
+
+				if (statusEl) {
+					statusEl.textContent = missing.length
+						? `Encore ${missing.length} élément(s) obligatoire(s) à choisir.`
+						: 'Recette complète ✨'
+				}
+
+				if (!chosen.length) {
+					output.innerHTML = placeholder(
+						'Votre recette apparaîtra ici dès que vous sélectionnerez un élément.'
+					)
+					return
+				}
+
+				const montage = chosen
+					.map(
+						(component) =>
+							`<li class='text-slate-700 dark:text-ink-body text-base pl-1'>${escape(component.name)}</li>`
+					)
+					.join('')
+
+				output.innerHTML = `
+					<div class='w-full'>
+						<h2 id='montage' class='text-4xl font-bold mb-8 text-primary'>Montage</h2>
+						<ol class='space-y-3 list-decimal pl-5 mb-12'>${montage}</ol>
+						<div class='border-t border-slate-200 dark:border-ink-line pt-8'>
+							<h2 id='recette' class='text-4xl font-bold mb-8 text-primary'>Recette</h2>
+							<div class='space-y-8'>${chosen.map(componentHtml).join('')}</div>
+						</div>
+					</div>`
+			}
+
+			for (const field of document.querySelectorAll('[data-slot]')) {
+				field.addEventListener('change', render)
+			}
+
+			kindSelect.addEventListener('change', render)
+
+			document.getElementById('builder-reset')?.addEventListener('click', () => {
+				kindSelect.value = ''
+				for (const combobox of comboboxes) combobox.reset()
+				render()
+			})
+
+			render()
+		}
+	</script>
+</BaseLayout>

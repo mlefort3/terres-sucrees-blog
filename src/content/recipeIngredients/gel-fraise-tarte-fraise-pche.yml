@@ -1,0 +1,14 @@
+name: "Gel fraise"
+category: insert
+description: "Gelée de fraise à la pectine NH"
+ingredients:
+  - item: "300 g de purée de fraise"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de fraises"
+  - "Une fois chaude, ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Enlever du feu et réserver"

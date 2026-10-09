@@ -1,0 +1,21 @@
+name: "Pâte sablée"
+category: pâte
+description: "Pâte sablée vegan à la poudre d'amande"
+source:
+  title: "Planète Vegan"
+  url: "https://www.planetevegan.com/recettes/pate-sablee-vegan/"
+ingredients:
+  - item: "125 g de margarine"
+  - item: "100 g de sucre"
+  - item: "40 g de poudre d'amande"
+  - item: "40 ml de lait de soja (ou autre lait végétal)"
+  - item: "250 g de farine T55"
+  - item: "1 pincée de sel"
+steps:
+  - "Faire ramollir un peu le beurre (beurre pommade)"
+  - "Ajouter le sucre, la poudre d'amande et le sel"
+  - "Ajouter le lait petit à petit en mélangeant"
+  - "Ajouter la farine à la pâte"
+  - "Mélanger pour incorporer la farine, sans trop travailler la pâte"
+  - "Réserver au frais au moins 2 heures"
+  - "Faire cuire 20-25 min à 180 degrés"

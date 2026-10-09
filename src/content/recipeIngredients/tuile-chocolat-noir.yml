@@ -1,0 +1,16 @@
+name: "Tuile chocolat noir"
+category: décor
+description: "Fine tuile croustillante au chocolat noir"
+source: "Nina Métayer, hors série n°17 du magazine Fou de Pâtisserie"
+ingredients:
+  - item: "55 g de sucre glace"
+  - item: "20 g de farine T55"
+  - item: "9 g de cacao poudre"
+  - item: "25 g de substitut de blancs d'œufs (j'ai utilisé celui de la marque Yumgo)"
+  - item: "25 g de beurre"
+steps:
+  - "Mélanger ensemble la farine tamisée, le cacao tamisé, et le sucre glace tamisé"
+  - "Ajouter petit à petit le substitut de blancs d'oeufs"
+  - "Ajouter petit à petit le beurre préalablement fondu et à température ambiante"
+  - "Étaler dans un moule dédié"
+  - "Cuire 5 min à 170°C"

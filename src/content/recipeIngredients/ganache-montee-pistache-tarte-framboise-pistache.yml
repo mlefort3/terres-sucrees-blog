@@ -1,0 +1,22 @@
+name: "Ganache montée pistache"
+category: mousse
+description: "Ganache montée au chocolat blanc et à la pâte de pistache"
+source:
+  title: "Il était une fois la pâtisserie"
+  url: "https://www.iletaitunefoislapatisserie.com/2017/05/ganache-pistache-recette-facile.html"
+ingredients:
+  - item: "150 g de chocolat blanc vegan"
+  - item: "1 cuillère à soupe de pâte de pistache"
+  - item: "70 mL de crème liquide végétale (1)"
+  - item: "150 mL de crème liquide végétale (2)"
+  - item: "Quelques gouttes d'extrait d'amande amère"
+  - item: "Colorant vert (facultatif)"
+steps:
+  - "Faire chauffer la crème végétale (1) jusqu'à ébullition"
+  - "Verser la crème sur le chocolat blanc en morceaux (ou en pistoles)"
+  - "Une fois le chocolat fondu, mélanger bien le tout"
+  - "Ajouter la pâte de pistache et mélanger"
+  - "Ajouter l'extrait d'amande amère et si souhaité, le colorant"
+  - "Ajouter la crème végétale (2), bien mélanger"
+  - "Réserver quelques heures au frais"
+  - "Une fois refroidie, monter au batteur"

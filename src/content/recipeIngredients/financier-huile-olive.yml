@@ -1,0 +1,20 @@
+name: "Financier à l'huile d'olive"
+category: biscuit
+description: "Biscuit moelleux vegan à base d'huile d'olive"
+source:
+  title: "Perle en sucre"
+  url: "https://perleensucre.com/financiers-vegan-sans-oeufs-sans-beurre/"
+ingredients:
+  - item: "200 g de yaourt de soja"
+  - item: "150 g de sucre glace"
+  - item: "120 g de poudre d’amandes"
+  - item: "100 g de farine T45"
+  - item: "60 mL d’huile d'olive"
+  - item: "4 g de poudre à lever (ou levure chimique)"
+  - item: "Une pincée de sel"
+steps:
+  - "Mélanger le sucre et le yaourt"
+  - "Ajouter la poudre d'amandes, la farine, la poudre à lever (ou levure chimique), le sel, et mélanger"
+  - "Ajouter l'huile d'olive et mélanger"
+  - "Étaler dans votre moule ou sur votre plaque de cuisson"
+  - "Faire cuire 20-25 min à 180°C"

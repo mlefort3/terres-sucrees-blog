@@ -1,0 +1,17 @@
+name: "Insert clémentine basilic"
+category: insert
+description: "Insert gélifié à la clémentine et basilic"
+ingredients:
+  - item: "155 g de purée de clémentine"
+  - item: "20 g de sucre"
+  - item: "3 g de pectine NH"
+  - item: "5 g de jus de citron"
+  - item: "Feuilles de basilic ciselées ou arôme de basilic (selon préférences)"
+steps:
+  - "Mélanger la pectine NH avec le sucre"
+  - "Chauffer la purée de clémentine"
+  - "Ajouter le mélange sucre/pectine"
+  - "Ajouter le jus de citron"
+  - "Porter à ébullition pour 1-2 min"
+  - "Ajouter le basilic"
+  - "Verser dans son moule à insert et mettre au congélateur"

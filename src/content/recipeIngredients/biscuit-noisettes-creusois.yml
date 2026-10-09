@@ -1,0 +1,20 @@
+name: "Biscuit aux noisettes façon creusois"
+category: biscuit
+description: "Biscuit moelleux aux noisettes façon creusois (pour un diamètre de 20 cm)"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/gateau-aux-noisettes-facon-creusois-vegan/"
+ingredients:
+  - item: "100 g de yaourt de soja"
+  - item: "50 ml de lait végétal"
+  - item: "90 ml d’huile végétale neutre (pépins de raisin, tournesol, ...)"
+  - item: "120 g de farine T45"
+  - item: "100 g de poudre de noisettes"
+  - item: "100 g de sucre roux"
+  - item: "1/2 cuillère à café de poudre à lever (ou levure chimique)"
+  - item: "Une pincée de sel"
+steps:
+  - "Dans un récipient, mélanger le yaourt, le lait végétal et l’huile"
+  - "Ajouter ensuite la farine, la poudre de noisettes, le sucre roux, la levure chimique et le sel"
+  - "Mélanger jusqu’à l’obtention d’un appareil bien homogène"
+  - "Cuire 30 à 40 min à 160°C"

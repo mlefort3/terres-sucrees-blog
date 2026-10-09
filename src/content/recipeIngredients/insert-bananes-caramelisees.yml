@@ -1,0 +1,22 @@
+name: "Insert bananes caramélisées"
+category: insert
+description: "Insert gélifié à la banane et au caramel"
+source:
+  title: "Bulle de Pâtisserie"
+  url: "https://www.bulle-de-patisserie.fr/entremets-banane-caramel"
+ingredients:
+  - item: "300 g de banane"
+  - item: "1 cuillère à soupe de jus de citron"
+  - item: "3 cuillères à soupe d’eau"
+  - item: "40 g de sucre (pour le caramel)"
+  - item: "3 g de pectine NH"
+steps:
+  - "Chauffer le sucre à sec dans une casserole jusqu’à obtenir un caramel doré"
+  - "Déglacer avec l’eau chaude et mélanger jusqu’à ce que le caramel soit bien dissous"
+  - "Écraser ou mixer les bananes et les ajouter au caramel"
+  - "Ajouter le jus de citron"
+  - "Mélanger la pectine avec une petite quantité de sucre (5 à 10 g de sucre)"
+  - "Chauffer le mélange de banane et caramel"
+  - "Ajouter la pectine et mélanger"
+  - "Porter le mélange à ébullition pour 1-2 minutes"
+  - "Couler dans un moule à insert et laisser prendre au froid"

@@ -28,3 +28,4 @@ package-lock.json
 .husky/pre-commit
 package.json
 pnpm-lock.yaml
+.freebuff/

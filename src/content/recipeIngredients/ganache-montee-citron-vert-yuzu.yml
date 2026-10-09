@@ -1,0 +1,26 @@
+name: "Ganache montée citron vert/yuzu"
+category: mousse
+description: "Ganache montée au chocolat blanc, citron vert et yuzu"
+source:
+  title: "Dolce Dita"
+  url: "https://www.dolcedita.fr/ganache-montee-citron-pour-gateau-ou-macarons/"
+ingredients:
+  - item: "130 g de chocolat blanc"
+  - item: "50 g de jus de citron vert"
+  - item: "50 g de crème liquide végétale (30% MG) (1)"
+  - item: "200 g de crème liquide végétale (30% MG) (2)"
+  - item: "10 g de sucre"
+  - item: "2 g de pectine NH"
+  - item: "1/2 cuillère à café d’arôme de yuzu (optionnel)"
+steps:
+  - "Mélanger le sucre et la pectine NH dans un bol"
+  - "Faire chauffer la crème (1) et le jus de citron"
+  - "Une fois chaud, ajouter le mélange sucre/pectine en pluie tout en fouettant"
+  - "Porter à ébullition pour au moins 1 minute"
+  - "Retirer du feu, verser sur le chocolat blanc en morceaux"
+  - "Mélanger le tout pour avoir un mélange bien lisse"
+  - "Ajouter l’arôme de yuzu"
+  - "Laisser tiédir à environ 35–40°C, puis incorporer les 200 g de crème (2) froide"
+  - "Mixer le tout"
+  - "Réserver au froid au minimum 4 heures"
+  - "Fouetter au batteur pour monter la ganache"

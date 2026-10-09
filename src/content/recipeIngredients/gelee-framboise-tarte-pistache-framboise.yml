@@ -1,0 +1,13 @@
+name: "Gelée framboise"
+category: insert
+description: "Gelée framboise acidulée"
+ingredients:
+  - item: "250 g de purée de framboise"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+steps:
+  - "Chauffer la purée de framboise"
+  - "Mélanger le sucre et la pectine NH"
+  - "Verser en pluie sur la purée chaude en mélangeant bien"
+  - "Porter à ébullition pendant 1 à 2 minutes en remuant"
+  - "Réserver et laisser refroidir"

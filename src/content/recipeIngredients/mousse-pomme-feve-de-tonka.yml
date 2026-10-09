@@ -1,0 +1,18 @@
+name: "Mousse pomme fève de tonka"
+category: mousse
+description: "Mousse de pomme légère parfumée à la fève de tonka"
+ingredients:
+  - item: "200 g de compote de pomme (maison ou sans sucre ajouté)"
+  - item: "200 ml de crème liquide végétale (min. 30% MG)"
+  - item: "30 g de sucre"
+  - item: "2 g de pectine NH"
+  - item: "1 c. à café de jus de citron"
+  - item: "1/4 de fève tonka"
+steps:
+  - "Raper la fève tonka et l'incorporer dans la compte"
+  - "Chauffer la compote de pomme avec le jus de citron à 40°C."
+  - "Mélanger le sucre et la pectine NH dans un bol, puis verser en pluie dans la compote chaude en fouettant bien."
+  - "Porter à ébullition et maintenir 1 à 2 minutes pour activer la pectine."
+  - "Retirer du feu et laisser tiédir à 30-35°C."
+  - "Monter la crème en chantilly"
+  - "Incorporer délicatement la compote tiédie à la maryse"

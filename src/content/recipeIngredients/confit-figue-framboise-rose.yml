@@ -1,0 +1,21 @@
+name: "Confit figue framboise rose"
+category: insert
+description: "Confit de figues, framboises et rose"
+ingredients:
+  - item: "200 g de figues fraîches, équeutées"
+  - item: "100 g de purée de framboises"
+  - item: "18 g de sucre"
+  - item: "10 g de glucose"
+  - item: "3 g pectine NH"
+  - item: "1 cuillère à café de jus de citron"
+  - item: "1 petite cuillère à café d'extrait de rose, ou une cuillère à soupe d'eau de rose"
+  - item: "1 pincée de sel"
+steps:
+  - "Mélangez la pectine avec le sucre"
+  - "Faites chauffer les morceaux de figues avec la purée de framboise et le glucose"
+  - "Faire cuire autant que souhaité"
+  - "Ajouter le mélange sucre/pectine"
+  - "Portez à ébullition pour 1-2 minutes"
+  - "Ajouter le jus de citron et la rose"
+  - "Mixer le tout"
+  - "Réserver"

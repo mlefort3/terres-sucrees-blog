@@ -1,0 +1,19 @@
+name: "Biscuit génoise"
+category: biscuit
+description: "Biscuit génoise moelleux (pour un cercle de 18 cm de diamètre)"
+source:
+  title: "Deliacious"
+  url: "https://deliacious.com/2018/04/fraisier-vegan-recette-facile-tutoriel-video.html#recipe"
+ingredients:
+  - item: "80 g farine de blé"
+  - item: "20 g poudre d'amandes"
+  - item: "60 g sucre en poudre"
+  - item: "1 c. à café de poudre à lever"
+  - item: "100 ml lait végétal"
+  - item: "40 ml huile neutre (tournesol ou pépins de raisin par exemple)"
+  - item: "1 c. à café extrait de vanille"
+steps:
+  - "Mélanger tous les ingrédients secs entre eux"
+  - "Ajouter les ingrédients liquides"
+  - "Mélanger jusqu'à obtenir un mélange homogène, sans mélanger trop longtemps"
+  - "Cuire 15-20 min à 180°C, jusqu'à ce que le biscuit soit bien doré"

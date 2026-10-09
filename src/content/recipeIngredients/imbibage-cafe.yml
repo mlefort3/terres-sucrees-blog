@@ -1,0 +1,13 @@
+name: "Imbibage au café"
+category: sirop
+description: "Sirop au café et à l'amaretto pour imbiber le biscuit"
+source:
+  title: "Journal des Femmes"
+  url: "https://cuisine.journaldesfemmes.fr/recette/316093-tiramisu"
+ingredients:
+  - item: "20 cl de café fort"
+  - item: "2 cuillère à soupe d'amaretto (ou rhum)"
+steps:
+  - "Mélanger le café et l'amaretto"
+  - "S'en servir pour imbiber le biscuit"
+notes: "Alternative sans alcool : remplacer le rhum par du sirop de rhum (dé-sucrer un peu la crème ensuite pour équilibrer)."

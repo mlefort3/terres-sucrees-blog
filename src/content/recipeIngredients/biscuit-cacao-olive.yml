@@ -1,0 +1,20 @@
+name: "Biscuit cacao olive et huile d’olive"
+category: biscuit
+description: "Biscuit moelleux au cacao et olives de Kalamata"
+ingredients:
+  - item: "15 g d’olives de Kalamata (dénoyautées et hachées finement)"
+  - item: "60 g de sucre"
+  - item: "50 g de yaourt de soja"
+  - item: "10 g de fécule de maïs"
+  - item: "55 g de farine"
+  - item: "40 g de cacao en poudre non sucré"
+  - item: "2 g de poudre à lever"
+  - item: "57 g de crème végétale liquide"
+  - item: "15 g d’huile d’olive"
+steps:
+  - "Dans un grand bol, mélanger le yaourt, la féculé, le sucre, l'huile et la crème"
+  - "Dans un autre mol, mélanger la farine tamisée, le cacao tamisé et la poudre à lever"
+  - "Incorporer les poudres au mélange liquide jusqu’à obtenir une pâte homogène"
+  - "Ajouter les olives hachées"
+  - "Verser dans un moule (ou étaler sur une plaque)"
+  - "Cuire 15 à 20 min à 170°C (chaleur tournante)"

@@ -1,0 +1,18 @@
+name: "Biscuit pain de gênes vegan"
+category: biscuit
+description: "Biscuit pain de gênes à la poudre d'amandes"
+ingredients:
+  - item: "120 g de poudre d’amandes"
+  - item: "80 g de farine"
+  - item: "50 g de sucre"
+  - item: "8 g de levure chimique"
+  - item: "80 ml de lait végétal (soja, amande, avoine, ...)"
+  - item: "40 g de yaourt de soja"
+  - item: "30 g de margarine végétale fondue"
+  - item: "1 c. à café d’extrait de vanille"
+  - item: "1 pincée de sel"
+steps:
+  - "Dans un bol, mélanger les ingrédients secs (poudre d'amandes, farine, sucre, levure, sel)"
+  - "Ajouter ensuite les autres ingrédients en mélangeant (lait, yaourt, margarine, vanille)"
+  - "Verser dans votre moule"
+  - "Faire cuire 25 à 30 minutes à 170°C"

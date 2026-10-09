@@ -1,0 +1,15 @@
+name: "Croustillant cacahuètes"
+category: croustillant
+description: "Couche croustillante au chocolat blanc et beurre de cacahuètes"
+source:
+  title: "Cooking Mumu"
+  url: "https://cookingmumu.com/trianon-imperial-cacahuete/"
+ingredients:
+  - item: "100 g de crêpes dentelles"
+  - item: "80 g de chocolat blanc vegan"
+  - item: "60 g de beurre de cacahuètes"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le beurre de cacahuètes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux"
+  - "Étaler sur le biscuit cuit"

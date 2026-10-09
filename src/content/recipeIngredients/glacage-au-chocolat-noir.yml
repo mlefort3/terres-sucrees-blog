@@ -1,0 +1,18 @@
+name: "Glaçage au chocolat noir"
+category: glaçage
+description: "Glaçage miroir au chocolat noir vegan"
+source:
+  title: "Cuisine AZ"
+  url: "https://www.cuisineaz.com/recettes/glacage-miroir-chocolat-vegan-109917.aspx"
+ingredients:
+  - item: "175 g d'eau"
+  - item: "225 g de sucre"
+  - item: "130 g de crème soja"
+  - item: "30 g de cacao en poudre"
+  - item: "4 g d'agar-agar"
+steps:
+  - "Dans une casserole, porter à ébullition l'eau et le sucre"
+  - "Ajouter la crème et porter de nouveau à ébullition"
+  - "Ajouter le cacao et bien mélanger"
+  - "Ajouter l'agar-agar, bien mélanger et porter à ébullition pour 1-2 min"
+  - "Verser le glaçage à une température de 35-40°C sur l'entremet congelé"

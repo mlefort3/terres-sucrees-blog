@@ -1,0 +1,23 @@
+name: "Ganache montée au citron noir"
+category: mousse
+description: "Ganache montée au chocolat blanc et au citron noir"
+source: "inspiré de Dolce Dita et de la crème au citron noir des macarons de Pierre Hermé (Fou de Pâtisserie n°4)"
+ingredients:
+  - item: "225 g de chocolat blanc vegan"
+  - item: "225 g de crème végétale liquide (1)"
+  - item: "225 g de crème végétale liquide (2)"
+  - item: "6 g de pectine NH"
+  - item: "10 g de sucre"
+  - item: "90 g de jus de citron"
+  - item: "30 g de poudre de citron noir"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Dans une casserole, mélanger la crème végétale (1), le jus de citron et la poudre de citron noir"
+  - "Faire chauffer ce mélange"
+  - "Une fois ce mélange légèrement chauffé, ajouter le mélange sucre/pectine"
+  - "Porter à ébullition"
+  - "Verser sur le chocolat blanc en morceaux"
+  - "Une fois le chocolat fondu, mélanger le tout pour une consistance homogène"
+  - "Ajouter la crème végétale (2) et mélanger"
+  - "Laisser reposer au frais plusieurs heures"
+  - "Une fois refroidie, monter la ganache jusqu'à la consistance désirée"

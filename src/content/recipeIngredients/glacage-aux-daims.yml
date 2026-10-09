@@ -1,0 +1,15 @@
+name: "Glaçage aux daims"
+category: glaçage
+description: "Glaçage au chocolat au lait et éclats de daims"
+source:
+  title: "Un gâteau presque parfait"
+  url: "https://www.youtube.com/watch?v=DP8lU9zxiuc"
+ingredients:
+  - item: "200 g de chocolat au lait vegan (ou à défaut, chocolat noir)"
+  - item: "150 g de crème liquide végétale (30% de matières grasses)"
+  - item: "100 g de daims en morceaux"
+steps:
+  - "Faire chauffer la crème liquide jusqu'à ébullition"
+  - "Verser sur le chocolat en morceaux"
+  - "Attendre 1-2 minutes et mélanger pour obtenir un mélange lisse"
+  - "Ajouter les daims en morceaux et mélanger"

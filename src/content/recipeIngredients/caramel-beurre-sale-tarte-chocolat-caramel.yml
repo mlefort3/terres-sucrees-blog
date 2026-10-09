@@ -1,0 +1,13 @@
+name: "Caramel beurre salé"
+category: insert
+description: "Caramel beurre salé onctueux, adapté en version vegan"
+source: "Arts et Gastronomie (Mille-feuille mousse caramel beurre salé)"
+ingredients:
+  - item: "200 g de sucre"
+  - item: "300 g de crème végétale liquide"
+  - item: "50 g de margarine"
+steps:
+  - "Réaliser un caramel à sec avec le sucre"
+  - "Ajouter la crème végétale liquide chaude et mélanger"
+  - "Mélanger et laisser refroidir"
+  - "Ajouter le beurre, mixer et réserver au frais"

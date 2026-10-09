@@ -1,0 +1,106 @@
+---
+interface Props {
+	kind: string
+	slot: { key: string; label: string; hint: string; required: boolean }
+	options: { id: string; name: string }[]
+	/** Marks a non-required slot that sits in the main grid rather than in the optional panel. */
+	showOptionalBadge?: boolean
+}
+
+const { kind, slot, options, showOptionalBadge = false } = Astro.props
+
+// Menu déroulant avec recherche : le champ texte filtre sa propre liste, la
+// valeur retenue reste portée par un <input type=hidden data-slot> — c'est lui
+// que lit le script de la page (`.value` + événement `change`).
+//
+// La liste vit hors du <label> : un clic sur une option serait sinon rejoué sur
+// le champ par l'activation du label, et la liste se rouvrirait aussitôt.
+const labelId = `${kind}-${slot.key}-label`
+const hintId = `${kind}-${slot.key}-hint`
+const listId = `${kind}-${slot.key}-list`
+const optionId = (index: number) => `${kind}-${slot.key}-option-${index}`
+const fieldClass =
+	'w-full rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 pr-9 text-base placeholder:text-slate-400 dark:placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-primary'
+const optionClass =
+	'cursor-pointer px-3 py-2 text-sm text-slate-900 dark:text-ink-text hover:bg-slate-100 dark:hover:bg-ink-raised'
+---
+
+<div class='flex flex-col gap-2'>
+	<span class='flex flex-wrap items-baseline gap-2'>
+		<span id={labelId} class='font-semibold text-primary'>{slot.label}</span>
+		{
+			showOptionalBadge && !slot.required && (
+				<span class='text-[10px] uppercase tracking-wide text-slate-500 dark:text-ink-muted border border-slate-300 dark:border-ink-line rounded px-1.5 py-0.5'>
+					Facultatif
+				</span>
+			)
+		}
+	</span>
+	<div class='relative' data-combobox>
+		<input type='hidden' data-slot={slot.key} value='' />
+		<input
+			id={`${kind}-${slot.key}`}
+			type='text'
+			role='combobox'
+			autocomplete='off'
+			spellcheck='false'
+			placeholder='Rechercher…'
+			aria-expanded='false'
+			aria-controls={listId}
+			aria-autocomplete='list'
+			aria-labelledby={labelId}
+			aria-describedby={hintId}
+			data-combobox-input
+			class={fieldClass}
+		/>
+		<svg
+			data-combobox-chevron
+			class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted transition-transform'
+			fill='none'
+			stroke='currentColor'
+			viewBox='0 0 24 24'
+		>
+			<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+			></path>
+		</svg>
+		<ul
+			id={listId}
+			role='listbox'
+			hidden
+			class='absolute left-0 right-0 z-30 mt-1 max-h-60 overflow-auto rounded-lg border border-slate-200 dark:border-ink-line bg-white dark:bg-ink-surface py-1 shadow-lg'
+		>
+			<li
+				id={optionId(0)}
+				role='option'
+				aria-selected='false'
+				data-value=''
+				data-label='Pas de sélection'
+				class='cursor-pointer px-3 py-2 text-sm text-slate-500 dark:text-ink-muted hover:bg-slate-100 dark:hover:bg-ink-raised'
+			>
+				Pas de sélection
+			</li>
+			{
+				options.map((option, index) => (
+					<li
+						id={optionId(index + 1)}
+						role='option'
+						aria-selected='false'
+						data-value={option.id}
+						data-label={option.name}
+						class={optionClass}
+					>
+						{option.name}
+					</li>
+				))
+			}
+		</ul>
+		<div
+			data-combobox-empty
+			hidden
+			class='absolute left-0 right-0 z-30 mt-1 rounded-lg border border-slate-200 dark:border-ink-line bg-white dark:bg-ink-surface px-3 py-2 text-sm text-slate-500 dark:text-ink-muted shadow-lg'
+		>
+			Aucun résultat
+		</div>
+	</div>
+	<span id={hintId} class='text-xs text-slate-500 dark:text-ink-faint'>{slot.hint}</span>
+</div>

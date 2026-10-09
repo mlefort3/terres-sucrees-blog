@@ -1,0 +1,18 @@
+name: "Meringue italienne"
+category: mousse
+description: "Meringue italienne vegan au substitut de blanc d'œuf Yumgo"
+source:
+  title: "Yumgo"
+  url: "https://yumgo.fr/blogs/recettes/meringue-italienne?srsltid=AfmBOopK3nu-QWVNxpEsXvYPsjZWN24jxTwleXU03B_0z87lRuT2VV1d"
+ingredients:
+  - item: "65 g d'eau (1)"
+  - item: "200 g de sucre"
+  - item: "11 g de Yumgo blanc en poudre"
+  - item: "90 g d’eau (2)"
+steps:
+  - "Mixer ensemble l’eau (2) et le Yumgo blanc en poudre pour former le substitut aux blancs d’oeufs"
+  - "Réaliser un sirop avec l'eau (1) et le sucre"
+  - "Porter le sirop à 118°C"
+  - "Monter les blancs mousseux et verser lentement le sirop à 118°C"
+  - "Monter jusqu’à refroidissement et l’obtention d’un bec d’oiseau"
+  - "Pocher directement sur la tarte"

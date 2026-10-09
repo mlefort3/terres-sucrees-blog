@@ -1,0 +1,12 @@
+name: "Sablé reconstitué"
+category: biscuit
+description: "Fond croustillant à base de pâte sucrée et de beurre de cacao"
+notes: "Peut aussi être remplacé par une pâte sucrée (ou sablée) classique."
+ingredients:
+  - item: "200 g de pâte sucrée (ou sablée) cuite"
+  - item: "80 g de beurre de cacao"
+steps:
+  - "Faire fondre le beurre de cacao"
+  - "Le mélanger à la pâte sucrée réduite en poudre"
+  - "Mettre selon la forme voulue"
+  - "Mettre au congélateur jusqu'à durcissement"

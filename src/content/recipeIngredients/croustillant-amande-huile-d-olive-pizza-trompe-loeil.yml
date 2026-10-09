@@ -1,0 +1,12 @@
+name: "Croustillant amande huile d'olive"
+category: croustillant
+description: "Couche croustillante au chocolat blanc, purée d'amandes et huile d'olive"
+ingredients:
+  - item: "35 g de chocolat blanc vegan"
+  - item: "30 g de purée d'amandes"
+  - item: "15 g de riz soufflé"
+  - item: "1 cuillère à soupe d'huile d'olive"
+steps:
+  - "Faire fondre le chocolat blanc au bain marie"
+  - "Ajouter le reste des ingrédients et mélanger"
+  - "Étaler sur le financier cuit"

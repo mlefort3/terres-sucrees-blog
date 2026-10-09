@@ -1,0 +1,23 @@
+name: "Insert fraise basilic à l'ail rôti"
+category: insert
+description: "Insert gélifié fraise, basilic et ail rôti"
+ingredients:
+  - item: "300 g de purée de fraises"
+  - item: "5 gousses d'ail (facultatif)"
+  - item: "5 g de basilic frais mixé (facultatif)"
+  - item: "30 g de sirop d'agave (facultatif)"
+  - item: "40 g de sucre"
+  - item: "5 g de pectine NH"
+  - item: "1 cuillère à soupe de jus de citron"
+steps:
+  - "Placer les gousses d'ail dans de l'aluminium, mélangées au sirop d'agave (facultatif)"
+  - "Faire cuire 45min à 180°C (facultatif)"
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer la purée de fraises"
+  - "Ajouter le basilic (facultatif)"
+  - "Une fois chaude, ajouter le mélange sucre/pectine et le jus de citron"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Enlever du feu"
+  - "Ajouter 10 g de l'ail rôti (il doit avoir une consistance de purée) (facultatif)"
+  - "Mixer le tout"
+  - "Réserver"

@@ -1,0 +1,15 @@
+name: "Insert framboise"
+category: insert
+description: "Insert gélifié à la framboise"
+ingredients:
+  - item: "150 g de purée de framboise"
+  - item: "20 g de sucre"
+  - item: "2 g de pectine NH"
+  - item: "1 c. à café de jus de citron"
+steps:
+  - "Chauffer la purée de framboise"
+  - "Mélanger le sucre et la pectine NH"
+  - "Verser en pluie sur la purée chaude en mélangeant bien"
+  - "Ajouter le jus de citron"
+  - "Porter à ébullition pendant 1 à 2 minutes en remuant"
+  - "Verser dans votre moule à insert"

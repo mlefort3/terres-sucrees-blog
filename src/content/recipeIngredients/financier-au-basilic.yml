@@ -1,0 +1,19 @@
+name: "Financier au basilic"
+category: biscuit
+description: "Biscuit financier vegan au basilic frais"
+source: "Emily Misson et Thibaut Lefils, « Gâteaux trompe-l'œil », Fou de Pâtisserie n°71 — version vegan"
+ingredients:
+  - item: "4,5 g de Yumgo blanc en poudre"
+  - item: "40,5 g d'eau (pour réhydrater le Yumgo blanc)"
+  - item: "12 g de basilic frais"
+  - item: "50 g de sucre"
+  - item: "20 g de farine"
+  - item: "20 g d'amandes en poudre"
+  - item: "10 g de margarine"
+  - item: "10 g d'huile d'olive"
+  - item: "1,5 de poudre à lever (ou levure chimique)"
+steps:
+  - "Mixer ensemble tous les ingrédients"
+  - "Étaler dans un cercle graissé"
+  - "Faire cuire 10-15 min à 170°C"
+  - "Laisser refroidir et découper dans la forme souhaitée"

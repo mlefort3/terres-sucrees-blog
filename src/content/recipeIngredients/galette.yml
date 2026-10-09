@@ -1,0 +1,15 @@
+name: "Galette"
+category: biscuit
+description: "Assemblage de la galette des rois à la frangipane"
+ingredients:
+  - item: "Des pâtes feuilletées vegan du commerce (option)"
+  - item: "Une pâte feuilletée \"express\" (recette de @pascale_lmp14, avec l'alternative végétale Be Better)"
+  - item: "Une pâte feuilletée classique"
+steps:
+  - "Préparer deux disques de pâte feuilletée de la taille souhaitée"
+  - "Mettre la frangipane au centre en gardant de l'espace sur les côtés"
+  - "Badigeonner les bords d'eau"
+  - "Recouvrir du deuxième disque de pâte feuilletée et bien souder"
+  - "Dorer avec un mélange constitué de 2 cuillères à soupe de lait végétal et 1 cuillère à soupe de sirop d'agave (ou sucre)"
+  - "Cuire environ 40 min à 180°C"
+  - "La frangipane doit être prise au centre et légèrement dorée"

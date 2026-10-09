@@ -1,0 +1,12 @@
+name: "Enrobage"
+category: glaçage
+description: "Enrobage chocolat blanc coloré pour le trompe-l'œil"
+source: "Emily Misson et Thibaut Lefils, « Gâteaux trompe-l'œil », Fou de Pâtisserie n°71 — version vegan"
+ingredients:
+  - item: "150 g de chocolat blanc"
+  - item: "150 g de beurre de cacao"
+  - item: "Colorant rouge"
+steps:
+  - "Faire fondre le chocolat blanc et le beurre de cacao au bain marie"
+  - "Ajouter le colorant jusqu'à obtenir la couleur souhaitée"
+  - "Pour enrober les tomates, les plonger congelées dans l'enrobage (celui-ci doit être à 35-40 degrés environ)"

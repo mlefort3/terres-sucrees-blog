@@ -1,0 +1,14 @@
+name: "Croustillant chocolat noir noisette"
+category: croustillant
+description: "Couche croustillante au chocolat noir, purée et éclats de noisettes"
+ingredients:
+  - item: "80 g de purée de noisette (100% noisette, non sucrée)"
+  - item: "60 g de chocolat noir"
+  - item: "50 g de crêpes dentelles"
+  - item: "20 g de noisettes en morceaux"
+  - item: "Une pincée de sel"
+steps:
+  - "Étaler sur le biscuit cuit"
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée de noisette et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux, les noisettes, le sel, et mélanger"

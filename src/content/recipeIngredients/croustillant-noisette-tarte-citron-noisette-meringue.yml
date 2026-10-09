@@ -1,0 +1,14 @@
+name: "Croustillant noisette"
+category: croustillant
+description: "Croustillant à la purée de noisette, chocolat blanc et crêpes dentelles"
+ingredients:
+  - item: "80 g de purée de noisette (100% noisette, non sucrée)"
+  - item: "60 g de chocolat blanc vegan de couverture"
+  - item: "50 g de crêpes dentelle"
+  - item: "20 g de noisettes en morceau"
+  - item: "Une petite pincée de sel"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée de noisettes et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux, les noisettes en morceau, le sel et mélanger"
+  - "Étaler sur la pâte sablée cuite"

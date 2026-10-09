@@ -1,0 +1,15 @@
+name: "Sirop de fraise"
+category: sirop
+description: "Sirop à base de queues de fraises pour imbiber la génoise"
+source:
+  title: "The Papatissier"
+  url: "https://www.instagram.com/p/DIa6mT5IGF0/"
+ingredients:
+  - item: "50 g de queues de fraises"
+  - item: "50 g de sucre"
+  - item: "25 g d'eau"
+steps:
+  - "Verser l'eau, le sucre et les queues de fraises dans une casserole"
+  - "Laisser chauffer jusqu'à avoir la consistance d'un sirop"
+  - "Filtrer pour enlever les queues de fraises"
+  - "Étaler sur la génoise"

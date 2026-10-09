@@ -1,0 +1,24 @@
+name: "Crème citron pavot"
+category: mousse
+description: "Crème au citron végane relevée de graines de pavot"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/lemon-curd-ou-creme-au-citron-vegan/"
+notes: "2 cuillères à soupe de graines de pavot ajoutées à la recette (ça peut être moins)."
+ingredients:
+  - item: "150 g de jus de citron (environ 3 citrons)"
+  - item: "Le zeste de 2 citrons"
+  - item: "90 ml de lait végétal"
+  - item: "110 g de sucre"
+  - item: "15 g de fécule de maïs"
+  - item: "60 g de margarine"
+  - item: "1 à 2 cuillère à soupe de graines de pavot"
+steps:
+  - "Dans une casserole, mélanger le sucre et la fécule de maïs"
+  - "Ajouter le lait petit à petit tout en mélangeant"
+  - "Ajouter les zestes et le jus de citron"
+  - "Faire cuire sur feu moyen tout en mélangeant, jusqu'à épaississement"
+  - "Porter à ébullition pour 1 min"
+  - "Retirer du feu, ajouter la margarine et mélanger jusqu'à ce qu'elle soit complètement fondue"
+  - "Ajouter les graines de pavot"
+  - "Transvaser dans un récipient et laisser reposer au frais"

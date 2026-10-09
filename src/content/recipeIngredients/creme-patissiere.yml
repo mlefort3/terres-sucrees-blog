@@ -1,0 +1,16 @@
+name: "Crème pâtissière"
+category: mousse
+description: "Crème pâtissière vanille vegan"
+ingredients:
+  - item: "100 g lait de soja"
+  - item: "10 g fécule de maïs"
+  - item: "12 à 15 g sucre"
+  - item: "8 g margarine"
+  - item: "1 petite gousse de vanille"
+steps:
+  - "Délayer la fécule et le sucre dans une partie du lait de soja froid"
+  - "Chauffer le reste du lait avec la vanille jusqu'à frémissement"
+  - "Verser le mélange fécule-sucre dans le lait chaud en fouettant"
+  - "Cuire à feu moyen jusqu'à épaississement, sans cesser de fouetter"
+  - "Hors du feu, incorporer la margarine"
+  - "Filmer au contact et laisser refroidir complètement"

@@ -1,0 +1,12 @@
+name: "Croustillant praliné"
+category: croustillant
+description: "Couche croustillante au chocolat au lait noisette, praliné et riz soufflé"
+ingredients:
+  - item: "50 g de chocolat au lait noisette vegan"
+  - item: "45 g de praliné amande/noisette"
+  - item: "20 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le riz soufflé et mélanger"
+  - "Étaler sur la pâte cuite"

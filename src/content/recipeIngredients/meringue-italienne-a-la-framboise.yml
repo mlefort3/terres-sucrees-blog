@@ -1,0 +1,19 @@
+name: "Meringue italienne à la framboise"
+category: mousse
+description: "Meringue italienne vegan parfumée au jus de framboise"
+source:
+  title: "Yumgo"
+  url: "https://yumgo.fr/blogs/recettes/meringue-italienne?srsltid=AfmBOopK3nu-QWVNxpEsXvYPsjZWN24jxTwleXU03B_0z87lRuT2VV1d"
+ingredients:
+  - item: "65 g de jus de framboise"
+  - item: "200 g de sucre"
+  - item: "11 g de Yumgo blanc en poudre"
+  - item: "90 g d'eau"
+steps:
+  - "Mixer ensemble l'eau et le Yumgo blanc en poudre pour former le substitut aux blancs d'oeufs"
+  - "Réaliser un sirop avec le jus de framboise et le sucre"
+  - "Porter le sirop à 118°C"
+  - "Monter les blancs mousseux et verser lentement le sirop à 118°C"
+  - "Monter jusqu'à refroidissement et l'obtention d'un bec d'oiseau"
+  - "Pocher directement sur la tarte"
+notes: "Une meringue italienne peut également être faite en version végétale avec le jus de cuisson des pois chiches (aquafaba). Cela fonctionnera mieux si vous réduisez ce jus pour qu'il soit plus concentré."

@@ -1,0 +1,23 @@
+name: "Mousse chocolat noir, citron"
+category: mousse
+description: "Mousse au chocolat noir relevée d'un zeste de citron"
+source: "Nina Métayer, hors série n°17 du magazine Fou de Pâtisserie"
+ingredients:
+  - item: "30 g de crème végétale liquide (1)"
+  - item: "35 g de lait de soja"
+  - item: "30 g de substitut de jaunes d'oeufs (j'ai utilisé celui de la marque Yumgo)"
+  - item: "57 g de chocolat noir pâtissier"
+  - item: "0,5 g de zeste de citron"
+  - item: "165 g de crème végétale liquide (2)"
+steps:
+  - "Mélanger la crème (1) et le lait"
+  - "Porter à ébullition"
+  - "Verser ce mélange sur le substitut de jaunes d'oeufs"
+  - "Reverser le tout dans une casserole"
+  - "Remettre à chauffer et arrêter dès les premiers signes d'ébullition"
+  - "Verser sur le chocolat en morceaux"
+  - "Ajouter le zeste de citron"
+  - "Mixer le tout"
+  - "Monter la crème (2) en chantilly"
+  - "Mélanger la crème au chocolat avec la crème en chantilly"
+  - "Réserver"

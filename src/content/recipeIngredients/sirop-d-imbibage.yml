@@ -1,0 +1,13 @@
+name: "Sirop d'imbibage"
+category: sirop
+description: "Sirop vanillé pour imbiber le biscuit"
+source:
+  title: "Un gâteau presque parfait"
+  url: "https://www.youtube.com/watch?v=DP8lU9zxiuc"
+ingredients:
+  - item: "200 g d'eau"
+  - item: "100 g de sucre"
+  - item: "Une cuillère à soupe d'arôme de vanille"
+steps:
+  - "Mélanger les ingrédients dans une casserole"
+  - "Faire chauffer jusqu'à complète dissolution du sucre et léger épaississement"

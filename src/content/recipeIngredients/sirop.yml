@@ -1,0 +1,14 @@
+name: "Sirop"
+category: sirop
+description: "Sirop parfumé à la fleur d'oranger et à l'eau de rose"
+ingredients:
+  - item: "80 ml d'eau"
+  - item: "60 g sucre"
+  - item: "1 c. à c. jus de citron (indispensable)"
+  - item: "1 c. à c. eau de fleur d’oranger"
+  - item: "1 c. à c. eau de rose (facultatif)"
+steps:
+  - "Mettre dans une casserole l'eau et le sucre"
+  - "Porter le tout à ébullition pour 2-3 min"
+  - "Retirer du feu"
+  - "Ajouter le jus de citron, l'eau de fleur d'oranger et l'eau de rose"

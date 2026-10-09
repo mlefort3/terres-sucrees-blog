@@ -1,0 +1,15 @@
+name: "Mangues pochées"
+category: insert
+description: "Lamelles de mangue pochées au caramel et à la vanille"
+source:
+  title: "Deliciours"
+  url: "https://deliciours.blogspot.com/2012/10/mangue-poelee-caramelisee-la-vanille.html"
+ingredients:
+  - item: "1 petite mangue"
+  - item: "1 gousse de vanille"
+  - item: "30 g de sucre"
+steps:
+  - "Faire caraméliser le sucre"
+  - "Ajouter la mangue coupée en lamelles fines et la vanille"
+  - "Laisser cuire 5 min"
+  - "Réserver"

@@ -1,0 +1,17 @@
+name: "Crémeux noisette"
+category: insert
+description: "Crémeux onctueux à la purée de noisette"
+ingredients:
+  - item: "125 ml de lait de noisette (ou autre lait végétal)"
+  - item: "75 ml de crème végétale liquide"
+  - item: "90 g de purée de noisette"
+  - item: "30 g de sucre"
+  - item: "4 g de pectine NH"
+  - item: "1 pincée de sel"
+steps:
+  - "Mélanger le sucre et la pectine NH"
+  - "Faire chauffer le lait végétal et la crème"
+  - "Ajouter le mélange sucre/pectine et bien mélanger"
+  - "Porter à ébullition pour 1-2 minutes"
+  - "Hors du feu, ajouter le praliné et la pincée de sel"
+  - "Mélanger et réserver au frais"

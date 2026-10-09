@@ -1,0 +1,23 @@
+name: "Crème chocolat"
+category: mousse
+description: "Crème pâtissière végane au chocolat noir"
+source:
+  title: "Perle en Sucre"
+  url: "https://perleensucre.com/creme-patissiere-au-chocolat-sans-oeufs-sans-lait-vegan/"
+ingredients:
+  - item: "500 mL de lait de soja"
+  - item: "100 g de sucre"
+  - item: "50 g de fécule de maïs"
+  - item: "20 g de margarine"
+  - item: "150 g de chocolat noir pâtissier"
+steps:
+  - "Déposer votre chocolat en morceaux dans un saladier"
+  - "Mélanger le sucre et la fécule"
+  - "Y ajouter le lait petit à petit"
+  - "Verser ce mélange dans une casserole"
+  - "Faire chauffer jusqu'à épaississement"
+  - "Retirer du feu, ajouter la margarine"
+  - "Verser sur le chocolat en morceaux"
+  - "Attendre 2-3 min"
+  - "Mélanger le tout"
+  - "Filmer et laisser reposer au réfrigérateur jusqu'à ce que la crème soit bien froide"

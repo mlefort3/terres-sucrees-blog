@@ -1,0 +1,19 @@
+name: "Insert pêche"
+category: insert
+description: "Insert gélifié à la pêche"
+source:
+  title: "Empreinte Sucrée"
+  url: "https://empreintesucree.fr/entremets-peche-melba-peche-framboise-et-vanille/"
+ingredients:
+  - item: "500 g de pêches fraîches"
+  - item: "1 cuillère à café de jus de citron"
+  - item: "30 g de sucre"
+  - item: "6 g de pectine NH"
+steps:
+  - "Retirer la peau des pêches si souhaité"
+  - "Mixer la chair pour obtenir de la purée de pêche"
+  - "Faire chauffer la purée obtenur"
+  - "Mélanger le sucre et la pectine"
+  - "Verser le mélange sucre/pectine sur la purée"
+  - "Porter à ébullition pendant 1 à 2 minutes en remuant"
+  - "Verser dans votre moule à insert"

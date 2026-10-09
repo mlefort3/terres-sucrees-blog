@@ -20,9 +20,10 @@ const { posts } = Astro.props
 						class='
               group flex items-center gap-4 p-4 
               rounded-xl
-              bg-[#e5e4f4] dark:bg-[#4c4a6b]
+              bg-[#e5e4f4] dark:bg-ink-raised
+              dark:border dark:border-ink-line
               shadow-sm hover:shadow transition-shadow
-              dark:shadow-none dark:hover:shadow-md
+              dark:shadow-none dark:hover:shadow-none
             '
 					>
 						<Image
@@ -36,7 +37,7 @@ const { posts } = Astro.props
 
 						<h3
 							class='font-semibold text-lg group-hover:underline line-clamp-2 
-                       text-gray-900 dark:text-gray-100'
+                       text-gray-900 dark:text-ink-text'
 						>
 							{post.data.title}
 						</h3>
@@ -44,7 +45,7 @@ const { posts } = Astro.props
 				)
 			})
 		) : (
-			<span class='text-gray-500 dark:text-gray-400'>There are no related posts yet. 😢</span>
+			<span class='text-gray-500 dark:text-ink-muted'>There are no related posts yet. 😢</span>
 		)
 	}
 </section>

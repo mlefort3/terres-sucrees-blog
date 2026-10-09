@@ -1,0 +1,12 @@
+name: "Croustillant praliné cajou"
+category: croustillant
+description: "Couche croustillante au chocolat blanc, praliné cajou et riz soufflé"
+ingredients:
+  - item: "30 g de praliné noix de cajou"
+  - item: "25 g de chocolat blanc vegan"
+  - item: "10 g de riz soufflé"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter le praliné et mélanger"
+  - "Ajouter le riz soufflé, et mélanger"
+  - "Étaler sur le biscuit cuit"

@@ -1,0 +1,13 @@
+name: "Gelée d'orange sanguine"
+category: insert
+description: "Gelée acidulée au jus d'orange sanguine"
+ingredients:
+  - item: "30 g de sucre en poudre"
+  - item: "75 g de jus d'orange sanguine"
+  - item: "3 g de pectine NH"
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Mettre à chauffer le jus d'orange sanguine"
+  - "Ajouter le mélange sucre/pectine"
+  - "Porter à ébullition pour 1-2 min"
+  - "Réserver"

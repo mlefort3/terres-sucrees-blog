@@ -1,0 +1,9 @@
+name: "Brookie"
+category: biscuit
+description: "Assemblage et cuisson du brookie"
+ingredients: []
+steps:
+  - "Reprendre la pâte à brownie étalée dans le moule carré"
+  - "Ajouter petit à petit des morceaux de pâte à cookies en les applatissant légèrement"
+  - "Ajouter jusqu'à recouvrir le brownie (il peut rester de la pâte à cookie)"
+  - "Faire cuire 30 à 35 min à 170°C"

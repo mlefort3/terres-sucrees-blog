@@ -1,0 +1,13 @@
+name: "Croustillant pistache"
+category: croustillant
+description: "Couche croustillante au chocolat blanc et à la pistache"
+ingredients:
+  - item: "30 g de chocolat blanc vegan"
+  - item: "50 g de purée de pistache"
+  - item: "40 g de crêpes dentelles vegan"
+  - item: "1 pincée de sel"
+steps:
+  - "Faire fondre le chocolat au bain marie"
+  - "Ajouter la purée de pistache et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux, le sel et mélanger"
+  - "Étaler sur le biscuit cuit"

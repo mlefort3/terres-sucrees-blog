@@ -1,0 +1,10 @@
+name: "Frangipane"
+category: insert
+description: "Frangipane obtenue en mélangeant la crème pâtissière et la crème d'amande"
+ingredients:
+  - item: "La crème pâtissière réalisée"
+  - item: "La crème d'amande réalisée"
+steps:
+  - "Détendre la crème pâtissière froide au fouet"
+  - "Incorporer la crème pâtissière à la crème d'amande en deux fois, à la maryse"
+  - "Mélanger délicatement jusqu'à obtention d'une crème homogène"

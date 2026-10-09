@@ -1,0 +1,14 @@
+name: "Croustillant sablé citron vert"
+category: croustillant
+description: "Couche croustillante au chocolat blanc, sablé, citron vert et yuzu"
+ingredients:
+  - item: "50 g de chocolat blanc vegan"
+  - item: "40 g de biscuit sablé vegan"
+  - item: "1 cuillère à soupe d'huile d'olive"
+  - item: "Zeste d'un citron vert"
+  - item: "1/2 cuillère à café d’arôme de yuzu (optionnel)"
+steps:
+  - "Faire fondre le chocolat blanc au bain marie"
+  - "Ajouter le sablé en morceaux"
+  - "Ajouter l'huile d'olive et le zeste d'un citron vert"
+  - "Étaler sur le biscuit"

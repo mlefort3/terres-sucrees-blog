@@ -1,0 +1,13 @@
+name: "Croustillant amande lavande"
+category: croustillant
+description: "Couche croustillante au chocolat blanc, amandes et lavande"
+ingredients:
+  - item: "35 g de chocolat blanc vegan"
+  - item: "30 g de purée d'amandes"
+  - item: "15 g de riz soufflé"
+  - item: "7 g d’amandes effilées"
+  - item: "0,2 g de graines de lavande"
+steps:
+  - "Faire fondre le chocolat blanc au bain marie"
+  - "Ajouter le reste des ingrédients et mélanger"
+  - "Étaler sur le financier cuit"
