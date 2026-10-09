@@ -210,6 +210,216 @@ const kindConfig = Object.fromEntries(
 			blocks[block.getAttribute('data-kind-block') || ''] = block
 		}
 
+		// --- Menus déroulants avec recherche (autocomplétion) ------------------
+		// Le champ texte filtre la liste de sa propre boîte ; la valeur retenue
+		// reste dans l'<input type=hidden data-slot>, donc la suite de la page
+		// (render, réinitialisation) continue de lire `.value` comme avant.
+		const withoutAccents = (value) =>
+			value
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+
+		const ACTIVE_OPTION_CLASSES = ['bg-slate-100', 'dark:bg-slate-800']
+
+		const setupCombobox = (root) => {
+			const input = root.querySelector('[data-combobox-input]')
+			const hidden = root.querySelector('input[type="hidden"][data-slot]')
+			const list = root.querySelector('[role="listbox"]')
+			const empty = root.querySelector('[data-combobox-empty]')
+			const chevron = root.querySelector('[data-combobox-chevron]')
+			if (!input || !hidden || !list) return null
+
+			const options = () => [...list.querySelectorAll('[role="option"]')]
+			const visibleOptions = () => options().filter((option) => !option.hidden)
+			const labelOf = (option) => option.getAttribute('data-label') || ''
+			const selectedOption = () =>
+				options().find((option) => option.getAttribute('data-value') === hidden.value)
+
+			let open = false
+			let active = null
+
+			// Texte affiché dans le champ : le nom choisi, ou rien (le placeholder
+			// reprend alors sa place) quand aucune couche n'est sélectionnée.
+			const displayText = () => {
+				const chosen = selectedOption()
+				return hidden.value && chosen ? labelOf(chosen) : ''
+			}
+
+			// L'option surlignée peut être hors du cadre quand la liste est longue :
+			// on ne fait défiler que la liste, jamais la page.
+			const revealActive = () => {
+				if (!open || !active || list.hidden || !list.clientHeight) return
+				const top = active.offsetTop
+				const bottom = top + active.offsetHeight
+				if (top < list.scrollTop) {
+					list.scrollTop = top - 4
+				} else if (bottom > list.scrollTop + list.clientHeight) {
+					list.scrollTop = bottom - list.clientHeight + 4
+				}
+			}
+
+			const paintActive = (option) => {
+				active = option || null
+				for (const item of options()) {
+					for (const className of ACTIVE_OPTION_CLASSES) {
+						item.classList.toggle(className, item === active)
+					}
+				}
+				if (active) {
+					input.setAttribute('aria-activedescendant', active.id)
+				} else {
+					input.removeAttribute('aria-activedescendant')
+				}
+				revealActive()
+			}
+
+			// Ouvre vers le haut quand la place manque en dessous, sinon la liste
+			// s'affiche sous la ligne de flottaison.
+			const positionPopup = () => {
+				const field = root.getBoundingClientRect()
+				const below = window.innerHeight - field.bottom
+				const flip = below < 264 && field.top > below
+				for (const popup of [list, empty]) {
+					if (!popup) continue
+					popup.style.top = flip ? 'auto' : '100%'
+					popup.style.bottom = flip ? '100%' : 'auto'
+					popup.style.marginTop = flip ? '0' : '0.25rem'
+					popup.style.marginBottom = flip ? '0.25rem' : '0'
+				}
+			}
+
+			const paintOpen = () => {
+				const matches = visibleOptions().length
+				list.hidden = !open || matches === 0
+				if (empty) empty.hidden = !open || matches > 0
+				input.setAttribute('aria-expanded', String(open))
+				chevron?.classList.toggle('rotate-180', open)
+				revealActive()
+			}
+
+			// Filtre insensible à la casse et aux accents (« creme » trouve « Crème »).
+			const filter = (query) => {
+				const needle = withoutAccents(query.trim())
+				for (const option of options()) {
+					option.hidden = needle ? !withoutAccents(labelOf(option)).includes(needle) : false
+				}
+			}
+
+			const openList = ({ showAll = false } = {}) => {
+				open = true
+				// Rouvrir en gardant la valeur affichée dans le champ ne montrerait que
+				// cette valeur : on repart de la liste complète.
+				filter(showAll ? '' : input.value)
+				const chosen = selectedOption()
+				paintActive(chosen && !chosen.hidden ? chosen : visibleOptions()[0] || null)
+				positionPopup()
+				paintOpen()
+			}
+
+			const closeList = () => {
+				open = false
+				paintActive(null)
+				paintOpen()
+				input.value = displayText()
+			}
+
+			const commit = (option) => {
+				if (!option) return
+				hidden.value = option.getAttribute('data-value') || ''
+				for (const item of options()) {
+					item.setAttribute('aria-selected', String(item === option && hidden.value !== ''))
+				}
+				closeList()
+				hidden.dispatchEvent(new Event('change', { bubbles: true }))
+			}
+
+			// La liste ne s'ouvre ni au focus ni au passage au clavier (Tab), pour ne
+			// pas masquer les champs voisins : clic, saisie ou flèche l'ouvrent.
+			input.addEventListener('click', () => {
+				if (open) return
+				// Sélectionner le texte affiché : taper remplace la valeur en cours.
+				if (input.value) input.select()
+				openList({ showAll: true })
+			})
+
+			input.addEventListener('input', () => {
+				open = true
+				filter(input.value)
+				paintActive(visibleOptions()[0] || null)
+				paintOpen()
+			})
+
+			input.addEventListener('keydown', (event) => {
+				const matches = visibleOptions()
+				if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+					event.preventDefault()
+					if (!open) {
+						openList({ showAll: true })
+						return
+					}
+					if (!matches.length) return
+					const index = matches.indexOf(active)
+					const next =
+						event.key === 'ArrowDown'
+							? matches[Math.min(index + 1, matches.length - 1)]
+							: matches[Math.max(index - 1, 0)]
+					paintActive(next)
+				} else if (event.key === 'Enter') {
+					if (!open) return
+					event.preventDefault()
+					// Entrée retient la proposition surlignée, sinon la seule restante.
+					commit(active || matches[0] || null)
+				} else if (event.key === 'Escape') {
+					if (!open) return
+					event.preventDefault()
+					closeList()
+				} else if (event.key === 'Tab') {
+					closeList()
+				} else if (
+					!open &&
+					event.key.length === 1 &&
+					!event.ctrlKey &&
+					!event.metaKey &&
+					!event.altKey
+				) {
+					// Première frappe dans un champ déjà rempli : elle remplace la valeur
+					// affichée au lieu de s'y insérer au milieu.
+					input.select()
+				}
+			})
+
+			// Quitter le champ annule une recherche restée sans choix : la valeur
+			// affichée redevient celle réellement sélectionnée.
+			input.addEventListener('blur', () => closeList())
+
+			list.addEventListener('mousedown', (event) => {
+				// Garder le focus dans le champ, sinon le blur fermerait la liste avant
+				// que le clic n'ait pu retenir l'option.
+				if (event.target.closest('[role="option"]')) event.preventDefault()
+			})
+
+			list.addEventListener('click', (event) => {
+				commit(event.target.closest('[role="option"]'))
+			})
+
+			return {
+				reset: () => {
+					hidden.value = ''
+					input.value = ''
+					filter('')
+					for (const item of options()) item.setAttribute('aria-selected', 'false')
+					closeList()
+				}
+			}
+		}
+
+		const comboboxes = []
+		for (const root of document.querySelectorAll('[data-combobox]')) {
+			const combobox = setupCombobox(root)
+			if (combobox) comboboxes.push(combobox)
+		}
+
 		if (kindSelect && output && tocEl) {
 			const byId = new Map(components.map((component) => [component.id, component]))
 
@@ -300,8 +510,8 @@ const kindConfig = Object.fromEntries(
 					</li>`
 			}
 
-			const slotSelect = (kind, key) =>
-				blocks[kind]?.querySelector(`select[data-slot="${key}"]`) ?? null
+			// Le champ caché du menu déroulant : c'est lui qui porte la valeur.
+			const slotSelect = (kind, key) => blocks[kind]?.querySelector(`[data-slot="${key}"]`) ?? null
 
 			const placeholder = (text) =>
 				`<p class='text-slate-500 dark:text-slate-400 italic'>${text}</p>`
@@ -366,17 +576,15 @@ const kindConfig = Object.fromEntries(
 					</div>`
 			}
 
-			for (const select of document.querySelectorAll('select[data-slot]')) {
-				select.addEventListener('change', render)
+			for (const field of document.querySelectorAll('[data-slot]')) {
+				field.addEventListener('change', render)
 			}
 
 			kindSelect.addEventListener('change', render)
 
 			document.getElementById('builder-reset')?.addEventListener('click', () => {
 				kindSelect.value = ''
-				for (const select of document.querySelectorAll('select[data-slot]')) {
-					select.value = ''
-				}
+				for (const combobox of comboboxes) combobox.reset()
 				render()
 			})
 
