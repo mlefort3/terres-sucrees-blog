@@ -12,12 +12,12 @@ import SearchIcon from '@/components/icons/SearchIcon'
 	</button>
 	<dialog
 		aria-label='search'
-		class='h-full max-h-full w-full max-w-full border border-zinc-400 bg-white dark:bg-[#0a0910ec] shadow backdrop:backdrop-blur sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md opacity-0'
+		class='h-full max-h-full w-full max-w-full border border-zinc-400 dark:border-ink-line bg-white dark:bg-ink-surface/95 backdrop-blur-xl shadow dark:shadow-none sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md opacity-0'
 	>
 		<div class='dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6'>
 			<button
 				data-close-modal
-				class='ms-auto cursor-pointer rounded-full bg-black text-white px-4 py-2 dark:bg-white dark:text-black'
+				class='ms-auto cursor-pointer rounded-full bg-black text-white px-4 py-2 dark:bg-ink-raised dark:text-ink-text dark:hover:bg-ink-line'
 				>Fermer</button
 			>
 			{
@@ -125,10 +125,10 @@ import SearchIcon from '@/components/icons/SearchIcon'
 
 <style is:global>
 	.dark {
-		--pagefind-ui-primary: #eeeeee;
-		--pagefind-ui-text: #eeeeee;
-		--pagefind-ui-background: #152028;
-		--pagefind-ui-border: #152028;
-		--pagefind-ui-tag: #152028;
+		--pagefind-ui-primary: #e9e7f0;
+		--pagefind-ui-text: #c7c4d6;
+		--pagefind-ui-background: #191722;
+		--pagefind-ui-border: #2c2938;
+		--pagefind-ui-tag: #232030;
 	}
 </style>

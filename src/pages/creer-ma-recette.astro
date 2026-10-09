@@ -74,7 +74,7 @@ const kindConfig = Object.fromEntries(
 		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
 			<div class='flex flex-col gap-2'>
 				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>Créer ma recette</h1>
-				<p class='text-center text-slate-600 dark:text-slate-400'>
+				<p class='text-center text-slate-600 dark:text-ink-muted'>
 					Choisissez le type de recette, puis un élément dans chaque catégorie : ils s'assemblent
 					pour former une nouvelle recette.
 				</p>
@@ -85,14 +85,14 @@ const kindConfig = Object.fromEntries(
 
 		<!-- Carte du haut : le type de recette, puis les menus déroulants -->
 		<section
-			class='bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 md:p-8 shadow-sm'
+			class='bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
 		>
 			<div class='flex flex-wrap items-center justify-between gap-4 mb-6'>
 				<h2 class='text-2xl font-semibold text-primary'>Composez votre recette</h2>
 				<button
 					id='builder-reset'
 					type='button'
-					class='px-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 text-sm font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition'
+					class='px-4 py-2 rounded-lg border border-slate-300 dark:border-ink-line text-sm font-medium hover:bg-slate-100 dark:hover:bg-ink-raised transition'
 				>
 					Réinitialiser
 				</button>
@@ -103,13 +103,13 @@ const kindConfig = Object.fromEntries(
 				<div class='relative'>
 					<select
 						id='builder-kind'
-						class='w-full appearance-none rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-100 px-3 py-2 pr-9 text-base focus:outline-none focus:ring-2 focus:ring-primary'
+						class='w-full appearance-none rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 pr-9 text-base focus:outline-none focus:ring-2 focus:ring-primary'
 					>
 						<option value=''>Pas de sélection</option>
 						{RECIPE_KINDS.map((kind) => <option value={kind.key}>{kind.label}</option>)}
 					</select>
 					<svg
-						class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-slate-400'
+						class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted'
 						fill='none'
 						stroke='currentColor'
 						viewBox='0 0 24 24'
@@ -118,7 +118,7 @@ const kindConfig = Object.fromEntries(
 						></path>
 					</svg>
 				</div>
-				<span class='text-xs text-slate-500 dark:text-slate-500'>
+				<span class='text-xs text-slate-500 dark:text-ink-faint'>
 					Le type détermine les couches nécessaires à la recette.
 				</span>
 			</label>
@@ -138,12 +138,12 @@ const kindConfig = Object.fromEntries(
 						</div>
 
 						{optionSlots(kind.key).length > 0 && (
-							<div class='mt-6 rounded-xl border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-900/40 p-4 md:p-5'>
+							<div class='mt-6 rounded-xl border border-dashed border-slate-300 dark:border-ink-line bg-slate-50/60 dark:bg-ink-raised/40 p-4 md:p-5'>
 								<div class='flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-4'>
-									<p class='text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400'>
+									<p class='text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-ink-muted'>
 										Options
 									</p>
-									<span class='text-xs text-slate-500 dark:text-slate-500'>
+									<span class='text-xs text-slate-500 dark:text-ink-faint'>
 										Ces couches s'ajoutent dans l'ordre du montage.
 									</span>
 								</div>
@@ -160,7 +160,7 @@ const kindConfig = Object.fromEntries(
 
 			<p
 				id='builder-status'
-				class='text-sm text-slate-500 dark:text-slate-400 mt-5'
+				class='text-sm text-slate-500 dark:text-ink-muted mt-5'
 				aria-live='polite'
 			>
 			</p>
@@ -171,14 +171,14 @@ const kindConfig = Object.fromEntries(
 			<aside class='md:flex flex-col gap-8 hidden'>
 				<div class='sticky top-24 self-start transition-all duration-200'>
 					<div
-						class='bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 p-6 shadow-sm hover:shadow-md transition-shadow'
+						class='bg-gradient-to-br from-slate-50 to-slate-100 dark:bg-none dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 shadow-sm dark:shadow-none hover:shadow-md dark:hover:shadow-none transition-shadow'
 					>
 						<nav class='w-full'>
 							<p class='font-bold mb-6 text-2xl text-primary dark:text-primary'>
 								Table des matières
 							</p>
 							<ul id='builder-toc' class='[text-wrap:balance] flex flex-col gap-1'>
-								<li class='text-slate-500 dark:text-slate-400 text-sm italic'>
+								<li class='text-slate-500 dark:text-ink-muted text-sm italic'>
 									Aucun élément sélectionné
 								</li>
 							</ul>
@@ -188,10 +188,10 @@ const kindConfig = Object.fromEntries(
 			</aside>
 
 			<article
-				class='max-w-full w-full bg-white dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 md:p-12 shadow-sm'
+				class='max-w-full w-full bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-8 md:p-12 shadow-sm dark:shadow-none'
 			>
 				<div id='composed'>
-					<p class='text-slate-500 dark:text-slate-400 italic'>
+					<p class='text-slate-500 dark:text-ink-muted italic'>
 						Choisissez d'abord le type de recette, puis ses éléments : la recette apparaîtra ici.
 					</p>
 				</div>
@@ -220,7 +220,7 @@ const kindConfig = Object.fromEntries(
 				.replace(/[\u0300-\u036f]/g, '')
 				.toLowerCase()
 
-		const ACTIVE_OPTION_CLASSES = ['bg-slate-100', 'dark:bg-slate-800']
+		const ACTIVE_OPTION_CLASSES = ['bg-slate-100', 'dark:bg-ink-raised']
 
 		const setupCombobox = (root) => {
 			const input = root.querySelector('[data-combobox-input]')
@@ -442,9 +442,9 @@ const kindConfig = Object.fromEntries(
 			const sourceHtml = (source) => {
 				if (!source) return ''
 				if (typeof source === 'string') {
-					return `<p class='text-sm text-slate-600 dark:text-slate-400 italic mb-3'>Basé sur la recette de ${escape(source)}</p>`
+					return `<p class='text-sm text-slate-600 dark:text-ink-muted italic mb-3'>Basé sur la recette de ${escape(source)}</p>`
 				}
-				return `<p class='text-sm text-slate-600 dark:text-slate-400 italic mb-3'>Basé sur la recette de <a href='${escape(source.url)}' target='_blank' rel='noopener noreferrer' class='text-primary hover:underline font-medium'>${escape(source.title)}</a></p>`
+				return `<p class='text-sm text-slate-600 dark:text-ink-muted italic mb-3'>Basé sur la recette de <a href='${escape(source.url)}' target='_blank' rel='noopener noreferrer' class='text-primary hover:underline font-medium'>${escape(source.title)}</a></p>`
 			}
 
 			// Reprend la structure de RecipeIngredientsDisplay : un bloc par élément,
@@ -454,9 +454,9 @@ const kindConfig = Object.fromEntries(
 					? component.ingredients
 							.map(
 								(ing) =>
-									`<li class='text-slate-700 dark:text-slate-300 text-base'><span class='text-primary font-light'>– </span>${escape(ing.item)}${
+									`<li class='text-slate-700 dark:text-ink-body text-base'><span class='text-primary font-light'>– </span>${escape(ing.item)}${
 										ing.quantity
-											? ` <span class='text-slate-500 dark:text-slate-500 text-sm'>(${escape(ing.quantity)})</span>`
+											? ` <span class='text-slate-500 dark:text-ink-faint text-sm'>(${escape(ing.quantity)})</span>`
 											: ''
 									}</li>`
 							)
@@ -467,7 +467,7 @@ const kindConfig = Object.fromEntries(
 					? component.steps
 							.map(
 								(step, idx) =>
-									`<li class='text-slate-700 dark:text-slate-300 text-base'><span class='font-semibold text-primary'>${idx + 1}. </span>${escape(step)}</li>`
+									`<li class='text-slate-700 dark:text-ink-body text-base'><span class='font-semibold text-primary'>${idx + 1}. </span>${escape(step)}</li>`
 							)
 							.join('')
 					: `<li class='text-slate-500'>Aucune étape</li>`
@@ -476,7 +476,7 @@ const kindConfig = Object.fromEntries(
 					<div class='pb-8 last:pb-0'>
 						<h3 id='ingredient-${escape(component.id)}' class='text-2xl font-semibold mb-2 text-primary'>${escape(component.name)}</h3>
 						${sourceHtml(component.source)}
-						${component.description ? `<p class='text-slate-700 dark:text-slate-300 text-base mb-4'>${escape(component.description)}</p>` : ''}
+						${component.description ? `<p class='text-slate-700 dark:text-ink-body text-base mb-4'>${escape(component.description)}</p>` : ''}
 						<div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
 							<div>
 								<h4 class='font-semibold text-base text-primary uppercase tracking-wide mb-4'>Ingrédients</h4>
@@ -492,12 +492,12 @@ const kindConfig = Object.fromEntries(
 
 			const tocHeadingHtml = (text, slug, depth) =>
 				depth === 2
-					? `<a href='#${slug}' class='font-semibold text-base text-slate-900 dark:text-slate-100 hover:text-primary py-2 px-0 transition-colors'>${escape(text)}</a>`
-					: `<a href='#${slug}' class='text-base text-slate-600 dark:text-slate-400 hover:text-primary py-1.5 px-0 transition-colors ml-2'>${escape(text)}</a>`
+					? `<a href='#${slug}' class='font-semibold text-base text-slate-900 dark:text-ink-text hover:text-primary py-2 px-0 transition-colors'>${escape(text)}</a>`
+					: `<a href='#${slug}' class='text-base text-slate-600 dark:text-ink-muted hover:text-primary py-1.5 px-0 transition-colors ml-2'>${escape(text)}</a>`
 
 			const renderToc = (chosen) => {
 				if (!chosen.length) {
-					tocEl.innerHTML = `<li class='text-slate-500 dark:text-slate-400 text-sm italic'>Aucun élément sélectionné</li>`
+					tocEl.innerHTML = `<li class='text-slate-500 dark:text-ink-muted text-sm italic'>Aucun élément sélectionné</li>`
 					return
 				}
 				tocEl.innerHTML = `
@@ -514,7 +514,7 @@ const kindConfig = Object.fromEntries(
 			const slotSelect = (kind, key) => blocks[kind]?.querySelector(`[data-slot="${key}"]`) ?? null
 
 			const placeholder = (text) =>
-				`<p class='text-slate-500 dark:text-slate-400 italic'>${text}</p>`
+				`<p class='text-slate-500 dark:text-ink-muted italic'>${text}</p>`
 
 			const render = () => {
 				const kind = kindSelect.value
@@ -561,7 +561,7 @@ const kindConfig = Object.fromEntries(
 				const montage = chosen
 					.map(
 						(component) =>
-							`<li class='text-slate-700 dark:text-slate-300 text-base pl-1'>${escape(component.name)}</li>`
+							`<li class='text-slate-700 dark:text-ink-body text-base pl-1'>${escape(component.name)}</li>`
 					)
 					.join('')
 
@@ -569,7 +569,7 @@ const kindConfig = Object.fromEntries(
 					<div class='w-full'>
 						<h2 id='montage' class='text-4xl font-bold mb-8 text-primary'>Montage</h2>
 						<ol class='space-y-3 list-decimal pl-5 mb-12'>${montage}</ol>
-						<div class='border-t border-slate-200 dark:border-slate-800 pt-8'>
+						<div class='border-t border-slate-200 dark:border-ink-line pt-8'>
 							<h2 id='recette' class='text-4xl font-bold mb-8 text-primary'>Recette</h2>
 							<div class='space-y-8'>${chosen.map(componentHtml).join('')}</div>
 						</div>

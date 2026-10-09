@@ -19,8 +19,8 @@ export interface Props {
 		href={'#' + heading.slug}
 		class={cn(
 			heading.depth === 2
-				? 'font-semibold text-base text-slate-900 dark:text-slate-100 hover:text-primary py-2 px-0 transition-colors'
-				: 'text-base text-slate-600 dark:text-slate-400 hover:text-primary py-1.5 px-0 transition-colors ml-2'
+				? 'font-semibold text-base text-slate-900 dark:text-ink-text hover:text-primary py-2 px-0 transition-colors'
+				: 'text-base text-slate-600 dark:text-ink-muted hover:text-primary py-1.5 px-0 transition-colors ml-2'
 		)}
 	>
 		{heading.text}

@@ -82,7 +82,7 @@ const articleDate = pubDate.toISOString()
 				const index = document.querySelector(`aside a[href="#${entry.target.id}"]`)
 
 				if (entry.isIntersecting) {
-					index?.classList.remove('bg-slate-200', 'dark:bg-slate-800') // remove bg
+					index?.classList.remove('bg-slate-200', 'dark:bg-ink-raised') // remove bg
 					// `!text-primary` reste lisible sur la carte claire comme sur la carte
 					// sombre, contrairement à `text-white` qui disparaissait en mode clair ;
 					// le `!` lui permet de gagner face à `text-slate-900` de la carte.

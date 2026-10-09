@@ -13,6 +13,11 @@
 		scroll-padding-top: 6rem;
 	}
 
+	/* Barres de défilement et contrôles natifs accordés au thème sombre. */
+	html.dark {
+		color-scheme: dark;
+	}
+
 	.prose code {
 		@apply text-base;
 	}
@@ -24,13 +29,29 @@
 	h4,
 	h5,
 	h6 {
-		@apply text-zinc-800 dark:text-zinc-100   !important;
+		@apply text-zinc-800 dark:text-ink-text   !important;
 	}
 
 	html.dark .shiki,
 	html.dark .shiki span {
 		color: var(--shiki-dark) !important;
-		background-color: theme(colors.gray.900) !important;
+		background-color: theme(colors.ink.surface) !important;
+	}
+
+	/* Le mode sombre n'empile pas ombres et dégradés : les surfaces se
+	   détachent par leur teinte et un filet, comme dans les UI modernes. */
+	html.dark .prose {
+		--tw-prose-body: theme(colors.ink.body);
+		--tw-prose-headings: theme(colors.ink.text);
+		--tw-prose-lead: theme(colors.ink.body);
+		--tw-prose-bold: theme(colors.ink.text);
+		--tw-prose-counters: theme(colors.ink.muted);
+		--tw-prose-bullets: theme(colors.ink.faint);
+		--tw-prose-quotes: theme(colors.ink.text);
+		--tw-prose-captions: theme(colors.ink.faint);
+		--tw-prose-hr: theme(colors.ink.line);
+		--tw-prose-th-borders: theme(colors.ink.line);
+		--tw-prose-td-borders: theme(colors.ink.line);
 	}
 }
 
@@ -39,6 +60,11 @@
 	backdrop-filter: blur(13px) saturate(150%);
 	-webkit-backdrop-filter: blur(13px) saturate(150%);
 	z-index: -1;
+}
+
+/* Voile des cartes d'articles : teinté comme le fond plutôt que gris. */
+html.dark .glass {
+	background: linear-gradient(to top, rgba(18, 16, 26, 0.92), rgba(18, 16, 26, 0.35));
 }
 
 .shadow {
