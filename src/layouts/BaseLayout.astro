@@ -6,7 +6,7 @@ import ProviderTheme from '@/components/ProviderTheme'
 import ProviderAnimations from '@/components/ProviderAnimations'
 import TwSizeIndicator from '@/components/TwSizeIndicator'
 import EditBlog from '@/components/editBlog'
-const { title, description, image, articleDate, noindex = false } = Astro.props
+const { title, description, image, articleDate, noindex = false, gradient = false } = Astro.props
 ---
 
 <html lang='fr' class='scroll-smooth'>
@@ -32,7 +32,12 @@ const { title, description, image, articleDate, noindex = false } = Astro.props
 		<ProviderAnimations />
 	</head>
 
-	<body class='bg-white text-stone-950 dark:bg-ink dark:text-ink-text'>
+	<body
+		class:list={[
+			'bg-white text-stone-950 dark:bg-ink dark:text-ink-text',
+			gradient && 'gradient-page'
+		]}
+	>
 		<main
 			class='px-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-0 antialiased md:max-w-6xl grid gap-12 mt-32 overflow-hidden md:overflow-visible'
 		>
