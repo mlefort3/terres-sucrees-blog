@@ -71,17 +71,21 @@ html.dark .glass {
 	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
 }
 
-/* Pages « recettes » : halo radial de #6f6bae dans le coin bas-droit d'un fond
-   essentiellement blanc. Le rayon (142 % ≈ √2) est calé pour que le coin
-   opposé tombe pile sur 100 % : le violet n'apparaît donc que là, et rien
-   n'est perdu hors du cadre. Les arrêts étant relatifs au viewport et le fond
-   fixé, le résultat est identique sur une page courte et sur une page longue. */
+/* Pages « recettes » : halo radial qui remonte depuis le coin bas-droit sur un
+   fond essentiellement blanc, ou sombre en mode nuit. Le violet final est
+   #6f6bae en clair, #b57edc (lavande) en sombre. Le rayon (142 % ≈ √2) est calé
+   pour que le coin opposé tombe pile sur 100 %, donc plus rien n'est perdu hors
+   du cadre. Les arrêts sont resserrés vers le bord pour que le violet reste
+   lisible sur toute la frange (bord droit et bord bas), et pas seulement dans
+   le coin. Les arrêts étant relatifs au viewport et le fond fixé, le résultat
+   est identique sur une page courte et sur une page longue. */
 body.gradient-page {
 	background: radial-gradient(
 		142% 142% at 0% 0%,
 		#ffffff 0%,
-		#ffffff 78%,
-		#e4e3f3 93%,
+		#f8f7fd 55%,
+		#e2dff3 72%,
+		#a9a3d8 88%,
 		#6f6bae 100%
 	);
 	background-attachment: fixed;
@@ -90,10 +94,11 @@ body.gradient-page {
 html.dark body.gradient-page {
 	background: radial-gradient(
 		142% 142% at 0% 0%,
-		#12101a 0%,
-		#12101a 78%,
-		#1d1a30 93%,
-		#2b2650 100%
+		#14111f 0%,
+		#1d1837 50%,
+		#352c68 70%,
+		#7b5cba 86%,
+		#b57edc 100%
 	);
 	background-attachment: fixed;
 }
