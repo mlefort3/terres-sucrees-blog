@@ -70,3 +70,73 @@ html.dark .glass {
 .shadow {
 	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
 }
+
+/* Pages « recettes » : halo radial qui remonte depuis le coin bas-droit sur un
+   fond essentiellement blanc, ou sombre en mode nuit. Le violet final est
+   #6f6bae en clair, #b57edc (lavande) en sombre. Le rayon (142 % ≈ √2) est calé
+   pour que le coin opposé tombe pile sur 100 %, donc plus rien n'est perdu hors
+   du cadre. Les arrêts sont resserrés vers le bord pour que le violet reste
+   lisible sur toute la frange (bord droit et bord bas), et pas seulement dans
+   le coin. Les arrêts étant relatifs au viewport et le fond fixé, le résultat
+   est identique sur une page courte et sur une page longue. */
+body.gradient-page {
+	background: radial-gradient(
+		142% 142% at 0% 0%,
+		#ffffff 0%,
+		#f8f7fd 55%,
+		#e2dff3 72%,
+		#a9a3d8 88%,
+		#6f6bae 100%
+	);
+	background-attachment: fixed;
+}
+
+html.dark body.gradient-page {
+	background: radial-gradient(
+		142% 142% at 0% 0%,
+		#14111f 0%,
+		#1d1837 50%,
+		#352c68 70%,
+		#7b5cba 86%,
+		#b57edc 100%
+	);
+	background-attachment: fixed;
+}
+
+/* Cartes en verre : le fond étant désormais presque blanc, une simple
+   translucide blanche disparaîtrait. La carte se détache donc par un blanc
+   quasi opaque, un filet teinté et une ombre portée douce : c'est l'ombre qui
+   la fait « flotter » au-dessus du halo. Le filet est posé ici plutôt que par
+   une classe, car les cartes qui n'en déclaraient pas (PostCard) n'avaient
+   aucun contour. */
+body.gradient-page .frost-surface {
+	background: rgba(255, 255, 255, 0.92);
+	backdrop-filter: blur(12px) saturate(150%);
+	-webkit-backdrop-filter: blur(12px) saturate(150%);
+	border: 1px solid rgba(111, 107, 174, 0.34);
+	box-shadow:
+		0 16px 32px -18px rgba(77, 72, 140, 0.55),
+		0 4px 10px -4px rgba(77, 72, 140, 0.26);
+}
+
+html.dark body.gradient-page .frost-surface {
+	background: rgba(28, 25, 40, 0.86);
+	border-color: rgba(160, 152, 215, 0.45);
+	box-shadow:
+		0 16px 32px -18px rgba(0, 0, 0, 0.8),
+		0 4px 10px -4px rgba(0, 0, 0, 0.45);
+}
+
+/* Les utilitaires hover:shadow-md des composants sont neutralisés par la règle
+   ci-dessus (plus spécifique) : on rétablit le même relief au survol. */
+body.gradient-page .frost-surface:hover {
+	box-shadow:
+		0 22px 44px -20px rgba(77, 72, 140, 0.6),
+		0 4px 10px -4px rgba(77, 72, 140, 0.26);
+}
+
+html.dark body.gradient-page .frost-surface:hover {
+	box-shadow:
+		0 22px 44px -20px rgba(0, 0, 0, 0.85),
+		0 4px 10px -4px rgba(0, 0, 0, 0.45);
+}

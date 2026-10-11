@@ -38,7 +38,7 @@ const posts = page.data
 const isSecondaryPage = page.currentPage > 1
 ---
 
-<BaseLayout title={categoryName} noindex={isSecondaryPage}>
+<BaseLayout title={categoryName} noindex={isSecondaryPage} gradient>
 	<TitlePage title={categoryName ?? ''} />
 	<ListCategories activeCategory={params.category} />
 	<ListPosts posts={posts} />

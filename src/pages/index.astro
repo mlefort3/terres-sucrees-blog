@@ -21,7 +21,7 @@ const totalOtherPages = Math.ceil(remainingPosts.length / otherPageSize)
 const lastPage = 1 + totalOtherPages
 ---
 
-<BaseLayout title={`Toutes les recettes`}>
+<BaseLayout title={`Toutes les recettes`} gradient>
 	<TitlePage title='Toutes les recettes' />
 	<ListCategories />
 	<ListPosts FirstBig={true} posts={pageData} />

@@ -11,7 +11,9 @@ const {
 } = Astro.props
 ---
 
-<article class='grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group'>
+<article
+	class='frost-surface grid grid-rows-[300px_auto] md:grid-rows-[300px_220px] min-h-full group overflow-hidden rounded-2xl'
+>
 	<a class='relative overflow-hidden' href={`/post/${slug}/`}>
 		<Image
 			src={heroImage}
@@ -35,7 +37,7 @@ const {
 		</div>
 	</a>
 
-	<div class='flex justify-between flex-col gap-2 md:gap-0 py-6'>
+	<div class='flex justify-between flex-col gap-2 md:gap-0 px-6 py-6'>
 		<div class='flex flex-col py-0'>
 			<FormattedDate date={pubDate} />
 			<p
