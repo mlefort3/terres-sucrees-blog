@@ -7,6 +7,9 @@ ingredients:
   - item: "120 g de cream cheese vegan (j'ai utilisé le le p'tit frais nature de la marque morice)"
   - item: "1 c. à café d'extrait de vanille"
   - item: "1 c. à café de jus de citron"
+flavor:
+  - vanille
+  - citron
 steps:
   - "Fouetter la margarine jusqu’à ce qu’elle soit légère et mousseuse"
   - "Ajouter le cream cheese et bien mélanger"

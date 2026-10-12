@@ -20,6 +20,10 @@ ingredients:
   - item: "1 cuillère à café de cannelle moulue"
   - item: "80 g de noix de pécan"
   - item: "130 g de chocolat noir"
+flavor:
+  - banane
+  - chocolat
+  - cannelle
 steps:
   - "Laisser fondre légèrement la margarine pour obtenir une texture \"pommade\""
   - "Mélanger la margarine avec les sucres (cassonade et sucre blanc) et l'extrait de vanille"

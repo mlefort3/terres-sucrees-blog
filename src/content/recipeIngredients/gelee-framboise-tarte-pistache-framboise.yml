@@ -5,6 +5,8 @@ ingredients:
   - item: "250 g de purée de framboise"
   - item: "40 g de sucre"
   - item: "4 g de pectine NH"
+flavor:
+  - framboise
 steps:
   - "Chauffer la purée de framboise"
   - "Mélanger le sucre et la pectine NH"

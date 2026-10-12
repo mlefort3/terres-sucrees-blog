@@ -6,6 +6,9 @@ ingredients:
   - item: "30 g de purée d'amandes"
   - item: "15 g de riz soufflé"
   - item: "1 cuillère à soupe d'huile d'olive"
+flavor:
+  - amande
+  - huile d'olive
 steps:
   - "Faire fondre le chocolat blanc au bain marie"
   - "Ajouter le reste des ingrédients et mélanger"

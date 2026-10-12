@@ -8,6 +8,8 @@ ingredients:
   - item: "200 g d'eau"
   - item: "100 g de sucre"
   - item: "Une cuillère à soupe d'arôme de vanille"
+flavor:
+  - vanille
 steps:
   - "Mélanger les ingrédients dans une casserole"
   - "Faire chauffer jusqu'à complète dissolution du sucre et léger épaississement"

@@ -7,6 +7,9 @@ ingredients:
   - item: "15 g de riz soufflé"
   - item: "7 g d’amandes effilées"
   - item: "0,2 g de graines de lavande"
+flavor:
+  - amande
+  - lavande
 steps:
   - "Faire fondre le chocolat blanc au bain marie"
   - "Ajouter le reste des ingrédients et mélanger"

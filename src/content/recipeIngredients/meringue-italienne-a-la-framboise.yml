@@ -9,6 +9,8 @@ ingredients:
   - item: "200 g de sucre"
   - item: "11 g de Yumgo blanc en poudre"
   - item: "90 g d'eau"
+flavor:
+  - framboise
 steps:
   - "Mixer ensemble l'eau et le Yumgo blanc en poudre pour former le substitut aux blancs d'oeufs"
   - "Réaliser un sirop avec le jus de framboise et le sucre"

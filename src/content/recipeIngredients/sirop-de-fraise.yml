@@ -8,6 +8,8 @@ ingredients:
   - item: "50 g de queues de fraises"
   - item: "50 g de sucre"
   - item: "25 g d'eau"
+flavor:
+  - fraise
 steps:
   - "Verser l'eau, le sucre et les queues de fraises dans une casserole"
   - "Laisser chauffer jusqu'à avoir la consistance d'un sirop"

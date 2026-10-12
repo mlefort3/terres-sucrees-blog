@@ -6,6 +6,9 @@ ingredients:
   - item: "45 g de purée d'amandes"
   - item: "50 g de crêpes dentelles (voir recette de crêpes dentelles vegan)"
   - item: "1,5 c. à soupe d'huile d'olive"
+flavor:
+  - amande
+  - huile d'olive
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée d'amandes et mélanger"

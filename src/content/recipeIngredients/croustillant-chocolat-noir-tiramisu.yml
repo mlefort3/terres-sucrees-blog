@@ -5,6 +5,8 @@ ingredients:
   - item: "50 g de chocolat noir (vegan)"
   - item: "45 g de purée d'amandes"
   - item: "50 g de sablés vegan ou de crêpes dentelles vegan"
+flavor:
+  - chocolat noir
 steps:
   - "Étaler sur la pâte cuite"
   - "Faire fondre le chocolat au bain marie"

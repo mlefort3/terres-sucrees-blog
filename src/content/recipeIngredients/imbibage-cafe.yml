@@ -7,6 +7,9 @@ source:
 ingredients:
   - item: "20 cl de café fort"
   - item: "2 cuillère à soupe d'amaretto (ou rhum)"
+flavor:
+  - café
+  - amaretto
 steps:
   - "Mélanger le café et l'amaretto"
   - "S'en servir pour imbiber le biscuit"

@@ -11,6 +11,9 @@ ingredients:
   - item: "200 g de crème végétale liquide (2)"
   - item: "10 g de sucre"
   - item: "3 g de pectine NH"
+flavor:
+  - praliné
+  - noix de pécan
 steps:
   - "Mélanger le sucre et la pectine"
   - "Mettre à chauffer la crème (1)"

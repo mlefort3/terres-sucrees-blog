@@ -13,6 +13,8 @@ ingredients:
   - item: "60 g de fécule de pomme de terre"
   - item: "7 g de Yumgo entier en poudre"
   - item: "40 g d'eau (pour réhydrater le Yumgo)"
+flavor:
+  - neutre
 steps:
   - "Réhydrater le Yumgo entier en mélangeant la poudre et l'eau"
   - "Mélanger ensemble les différentes poudres (farine, fécule, sucre glace, sel)"

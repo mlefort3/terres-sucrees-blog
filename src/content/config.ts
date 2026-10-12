@@ -43,6 +43,8 @@ const recipeIngredients = defineCollection({
 				quantity: z.string().optional()
 			})
 		),
+		// Saveurs portées par la préparation (ex. « vanille », « chocolat noir »)
+		flavor: z.array(z.string()),
 		steps: z.array(z.string()),
 		source: z
 			.union([

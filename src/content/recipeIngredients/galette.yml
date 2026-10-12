@@ -5,6 +5,8 @@ ingredients:
   - item: "Des pâtes feuilletées vegan du commerce (option)"
   - item: "Une pâte feuilletée \"express\" (recette de @pascale_lmp14, avec l'alternative végétale Be Better)"
   - item: "Une pâte feuilletée classique"
+flavor:
+  - amande
 steps:
   - "Préparer deux disques de pâte feuilletée de la taille souhaitée"
   - "Mettre la frangipane au centre en gardant de l'espace sur les côtés"

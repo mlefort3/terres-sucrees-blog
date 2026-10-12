@@ -9,6 +9,9 @@ ingredients:
   - item: "76 g de chocolat noir"
   - item: "186 g de crème végétale froide"
   - item: "80 g de purée de noisettes (la plus lisse possible, sinon du praliné)"
+flavor:
+  - chocolat
+  - noisette
 steps:
   - "Porter les 90 g de crème à ébullition"
   - "La verser sur le chocolat noir déjà fondu"

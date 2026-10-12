@@ -5,6 +5,9 @@ ingredients:
   - item: "30 g de praliné noix de cajou"
   - item: "25 g de chocolat blanc vegan"
   - item: "10 g de riz soufflé"
+flavor:
+  - praliné
+  - noix de cajou
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

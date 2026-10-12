@@ -5,6 +5,9 @@ ingredients:
   - item: "50 g de chocolat blanc vegan de couverture"
   - item: "45 g de purée de noisette (100% noisette, non sucrée)"
   - item: "20 g de riz soufflé"
+flavor:
+  - noisette
+  - chocolat blanc
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée de noisettes et mélanger"

@@ -8,6 +8,8 @@ ingredients:
   - item: "30 g de sucre"
   - item: "4 g de pectine NH"
   - item: "1 pincée de sel"
+flavor:
+  - noisette
 steps:
   - "Mélanger le sucre et la pectine"
   - "Mélanger le lait et la crème et faire chauffer"

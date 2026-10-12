@@ -9,6 +9,9 @@ ingredients:
   - item: "15 g de fécule de pomme de terre"
   - item: "56 g de sucre glace"
   - item: "Quelques grains de vanille"
+flavor:
+  - amande
+  - vanille
 steps:
   - "Réhydrater le Yumgo blanc avec l'eau"
   - "Monter le blanc en neige avec le sucre"

@@ -1,0 +1,642 @@
+[
+	{
+		"flavor": "abricot",
+		"nuts": ["amande", "pistache"],
+		"compatibles": ["amande", "cardamome", "lavande", "pistache", "vanille"],
+		"ingredients": [
+			"glacage-abricot",
+			"insert-abricot-lavande",
+			"mousse-abricot-fleur-d-oranger",
+			"mousse-abricot-fleur-oranger"
+		]
+	},
+	{
+		"flavor": "ail",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["insert-fraise-basilic-ail-roti"]
+	},
+	{
+		"flavor": "amande",
+		"nuts": ["noisette", "pistache"],
+		"compatibles": [
+			"abricot",
+			"amaretto",
+			"chocolat au lait",
+			"citron",
+			"framboise",
+			"orange",
+			"pistache",
+			"rhum",
+			"vanille"
+		],
+		"ingredients": [
+			"biscuit-a-l-amande",
+			"biscuit-financier-framboise",
+			"biscuit-pain-de-genes-vegan",
+			"chocolats-daim",
+			"creme-d-amande",
+			"creme-damande",
+			"croustillant-amande",
+			"croustillant-amande-fleur-de-sel",
+			"croustillant-amande-huile-d-olive",
+			"croustillant-amande-huile-d-olive-pizza-trompe-loeil",
+			"croustillant-amande-huile-d-olive-riz-souffle",
+			"croustillant-amande-huile-d-olive-tarte-fraise-vanille",
+			"croustillant-amande-huile-dolive-trompe-lil-tomate",
+			"croustillant-amande-huile-olive",
+			"croustillant-amande-lavande",
+			"croustillant-amande-tarte-mre-hibiscus",
+			"croustillant-caramel",
+			"croustillant-chocolat-blanc",
+			"dacquoise-noisette",
+			"frangipane",
+			"galette"
+		]
+	},
+	{
+		"flavor": "amaretto",
+		"nuts": ["amande", "noisette"],
+		"compatibles": ["amande", "café", "chocolat noir", "noisette", "poire", "vanille"],
+		"ingredients": ["imbibage-cafe"]
+	},
+	{
+		"flavor": "banane",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["cookies-banana-bread", "insert-banane-caramel"]
+	},
+	{
+		"flavor": "basilic",
+		"nuts": ["noix (pignon)"],
+		"compatibles": ["citron", "fraise", "framboise", "pêche", "vanille"],
+		"ingredients": [
+			"financier-au-basilic",
+			"ganache-montee-basilic",
+			"insert-clementine-basilic",
+			"insert-fraise-basilic",
+			"insert-fraise-basilic-ail-roti",
+			"pesto-sucre"
+		]
+	},
+	{
+		"flavor": "cacahuète",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["croustillant-cacahuetes"]
+	},
+	{
+		"flavor": "café",
+		"nuts": ["noisette", "amande"],
+		"compatibles": ["amaretto", "caramel", "chocolat noir", "noisette", "orange", "vanille"],
+		"ingredients": ["imbibage-cafe"]
+	},
+	{
+		"flavor": "cannelle",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["cookies-banana-bread"]
+	},
+	{
+		"flavor": "caramel",
+		"nuts": ["pécan", "noisette"],
+		"compatibles": ["banane", "café", "chocolat", "noix de pécan", "pomme", "vanille"],
+		"ingredients": [
+			"breizh-chocolate",
+			"caramel-beurre-sale",
+			"caramel-beurre-sale-tarte-caramel-pcan",
+			"croustillant-caramel",
+			"glacage-aux-daims",
+			"insert-banane-caramel",
+			"mousse-caramel-beurre-sale"
+		]
+	},
+	{
+		"flavor": "cardamome",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["amande", "cannelle", "orange", "poire", "pistache", "vanille"],
+		"ingredients": ["cookies-huile-olive-cardamome", "garniture-tahinidattes"]
+	},
+	{
+		"flavor": "carotte",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["carrot-cake"]
+	},
+	{
+		"flavor": "cassis",
+		"nuts": ["amande", "noisette"],
+		"compatibles": ["framboise", "vanille", "chocolat blanc", "mûre"],
+		"ingredients": ["gelee-de-cassis-a-l-hibiscus"]
+	},
+	{
+		"flavor": "châtaigne",
+		"nuts": ["noisette"],
+		"compatibles": ["caramel", "chocolat noir", "poire", "vanille", "noisette"],
+		"ingredients": ["croustillant-a-la-puree-de-chataigne"]
+	},
+	{
+		"flavor": "chocolat",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": [
+			"biscuit-cacao-olive",
+			"breizh-chocolate",
+			"brookie",
+			"chocolats-daim",
+			"cookies-banana-bread",
+			"cookies-chocolat-noisette",
+			"creme-chocolat",
+			"ganache-montee-chocolat-noisette",
+			"mousse-au-chocolat",
+			"pate-a-brownie",
+			"pate-a-cookie",
+			"pate-sucree-cacao-noisette",
+			"sable-cacao",
+			"tuile-chocolat-noir"
+		]
+	},
+	{
+		"flavor": "chocolat au lait",
+		"nuts": ["noisette"],
+		"compatibles": ["amande", "banane", "caramel", "noisette", "vanille"],
+		"ingredients": [
+			"creme-chocolat-au-lait",
+			"croustillant-praline-royal-chocolat",
+			"glacage-aux-daims"
+		]
+	},
+	{
+		"flavor": "chocolat blanc",
+		"nuts": ["amande", "pistache"],
+		"compatibles": ["framboise", "yuzu", "vanille"],
+		"ingredients": [
+			"croustillant-a-la-puree-de-chataigne",
+			"croustillant-chocolat-blanc",
+			"croustillant-noisette",
+			"croustillant-noisette-mini-entremets-citron-noir-et-noisette",
+			"croustillant-noisette-tarte-citron-noisette-meringue",
+			"enrobage",
+			"ganache-montee-a-l-hibiscus",
+			"ganache-montee-au-citron-noir",
+			"ganache-montee-basilic"
+		]
+	},
+	{
+		"flavor": "chocolat noir",
+		"nuts": ["noisette", "amande"],
+		"compatibles": [
+			"café",
+			"caramel",
+			"cassis",
+			"framboise",
+			"noisette",
+			"orange",
+			"piment",
+			"vanille"
+		],
+		"ingredients": [
+			"croustillant-chocolat-noir",
+			"croustillant-chocolat-noir-framboise",
+			"croustillant-chocolat-noir-noisette",
+			"croustillant-chocolat-noir-tarte-framboise-chocolat",
+			"croustillant-chocolat-noir-tiramisu",
+			"ganache-montee-chocolat-noir",
+			"ganache-montee-chocolat-noir-tarte-3-chocolats",
+			"glacage-au-chocolat-noir",
+			"mousse-chocolat-noir-citron",
+			"mousse-chocolat-noir-feve-tonka"
+		]
+	},
+	{
+		"flavor": "citron",
+		"nuts": ["amande", "noix"],
+		"compatibles": ["basilic", "pavot", "vanille"],
+		"ingredients": [
+			"biscuit-madeleine-citron",
+			"biscuit-madeleine-citron-vert",
+			"cookies-citron-noisette-citron-noir",
+			"creme-citron",
+			"creme-citron-pavot",
+			"cremeux-citron-yuzu",
+			"croustillant-sable-citron",
+			"glacage-carrot-cake",
+			"lemon-curd-tarte-citron-meringue-la-framboise",
+			"mousse-chocolat-noir-citron"
+		]
+	},
+	{
+		"flavor": "citron noir",
+		"nuts": ["amande", "noisette"],
+		"compatibles": [
+			"amande",
+			"cannelle",
+			"cardamome",
+			"caramel",
+			"chocolat",
+			"datte",
+			"figue",
+			"noisette",
+			"orange",
+			"sésame"
+		],
+		"ingredients": ["cookies-citron-noisette-citron-noir", "ganache-montee-au-citron-noir"]
+	},
+	{
+		"flavor": "citron vert",
+		"nuts": ["noix de cajou"],
+		"compatibles": ["mangue", "yuzu", "vanille"],
+		"ingredients": ["croustillant-sable-citron-vert", "ganache-montee-citron-vert-yuzu"]
+	},
+	{
+		"flavor": "clémentine",
+		"nuts": ["amande"],
+		"compatibles": ["amande", "cannelle", "chocolat noir", "noisette", "vanille"],
+		"ingredients": ["cremeux-clementine", "insert-clementine-basilic", "mousse-clementine"]
+	},
+	{
+		"flavor": "datte",
+		"nuts": ["noix", "amande"],
+		"compatibles": ["amande", "cannelle", "orange", "vanille"],
+		"ingredients": ["garniture-tahinidattes"]
+	},
+	{
+		"flavor": "fève tonka",
+		"nuts": ["noisette"],
+		"compatibles": ["amande", "caramel", "café", "chocolat", "poire", "vanille"],
+		"ingredients": ["mousse-chocolat-noir-feve-tonka", "mousse-pomme-feve-de-tonka"]
+	},
+	{
+		"flavor": "figue",
+		"nuts": ["noix", "amande"],
+		"compatibles": ["amande", "orange", "vanille"],
+		"ingredients": ["confit-figue-framboise-rose", "gelee-figue-framboise"]
+	},
+	{
+		"flavor": "fleur d'oranger",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["amande", "cardamome", "datte", "pistache", "vanille", "rose"],
+		"ingredients": [
+			"brioche-des-rois",
+			"mousse-abricot-fleur-d-oranger",
+			"mousse-abricot-fleur-oranger",
+			"sirop"
+		]
+	},
+	{
+		"flavor": "fraise",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["basilic", "citron", "pistache", "vanille"],
+		"ingredients": [
+			"compotee-fraise-rhubarbe",
+			"gel-fraise",
+			"gel-fraise-tomate",
+			"insert-fraise-basilic",
+			"insert-fraise-basilic-ail-roti",
+			"sirop-de-fraise"
+		]
+	},
+	{
+		"flavor": "framboise",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["amande", "basilic", "cassis", "pistache", "vanille", "rhubarbe"],
+		"ingredients": [
+			"biscuit-financier-framboise",
+			"confit-figue-framboise-rose",
+			"croustillant-chocolat-noir-framboise",
+			"gel-tomate-framboise",
+			"gelee-figue-framboise",
+			"gelee-framboise",
+			"gelee-framboise-tarte-pistache-framboise",
+			"glacage-framboise",
+			"insert-framboise-piment-d-espelette",
+			"insert-framboise-poivre-de-timut",
+			"meringue-italienne-a-la-framboise"
+		]
+	},
+	{
+		"flavor": "fruit de la passion",
+		"nuts": ["noix de cajou"],
+		"compatibles": ["mangue", "yuzu", "vanille", "noix de cajou"],
+		"ingredients": ["gel-fruit-de-la-passion"]
+	},
+	{
+		"flavor": "grenade",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["gelee-de-grenade"]
+	},
+	{
+		"flavor": "hibiscus",
+		"nuts": ["noisette", "amande"],
+		"compatibles": [
+			"citron vert",
+			"framboise",
+			"mûre",
+			"orange",
+			"vanille",
+			"noisette",
+			"amande",
+			"basilic",
+			"cassis",
+			"citron",
+			"fraise",
+			"pamplemousse",
+			"rose"
+		],
+		"ingredients": ["ganache-montee-a-l-hibiscus", "gelee-de-cassis-a-l-hibiscus"]
+	},
+	{
+		"flavor": "huile d'olive",
+		"nuts": ["amande", "noisette"],
+		"compatibles": ["amande", "citron", "fleur d'oranger", "vanille"],
+		"ingredients": [
+			"biscuit-madeleine-huile-olive",
+			"cookies-huile-olive-cardamome",
+			"croustillant-amande-huile-d-olive",
+			"croustillant-amande-huile-d-olive-pizza-trompe-loeil",
+			"croustillant-amande-huile-d-olive-riz-souffle",
+			"croustillant-amande-huile-d-olive-tarte-fraise-vanille",
+			"croustillant-amande-huile-dolive-trompe-lil-tomate",
+			"croustillant-amande-huile-olive",
+			"financier-huile-olive",
+			"financier-pistache-a-lhuile-dolive",
+			"ganache-montee-huile-d-olive",
+			"pesto-sucre",
+			"sirop-a-huile-d-olive",
+			"sirop-d-huile-d-olive"
+		]
+	},
+	{
+		"flavor": "lavande",
+		"nuts": ["amande"],
+		"compatibles": ["abricot", "pêche", "vanille", "chocolat blanc", "amande"],
+		"ingredients": [
+			"croustillant-amande-lavande",
+			"ganache-montee-lavande",
+			"insert-abricot-lavande"
+		]
+	},
+	{
+		"flavor": "mangue",
+		"nuts": ["noix de cajou"],
+		"compatibles": ["fruit de la passion", "citron vert", "vanille", "noix de cajou"],
+		"ingredients": ["gelee-mangue", "gelee-mangue-entremet-mangue-vanille", "mangues-pochees"]
+	},
+	{
+		"flavor": "mascarpone",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["creme-mascarpone"]
+	},
+	{
+		"flavor": "mûre",
+		"nuts": ["amande", "noisette"],
+		"compatibles": ["amande", "cassis", "chocolat noir", "framboise", "poire", "vanille"],
+		"ingredients": ["gelee-de-mure"]
+	},
+	{
+		"flavor": "neutre",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": [
+			"biscuit-genoise",
+			"biscuit-madeleine",
+			"biscuit-madeleine-citron",
+			"biscuit-madeleine-citron-vert",
+			"biscuit-madeleine-huile-olive",
+			"crepes-dentelles",
+			"genoise-figuier-figueframboise",
+			"genoise-fraisier-fraise-rhubarbe",
+			"glacage-jaune",
+			"glacage-miroir",
+			"meringue-italienne",
+			"pate-a-choux",
+			"pate-a-croissant",
+			"pate-sablee",
+			"pate-sablee-tarte-mangue-vanille",
+			"pate-sablee-tarte-pomme-cassis-chtaigne",
+			"pate-sucree",
+			"sable-reconstitue",
+			"sable-reconstitue-citron"
+		]
+	},
+	{
+		"flavor": "noisette",
+		"nuts": ["noisette"],
+		"compatibles": ["caramel", "chocolat au lait", "café", "orange", "poire", "vanille"],
+		"ingredients": [
+			"biscuit-noisettes-creusois",
+			"cookies-chocolat-noisette",
+			"cookies-citron-noisette-citron-noir",
+			"cremeux-noisette",
+			"croustillant-chocolat-noir-noisette",
+			"croustillant-noisette",
+			"croustillant-noisette-mini-entremets-citron-noir-et-noisette",
+			"croustillant-noisette-tarte-citron-noisette-meringue",
+			"financier-noisette",
+			"ganache-montee-chocolat-noisette",
+			"insert-cremeux-noisette",
+			"insert-praline-noisette-olive",
+			"mousse-noisette",
+			"pate-a-brownie",
+			"pate-a-cookie",
+			"pate-sablee-noisette",
+			"pate-sucree-cacao-noisette"
+		]
+	},
+	{
+		"flavor": "noix de cajou",
+		"nuts": ["noix de cajou"],
+		"compatibles": ["caramel", "chocolat blanc", "citron vert", "mangue", "vanille"],
+		"ingredients": ["croustillant-praline-cajou"]
+	},
+	{
+		"flavor": "noix de coco",
+		"nuts": ["noix de coco"],
+		"compatibles": ["mangue", "rhum", "vanille", "chocolat blanc", "citron vert"],
+		"ingredients": ["croustillant-coco", "ganache-montee-coco"]
+	},
+	{
+		"flavor": "noix de pécan",
+		"nuts": ["noix de pécan"],
+		"compatibles": ["caramel", "pomme", "vanille", "chocolat noir"],
+		"ingredients": [
+			"carrot-cake",
+			"cremeux-praline-noix-de-pecan",
+			"croustillant-praline-noix-de-pecan",
+			"ganache-montee-au-praline-noix-de-pecan",
+			"praline-noix-de-pecan"
+		]
+	},
+	{
+		"flavor": "olive",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["insert-praline-noisette-olive"]
+	},
+	{
+		"flavor": "orange",
+		"nuts": ["amande"],
+		"compatibles": ["amande", "cannelle", "chocolat noir", "vanille"],
+		"ingredients": ["gelee-d-orange-sanguine"]
+	},
+	{
+		"flavor": "pamplemousse",
+		"nuts": ["noix"],
+		"compatibles": ["vanille"],
+		"ingredients": ["cremeux-pamplemousse"]
+	},
+	{
+		"flavor": "pavot",
+		"nuts": ["amande"],
+		"compatibles": ["citron", "vanille", "amande"],
+		"ingredients": ["creme-citron-pavot"]
+	},
+	{
+		"flavor": "pêche",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["abricot", "lavande", "pistache", "vanille", "amande"],
+		"ingredients": ["gelee-de-peches", "glacage-peche", "insert-peche"]
+	},
+	{
+		"flavor": "piment",
+		"nuts": ["noix"],
+		"compatibles": ["chocolat noir", "mangue", "orange", "vanille"],
+		"ingredients": ["insert-framboise-piment-d-espelette"]
+	},
+	{
+		"flavor": "pistache",
+		"nuts": ["pistache"],
+		"compatibles": ["amande", "cardamome", "chocolat blanc", "rose", "vanille", "yuzu"],
+		"ingredients": [
+			"croustillant-pistache",
+			"croustillant-pistache-entremet-grenade-hibiscus",
+			"croustillant-pistache-tarte-pistache-framboise",
+			"financier-pistache-a-lhuile-dolive",
+			"ganache-montee-pistache-tarte-framboise-pistache",
+			"ganache-montee-pistache-tarte-pistache-framboise"
+		]
+	},
+	{
+		"flavor": "poire",
+		"nuts": ["noix", "amande"],
+		"compatibles": ["amande", "caramel", "chocolat noir", "vanille"],
+		"ingredients": ["compotee-de-poires", "gelee-de-poires", "insert-pomme-poire"]
+	},
+	{
+		"flavor": "poivre de timut",
+		"nuts": ["noix"],
+		"compatibles": ["cassis", "chocolat noir", "fraise", "mangue", "pamplemousse", "vanille"],
+		"ingredients": ["insert-framboise-poivre-de-timut"]
+	},
+	{
+		"flavor": "pomme",
+		"nuts": ["noix"],
+		"compatibles": ["cannelle", "caramel", "poire", "vanille"],
+		"ingredients": ["insert-pomme-poire", "mousse-pomme-feve-de-tonka"]
+	},
+	{
+		"flavor": "praliné",
+		"nuts": ["noisette"],
+		"compatibles": ["chocolat", "noisette", "caramel", "vanille", "amande"],
+		"ingredients": [
+			"creme-patissiere-praline",
+			"cremeux-praline",
+			"cremeux-praline-noix-de-pecan",
+			"croustillant-chocolat-noir",
+			"croustillant-praline",
+			"croustillant-praline-cajou",
+			"croustillant-praline-noix-de-pecan",
+			"croustillant-praline-royal-chocolat",
+			"ganache-montee-au-praline-noix-de-pecan",
+			"praline-amande-noisette",
+			"praline-amandes-sarrasin",
+			"praline-noix-de-pecan"
+		]
+	},
+	{
+		"flavor": "rhubarbe",
+		"nuts": ["amande", "noix"],
+		"compatibles": ["amande", "framboise", "pomme", "vanille"],
+		"ingredients": ["compotee-fraise-rhubarbe"]
+	},
+	{
+		"flavor": "rhum",
+		"nuts": ["noix"],
+		"compatibles": ["banane", "café", "vanille", "orange"],
+		"ingredients": ["canneles"]
+	},
+	{
+		"flavor": "rose",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["fraise", "framboise", "hibiscus", "pistache", "vanille"],
+		"ingredients": ["confit-figue-framboise-rose", "sirop"]
+	},
+	{
+		"flavor": "sarrasin",
+		"nuts": ["noix"],
+		"compatibles": ["caramel", "chocolat noir"],
+		"ingredients": ["praline-amandes-sarrasin"]
+	},
+	{
+		"flavor": "sésame",
+		"nuts": ["sésame", "noix"],
+		"compatibles": ["caramel", "chocolat", "vanille", "orange"],
+		"ingredients": ["croustillant-sesame-noir"]
+	},
+	{
+		"flavor": "tahini",
+		"nuts": ["sésame", "noix"],
+		"compatibles": ["datte", "sésame", "chocolat", "orange"],
+		"ingredients": ["garniture-tahinidattes"]
+	},
+	{
+		"flavor": "thé",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": ["ganache-montee-the-merveilleux"]
+	},
+	{
+		"flavor": "tomate",
+		"nuts": [],
+		"compatibles": [],
+		"ingredients": [
+			"croustillant-amande-huile-dolive-trompe-lil-tomate",
+			"gel-fraise-tomate",
+			"gel-tomate-framboise"
+		]
+	},
+	{
+		"flavor": "vanille",
+		"nuts": ["amande", "noisette"],
+		"compatibles": ["chocolat", "caramel", "rhum"],
+		"ingredients": [
+			"appareil-a-flan-a-la-vanille-flan-vanille",
+			"appareil-a-flan-a-la-vanille-flan-vanille-sans-soja",
+			"canneles",
+			"creme-diplomate",
+			"creme-patissiere",
+			"creme-vanille",
+			"dacquoise-noisette",
+			"ganache-montee-vanille",
+			"gelee-de-poires",
+			"genoise-fraisier-fraise-rhubarbe",
+			"glacage-carrot-cake",
+			"mangues-pochees",
+			"mousse-clementine",
+			"mousse-noisette",
+			"mousse-vanille",
+			"mousse-vanille-entremet-pomme-poire-vanille-caramel",
+			"mousse-vanille-figuier-figueframboise",
+			"mousse-vanille-tarte-caramel-pcan",
+			"sirop-d-imbibage"
+		]
+	},
+	{
+		"flavor": "yuzu",
+		"nuts": ["pistache", "amande"],
+		"compatibles": ["chocolat blanc", "citron vert", "pistache"],
+		"ingredients": ["cremeux-citron-yuzu", "ganache-montee-citron-vert-yuzu"]
+	}
+]

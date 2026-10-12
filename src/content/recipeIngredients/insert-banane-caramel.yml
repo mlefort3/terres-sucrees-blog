@@ -8,6 +8,9 @@ ingredients:
   - item: "3 cuillères à soupe d’eau"
   - item: "40 g de sucre (pour le caramel)"
   - item: "3 g de pectine NH"
+flavor:
+  - banane
+  - caramel
 steps:
   - "Chauffer le sucre à sec dans une casserole jusqu'à obtenir un caramel doré"
   - "Déglacer avec l’eau chaude et mélanger jusqu’à ce que le caramel soit bien dissous"

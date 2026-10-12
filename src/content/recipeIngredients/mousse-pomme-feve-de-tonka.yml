@@ -8,6 +8,9 @@ ingredients:
   - item: "2 g de pectine NH"
   - item: "1 c. à café de jus de citron"
   - item: "1/4 de fève tonka"
+flavor:
+  - pomme
+  - fève tonka
 steps:
   - "Raper la fève tonka et l'incorporer dans la compte"
   - "Chauffer la compote de pomme avec le jus de citron à 40°C."

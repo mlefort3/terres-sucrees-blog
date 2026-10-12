@@ -8,6 +8,8 @@ ingredients:
   - item: "75 g de lait de soja"
   - item: "200 g de chocolat noir"
   - item: "300 g de crème végétale liquide"
+flavor:
+  - chocolat
 steps:
   - "Faire fondre le chocolat au bain-marie"
   - "Faire chauffer le lait et verser le sur le chocolat"

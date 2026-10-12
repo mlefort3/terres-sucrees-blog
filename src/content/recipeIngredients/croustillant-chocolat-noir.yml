@@ -5,6 +5,9 @@ ingredients:
   - item: "30 g de chocolat noir (vegan)"
   - item: "25 g de praliné"
   - item: "20 g de riz soufflé"
+flavor:
+  - chocolat noir
+  - praliné
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

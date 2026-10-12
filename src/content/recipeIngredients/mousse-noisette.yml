@@ -9,6 +9,9 @@ ingredients:
   - item: "5 g de pectine NH"
   - item: "1 pincée de sel"
   - item: "1 c. à café d'extrait de vanille"
+flavor:
+  - noisette
+  - vanille
 steps:
   - "Mélanger le sucre et la pectine NH"
   - "Faire chauffer le lait"

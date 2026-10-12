@@ -5,6 +5,9 @@ ingredients:
   - item: "50 g de chocolat blanc (vegan)"
   - item: "45 g de praliné noix de pécan"
   - item: "20 g de riz soufflé"
+flavor:
+  - praliné
+  - noix de pécan
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

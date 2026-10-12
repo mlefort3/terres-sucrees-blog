@@ -11,6 +11,8 @@ ingredients:
   - item: "150 mL de crème liquide végétale (2)"
   - item: "Quelques gouttes d'extrait d'amande amère"
   - item: "Colorant vert (facultatif)"
+flavor:
+  - pistache
 steps:
   - "Faire chauffer la crème végétale (1) jusqu'à ébullition"
   - "Verser la crème sur le chocolat blanc en morceaux (ou en pistoles)"

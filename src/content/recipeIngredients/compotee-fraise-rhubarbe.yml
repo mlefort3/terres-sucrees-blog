@@ -14,6 +14,9 @@ ingredients:
   - item: "30 g de sucre (1)"
   - item: "12 g de sucre (2)"
   - item: "5,5 g de pectine NH"
+flavor:
+  - fraise
+  - rhubarbe
 steps:
   - "Laver, peler et couper en tronçons la rhubarbe"
   - "Mettre les tronçons de rhubarbe au fond d'un récipient, ajouter le sucre et mélanger avec les mains (facultatif)"

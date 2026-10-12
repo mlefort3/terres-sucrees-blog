@@ -8,6 +8,8 @@ ingredients:
   - item: "250 mL de crème liquide végétale (2)"
   - item: "5 g de pectine NH"
   - item: "10 g de sucre"
+flavor:
+  - pistache
 steps:
   - "Mélanger ensemble le sucre et la pectine"
   - "Faire chauffer la crème végétale (1)"

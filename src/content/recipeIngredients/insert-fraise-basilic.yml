@@ -7,6 +7,9 @@ ingredients:
   - item: "4 g de pectine NH"
   - item: "1 cuillère à soupe de jus de citron"
   - item: "Quelques feuilles de basilic hachées (selon goût)"
+flavor:
+  - fraise
+  - basilic
 steps:
   - "Mélanger le sucre et la pectine NH"
   - "Faire chauffer la purée de fraises"

@@ -15,6 +15,8 @@ ingredients:
   - item: "120 g de farine"
   - item: "2 cuillère à café de poudre à lever (ou levure chimique)"
   - item: "Quelques amandes effilées"
+flavor:
+  - neutre
 steps:
   - "Ajouter dans une casserole l'eau (1), la fécule de pomme de terre, et la crème de soja"
   - "Mélanger et mettre à chauffer jusqu'à épaississement"

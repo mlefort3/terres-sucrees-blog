@@ -13,6 +13,8 @@ ingredients:
   - item: "20 g de fécule de pomme de terre"
   - item: "1 pincée de sel"
   - item: "11 g de margarine"
+flavor:
+  - vanille
 steps:
   - "Réhydrater le Yumgo jaune : yumgo jaune en poudre, eau (2), huile, et bien mélanger"
   - "Mélanger le Yumgo jaune réhydraté, le sucre, la fécule et le sel"

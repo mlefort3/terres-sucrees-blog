@@ -7,6 +7,9 @@ ingredients:
   - item: "2 g de pectine NH"
   - item: "2 g de piment d'Espelette"
   - item: "1 c. à café de jus de citron"
+flavor:
+  - framboise
+  - piment
 steps:
   - "Chauffer la purée de framboise avec le piment"
   - "Mélanger le sucre et la pectine NH"

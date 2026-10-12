@@ -1,6 +1,6 @@
 name: "Biscuit madeleine"
 category: biscuit
-description: "Biscuit madeleine moelleux, pour une plaque 30×20 cm"
+description: "Biscuit madeleine moelleux (pour une plaque 30×20 cm)"
 ingredients:
   - item: "150 g de farine (T55)"
   - item: "20 g de fécule de maïs"
@@ -12,6 +12,8 @@ ingredients:
   - item: "80 g de margarine fondue"
   - item: "1 c. à café d’extrait de vanille"
   - item: "1 c. à café de vinaigre de cidre"
+flavor:
+  - neutre
 steps:
   - "Préchauffer le four à 170°C (chaleur tournante)"
   - "Dans un bol, mélanger la farine, la fécule de maïs, le sucre, la levure chimique et le sel"

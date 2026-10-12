@@ -12,6 +12,8 @@ ingredients:
   - item: "15 g de fécule de maïs"
   - item: "Une pincée de curcuma en poudre (facultatif – pour la couleur)"
   - item: "60 g de margarine"
+flavor:
+  - citron
 steps:
   - "Dans une casserole, mélanger le sucre, la fécule de maïs et le curcuma"
   - "Ajouter petit à petit le lait en mélangeant"

@@ -11,6 +11,8 @@ ingredients:
   - item: "30 g de margarine végétale fondue"
   - item: "1 c. à café d’extrait de vanille"
   - item: "1 pincée de sel"
+flavor:
+  - amande
 steps:
   - "Dans un bol, mélanger les ingrédients secs (poudre d'amandes, farine, sucre, levure, sel)"
   - "Ajouter ensuite les autres ingrédients en mélangeant (lait, yaourt, margarine, vanille)"

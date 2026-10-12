@@ -11,6 +11,9 @@ ingredients:
   - item: "6 g de pectine NH"
   - item: "10 g de sucre"
   - item: "14 g de fleurs d'hibiscus séchées"
+flavor:
+  - hibiscus
+  - chocolat blanc
 steps:
   - "Porter la crème (1) à ébullition, avec les fleurs d'hibiscus"
   - "Une fois à ébullition, mettre hors du feu et laisser infuser pendant 20 min"

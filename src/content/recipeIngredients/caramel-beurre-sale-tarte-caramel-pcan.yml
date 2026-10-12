@@ -6,6 +6,8 @@ ingredients:
   - item: "120 g de crème végétale"
   - item: "40 g de beurre végétal"
   - item: "1 pincée de sel"
+flavor:
+  - caramel
 steps:
   - "Réaliser un caramel à sec avec le sucre"
   - "Ajouter la crème végétale liquide chaude et mélanger"

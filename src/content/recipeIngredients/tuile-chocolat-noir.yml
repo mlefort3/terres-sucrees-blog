@@ -8,6 +8,8 @@ ingredients:
   - item: "9 g de cacao poudre"
   - item: "25 g de substitut de blancs d'œufs (j'ai utilisé celui de la marque Yumgo)"
   - item: "25 g de beurre"
+flavor:
+  - chocolat
 steps:
   - "Mélanger ensemble la farine tamisée, le cacao tamisé, et le sucre glace tamisé"
   - "Ajouter petit à petit le substitut de blancs d'oeufs"

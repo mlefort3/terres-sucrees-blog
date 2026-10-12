@@ -1,13 +1,14 @@
 name: "Croustillant amande"
 category: croustillant
-description: "Couche croustillante à base de chocolat blanc et amandes"
+description: "Couche croustillante au chocolat blanc et à la purée d'amandes"
 ingredients:
-  - item: "60 g de chocolat blanc vegan"
-  - item: "50 g de purée d'amandes blanche ou complète"
-  - item: "50 g de crêpes dentelles vegan"
-  - item: "1 pincée de fleur de sel"
+  - item: "50 g de chocolat blanc vegan"
+  - item: "45 g de purée d'amandes"
+  - item: "50 g de crêpes dentelles (ou biscuits sablés vegan, ou 30 g de riz soufflé)"
+flavor:
+  - amande
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée d'amandes et mélanger"
-  - "Ajouter les crêpes dentelles, le sel et mélanger"
+  - "Ajouter les crêpes dentelles en morceaux et mélanger"
   - "Étaler sur le biscuit cuit"

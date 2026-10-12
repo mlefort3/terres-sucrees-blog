@@ -6,6 +6,10 @@ ingredients:
   - item: "45 g de purée d'amandes"
   - item: "50 g de crêpes dentelles vegan (ou 50 g biscuit sablé vegan, ou 30 g de riz soufflé)"
   - item: "1,5 c. à soupe d'huile d'olive"
+flavor:
+  - amande
+  - huile d'olive
+  - tomate
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée d'amandes et mélanger"

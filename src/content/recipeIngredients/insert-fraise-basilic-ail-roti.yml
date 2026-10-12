@@ -9,6 +9,10 @@ ingredients:
   - item: "40 g de sucre"
   - item: "5 g de pectine NH"
   - item: "1 cuillère à soupe de jus de citron"
+flavor:
+  - fraise
+  - basilic
+  - ail
 steps:
   - "Placer les gousses d'ail dans de l'aluminium, mélangées au sirop d'agave (facultatif)"
   - "Faire cuire 45min à 180°C (facultatif)"

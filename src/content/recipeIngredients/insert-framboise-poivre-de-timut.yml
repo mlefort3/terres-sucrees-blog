@@ -7,6 +7,9 @@ ingredients:
   - item: "2 g de pectine NH"
   - item: "1 à 1,5 g de poivre de Timut moulu"
   - item: "1 c. à café de jus de citron"
+flavor:
+  - framboise
+  - poivre de timut
 steps:
   - "Chauffer la purée de framboise avec le poivre"
   - "Mélanger le sucre et la pectine NH"

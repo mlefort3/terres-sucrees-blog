@@ -11,6 +11,9 @@ ingredients:
   - item: "70 g de caramel beurre salé vegan"
   - item: "2 cuillères à soupe de praliné amandes/sarrasin"
   - item: "20 g de margarine"
+flavor:
+  - chocolat
+  - caramel
 steps:
   - "Faire fondre le chocolat blanc (1)"
   - "Ajouter les crêpes dentelles en morceaux et mélanger"

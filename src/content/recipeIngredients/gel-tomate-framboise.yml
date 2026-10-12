@@ -8,6 +8,9 @@ ingredients:
   - item: "50 g de sucre"
   - item: "3 g de pectine"
   - item: "8 g de vinaigre balsamique"
+flavor:
+  - tomate
+  - framboise
 steps:
   - "Mélanger la pectine avec le sucre"
   - "Mixer les tomates et les framboises"

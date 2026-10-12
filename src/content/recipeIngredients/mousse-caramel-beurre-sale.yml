@@ -11,6 +11,8 @@ ingredients:
   - item: "10 g de sucre (2)"
   - item: "50 g de margarine"
   - item: "400 g de crème végétale liquide (2)"
+flavor:
+  - caramel
 steps:
   - "Réaliser un caramel à sec avec le sucre (1)"
   - "Mélanger le sucre (2) et la pectine"

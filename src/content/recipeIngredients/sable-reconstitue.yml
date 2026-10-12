@@ -4,6 +4,8 @@ description: "Fond croustillant à base de pâte sucrée et de beurre de cacao"
 ingredients:
   - item: "200 g de pâte sucrée cuite"
   - item: "80 g de beurre de cacao"
+flavor:
+  - neutre
 steps:
   - "Faire fondre le beurre de cacao"
   - "Mettre la pâte sucrée en miettes"

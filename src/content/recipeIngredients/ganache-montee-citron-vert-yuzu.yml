@@ -12,6 +12,9 @@ ingredients:
   - item: "10 g de sucre"
   - item: "2 g de pectine NH"
   - item: "1/2 cuillère à café d’arôme de yuzu (optionnel)"
+flavor:
+  - citron vert
+  - yuzu
 steps:
   - "Mélanger le sucre et la pectine NH dans un bol"
   - "Faire chauffer la crème (1) et le jus de citron"

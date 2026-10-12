@@ -11,6 +11,8 @@ ingredients:
   - item: "30 g de poudre d’amandes"
   - item: "Une pincée de sel"
   - item: "32 ml de lait de soja"
+flavor:
+  - neutre
 steps:
   - "Mélanger la farine, le sucre glace, la poudre d’amandes et le sel"
   - "Ajouter la margarine coupée en morceaux"

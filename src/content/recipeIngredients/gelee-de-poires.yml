@@ -6,6 +6,9 @@ ingredients:
   - item: "40 g de sucre"
   - item: "4 g de pectine NH"
   - item: "1 petite gousse de vanille"
+flavor:
+  - poire
+  - vanille
 steps:
   - "Mélanger le sucre et la pectine"
   - "Mettre à chauffer la purée de poires avec la gousse de vanille et ses grains grattés"

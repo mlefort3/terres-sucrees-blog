@@ -9,6 +9,9 @@ ingredients:
   - item: "3 g de pectine"
   - item: "10 g de sucre"
   - item: "80 g de chocolat blanc vegan"
+flavor:
+  - basilic
+  - chocolat blanc
 steps:
   - "Mélanger la pectine et le sucre"
   - "Faire chauffer le lait avec 40 g de crème"

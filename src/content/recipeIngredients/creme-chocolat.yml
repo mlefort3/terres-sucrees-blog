@@ -10,6 +10,8 @@ ingredients:
   - item: "50 g de fécule de maïs"
   - item: "20 g de margarine"
   - item: "150 g de chocolat noir pâtissier"
+flavor:
+  - chocolat
 steps:
   - "Déposer votre chocolat en morceaux dans un saladier"
   - "Mélanger le sucre et la fécule"

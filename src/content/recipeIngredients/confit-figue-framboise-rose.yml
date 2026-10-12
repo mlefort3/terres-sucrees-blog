@@ -10,6 +10,10 @@ ingredients:
   - item: "1 cuillère à café de jus de citron"
   - item: "1 petite cuillère à café d'extrait de rose, ou une cuillère à soupe d'eau de rose"
   - item: "1 pincée de sel"
+flavor:
+  - figue
+  - framboise
+  - rose
 steps:
   - "Mélangez la pectine avec le sucre"
   - "Faites chauffer les morceaux de figues avec la purée de framboise et le glucose"

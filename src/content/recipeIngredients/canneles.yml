@@ -15,6 +15,9 @@ ingredients:
   - item: "10 g d'extrait de vanille"
   - item: "1-2 gousse(s) de vanille"
   - item: "1 pincée de sel"
+flavor:
+  - vanille
+  - rhum
 steps:
   - "Dans une casserole, verser le lait de soja, la crème végétale, les grains de la gousse de vanille grattée et la gousse de vanille."
   - "Porter doucement à ébullition, puis laisser infuser 20 minutes hors du feu."

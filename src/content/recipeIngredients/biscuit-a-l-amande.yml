@@ -10,6 +10,8 @@ ingredients:
   - item: "25 g de farine"
   - item: "5 g de poudre à lever (ou levure chimique)"
   - item: "150 g de poudre d'amandes"
+flavor:
+  - amande
 steps:
   - "Réhydrater le Yumgo blanc si nécessaire"
   - "Le monter en neige en ajoutant petit à petit le sucre dans le mélange pendant qu'il monte pour obtenir une meringue"

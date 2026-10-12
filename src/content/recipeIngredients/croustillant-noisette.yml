@@ -5,6 +5,9 @@ ingredients:
   - item: "30 g de chocolat blanc vegan"
   - item: "25 g de purée de noisettes"
   - item: "15 g de riz soufflé"
+flavor:
+  - noisette
+  - chocolat blanc
 steps:
   - "Faire fondre le chocolat blanc"
   - "Ajouter les autres ingrédients et mélanger"

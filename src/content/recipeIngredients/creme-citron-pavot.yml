@@ -13,6 +13,9 @@ ingredients:
   - item: "15 g de fécule de maïs"
   - item: "60 g de margarine"
   - item: "1 à 2 cuillère à soupe de graines de pavot"
+flavor:
+  - citron
+  - pavot
 steps:
   - "Dans une casserole, mélanger le sucre et la fécule de maïs"
   - "Ajouter le lait petit à petit tout en mélangeant"

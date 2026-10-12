@@ -8,6 +8,9 @@ ingredients:
   - item: "14 cL (140 g) de crème liquide"
   - item: "7,5 cL (75 g) de lait de soja"
   - item: "1/4 de fève tonka"
+flavor:
+  - chocolat noir
+  - fève tonka
 steps:
   - "Mélanger la pectine NH et le sucre"
   - "Faire chauffer le lait"

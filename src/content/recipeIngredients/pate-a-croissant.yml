@@ -13,6 +13,8 @@ ingredients:
   - item: "87 g de sucre"
   - item: "14 g de sel"
   - item: "375 g de beurre de tourage végétal (j'utilise celui de la marque Be Better, je le trouve sur Végétal Food, où vous pouvez avoir -10% sur votre première commande avec le code TERRESSUCREES10)"
+flavor:
+  - neutre
 steps:
   - "Dans la cuve d'un robot, ajouter les farines."
   - "Ajouter d'un côté le sel, le sucre et la margarine en morceaux."

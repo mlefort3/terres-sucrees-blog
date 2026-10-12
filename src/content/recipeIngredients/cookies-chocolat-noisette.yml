@@ -13,6 +13,9 @@ ingredients:
   - item: "1 pincée de sel"
   - item: "80 g de pépites de chocolat"
   - item: "50 g de noisettes concassées"
+flavor:
+  - chocolat
+  - noisette
 steps:
   - "Si souhaité, faire torréfier les noisettes"
   - "Mélanger la margarine molle (pommade) avec la cassonade et le sirop d'agave"

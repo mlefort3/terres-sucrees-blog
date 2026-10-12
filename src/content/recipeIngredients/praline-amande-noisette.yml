@@ -6,6 +6,8 @@ ingredients:
   - item: "100 g de noisettes"
   - item: "200 g de sucre"
   - item: "Huile de pépins de raisins"
+flavor:
+  - praliné
 steps:
   - "Torréfier les noisettes et les amandes 10 min à 180°C"
   - "Réaliser un caramel à sec avec le sucre"

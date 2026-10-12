@@ -5,6 +5,9 @@ ingredients:
   - item: "100 g de chocolat noir framboise vegan"
   - item: "40 g de purée d’amandes"
   - item: "60 g de de crêpes dentelles"
+flavor:
+  - chocolat noir
+  - framboise
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée d'amandes et mélanger"

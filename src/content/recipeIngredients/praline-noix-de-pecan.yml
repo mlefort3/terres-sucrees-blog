@@ -7,6 +7,9 @@ ingredients:
   - item: "1 gousse de vanille"
   - item: "1 pincée de sel"
   - item: "Huile de pépin de raisin (ou autre huile neutre)"
+flavor:
+  - praliné
+  - noix de pécan
 steps:
   - "Si les noix de pécan ne sont pas torréfiées, les faire cuire 20 min à 160°C"
   - "Faire un caramel à sec avec le sucre"

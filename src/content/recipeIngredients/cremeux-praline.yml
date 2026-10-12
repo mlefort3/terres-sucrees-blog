@@ -8,6 +8,8 @@ ingredients:
   - item: "6 g de pectine NH nappage"
   - item: "30 g de sucre"
   - item: "20 g de margarine"
+flavor:
+  - praliné
 steps:
   - "Mélanger le sucre et la pectine"
   - "Dans une casserole, faire chauffer le lait et la crème"

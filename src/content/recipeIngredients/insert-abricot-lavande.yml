@@ -10,6 +10,9 @@ ingredients:
   - item: "37 g de sucre"
   - item: "1 cuillère à café de jus de citron"
   - item: "0,7 g de graines de lavande"
+flavor:
+  - abricot
+  - lavande
 steps:
   - "Mélanger le sucre et la pectine"
   - "Faire chauffer la purée d’abricot"

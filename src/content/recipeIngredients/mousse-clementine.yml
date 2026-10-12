@@ -7,6 +7,9 @@ ingredients:
   - item: "2 g de pectine NH"
   - item: "200 g de crème végétale liquide (30% de MG)"
   - item: "1 gousse de vanille (ou 1/2 c. à café d'extrait de vanille)"
+flavor:
+  - clémentine
+  - vanille
 steps:
   - "Mélanger la pectine et le sucre"
   - "Faire chauffer la purée de clémentine"
