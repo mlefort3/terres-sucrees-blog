@@ -12,6 +12,8 @@ ingredients:
   - item: "100 ml lait végétal"
   - item: "40 ml huile neutre (tournesol ou pépins de raisin par exemple)"
   - item: "1 c. à café extrait de vanille"
+flavor:
+  - neutre
 steps:
   - "Mélanger tous les ingrédients secs entre eux"
   - "Ajouter les ingrédients liquides"

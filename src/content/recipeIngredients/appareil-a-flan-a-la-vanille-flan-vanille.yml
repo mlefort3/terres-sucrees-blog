@@ -13,6 +13,8 @@ ingredients:
   - item: "70 g de fécule de maïs"
   - item: "12 g de margarine fondue"
   - item: "1 pincée de sel"
+flavor:
+  - vanille
 steps:
   - "Dans une casserole, verser le lait de soja, la crème végétale, les grains de la gousse de vanille grattée et la gousse de vanille"
   - "Porter doucement à ébullition, puis laisser infuser 20 minutes hors du feu"

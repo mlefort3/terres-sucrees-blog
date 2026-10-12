@@ -9,6 +9,9 @@ ingredients:
   - item: "57 g de chocolat noir pâtissier"
   - item: "0,5 g de zeste de citron"
   - item: "165 g de crème végétale liquide (2)"
+flavor:
+  - chocolat noir
+  - citron
 steps:
   - "Mélanger la crème (1) et le lait"
   - "Porter à ébullition"

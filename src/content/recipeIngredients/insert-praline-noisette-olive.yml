@@ -9,6 +9,9 @@ ingredients:
   - item: "1 cuillère à soupe d'huile de pépins de raisin"
   - item: "15 g de crème d'olives Kalamata"
   - item: "30 g d'olives de Kalamata"
+flavor:
+  - noisette
+  - olive
 steps:
   - "Torréfier les noisettes à 150 °C pendant 10 min"
   - "Réaliser un caramel avec le sucre et l'eau"

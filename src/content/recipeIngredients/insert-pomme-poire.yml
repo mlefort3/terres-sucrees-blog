@@ -6,6 +6,9 @@ ingredients:
   - item: "125 g de purée de pomme"
   - item: "40 g de sucre"
   - item: "3 g de pectine NH"
+flavor:
+  - pomme
+  - poire
 steps:
   - "Mélanger le sucre et la pectine"
   - "Faire chauffer les purées de fruit"

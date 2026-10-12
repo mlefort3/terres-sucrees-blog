@@ -14,6 +14,10 @@ ingredients:
   - item: "Zestes d'une petite orange"
   - item: "1 pincée de sel fin"
   - item: "1 c. à c. de cardamome (facultatif)"
+flavor:
+  - tahini
+  - datte
+  - cardamome
 steps:
   - "Réhydrater les dattes si nécessaire"
   - "Couper les dattes en morceaux"

@@ -5,6 +5,8 @@ ingredients:
   - item: "50 g de d'eau"
   - item: "50 g de sucre"
   - item: "25 g d'huile d'olive"
+flavor:
+  - huile d'olive
 steps:
   - "Verser l'eau et le sucre dans une casserole"
   - "Laisser chauffer jusqu'à avoir la consistance d'un sirop"

@@ -9,6 +9,8 @@ ingredients:
   - item: "228 g d'eau"
   - item: "164 g de sucre"
   - item: "164 g de farine"
+flavor:
+  - neutre
 steps:
   - "Mélanger le mix Yumgo génoise et le sucre"
   - "Ajouter l'eau et mélanger"

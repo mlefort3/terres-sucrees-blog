@@ -9,6 +9,8 @@ ingredients:
   - item: "8 g de fécule de maïs"
   - item: "1 gousse de vanille"
   - item: "250 g de crème végétale 31% de matières grasses (2)"
+flavor:
+  - vanille
 steps:
   - "Mélanger la crème (1), la fécule, le sucre, la pectine NH et la pincée de sel"
   - "Chauffer le lait, la gousse de vanille grattée et ses grains"

@@ -8,6 +8,8 @@ ingredients:
   - item: "95 g de farine T55"
   - item: "30 g de cacao en poudre"
   - item: "1,5 g de sel"
+flavor:
+  - chocolat
 steps:
   - "Mettre la margarine à température ambiante"
   - "Mélanger les autres ingrédients ensemble"

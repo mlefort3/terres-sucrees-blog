@@ -6,6 +6,8 @@ ingredients:
   - item: "150 g de chocolat blanc"
   - item: "150 g de beurre de cacao"
   - item: "Colorant rouge"
+flavor:
+  - chocolat blanc
 steps:
   - "Faire fondre le chocolat blanc et le beurre de cacao au bain marie"
   - "Ajouter le colorant jusqu'à obtenir la couleur souhaitée"

@@ -12,6 +12,8 @@ ingredients:
   - item: "50 g de sucre"
   - item: "25 g de fécule de maïs"
   - item: "150 ml de crème végétale (30% de matières grasses)"
+flavor:
+  - vanille
 steps:
   - "Mélanger l'agar-agar et l'eau"
   - "Dans une casserole, mélanger le lait, le mélange eau+agar-agar, les grains de la gousse et la gousse grattée"

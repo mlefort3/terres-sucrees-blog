@@ -7,6 +7,8 @@ ingredients:
   - item: "12 à 15 g sucre"
   - item: "8 g margarine"
   - item: "1 petite gousse de vanille"
+flavor:
+  - vanille
 steps:
   - "Délayer la fécule et le sucre dans une partie du lait de soja froid"
   - "Chauffer le reste du lait avec la vanille jusqu'à frémissement"

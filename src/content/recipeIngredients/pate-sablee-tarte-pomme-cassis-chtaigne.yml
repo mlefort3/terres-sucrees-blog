@@ -11,6 +11,8 @@ ingredients:
   - item: "40 ml de lait de soja (ou autre lait végétal)"
   - item: "250 g de farine T55"
   - item: "1 pincée de sel"
+flavor:
+  - neutre
 steps:
   - "Faire ramollir un peu le beurre (beurre pommade)"
   - "Ajouter le sucre, la poudre d'amande et le sel"

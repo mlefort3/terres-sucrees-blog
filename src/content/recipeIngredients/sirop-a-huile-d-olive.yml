@@ -8,5 +8,7 @@ ingredients:
   - item: "2 cuillères à soupe de sirop d'agave"
   - item: "2 cuillères à soupe de jus de citron"
   - item: "4 cuillères à soupe d'huile d'olive"
+flavor:
+  - huile d'olive
 steps:
   - "Mélanger ensemble les ingrédients jusqu'à obtenir un mélange homogène"

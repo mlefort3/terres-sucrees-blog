@@ -10,5 +10,8 @@ ingredients:
   - item: "30 g d'huile d'olive extra vierge"
   - item: "8 g de sirop d'agave"
   - item: "6 g de jus de citron"
+flavor:
+  - basilic
+  - huile d'olive
 steps:
   - "Mixer ensemble les différents ingrédients"

@@ -11,6 +11,8 @@ ingredients:
   - item: "Quelques gouttes d'arôme d'amande amère"
   - item: "60 mL de crème végétale"
   - item: "10 g de fécule de maïs"
+flavor:
+  - amande
 steps:
   - "Mélanger ensemble la margarine, le sucre, la poudre d’amandes et l’arôme d’amande amère"
   - "Ajoutez la crème végétale en trois fois tout en mélangeant"

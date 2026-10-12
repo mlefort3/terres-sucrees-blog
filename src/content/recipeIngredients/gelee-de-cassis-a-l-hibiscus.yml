@@ -7,6 +7,9 @@ ingredients:
   - item: "30 g de sucre"
   - item: "3 g de pectine NH"
   - item: "1 c. à café de jus de citron"
+flavor:
+  - cassis
+  - hibiscus
 steps:
   - "Faire chauffer 100 ml d'eau, ajouter les fleurs d'hibiscus et laisser infuser 10 minutes"
   - "Filtrer et réserver"

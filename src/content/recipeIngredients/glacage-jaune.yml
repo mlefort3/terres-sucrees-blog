@@ -10,6 +10,8 @@ ingredients:
   - item: "200 g de sucre (2)"
   - item: "16 g de sirop de glucose"
   - item: "Colorant jaune (quantité souhaitée)"
+flavor:
+  - neutre
 steps:
   - "Mélanger le sucre (1) et la pectine NH"
   - "Mettre l'eau à chauffer"

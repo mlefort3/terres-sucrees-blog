@@ -12,6 +12,8 @@ ingredients:
   - item: "40 g de margarine (1)"
   - item: "200 g de margarine (2) (cela peut être réduit mais je n'ai pas essayé)"
   - item: "160 g de praliné amande/noisette"
+flavor:
+  - praliné
 steps:
   - "Faire chauffer le lait avec les grains de la gousse de vanille grattée, et la gousse entière"
   - "Porter à ébullition"

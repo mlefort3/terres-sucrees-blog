@@ -7,6 +7,8 @@ ingredients:
   - item: "5 g de pectine NH"
   - item: "1 cuillère à soupe de jus de citron"
   - item: "Quelques brins de lavande (facultatif, si souhaité)"
+flavor:
+  - pêche
 steps:
   - "Mélanger le sucre et la pectine NH"
   - "Faire chauffer la purée de pêche"

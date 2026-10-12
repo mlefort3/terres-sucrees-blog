@@ -17,6 +17,9 @@ ingredients:
   - item: "100 g de yaourt de soja"
   - item: "40 g de lait de soja (ou autre lait végétal)"
   - item: "74 g d’huile de pépins de raisins"
+flavor:
+  - carotte
+  - noix de pécan
 steps:
   - "Mélanger les carottes, la farine, le sucre, la poudre d’amandes, la levure chimique, le sel, les épices et les noix de pécan"
   - "Ajouter le yaourt, le lait, l'huile et mélanger"

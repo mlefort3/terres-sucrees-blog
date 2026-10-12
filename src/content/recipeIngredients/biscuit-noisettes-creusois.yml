@@ -13,6 +13,8 @@ ingredients:
   - item: "100 g de sucre roux"
   - item: "1/2 cuillère à café de poudre à lever (ou levure chimique)"
   - item: "Une pincée de sel"
+flavor:
+  - noisette
 steps:
   - "Dans un récipient, mélanger le yaourt, le lait végétal et l’huile"
   - "Ajouter ensuite la farine, la poudre de noisettes, le sucre roux, la levure chimique et le sel"

@@ -12,6 +12,8 @@ ingredients:
   - item: "110 g de sucre"
   - item: "15 g de fécule de maïs"
   - item: "60 g de margarine"
+flavor:
+  - clémentine
 steps:
   - "Dans une casserole, mélanger le sucre et la fécule de maïs"
   - "Ajouter le lait petit à petit tout en mélangeant"

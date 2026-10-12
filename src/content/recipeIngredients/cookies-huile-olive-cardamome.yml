@@ -15,6 +15,9 @@ ingredients:
   - item: "Zeste fin d’1/2 orange ou citron (facultatif)"
   - item: "140 g de chocolat noir"
   - item: "70 g d'amandes"
+flavor:
+  - huile d'olive
+  - cardamome
 steps:
   - "Mélanger l’huile d’olive, la margarine et le sucre jusqu’à obtenir une texture homogène."
   - "Ajouter le yaourt de soja et la fécule de maïs, bien mélanger."

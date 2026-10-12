@@ -12,6 +12,8 @@ ingredients:
   - item: "10 g de margarine"
   - item: "10 g d'huile d'olive"
   - item: "1,5 de poudre à lever (ou levure chimique)"
+flavor:
+  - basilic
 steps:
   - "Mixer ensemble tous les ingrédients"
   - "Étaler dans un cercle graissé"

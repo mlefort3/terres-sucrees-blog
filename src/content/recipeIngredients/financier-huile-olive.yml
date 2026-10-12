@@ -12,6 +12,8 @@ ingredients:
   - item: "60 mL d’huile d'olive"
   - item: "4 g de poudre à lever (ou levure chimique)"
   - item: "Une pincée de sel"
+flavor:
+  - huile d'olive
 steps:
   - "Mélanger le sucre et le yaourt"
   - "Ajouter la poudre d'amandes, la farine, la poudre à lever (ou levure chimique), le sel, et mélanger"

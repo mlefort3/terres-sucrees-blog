@@ -7,6 +7,9 @@ ingredients:
   - item: "9 gr de pectine NH"
   - item: "300 gr de crème liquide végétale (au moins 30% de matières grasses)"
   - item: "1 cuillère à soupe d’eau de fleur d’oranger (ajuster selon sa préférence) (facultatif)"
+flavor:
+  - abricot
+  - fleur d'oranger
 steps:
   - "Mélanger le sucre et la pectine"
   - "Porter à ébullition la moitié de la purée d’abricot"

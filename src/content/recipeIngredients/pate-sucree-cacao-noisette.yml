@@ -13,6 +13,9 @@ ingredients:
   - item: "225 g de farine"
   - item: "25 g de cacao en poudre non sucré"
   - item: "1 pincée de sel"
+flavor:
+  - chocolat
+  - noisette
 steps:
   - "Dans un saladier, mélanger le beurre pour qu'il ait une texture assez souple"
   - "Ajouter le sel, la poudre de noisette, le sucre glace tamisé et bien mélanger"

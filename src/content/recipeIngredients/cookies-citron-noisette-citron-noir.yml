@@ -15,6 +15,10 @@ ingredients:
   - item: "3 g de poudre de citron noir (facultatif)"
   - item: "50 g de noisettes en morceaux"
   - item: "80 g de pépites de chocolat au lait vegan (j'utilise le “MLK” de Linnolat)"
+flavor:
+  - citron
+  - citron noir
+  - noisette
 steps:
   - "Si souhaité, faire torréfier les noisettes"
   - "Mélanger la margarine molle (pommade) avec la cassonade et le sirop d'agave"

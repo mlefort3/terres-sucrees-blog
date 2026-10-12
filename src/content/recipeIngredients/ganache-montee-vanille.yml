@@ -9,6 +9,8 @@ ingredients:
   - item: "160 g de crème végétale (1)"
   - item: "160 g de crème végétale (2)"
   - item: "1 gousse de vanille"
+flavor:
+  - vanille
 steps:
   - "Mélanger ensemble le sucre et la pectine"
   - "Faire chauffer la crème végétale (1)"

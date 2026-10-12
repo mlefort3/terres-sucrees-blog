@@ -6,6 +6,8 @@ ingredients:
   - item: "50 g de purée de pistache"
   - item: "40 g de crêpes dentelles vegan"
   - item: "1 pincée de sel"
+flavor:
+  - pistache
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée de pistache et mélanger"

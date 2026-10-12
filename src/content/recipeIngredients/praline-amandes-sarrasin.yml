@@ -11,6 +11,9 @@ ingredients:
   - item: "1 gousse de vanille"
   - item: "5,6 cL d'huile neutre (de tournesol ou de pépin de raisin)"
   - item: "5,6 cL d'eau"
+flavor:
+  - praliné
+  - sarrasin
 steps:
   - "Si les amandes ne sont pas torréfiées, les faire cuire 20 min à 160°C"
   - "Si le sarrasin n'est pas torréfié, le faire cuire 1h à 160°C"

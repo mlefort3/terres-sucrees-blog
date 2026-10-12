@@ -5,6 +5,8 @@ notes: "Peut aussi être remplacé par une pâte sucrée (ou sablée) classique.
 ingredients:
   - item: "200 g de pâte sucrée (ou sablée) cuite"
   - item: "80 g de beurre de cacao"
+flavor:
+  - neutre
 steps:
   - "Faire fondre le beurre de cacao"
   - "Le mélanger à la pâte sucrée réduite en poudre"

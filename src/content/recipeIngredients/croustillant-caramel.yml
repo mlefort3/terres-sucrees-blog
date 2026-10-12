@@ -6,6 +6,9 @@ ingredients:
   - item: "80 g de chocolat blanc vegan"
   - item: "80 g de purée d'amandes"
   - item: "40 g de caramel beurre salé"
+flavor:
+  - caramel
+  - amande
 steps:
   - "Faire fondre le chocolat blanc au bain-marie"
   - "Ajouter le praliné et mélanger"

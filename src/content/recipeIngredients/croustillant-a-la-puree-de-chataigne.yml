@@ -6,6 +6,9 @@ ingredients:
   - item: "50 g de chocolat blanc vegan"
   - item: "40 g de crêpes dentelle"
   - item: "1 pincée de sel"
+flavor:
+  - châtaigne
+  - chocolat blanc
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée de châtaignes et mélanger"

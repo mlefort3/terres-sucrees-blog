@@ -5,6 +5,9 @@ ingredients:
   - item: "50 g de chocolat au lait noisette vegan"
   - item: "45 g de praliné amande/noisette"
   - item: "20 g de riz soufflé"
+flavor:
+  - praliné
+  - chocolat au lait
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

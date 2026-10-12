@@ -2,6 +2,8 @@ name: "Brookie"
 category: autre
 description: "Assemblage et cuisson du brookie"
 ingredients: []
+flavor:
+  - chocolat
 steps:
   - "Reprendre la pâte à brownie étalée dans le moule carré"
   - "Ajouter petit à petit des morceaux de pâte à cookies en les applatissant légèrement"

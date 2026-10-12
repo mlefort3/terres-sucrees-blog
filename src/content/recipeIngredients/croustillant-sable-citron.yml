@@ -6,6 +6,8 @@ ingredients:
   - item: "40 g de biscuit sablé vegan"
   - item: "1 cuillère à soupe d'huile d'olive"
   - item: "Zeste d'un citron"
+flavor:
+  - citron
 steps:
   - "Faire fondre le chocolat blanc au bain marie"
   - "Ajouter le sablé en morceaux"

@@ -6,6 +6,8 @@ ingredients:
   - item: "50 g de sucre"
   - item: "5 g de pectine NH"
   - item: "1 cuillère à soupe de jus de citron"
+flavor:
+  - grenade
 steps:
   - "Mélanger ensemble le sucre et la pectine"
   - "Faire chauffer le jus de grenade"

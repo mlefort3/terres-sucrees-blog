@@ -7,6 +7,9 @@ ingredients:
   - item: "3 g de pectine NH"
   - item: "5 g de jus de citron"
   - item: "Feuilles de basilic ciselées ou arôme de basilic (selon préférences)"
+flavor:
+  - clémentine
+  - basilic
 steps:
   - "Mélanger la pectine NH avec le sucre"
   - "Chauffer la purée de clémentine"

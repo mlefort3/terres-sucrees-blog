@@ -12,6 +12,8 @@ ingredients:
   - item: "Colorant violet (facultatif)"
   - item: "82 g de chocolat blanc"
   - item: "207 g de crème végétale liquide (2)"
+flavor:
+  - lavande
 steps:
   - "Mixer ensemble la pectine et la crème (1)"
   - "Ajouter la lavande"

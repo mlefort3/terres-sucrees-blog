@@ -5,6 +5,9 @@ ingredients:
   - item: "30 g de chocolat blanc (vegan)"
   - item: "25 g de purée d'amandes"
   - item: "20 g de riz soufflé"
+flavor:
+  - chocolat blanc
+  - amande
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

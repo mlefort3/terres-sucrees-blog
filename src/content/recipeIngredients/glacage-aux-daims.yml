@@ -8,6 +8,9 @@ ingredients:
   - item: "200 g de chocolat au lait vegan (ou à défaut, chocolat noir)"
   - item: "150 g de crème liquide végétale (30% de matières grasses)"
   - item: "100 g de daims en morceaux"
+flavor:
+  - chocolat au lait
+  - caramel
 steps:
   - "Faire chauffer la crème liquide jusqu'à ébullition"
   - "Verser sur le chocolat en morceaux"

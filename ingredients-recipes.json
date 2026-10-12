@@ -1,0 +1,609 @@
+[
+	{
+		"name": "Abricot",
+		"compatibles": [
+			"Amande",
+			"Bergamote",
+			"Cardamome",
+			"Lavande",
+			"Miel",
+			"Pistache",
+			"Romarin",
+			"Vanille"
+		],
+		"type": "Fruit à noyau",
+		"nuts": ["Amande", "Pistache"],
+		"flavor": "abricot"
+	},
+	{
+		"name": "Amande",
+		"compatibles": [
+			"Abricot",
+			"Amaretto",
+			"Apéritif (amaretto)",
+			"Beurre",
+			"Cerise",
+			"Chocolat au lait",
+			"Citron",
+			"Figues",
+			"Framboise",
+			"Miel",
+			"Orange",
+			"Poires",
+			"Pistache",
+			"Rhum",
+			"Vanille"
+		],
+		"type": "Oléagineux",
+		"nuts": ["Noisette", "Pistache"],
+		"flavor": "amande"
+	},
+	{
+		"name": "Amaretto",
+		"compatibles": [
+			"Amande",
+			"Café",
+			"Cerise amarena",
+			"Chocolat noir",
+			"Miel",
+			"Noisette",
+			"Poire",
+			"Vanille"
+		],
+		"type": "Alcool liqueur",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "amaretto"
+	},
+	{
+		"name": "Ananas",
+		"compatibles": [
+			"Coco",
+			"Citron vert",
+			"Gingembre",
+			"Mangue",
+			"Menthe",
+			"Noix de coco",
+			"Passion",
+			"Rhum",
+			"Vanille"
+		],
+		"type": "Fruit tropical",
+		"nuts": ["Noix de coco"],
+		"flavor": "ananas"
+	},
+	{
+		"name": "Basilic",
+		"compatibles": ["Citron", "Fraise", "Framboise", "Melon", "Miel", "Menthe", "Pêche", "Vanille"],
+		"type": "Herbe",
+		"nuts": ["Noix (pignon)"],
+		"flavor": "basilic"
+	},
+	{
+		"name": "Bergamote",
+		"compatibles": ["Chocolat blanc", "Citron", "Framboise", "Thé Earl Grey", "Vanille"],
+		"type": "Agrume/Thé",
+		"nuts": ["Amande"],
+		"flavor": "bergamote"
+	},
+	{
+		"name": "Beurre",
+		"compatibles": ["Caramel", "Citron", "Noisette", "Pain d'épices", "Pomme", "Vanille"],
+		"type": "Produit laitier",
+		"nuts": ["Noisette"],
+		"flavor": "beurre"
+	},
+	{
+		"name": "Café",
+		"compatibles": ["Amaretto", "Caramel", "Chocolat noir", "Noisette", "Orange", "Vanille"],
+		"type": "Boisson/Arôme",
+		"nuts": ["Noisette", "Amande"],
+		"flavor": "café"
+	},
+	{
+		"name": "Cajou",
+		"compatibles": ["Caramel", "Chocolat blanc", "Citron vert", "Gingembre", "Mangue", "Vanille"],
+		"type": "Oléagineux",
+		"nuts": ["Noix de cajou"],
+		"flavor": "noix de cajou"
+	},
+	{
+		"name": "Caramel (beurre salé)",
+		"compatibles": [
+			"Banane",
+			"Café",
+			"Chocolat",
+			"Fleur de sel",
+			"Noix de pécan",
+			"Pomme",
+			"Vanille"
+		],
+		"type": "Sucré",
+		"nuts": ["Pécan", "Noisette"],
+		"flavor": "caramel"
+	},
+	{
+		"name": "Cardamome",
+		"compatibles": ["Amande", "Cannelle", "Gingembre", "Orange", "Poire", "Pistache", "Vanille"],
+		"type": "Épice",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "cardamome"
+	},
+	{
+		"name": "Cassis",
+		"compatibles": [
+			"Cassis (autre préparations)",
+			"Framboise",
+			"Myrtille",
+			"Vanille",
+			"Chocolat blanc",
+			"Mûre"
+		],
+		"type": "Fruit",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "cassis"
+	},
+	{
+		"name": "Chocolat au lait",
+		"compatibles": ["Amande", "Banane", "Caramel", "Noisette", "Vanille"],
+		"type": "Produit chocolaté",
+		"nuts": ["Noisette"],
+		"flavor": "chocolat au lait"
+	},
+	{
+		"name": "Chocolat blanc",
+		"compatibles": ["Bergamote", "Coco", "Framboise", "Matcha", "Yuzu", "Vanille"],
+		"type": "Produit chocolaté",
+		"nuts": ["Amande", "Pistache"],
+		"flavor": "chocolat blanc"
+	},
+	{
+		"name": "Chocolat noir",
+		"compatibles": [
+			"Café",
+			"Caramel",
+			"Cassis",
+			"Framboise",
+			"Noisette",
+			"Orange",
+			"Piment",
+			"Vanille"
+		],
+		"type": "Produit chocolaté",
+		"nuts": ["Noisette", "Amande"],
+		"flavor": "chocolat noir"
+	},
+	{
+		"name": "Châtaigne",
+		"compatibles": ["Caramel", "Chocolat noir", "Poire", "Vanille", "Noisette", "Vin doux"],
+		"type": "Fruit sec",
+		"nuts": ["Noisette"],
+		"flavor": "châtaigne"
+	},
+	{
+		"name": "Citron",
+		"compatibles": ["Basilic", "Bergamote", "Meringue", "Myrtille", "Pavot", "Thym", "Vanille"],
+		"type": "Agrume",
+		"nuts": ["Amande", "Noix"],
+		"flavor": "citron"
+	},
+	{
+		"name": "Citron noir",
+		"compatibles": [
+			"Amande",
+			"Cannelle",
+			"Cardamome",
+			"Caramel",
+			"Chocolat",
+			"Coriandre",
+			"Datte",
+			"Figue",
+			"Gingembre",
+			"Miel",
+			"Noisette",
+			"Orange",
+			"Sésame"
+		],
+		"type": "Épice",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "citron noir"
+	},
+	{
+		"name": "Citron vert",
+		"compatibles": ["Coco", "Citronnelle", "Gingembre", "Mangue", "Menthe", "Yuzu", "Vanille"],
+		"type": "Agrume",
+		"nuts": ["Noix de cajou"],
+		"flavor": "citron vert"
+	},
+	{
+		"name": "Clémentine",
+		"compatibles": ["Amande", "Cannelle", "Chocolat noir", "Noisette", "Vanille"],
+		"type": "Agrume",
+		"nuts": ["Amande"],
+		"flavor": "clémentine"
+	},
+	{
+		"name": "Coco (noix de coco)",
+		"compatibles": ["Ananas", "Citrons verts", "Mangue", "Rhum", "Vanille", "Passion"],
+		"type": "Fruit tropical/oléagineux",
+		"nuts": ["Noix de coco"],
+		"flavor": "noix de coco"
+	},
+	{
+		"name": "Coriandre",
+		"compatibles": ["Ananas", "Citron vert", "Gingembre", "Mangue", "Fraise", "Miel"],
+		"type": "Herbe/épice",
+		"nuts": ["Noix de cajou"],
+		"flavor": "coriandre"
+	},
+	{
+		"name": "Crème fraîche",
+		"compatibles": ["Citron", "Fruits rouges", "Miel", "Vanille", "Caramel"],
+		"type": "Produit laitier",
+		"nuts": ["Noisette"],
+		"flavor": "crème fraîche"
+	},
+	{
+		"name": "Crème pâtissière",
+		"compatibles": ["Chocolat", "Fruits rouges", "Rhum", "Vanille", "Caramel", "Amande"],
+		"type": "Crème",
+		"nuts": ["Amande"],
+		"flavor": "crème pâtissière"
+	},
+	{
+		"name": "Datte",
+		"compatibles": ["Amande", "Cannelle", "Noix", "Orange", "Tahin", "Vanille"],
+		"type": "Fruit sec",
+		"nuts": ["Noix", "Amande"],
+		"flavor": "datte"
+	},
+	{
+		"name": "Figue",
+		"compatibles": ["Amande", "Fromage frais", "Miel", "Noix", "Orange", "Vanille"],
+		"type": "Fruit",
+		"nuts": ["Noix", "Amande"],
+		"flavor": "figue"
+	},
+	{
+		"name": "Fleur d'hibiscus",
+		"compatibles": [
+			"Citron vert",
+			"Framboise",
+			"Gingembre",
+			"Mûre",
+			"Orange",
+			"Vanille",
+			"Noisette"
+		],
+		"type": "Fleur",
+		"nuts": ["Noisette", "Amande"],
+		"flavor": "hibiscus"
+	},
+	{
+		"name": "Fleur d’oranger",
+		"compatibles": ["Amande", "Cardamome", "Datte", "Miel", "Pistache", "Vanille", "Rose"],
+		"type": "Fleur",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "fleur d'oranger"
+	},
+	{
+		"name": "Fraise",
+		"compatibles": ["Basilic", "Balsamique réduit", "Citron", "Pistache", "Vanille", "Poivre"],
+		"type": "Fruit",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "fraise"
+	},
+	{
+		"name": "Framboise",
+		"compatibles": ["Amande", "Basilic", "Cassis", "Myrtille", "Pistache", "Vanille", "Rhubarbe"],
+		"type": "Fruit",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "framboise"
+	},
+	{
+		"name": "Fruit de la passion",
+		"compatibles": ["Coco", "Mangue", "Meringue", "Yuzu", "Vanille", "Noix de cajou"],
+		"type": "Fruit tropical",
+		"nuts": ["Noix de cajou"],
+		"flavor": "fruit de la passion"
+	},
+	{
+		"name": "Fève tonka",
+		"compatibles": ["Amande", "Caramel", "Café", "Chocolat", "Poire", "Vanille"],
+		"type": "Arôme",
+		"nuts": ["Noisette"],
+		"flavor": "fève tonka"
+	},
+	{
+		"name": "Gingembre",
+		"compatibles": ["Citron", "Citron vert", "Carotte", "Miel", "Orange", "Pomme", "Vanille"],
+		"type": "Épice",
+		"nuts": ["Noix (noix)"],
+		"flavor": "gingembre"
+	},
+	{
+		"name": "Graine de pavot",
+		"compatibles": ["Citron", "Miel", "Vanille", "Amande", "Noix"],
+		"type": "Graine",
+		"nuts": ["Amande"],
+		"flavor": "pavot"
+	},
+	{
+		"name": "Graines de sésame",
+		"compatibles": ["Caramel", "Chocolat", "Tahin", "Vanille", "Miel", "Orange"],
+		"type": "Graine/oléagineux",
+		"nuts": ["Sésame", "Noix"],
+		"flavor": "sésame"
+	},
+	{
+		"name": "Groseille",
+		"compatibles": ["Cassis", "Fraise", "Framboise", "Vanille", "Noix"],
+		"type": "Fruit",
+		"nuts": ["Amande", "Noix"],
+		"flavor": "groseille"
+	},
+	{
+		"name": "Hibiscus",
+		"compatibles": [
+			"Amande",
+			"Ananas",
+			"Basilic",
+			"Cassis",
+			"Citron",
+			"Cranberry",
+			"Fraise",
+			"Framboise",
+			"Gingembre",
+			"Groseille",
+			"Litchi",
+			"Mûre",
+			"Orange",
+			"Pamplemousse",
+			"Rose",
+			"Vanille"
+		],
+		"type": "Fleur",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "hibiscus"
+	},
+	{
+		"name": "Huile d'olive (douce)",
+		"compatibles": ["Amande", "Citron", "Figues", "Fleur d'oranger", "Vanille", "Thym"],
+		"type": "Huile/huile d'olive",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "huile d'olive"
+	},
+	{
+		"name": "Lait (lait entier)",
+		"compatibles": ["Caramel", "Chocolat", "Vanille", "Fruits", "Noisette"],
+		"type": "Lait",
+		"nuts": ["Noisette"],
+		"flavor": "lait"
+	},
+	{
+		"name": "Lavande",
+		"compatibles": ["Abricot", "Miel", "Pêche", "Vanille", "Chocolat blanc", "Amande"],
+		"type": "Fleur",
+		"nuts": ["Amande"],
+		"flavor": "lavande"
+	},
+	{
+		"name": "Mango (Mangue)",
+		"compatibles": [
+			"Fruit de la passion",
+			"Citron vert",
+			"Coco",
+			"Gingembre",
+			"Vanille",
+			"Noix de cajou"
+		],
+		"type": "Fruit tropical",
+		"nuts": ["Noix de cajou"],
+		"flavor": "mangue"
+	},
+	{
+		"name": "Marzipan / Pâte d'amande",
+		"compatibles": ["Amande", "Cerise", "Chocolat blanc", "Orange", "Vanille", "Pistache"],
+		"type": "Préparation",
+		"nuts": ["Amande", "Pistache"],
+		"flavor": "pâte d'amande"
+	},
+	{
+		"name": "Menthe",
+		"compatibles": ["Chocolat", "Citron", "Fraise", "Limoncello", "Vanille", "Noix"],
+		"type": "Herbe",
+		"nuts": ["Amande"],
+		"flavor": "menthe"
+	},
+	{
+		"name": "Miel",
+		"compatibles": ["Amande", "Lavande", "Orange", "Poire", "Noix", "Vanille"],
+		"type": "Sucrant",
+		"nuts": ["Amande", "Noix"],
+		"flavor": "miel"
+	},
+	{
+		"name": "Mûre",
+		"compatibles": [
+			"Amande",
+			"Cassis",
+			"Chocolat noir",
+			"Framboise",
+			"Myrtille",
+			"Poire",
+			"Romarin",
+			"Vanille",
+			"Violette"
+		],
+		"type": "Fruit",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "mûre"
+	},
+	{
+		"name": "Noisette",
+		"compatibles": ["Caramel", "Chocolat au lait", "Café", "Orange", "Poire", "Vanille"],
+		"type": "Oléagineux",
+		"nuts": ["Noisette"],
+		"flavor": "noisette"
+	},
+	{
+		"name": "Noix de coco",
+		"compatibles": ["Ananas", "Mangue", "Rhum", "Chocolat blanc", "Vanille", "Citron vert"],
+		"type": "Fruit tropical",
+		"nuts": ["Noix de coco"],
+		"flavor": "noix de coco"
+	},
+	{
+		"name": "Noix de pécan",
+		"compatibles": ["Caramel", "Érable", "Noix", "Pomme", "Vanille", "Chocolat noir"],
+		"type": "Oléagineux",
+		"nuts": ["Noix de pécan"],
+		"flavor": "noix de pécan"
+	},
+	{
+		"name": "Orange",
+		"compatibles": ["Amande", "Bergamote", "Cannelle", "Chocolat noir", "Miel", "Vanille"],
+		"type": "Agrume",
+		"nuts": ["Amande"],
+		"flavor": "orange"
+	},
+	{
+		"name": "Pamplemousse",
+		"compatibles": ["Gingembre", "Miel", "Menthe", "Vanille", "Noix"],
+		"type": "Agrume",
+		"nuts": ["Noix"],
+		"flavor": "pamplemousse"
+	},
+	{
+		"name": "Piment (chili)",
+		"compatibles": ["Chocolat noir", "Mangue", "Orange", "Vanille", "Noix"],
+		"type": "Épice",
+		"nuts": ["Noix"],
+		"flavor": "piment"
+	},
+	{
+		"name": "Pistache",
+		"compatibles": ["Amande", "Cardamome", "Chocolat blanc", "Rose", "Vanille", "Yuzu"],
+		"type": "Oléagineux",
+		"nuts": ["Pistache"],
+		"flavor": "pistache"
+	},
+	{
+		"name": "Poire",
+		"compatibles": ["Amande", "Caramel", "Chocolat noir", "Gingembre", "Poire", "Vanille"],
+		"type": "Fruit",
+		"nuts": ["Noix", "Amande"],
+		"flavor": "poire"
+	},
+	{
+		"name": "Poivre de Timut",
+		"compatibles": ["Cassis", "Chocolat noir", "Fraise", "Mangue", "Pamplemousse", "Vanille"],
+		"type": "Épice/poivre",
+		"nuts": ["Noix"],
+		"flavor": "poivre de timut"
+	},
+	{
+		"name": "Pomme",
+		"compatibles": ["Cannelle", "Caramel", "Noix", "Poire", "Vanille", "Calvados"],
+		"type": "Fruit",
+		"nuts": ["Noix"],
+		"flavor": "pomme"
+	},
+	{
+		"name": "Praline / Praliné",
+		"compatibles": ["Chocolat", "Noisette", "Caramel", "Vanille", "Amande"],
+		"type": "Confiture/produit",
+		"nuts": ["Noisette"],
+		"flavor": "praliné"
+	},
+	{
+		"name": "Pêche",
+		"compatibles": ["Abricot", "Lavande", "Pêche", "Pistache", "Vanille", "Amande"],
+		"type": "Fruit",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "pêche"
+	},
+	{
+		"name": "Rhubarbe",
+		"compatibles": ["Amande", "Framboise", "Gingembre", "Pomme", "Vanille", "Crème fraîche"],
+		"type": "Fruit",
+		"nuts": ["Amande", "Noix"],
+		"flavor": "rhubarbe"
+	},
+	{
+		"name": "Rhum",
+		"compatibles": ["Ananas", "Banane", "Coco", "Café", "Vanille", "Orange"],
+		"type": "Alcool",
+		"nuts": ["Noix"],
+		"flavor": "rhum"
+	},
+	{
+		"name": "Rose",
+		"compatibles": ["Fraise", "Framboise", "Hibiscus", "Pistache", "Vanille", "Violette"],
+		"type": "Fleur",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "rose"
+	},
+	{
+		"name": "Sarrasin",
+		"compatibles": ["Caramel", "Chocolat noir", "Miel", "Noix", "Beurre"],
+		"type": "Céréale",
+		"nuts": ["Noix"],
+		"flavor": "sarrasin"
+	},
+	{
+		"name": "Sel (fleur de sel)",
+		"compatibles": ["Caramel", "Chocolat", "Noix", "Vanille", "Beurre"],
+		"type": "Assaisonnement",
+		"nuts": ["Noix"],
+		"flavor": "sel"
+	},
+	{
+		"name": "Sésame (noir/blanc)",
+		"compatibles": ["Caramel", "Chocolat", "Tahin", "Vanille", "Miel", "Noix"],
+		"type": "Graine/oléagineux",
+		"nuts": ["Sésame", "Noix"],
+		"flavor": "sésame"
+	},
+	{
+		"name": "Tahini / Tahin",
+		"compatibles": ["Datte", "Miel", "Sésame", "Chocolat", "Orange", "Noix"],
+		"type": "Pâte de sésame",
+		"nuts": ["Sésame", "Noix"],
+		"flavor": "tahini"
+	},
+	{
+		"name": "Thym",
+		"compatibles": ["Citron", "Figues", "Huile d'olive", "Miel", "Orange", "Vanille"],
+		"type": "Herbe",
+		"nuts": ["Amande"],
+		"flavor": "thym"
+	},
+	{
+		"name": "Vanille",
+		"compatibles": ["Agrumes", "Chocolat", "Fruits rouges", "Noix", "Caramel", "Rhum"],
+		"type": "Épice/Arôme",
+		"nuts": ["Amande", "Noisette"],
+		"flavor": "vanille"
+	},
+	{
+		"name": "Violette",
+		"compatibles": ["Cassis", "Framboise", "Mûre", "Poire", "Vanille", "Amande"],
+		"type": "Fleur",
+		"nuts": ["Amande"],
+		"flavor": "violette"
+	},
+	{
+		"name": "Yaourt",
+		"compatibles": ["Fruits rouges", "Miel", "Citron", "Granola", "Vanille", "Noix"],
+		"type": "Produit laitier",
+		"nuts": ["Noix"],
+		"flavor": "yaourt"
+	},
+	{
+		"name": "Yuzu",
+		"compatibles": ["Chocolat blanc", "Citron vert", "Gingembre", "Matcha", "Miel", "Pistache"],
+		"type": "Agrume exotique",
+		"nuts": ["Pistache", "Amande"],
+		"flavor": "yuzu"
+	}
+]

@@ -7,6 +7,9 @@ ingredients:
   - item: "25 g de sucre"
   - item: "4 g de pectine NH"
   - item: "25 g de jus de citron"
+flavor:
+  - fraise
+  - tomate
 steps:
   - "Mélanger le sucre et la pectine NH"
   - "Faire chauffer la purée de fraise et la purée de tomate"

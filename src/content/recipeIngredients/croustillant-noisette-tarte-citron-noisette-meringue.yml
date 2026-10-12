@@ -7,6 +7,9 @@ ingredients:
   - item: "50 g de crêpes dentelle"
   - item: "20 g de noisettes en morceau"
   - item: "Une petite pincée de sel"
+flavor:
+  - noisette
+  - chocolat blanc
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée de noisettes et mélanger"

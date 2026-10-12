@@ -5,6 +5,8 @@ ingredients:
   - item: "300 g de purée de poires"
   - item: "40 g de sucre"
   - item: "4 g de pectine NH"
+flavor:
+  - poire
 steps:
   - "Mélanger le sucre et la pectine"
   - "Mettre à chauffer la purée de poires"

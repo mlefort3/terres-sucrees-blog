@@ -6,6 +6,8 @@ ingredients:
   - item: "45 g de pâte à tartiner vegan à la noix de coco"
   - item: "25 g de riz soufflé (ou autre croustillant)"
   - item: "1,5 c. à soupe d’huile d’olive"
+flavor:
+  - noix de coco
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la pâte à tartiner et mélanger"

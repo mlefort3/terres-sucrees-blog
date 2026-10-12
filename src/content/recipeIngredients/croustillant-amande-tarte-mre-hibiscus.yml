@@ -5,6 +5,8 @@ ingredients:
   - item: "50 g de chocolat blanc vegan"
   - item: "45 g de purée d'amandes"
   - item: "50 g de crêpes dentelles (ou biscuits sablés vegan, ou riz soufflé (30 g))"
+flavor:
+  - amande
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter la purée d'amandes et mélanger"

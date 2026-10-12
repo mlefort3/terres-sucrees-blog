@@ -8,6 +8,9 @@ ingredients:
   - item: "1 petite mangue"
   - item: "1 gousse de vanille"
   - item: "30 g de sucre"
+flavor:
+  - mangue
+  - vanille
 steps:
   - "Faire caraméliser le sucre"
   - "Ajouter la mangue coupée en lamelles fines et la vanille"

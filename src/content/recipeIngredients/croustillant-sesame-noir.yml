@@ -7,6 +7,8 @@ ingredients:
   - item: "40 g de riz soufflé (ou crêpes dentelles vegan, ou biscuits sablés vegan)"
   - item: "15 g de graines de sésame noir"
   - item: "1 pincée de sel"
+flavor:
+  - sésame
 steps:
   - "Faire fondre le chocolat blanc au bain-marie"
   - "Ajouter la pâte de sésame noir et mélanger"

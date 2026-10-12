@@ -17,6 +17,9 @@ ingredients:
   - item: "2 g de levure chimique (ou poudre à lever)"
   - item: "75 g de morceaux de chocolat noir (2)"
   - item: "40 g de noisettes en morceaux"
+flavor:
+  - chocolat
+  - noisette
 steps:
   - "Si souhaité, faire torréfier les noisettes"
   - "Faire fondre la margarine avec le chocolat (1)"

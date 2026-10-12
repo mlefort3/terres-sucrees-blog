@@ -5,6 +5,8 @@ ingredients:
   - item: "50 g de chocolat blanc végétal"
   - item: "45 g de praliné amandes sarrasin"
   - item: "25 g de riz soufflé"
+flavor:
+  - praliné
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le praliné et mélanger"

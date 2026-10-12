@@ -13,6 +13,9 @@ ingredients:
   - item: "1 c. à café d’extrait de vanille"
   - item: "1 c. à café de vinaigre de cidre"
   - item: "Zeste d'un citron"
+flavor:
+  - neutre
+  - citron
 steps:
   - "Préchauffer le four à 170°C (chaleur tournante)"
   - "Dans un bol, mélanger la farine, la fécule de maïs, le sucre, la levure chimique et le sel"

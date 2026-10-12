@@ -11,6 +11,8 @@ ingredients:
   - item: "2 g de poudre à lever"
   - item: "57 g de crème végétale liquide"
   - item: "15 g d’huile d’olive"
+flavor:
+  - chocolat
 steps:
   - "Dans un grand bol, mélanger le yaourt, la féculé, le sucre, l'huile et la crème"
   - "Dans un autre mol, mélanger la farine tamisée, le cacao tamisé et la poudre à lever"

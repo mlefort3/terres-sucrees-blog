@@ -15,6 +15,8 @@ ingredients:
   - item: "Décoration : 1 cuillère à soupe de sirop d'agave"
   - item: "Décoration (facultatif) : sucre en grains"
   - item: "Décoration (facultatif) : fruits confits"
+flavor:
+  - fleur d'oranger
 steps:
   - "Délayer la levure dans le lait de soja (1) tiède avec 1 cuillère à café de sucre"
   - "Laisser reposer 10 min"

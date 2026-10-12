@@ -11,6 +11,9 @@ ingredients:
   - item: "2 cuillère à soupe d'eau"
   - item: "5 g de levure chimique"
   - item: "1 cuillère à soupe d'extrait de vanille"
+flavor:
+  - neutre
+  - vanille
 steps:
   - "Mélanger le yaourt de soja et l'eau"
   - "Ajouter progressivement le sucre"

@@ -9,6 +9,8 @@ ingredients:
   - item: "600 g de crème végétale liquide à 30% de matières grasses (2)"
   - item: "15 g de sucre"
   - item: "5 g de pectine NH"
+flavor:
+  - chocolat noir
 steps:
   - "Mélanger le sucre et la pectine"
   - "Faire chauffer la crème (1) et le sirop de glucose"

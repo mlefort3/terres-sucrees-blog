@@ -8,6 +8,8 @@ ingredients:
   - item: "100 g de crêpes dentelles"
   - item: "80 g de chocolat blanc vegan"
   - item: "60 g de beurre de cacahuètes"
+flavor:
+  - cacahuète
 steps:
   - "Faire fondre le chocolat au bain marie"
   - "Ajouter le beurre de cacahuètes et mélanger"

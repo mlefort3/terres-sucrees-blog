@@ -10,6 +10,8 @@ ingredients:
   - item: "75 g de sucre"
   - item: "1 cuillère à café d'arôme vanille"
   - item: "125 g de margarine"
+flavor:
+  - vanille
 steps:
   - "Réhydrater le Yumgo jaune si nécessaire"
   - "Dans une casserole, mélanger la crème végétale, le Yumgo jaune réhydraté, le sucre et la vanille"

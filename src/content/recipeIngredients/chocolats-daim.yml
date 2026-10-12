@@ -10,6 +10,9 @@ ingredients:
   - item: "250 gr de sucre"
   - item: "70 gr de sirop d'agave"
   - item: "Chocolat au lait vegan (ou à défaut, chocolat noir vegan)"
+flavor:
+  - chocolat
+  - amande
 steps:
   - "Couper les amandes en très petits morceaux"
   - "Dans une casserole, verser le sucre, la margarine et le sirop d'agave"

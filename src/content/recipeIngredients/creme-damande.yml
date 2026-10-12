@@ -8,6 +8,8 @@ ingredients:
   - item: "110 g d'amandes en poudre"
   - item: "30 g de farine"
   - item: "2–3 gouttes d'arôme d'amande amère"
+flavor:
+  - amande
 steps:
   - "Travailler la margarine pommade avec le sucre jusqu'à obtention d'une texture lisse"
   - "Ajouter le yaourt de soja et l'arôme, puis mélanger"

@@ -8,6 +8,8 @@ ingredients:
   - item: "140 g de chocolat blanc vegan"
   - item: "312 g de crème végétale (1)"
   - item: "312 g de crème végétale (2)"
+flavor:
+  - thé
 steps:
   - "Mélanger ensemble le sucre et la pectine et réserver"
   - "Porter à ébullition la crème végétale (1)"

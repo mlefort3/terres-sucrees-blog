@@ -7,6 +7,9 @@ ingredients:
   - item: "50 g de crêpes dentelles"
   - item: "20 g de noisettes en morceaux"
   - item: "Une pincée de sel"
+flavor:
+  - chocolat noir
+  - noisette
 steps:
   - "Étaler sur le biscuit cuit"
   - "Faire fondre le chocolat au bain marie"
