@@ -1,12 +1,15 @@
 ---
 // Composant pour afficher les ingrédients de recettes modulaires
 interface Props {
+	title: string
+	description?: string | null
 	recipeIngredientIds: string[]
 }
 
 import { getCollection } from 'astro:content'
+import RecipePdfButton from '@/components/RecipePdfButton'
 
-const { recipeIngredientIds = [] } = Astro.props
+const { title, description = null, recipeIngredientIds = [] } = Astro.props
 
 // Charger tous les ingrédients de recettes disponibles
 const allRecipeIngredients = await getCollection('recipeIngredients')
@@ -15,14 +18,29 @@ const allRecipeIngredients = await getCollection('recipeIngredients')
 const recipeIngredients = recipeIngredientIds
 	.map((id) => allRecipeIngredients.find((ing) => ing.id === id))
 	.filter((ing) => ing !== undefined)
+
+// Données transmises au bouton d'export PDF (titre + chapeau de l'article).
+const pdfComponents = recipeIngredients.map((ingredient) => ({
+	name: ingredient.data.name,
+	description: ingredient.data.description ?? null,
+	source: ingredient.data.source ?? null,
+	ingredients: ingredient.data.ingredients.map((ing) => ({
+		item: ing.item,
+		quantity: ing.quantity ?? null
+	})),
+	steps: ingredient.data.steps
+}))
 ---
 
 {
 	recipeIngredients && recipeIngredients.length > 0 && (
 		<div class='w-full'>
-			<h2 id='recette' class='text-4xl font-bold mb-8 text-primary'>
-				Recette
-			</h2>
+			<div class='flex flex-wrap items-center justify-between gap-4 mb-8'>
+				<h2 id='recette' class='text-4xl font-bold text-primary'>
+					Recette
+				</h2>
+				<RecipePdfButton title={title} description={description} components={pdfComponents} />
+			</div>
 			<div class='space-y-8'>
 				{recipeIngredients.map((ingredient) => (
 					<div class='pb-8 last:pb-0'>

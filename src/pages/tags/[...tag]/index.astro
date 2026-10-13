@@ -20,7 +20,7 @@ const unsluglifyNameTag = unsluglify(tag.toLowerCase())
 const posts = await getPostByTag(tag)
 ---
 
-<BaseLayout title={unsluglifyNameTag} noindex={false} gradient>
+<BaseLayout title={`${unsluglifyNameTag} — recettes véganes`} noindex={false} gradient>
 	<TitlePage title={unsluglifyNameTag} />
 	<ListPosts posts={posts} />
 </BaseLayout>

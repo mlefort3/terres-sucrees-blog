@@ -116,7 +116,7 @@ const kindConfig = Object.fromEntries(
 			</div>
 		</header>
 
-		<hr />
+		<hr class='my-8 md:my-10' />
 
 		<!-- Carte du haut : le type de recette, puis les menus déroulants.
 		     `relative z-40` : la carte crée son propre contexte d'empilement (le
@@ -715,7 +715,7 @@ const kindConfig = Object.fromEntries(
 				if (statusEl) {
 					statusEl.textContent = missing.length
 						? `Encore ${missing.length} élément(s) obligatoire(s) à choisir.`
-						: 'Recette complète ✨'
+						: 'Recette prête ✨'
 				}
 
 				if (!chosen.length) {
@@ -825,274 +825,7 @@ const kindConfig = Object.fromEntries(
 	<!-- Export PDF : génère un fichier .pdf téléchargé directement (jsPDF), mis en
 	     page en texte vectoriel sélectionnable et sans la table des matières. -->
 	<script>
-		const MARGIN = 48
-		const GUTTER = 28
-		const LINE_FACTOR = 1.3
-		const ITEM_GAP = 4
-		const CARD_PAD = 14
-		const CARD_GAP = 14
-		const CARD_RADIUS = 9
-		const PRIMARY = [111, 107, 174]
-		const BODY = [45, 45, 55]
-		const MUTED = [122, 122, 138]
-		const CARD_FILL = [244, 244, 248]
-		const FONT = 'helvetica'
-
-		const sourceLabel = (source) => {
-			if (!source) return ''
-			if (typeof source === 'string') return `Basé sur la recette de ${source}`
-			const url = source.url ? ` - ${source.url}` : ''
-			return `Basé sur la recette de ${source.title}${url}`
-		}
-
-		const slugify = (value) =>
-			value
-				.normalize('NFD')
-				.replace(/[\u0300-\u036f]/g, '')
-				.toLowerCase()
-				.replace(/[^a-z0-9]+/g, '-')
-				.replace(/^-+|-+$/g, '')
-				.slice(0, 60)
-
-		const buildRecipePdf = (jsPDF, data) => {
-			const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' })
-			const pageW = doc.internal.pageSize.getWidth()
-			const pageH = doc.internal.pageSize.getHeight()
-			const contentW = pageW - MARGIN * 2
-			const innerW = contentW - CARD_PAD * 2
-			const colW = (innerW - GUTTER) / 2
-			const bottom = pageH - 54
-			doc.setLineHeightFactor(LINE_FACTOR)
-
-			let y = MARGIN
-
-			const applyFont = (size, style = 'normal', color = BODY) => {
-				doc.setFont(FONT, style)
-				doc.setFontSize(size)
-				doc.setTextColor(color[0], color[1], color[2])
-			}
-
-			// Hauteur d'un texte une fois replié sur `width`.
-			const heightOf = (text, width, size, style = 'normal') => {
-				doc.setFont(FONT, style)
-				doc.setFontSize(size)
-				return doc.splitTextToSize(String(text), width).length * size * LINE_FACTOR
-			}
-
-			// Dessine un paragraphe replié depuis son bord haut et renvoie sa hauteur.
-			const draw = (text, x, top, width, size, style = 'normal', color = BODY) => {
-				applyFont(size, style, color)
-				const lines = doc.splitTextToSize(String(text), width)
-				doc.text(lines, x, top, { baseline: 'top' })
-				return lines.length * size * LINE_FACTOR
-			}
-
-			const newPage = () => {
-				doc.addPage()
-				y = MARGIN
-			}
-
-			// Carte grise d'un élément de la recette : son fond est posé avant son
-			// contenu, d'où une hauteur calculée à l'avance (voir columnHeight).
-			const fillCard = (top, height) => {
-				doc.setFillColor(CARD_FILL[0], CARD_FILL[1], CARD_FILL[2])
-				doc.roundedRect(MARGIN, top, contentW, height, CARD_RADIUS, CARD_RADIUS, 'F')
-			}
-
-			// --- En-tête : le nom de la recette à gauche, le blog à droite ---
-			const title = (data.name || '').trim() || data.kindLabel || 'Ma recette'
-			applyFont(11, 'bold', MUTED)
-			const brand = 'Terres Sucrées'
-			const brandW = doc.getTextWidth(brand)
-			doc.text(brand, pageW - MARGIN, y + 7, { align: 'right', baseline: 'top' })
-			applyFont(22, 'bold', PRIMARY)
-			const titleLines = doc.splitTextToSize(title, contentW - brandW - 24)
-			doc.text(titleLines, MARGIN, y, { baseline: 'top' })
-			y += titleLines.length * 22 * LINE_FACTOR + 12
-			doc.setDrawColor(PRIMARY[0], PRIMARY[1], PRIMARY[2])
-			doc.setLineWidth(1.2)
-			doc.line(MARGIN, y, pageW - MARGIN, y)
-			y += 24
-
-			// --- Montage ---------------------------------------------------
-			y += draw('Montage', MARGIN, y, contentW, 16, 'bold', PRIMARY) + 8
-			data.components.forEach((component, index) => {
-				const text = `${index + 1}.  ${component.name}`
-				const h = heightOf(text, contentW - 8, 11)
-				if (y + h > bottom) newPage()
-				y += draw(text, MARGIN + 4, y, contentW - 8, 11) + 5
-			})
-			y += 20
-
-			// --- Recette : une carte grise par élément ----------------------
-			if (y + 34 > bottom) newPage()
-			y += draw('Recette', MARGIN, y, contentW, 16, 'bold', PRIMARY) + 14
-
-			// Deux colonnes côte à côte, à l'intérieur d'une carte.
-			const drawColumns = (ingredients, steps, top) => {
-				const leftX = MARGIN + CARD_PAD
-				const rightX = leftX + colW + GUTTER
-
-				let ly = top
-				ly += draw('INGRÉDIENTS', leftX, ly, colW, 9, 'bold', PRIMARY) + 8
-				ingredients.forEach((item) => {
-					ly += draw(item, leftX + 2, ly, colW - 12, 10) + ITEM_GAP
-				})
-
-				let ry = top
-				ry += draw('ÉTAPES', rightX, ry, colW, 9, 'bold', PRIMARY) + 8
-				steps.forEach((item) => {
-					ry += draw(item, rightX + 2, ry, colW - 12, 10) + ITEM_GAP
-				})
-
-				return Math.max(ly, ry) - top
-			}
-
-			const columnHeight = (ingredients, steps) => {
-				const head = heightOf('INGRÉDIENTS', colW, 9, 'bold') + 8
-				const list = (items) =>
-					items.reduce((total, item) => total + heightOf(item, colW - 12, 10) + ITEM_GAP, 0)
-				return Math.max(head + list(ingredients), head + list(steps))
-			}
-
-			data.components.forEach((component) => {
-				const ingredients = component.ingredients.map(
-					(ing) => `-  ${ing.item}${ing.quantity ? ` (${ing.quantity})` : ''}`
-				)
-				const steps = component.steps.map((step, index) => `${index + 1}.  ${step}`)
-				const source = sourceLabel(component.source)
-
-				const headH =
-					heightOf(component.name, innerW, 13, 'bold') +
-					(source ? 4 + heightOf(source, innerW, 9, 'italic') : 0) +
-					(component.description ? 10 + heightOf(component.description, innerW, 10) : 0) +
-					(source || component.description ? 10 : 0)
-				const cardH = CARD_PAD * 2 + headH + columnHeight(ingredients, steps)
-
-				// La carte tient sur une page : fond gris, puis contenu par-dessus.
-				if (cardH <= bottom - MARGIN) {
-					if (y + cardH > bottom) newPage()
-					const top = y
-					const leftX = MARGIN + CARD_PAD
-					fillCard(top, cardH)
-					let cy = top + CARD_PAD
-					cy += draw(component.name, leftX, cy, innerW, 13, 'bold', PRIMARY)
-					if (source) {
-						cy += 4
-						cy += draw(source, leftX, cy, innerW, 9, 'italic', MUTED)
-					}
-					if (component.description) {
-						cy += 10
-						cy += draw(component.description, leftX, cy, innerW, 10)
-					}
-					if (source || component.description) cy += 10
-					drawColumns(ingredients, steps, cy)
-					y = top + cardH + CARD_GAP
-					return
-				}
-
-				// Élément plus haut qu'une page (rare) : les sections s'empilent et la
-				// carte est découpée page par page.
-				const rows = []
-				const pushRow = (text, size, style, color, width, indent = 0) => {
-					rows.push({
-						text,
-						size,
-						style,
-						color,
-						width,
-						indent,
-						height: heightOf(text, width, size, style)
-					})
-				}
-				const pushGap = (gap) => rows.push({ gap })
-
-				pushRow(component.name, 13, 'bold', PRIMARY, innerW)
-				if (source) {
-					pushGap(4)
-					pushRow(source, 9, 'italic', MUTED, innerW)
-				}
-				if (component.description) {
-					pushGap(10)
-					pushRow(component.description, 10, 'normal', BODY, innerW)
-				}
-				pushGap(10)
-				pushRow('INGRÉDIENTS', 9, 'bold', PRIMARY, innerW)
-				pushGap(8)
-				ingredients.forEach((item) => {
-					pushRow(item, 10, 'normal', BODY, innerW - 2, 2)
-					pushGap(ITEM_GAP)
-				})
-				pushGap(14)
-				pushRow('ÉTAPES', 9, 'bold', PRIMARY, innerW)
-				pushGap(8)
-				steps.forEach((item) => {
-					pushRow(item, 10, 'normal', BODY, innerW - 2, 2)
-					pushGap(ITEM_GAP)
-				})
-
-				// Découpe en segments d'une page, sans laisser de blanc en fin de carte.
-				const limit = bottom - MARGIN - CARD_PAD * 2
-				const segments = []
-				let segment = []
-				let used = 0
-				for (const row of rows) {
-					const height = row.height ?? row.gap
-					if (used + height > limit && segment.some((item) => item.height !== undefined)) {
-						while (segment.length && segment[segment.length - 1].height === undefined) {
-							used -= segment.pop().gap
-						}
-						segments.push(segment)
-						segment = []
-						used = 0
-					}
-					segment.push(row)
-					used += height
-				}
-				segments.push(segment)
-
-				segments.forEach((segmentRows) => {
-					const height =
-						CARD_PAD * 2 + segmentRows.reduce((total, row) => total + (row.height ?? row.gap), 0)
-					if (y + height > bottom) newPage()
-					const top = y
-					fillCard(top, height)
-					let cy = top + CARD_PAD
-					for (const row of segmentRows) {
-						if (row.height === undefined) {
-							cy += row.gap
-							continue
-						}
-						draw(
-							row.text,
-							MARGIN + CARD_PAD + row.indent,
-							cy,
-							row.width,
-							row.size,
-							row.style,
-							row.color
-						)
-						cy += row.height
-					}
-					y = top + height + CARD_GAP
-				})
-			})
-
-			// --- Pied de page ----------------------------------------------
-			const total = doc.getNumberOfPages()
-			for (let page = 1; page <= total; page++) {
-				doc.setPage(page)
-				applyFont(8, 'normal', MUTED)
-				doc.text(`Terres Sucrées - page ${page}/${total}`, pageW / 2, pageH - 26, {
-					align: 'center',
-					baseline: 'top'
-				})
-			}
-
-			// Le fichier téléchargé porte le nom choisi, sinon le type de recette.
-			const suffix = (data.name || '').trim() ? slugify(data.name) : ''
-			doc.save(`recette-${suffix || data.kind}.pdf`)
-		}
+		import { downloadRecipePdf } from '../utils/recipePdf'
 
 		document.addEventListener('click', async (event) => {
 			const target = event.target
@@ -1102,10 +835,9 @@ const kindConfig = Object.fromEntries(
 			// Le nom est lu au moment du clic : il peut avoir été saisi après le
 			// dernier rendu du bloc.
 			const nameField = document.getElementById('builder-name')
-			const name = nameField ? nameField.value.trim() : ''
+			const name = nameField instanceof HTMLInputElement ? nameField.value.trim() : ''
 			try {
-				const { jsPDF } = await import('jspdf')
-				buildRecipePdf(jsPDF, { ...data, name })
+				await downloadRecipePdf({ ...data, name })
 			} catch (error) {
 				console.error('Export PDF impossible', error)
 			}

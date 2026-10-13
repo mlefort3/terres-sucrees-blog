@@ -6,6 +6,8 @@ import TitlePage from '@/components/TitlePage'
 import Pagination from '@/components/Pagination'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
+import JsonLd from '@/components/JsonLd'
+import { homeJsonLd } from '@/utils/seo'
 import ArrowRight from 'src/components/icons/ArrowRight.astro'
 
 const allPosts = await getPosts()
@@ -21,8 +23,14 @@ const totalOtherPages = Math.ceil(remainingPosts.length / otherPageSize)
 const lastPage = 1 + totalOtherPages
 ---
 
-<BaseLayout title={`Toutes les recettes`} gradient>
-	<TitlePage title='Toutes les recettes' />
+<BaseLayout title='Toutes les recettes véganes' description={siteConfig.description} gradient>
+	<JsonLd data={homeJsonLd()} />
+	<div class='flex flex-col gap-3'>
+		<TitlePage title='Toutes les recettes' />
+		<p class='max-w-3xl text-lg text-slate-600 dark:text-ink-muted'>
+			Toutes les pâtisseries du site sont véganes : 100 % végétal, sans œufs ni produits laitiers.
+		</p>
+	</div>
 	<ListCategories />
 	<ListPosts FirstBig={true} posts={pageData} />
 

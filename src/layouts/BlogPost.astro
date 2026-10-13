@@ -18,11 +18,16 @@ const { data, readTime, headings, id } = Astro.props
 const { title, description, pubDate, heroImage, tags, recipeIngredients } = data
 
 const articleDate = pubDate.toISOString()
+
+// Tous les articles publiés sont des recettes véganes : on le rappelle dans les
+// métadonnées SEO, mais le <h1> reste le nom de la recette.
+const seoTitle = `${title} — recette végane`
+const seoDescription = `${description} Recette végane, sans œufs ni produits laitiers.`
 ---
 
 <BaseLayout
-	title={title}
-	description={description}
+	title={seoTitle}
+	description={seoDescription}
 	image={heroImage?.src}
 	articleDate={articleDate}
 	gradient={Boolean(recipeIngredients && recipeIngredients.length > 0)}
