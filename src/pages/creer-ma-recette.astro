@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import RecipeSlotSelect from '@/components/RecipeSlotSelect'
+import ingredientFlavors from '../../ingredients-flavors.json'
 import {
 	RECIPE_KINDS,
 	RECIPE_KIND_ORDER,
@@ -22,6 +23,7 @@ type BuilderIngredient = {
 	source: { title: string; url: string } | string | null
 	ingredients: { item: string; quantity: string | null }[]
 	steps: string[]
+	flavor: string[]
 }
 
 const components: BuilderIngredient[] = allIngredients.map((ingredient) => ({
@@ -34,8 +36,37 @@ const components: BuilderIngredient[] = allIngredients.map((ingredient) => ({
 		item: i.item,
 		quantity: i.quantity ?? null
 	})),
-	steps: ingredient.data.steps
+	steps: ingredient.data.steps,
+	flavor: ingredient.data.flavor
 }))
+
+// Saveurs associées (ingredients-flavors.json) : chaque saveur y liste les
+// saveurs recommandées avec elle. Deux couches sont donc « liées » dès qu'une
+// saveur de l'une figure dans la liste d'une saveur de l'autre.
+const companionFlavors = new Map(
+	ingredientFlavors.map((entry) => [entry.flavor, new Set(entry.compatibles)])
+)
+
+const flavorsAreLinked = (left: string[], right: string[]) =>
+	left.some((a) =>
+		right.some(
+			(b) => a !== b && (companionFlavors.get(a)?.has(b) || companionFlavors.get(b)?.has(a))
+		)
+	)
+
+// Les quatre couches « modulaires » d'un montage : chacune répond aux trois
+// autres. Une option porte le badge « Recommandé » quand une de ses saveurs est
+// associée à celle de *chaque* autre couche déjà choisie (voir le script client).
+const PAIRED_CATEGORIES = ['biscuit', 'croustillant', 'insert', 'mousse']
+const companionIds: Record<string, string[]> = {}
+for (const component of components) {
+	if (!PAIRED_CATEGORIES.includes(component.category)) continue
+	companionIds[component.id] = components
+		.filter((other) => other.id !== component.id)
+		.filter((other) => PAIRED_CATEGORIES.includes(other.category))
+		.filter((other) => flavorsAreLinked(component.flavor, other.flavor))
+		.map((other) => other.id)
+}
 
 const optionsByCategory: Record<string, BuilderIngredient[]> = {}
 for (const component of components) {
@@ -87,9 +118,13 @@ const kindConfig = Object.fromEntries(
 
 		<hr />
 
-		<!-- Carte du haut : le type de recette, puis les menus déroulants -->
+		<!-- Carte du haut : le type de recette, puis les menus déroulants.
+		     `relative z-40` : la carte crée son propre contexte d'empilement (le
+		     verre dépoli des cartes de fond de page passe par backdrop-filter), donc
+		     sans ce niveau les listes ouvertes dans les rangées du bas passeraient
+		     *sous* le sommaire et la recette, qui les suivent dans le document. -->
 		<section
-			class='frost-surface bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
+			class='relative z-40 frost-surface bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
 		>
 			<div class='flex flex-wrap items-center justify-between gap-4 mb-6'>
 				<h2 class='text-2xl font-semibold text-primary'>Composez votre recette</h2>
@@ -203,7 +238,7 @@ const kindConfig = Object.fromEntries(
 		</div>
 	</article>
 
-	<script define:vars={{ components, kindConfig }}>
+	<script define:vars={{ components, kindConfig, companionIds }}>
 		const kindSelect = document.getElementById('builder-kind')
 		const output = document.getElementById('composed')
 		const tocEl = document.getElementById('builder-toc')
@@ -517,10 +552,118 @@ const kindConfig = Object.fromEntries(
 			// Le champ caché du menu déroulant : c'est lui qui porte la valeur.
 			const slotSelect = (kind, key) => blocks[kind]?.querySelector(`[data-slot="${key}"]`) ?? null
 
+			// Recommandations biscuit / croustillant / insert / mousse : dans chacun de
+			// ces menus, une option porte le badge « Recommandé » quand sa saveur est
+			// associée à celle de chacune des trois autres couches déjà choisies.
+			// Un menu sans autre couche remplie n'allume donc rien.
+			const RECOMMENDED_SLOTS = ['biscuit', 'croustillant', 'insert', 'mousse']
+
+			const paintRecommendations = (kind) => {
+				// On repart de zéro : un type de recette sans sélection (ou une
+				// réinitialisation) ne doit laisser aucun badge allumé.
+				for (const badge of document.querySelectorAll('[data-rec-badge]')) badge.hidden = true
+				if (!kind) return
+				for (const slot of RECOMMENDED_SLOTS) {
+					const field = slotSelect(kind, slot)
+					const list = field?.closest('[data-combobox]')?.querySelector('[role="listbox"]')
+					if (!list) continue
+
+					// Toutes les autres couches remplies restreignent la liste : on croise
+					// leurs recommandations, donc une option ne survit que si elle est
+					// associée à chacune d'elles.
+					const others = RECOMMENDED_SLOTS.filter((key) => key !== slot)
+						.map((key) => slotSelect(kind, key)?.value)
+						.filter(Boolean)
+
+					const recommended = new Set()
+					for (const [index, id] of others.entries()) {
+						const links = new Set(companionIds[id] ?? [])
+						if (index === 0) {
+							for (const linked of links) recommended.add(linked)
+							continue
+						}
+						for (const linked of [...recommended]) {
+							if (!links.has(linked)) recommended.delete(linked)
+						}
+					}
+
+					for (const option of list.querySelectorAll('[role="option"]')) {
+						const badge = option.querySelector('[data-rec-badge]')
+						if (badge) badge.hidden = !recommended.has(option.getAttribute('data-value') || '')
+					}
+				}
+			}
+
 			const placeholder = (text) =>
 				`<p class='text-slate-500 dark:text-ink-muted italic'>${text}</p>`
 
-			// Bouton d'export, affiché dans la ligne du titre « Montage » une fois la
+			// Nom donné à la création : il devient le titre affiché au-dessus du
+			// montage, et le titre du PDF. Tant que l'auteur ne l'a pas modifié
+			// lui-même, il suit automatiquement la recette (type + saveurs).
+			let recipeName = ''
+			let nameEdited = false
+			let nameEditing = false
+
+			// Nom par défaut : le type de recette suivi des saveurs de l'insert puis
+			// de la mousse, comme sur le blog (« Tarte fraise basilic vanille »).
+			const defaultRecipeName = (kind, config) => {
+				const parts = [config?.label || kind]
+				for (const key of ['insert', 'mousse']) {
+					const value = slotSelect(kind, key)?.value
+					if (value) parts.push(...(byId.get(value)?.flavor ?? []))
+				}
+				return parts.filter(Boolean).join(' ').trim()
+			}
+
+			// Titre affiché au-dessus du montage : le nom de la recette, avec un bouton
+			// « crayon » pour le modifier. Le champ de saisie vit juste à côté et n'est
+			// révélé qu'en édition (voir renderTitleState).
+			const titleBlockHtml = () => `
+				<div id='builder-title' class='mb-8 flex flex-col items-start gap-3'>
+					<div class='flex items-center gap-3'>
+						<h2 id='recipe-title' class='text-left text-5xl font-bold leading-tight text-primary'>${escape(recipeName)}</h2>
+						<button
+							id='builder-name-edit'
+							type='button'
+							title='Modifier le nom'
+							aria-label='Modifier le nom'
+							class='shrink-0 rounded-lg border border-slate-300 dark:border-ink-line p-2 text-slate-500 dark:text-ink-muted transition hover:bg-slate-100 dark:hover:bg-ink-raised hover:text-primary'
+						>
+							<svg class='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+								<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7'></path>
+								<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z'></path>
+							</svg>
+						</button>
+					</div>
+					<input
+						id='builder-name'
+						type='text'
+						value='${escape(recipeName)}'
+						placeholder='Tarte framboise-basilic'
+						hidden
+						class='w-full max-w-xl rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface px-3 py-2 text-left text-3xl font-semibold text-slate-900 dark:text-ink-text placeholder:text-slate-400 dark:placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-primary'
+					/>
+				</div>`
+
+			// Reflète l'état d'édition dans le bloc de titre : titre affiché ou champ
+			// de saisie, valeur à jour, focus placé au bon endroit.
+			const renderTitleState = () => {
+				const title = output.querySelector('#recipe-title')
+				const editButton = output.querySelector('#builder-name-edit')
+				const input = output.querySelector('#builder-name')
+				if (!title || !editButton || !input) return
+				title.textContent = (recipeName || '').trim() || 'Ma recette'
+				input.value = recipeName
+				title.hidden = nameEditing
+				editButton.hidden = nameEditing
+				input.hidden = !nameEditing
+				if (nameEditing) {
+					input.focus()
+					input.select()
+				}
+			}
+
+			// Bouton d'export, affiché dans la ligne du titre « Recette » une fois la
 			// recette complète. Le clic est capté par le script d'export pdf plus bas.
 			const downloadButton = `
 				<button
@@ -540,6 +683,8 @@ const kindConfig = Object.fromEntries(
 					blocks[key].hidden = key !== kind
 				}
 
+				paintRecommendations(kind)
+
 				if (!kind) {
 					renderToc([])
 					if (statusEl) statusEl.textContent = ''
@@ -550,6 +695,10 @@ const kindConfig = Object.fromEntries(
 				}
 
 				const config = kindConfig[kind] || { order: [], required: [] }
+
+				// Tant que le nom n'a pas été modifié à la main, il suit la recette
+				// (type + saveurs de l'insert et de la mousse).
+				if (!nameEdited) recipeName = defaultRecipeName(kind, config)
 
 				// L'ordre du montage est celui de la config, du bas du gâteau vers le haut.
 				const chosen = config.order
@@ -602,17 +751,56 @@ const kindConfig = Object.fromEntries(
 
 				output.innerHTML = `
 					<div class='w-full'>
-						<div class='flex flex-wrap items-center justify-between gap-4 mb-8'>
-							<h2 id='montage' class='text-4xl font-bold text-primary'>Montage</h2>
-							${complete ? downloadButton : ''}
-						</div>
+						${titleBlockHtml()}
+						<h2 id='montage' class='text-4xl font-bold mb-8 text-primary'>Montage</h2>
 						<ol class='space-y-3 list-decimal pl-5 mb-12'>${montage}</ol>
 						<div class='border-t border-slate-200 dark:border-ink-line pt-8'>
-							<h2 id='recette' class='text-4xl font-bold mb-8 text-primary'>Recette</h2>
+							<div class='flex flex-wrap items-center justify-between gap-4 mb-8'>
+								<h2 id='recette' class='text-4xl font-bold text-primary'>Recette</h2>
+								${complete ? downloadButton : ''}
+							</div>
 							<div class='space-y-8'>${chosen.map(componentHtml).join('')}</div>
 						</div>
 					</div>`
+
+				renderTitleState()
 			}
+
+			// --- Édition du nom (délégation : le bloc est réécrit à chaque rendu) ---
+			output.addEventListener('click', (event) => {
+				const target = event.target
+				if (!(target instanceof Element) || !target.closest('#builder-name-edit')) return
+				nameEditing = true
+				renderTitleState()
+			})
+
+			output.addEventListener('input', (event) => {
+				const target = event.target
+				if (!(target instanceof HTMLInputElement) || target.id !== 'builder-name') return
+				recipeName = target.value
+				nameEdited = true
+			})
+
+			output.addEventListener('keydown', (event) => {
+				const target = event.target
+				if (!(target instanceof HTMLInputElement) || target.id !== 'builder-name') return
+				if (event.key === 'Enter') {
+					event.preventDefault()
+					nameEditing = false
+					renderTitleState()
+				} else if (event.key === 'Escape') {
+					nameEditing = false
+					renderTitleState()
+				}
+			})
+
+			// Quitter le champ vaut validation : le titre reprend la valeur saisie.
+			output.addEventListener('focusout', (event) => {
+				const target = event.target
+				if (!(target instanceof HTMLInputElement) || target.id !== 'builder-name') return
+				nameEditing = false
+				renderTitleState()
+			})
 
 			for (const field of document.querySelectorAll('[data-slot]')) {
 				field.addEventListener('change', render)
@@ -623,6 +811,10 @@ const kindConfig = Object.fromEntries(
 			document.getElementById('builder-reset')?.addEventListener('click', () => {
 				kindSelect.value = ''
 				for (const combobox of comboboxes) combobox.reset()
+				// Le nom fait partie de la création : il s'efface avec elle.
+				recipeName = ''
+				nameEdited = false
+				nameEditing = false
 				render()
 			})
 
@@ -637,9 +829,13 @@ const kindConfig = Object.fromEntries(
 		const GUTTER = 28
 		const LINE_FACTOR = 1.3
 		const ITEM_GAP = 4
+		const CARD_PAD = 14
+		const CARD_GAP = 14
+		const CARD_RADIUS = 9
 		const PRIMARY = [111, 107, 174]
 		const BODY = [45, 45, 55]
 		const MUTED = [122, 122, 138]
+		const CARD_FILL = [244, 244, 248]
 		const FONT = 'helvetica'
 
 		const sourceLabel = (source) => {
@@ -649,12 +845,22 @@ const kindConfig = Object.fromEntries(
 			return `Basé sur la recette de ${source.title}${url}`
 		}
 
+		const slugify = (value) =>
+			value
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+				.replace(/[^a-z0-9]+/g, '-')
+				.replace(/^-+|-+$/g, '')
+				.slice(0, 60)
+
 		const buildRecipePdf = (jsPDF, data) => {
 			const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' })
 			const pageW = doc.internal.pageSize.getWidth()
 			const pageH = doc.internal.pageSize.getHeight()
 			const contentW = pageW - MARGIN * 2
-			const colW = (contentW - GUTTER) / 2
+			const innerW = contentW - CARD_PAD * 2
+			const colW = (innerW - GUTTER) / 2
 			const bottom = pageH - 54
 			doc.setLineHeightFactor(LINE_FACTOR)
 
@@ -686,19 +892,30 @@ const kindConfig = Object.fromEntries(
 				y = MARGIN
 			}
 
-			// --- En-tête ---------------------------------------------------
-			applyFont(20, 'bold', PRIMARY)
-			doc.text('Terres Sucrées', MARGIN, y, { baseline: 'top' })
-			applyFont(12, 'normal', MUTED)
-			doc.text(data.kindLabel, pageW - MARGIN, y + 5, { align: 'right', baseline: 'top' })
-			y += 28
+			// Carte grise d'un élément de la recette : son fond est posé avant son
+			// contenu, d'où une hauteur calculée à l'avance (voir columnHeight).
+			const fillCard = (top, height) => {
+				doc.setFillColor(CARD_FILL[0], CARD_FILL[1], CARD_FILL[2])
+				doc.roundedRect(MARGIN, top, contentW, height, CARD_RADIUS, CARD_RADIUS, 'F')
+			}
+
+			// --- En-tête : le nom de la recette à gauche, le blog à droite ---
+			const title = (data.name || '').trim() || data.kindLabel || 'Ma recette'
+			applyFont(11, 'bold', MUTED)
+			const brand = 'Terres Sucrées'
+			const brandW = doc.getTextWidth(brand)
+			doc.text(brand, pageW - MARGIN, y + 7, { align: 'right', baseline: 'top' })
+			applyFont(22, 'bold', PRIMARY)
+			const titleLines = doc.splitTextToSize(title, contentW - brandW - 24)
+			doc.text(titleLines, MARGIN, y, { baseline: 'top' })
+			y += titleLines.length * 22 * LINE_FACTOR + 12
 			doc.setDrawColor(PRIMARY[0], PRIMARY[1], PRIMARY[2])
 			doc.setLineWidth(1.2)
 			doc.line(MARGIN, y, pageW - MARGIN, y)
 			y += 24
 
 			// --- Montage ---------------------------------------------------
-			y += draw('Montage', MARGIN, y, contentW, 22, 'bold', PRIMARY) + 8
+			y += draw('Montage', MARGIN, y, contentW, 16, 'bold', PRIMARY) + 8
 			data.components.forEach((component, index) => {
 				const text = `${index + 1}.  ${component.name}`
 				const h = heightOf(text, contentW - 8, 11)
@@ -707,18 +924,19 @@ const kindConfig = Object.fromEntries(
 			})
 			y += 20
 
-			// --- Recette ---------------------------------------------------
+			// --- Recette : une carte grise par élément ----------------------
 			if (y + 34 > bottom) newPage()
-			y += draw('Recette', MARGIN, y, contentW, 22, 'bold', PRIMARY) + 16
+			y += draw('Recette', MARGIN, y, contentW, 16, 'bold', PRIMARY) + 14
 
-			const drawColumns = (ingredients, steps) => {
-				const top = y
-				const rightX = MARGIN + colW + GUTTER
+			// Deux colonnes côte à côte, à l'intérieur d'une carte.
+			const drawColumns = (ingredients, steps, top) => {
+				const leftX = MARGIN + CARD_PAD
+				const rightX = leftX + colW + GUTTER
 
 				let ly = top
-				ly += draw('INGRÉDIENTS', MARGIN, ly, colW, 9, 'bold', PRIMARY) + 8
+				ly += draw('INGRÉDIENTS', leftX, ly, colW, 9, 'bold', PRIMARY) + 8
 				ingredients.forEach((item) => {
-					ly += draw(item, MARGIN + 2, ly, colW - 12, 10) + ITEM_GAP
+					ly += draw(item, leftX + 2, ly, colW - 12, 10) + ITEM_GAP
 				})
 
 				let ry = top
@@ -744,55 +962,120 @@ const kindConfig = Object.fromEntries(
 				const steps = component.steps.map((step, index) => `${index + 1}.  ${step}`)
 				const source = sourceLabel(component.source)
 
-				const headerH =
-					heightOf(component.name, contentW, 15, 'bold') +
-					4 +
-					(source ? heightOf(source, contentW, 9, 'italic') + 4 : 0) +
-					(component.description ? heightOf(component.description, contentW, 10) + 8 : 0)
-				const blockH = headerH + columnHeight(ingredients, steps) + 22
+				const headH =
+					heightOf(component.name, innerW, 13, 'bold') +
+					(source ? 4 + heightOf(source, innerW, 9, 'italic') : 0) +
+					(component.description ? 10 + heightOf(component.description, innerW, 10) : 0) +
+					(source || component.description ? 10 : 0)
+				const cardH = CARD_PAD * 2 + headH + columnHeight(ingredients, steps)
 
-				// Assez de place ici, ou sur une nouvelle page : deux colonnes côte à côte.
-				if (y + blockH > bottom && MARGIN + blockH <= bottom) newPage()
-
-				if (y + blockH <= bottom) {
-					y += draw(component.name, MARGIN, y, contentW, 15, 'bold', PRIMARY) + 4
-					if (source) y += draw(source, MARGIN, y, contentW, 9, 'italic', MUTED) + 4
-					if (component.description) {
-						y += draw(component.description, MARGIN, y, contentW, 10) + 8
+				// La carte tient sur une page : fond gris, puis contenu par-dessus.
+				if (cardH <= bottom - MARGIN) {
+					if (y + cardH > bottom) newPage()
+					const top = y
+					const leftX = MARGIN + CARD_PAD
+					fillCard(top, cardH)
+					let cy = top + CARD_PAD
+					cy += draw(component.name, leftX, cy, innerW, 13, 'bold', PRIMARY)
+					if (source) {
+						cy += 4
+						cy += draw(source, leftX, cy, innerW, 9, 'italic', MUTED)
 					}
-					y += drawColumns(ingredients, steps) + 22
+					if (component.description) {
+						cy += 10
+						cy += draw(component.description, leftX, cy, innerW, 10)
+					}
+					if (source || component.description) cy += 10
+					drawColumns(ingredients, steps, cy)
+					y = top + cardH + CARD_GAP
 					return
 				}
 
-				// Élément très long : sections empilées, paginées à la volée.
-				const ensure = (h) => {
-					if (y + h > bottom) newPage()
+				// Élément plus haut qu'une page (rare) : les sections s'empilent et la
+				// carte est découpée page par page.
+				const rows = []
+				const pushRow = (text, size, style, color, width, indent = 0) => {
+					rows.push({
+						text,
+						size,
+						style,
+						color,
+						width,
+						indent,
+						height: heightOf(text, width, size, style)
+					})
 				}
+				const pushGap = (gap) => rows.push({ gap })
 
-				ensure(heightOf(component.name, contentW, 15, 'bold') + 4)
-				y += draw(component.name, MARGIN, y, contentW, 15, 'bold', PRIMARY) + 4
+				pushRow(component.name, 13, 'bold', PRIMARY, innerW)
 				if (source) {
-					ensure(heightOf(source, contentW, 9, 'italic') + 4)
-					y += draw(source, MARGIN, y, contentW, 9, 'italic', MUTED) + 4
+					pushGap(4)
+					pushRow(source, 9, 'italic', MUTED, innerW)
 				}
 				if (component.description) {
-					ensure(heightOf(component.description, contentW, 10) + 8)
-					y += draw(component.description, MARGIN, y, contentW, 10) + 8
+					pushGap(10)
+					pushRow(component.description, 10, 'normal', BODY, innerW)
 				}
-				ensure(heightOf('INGRÉDIENTS', contentW, 9, 'bold') + 8)
-				y += draw('INGRÉDIENTS', MARGIN, y, contentW, 9, 'bold', PRIMARY) + 8
+				pushGap(10)
+				pushRow('INGRÉDIENTS', 9, 'bold', PRIMARY, innerW)
+				pushGap(8)
 				ingredients.forEach((item) => {
-					ensure(heightOf(item, contentW - 2, 10) + ITEM_GAP)
-					y += draw(item, MARGIN + 2, y, contentW - 2, 10) + ITEM_GAP
+					pushRow(item, 10, 'normal', BODY, innerW - 2, 2)
+					pushGap(ITEM_GAP)
 				})
-				y += 18
-				ensure(heightOf('ÉTAPES', contentW, 9, 'bold') + 8)
-				y += draw('ÉTAPES', MARGIN, y, contentW, 9, 'bold', PRIMARY) + 8
+				pushGap(14)
+				pushRow('ÉTAPES', 9, 'bold', PRIMARY, innerW)
+				pushGap(8)
 				steps.forEach((item) => {
-					ensure(heightOf(item, contentW - 2, 10) + ITEM_GAP)
-					y += draw(item, MARGIN + 2, y, contentW - 2, 10) + ITEM_GAP
+					pushRow(item, 10, 'normal', BODY, innerW - 2, 2)
+					pushGap(ITEM_GAP)
 				})
-				y += 22
+
+				// Découpe en segments d'une page, sans laisser de blanc en fin de carte.
+				const limit = bottom - MARGIN - CARD_PAD * 2
+				const segments = []
+				let segment = []
+				let used = 0
+				for (const row of rows) {
+					const height = row.height ?? row.gap
+					if (used + height > limit && segment.some((item) => item.height !== undefined)) {
+						while (segment.length && segment[segment.length - 1].height === undefined) {
+							used -= segment.pop().gap
+						}
+						segments.push(segment)
+						segment = []
+						used = 0
+					}
+					segment.push(row)
+					used += height
+				}
+				segments.push(segment)
+
+				segments.forEach((segmentRows) => {
+					const height =
+						CARD_PAD * 2 + segmentRows.reduce((total, row) => total + (row.height ?? row.gap), 0)
+					if (y + height > bottom) newPage()
+					const top = y
+					fillCard(top, height)
+					let cy = top + CARD_PAD
+					for (const row of segmentRows) {
+						if (row.height === undefined) {
+							cy += row.gap
+							continue
+						}
+						draw(
+							row.text,
+							MARGIN + CARD_PAD + row.indent,
+							cy,
+							row.width,
+							row.size,
+							row.style,
+							row.color
+						)
+						cy += row.height
+					}
+					y = top + height + CARD_GAP
+				})
 			})
 
 			// --- Pied de page ----------------------------------------------
@@ -806,7 +1089,9 @@ const kindConfig = Object.fromEntries(
 				})
 			}
 
-			doc.save(`recette-${data.kind}.pdf`)
+			// Le fichier téléchargé porte le nom choisi, sinon le type de recette.
+			const suffix = (data.name || '').trim() ? slugify(data.name) : ''
+			doc.save(`recette-${suffix || data.kind}.pdf`)
 		}
 
 		document.addEventListener('click', async (event) => {
@@ -814,9 +1099,13 @@ const kindConfig = Object.fromEntries(
 			if (!(target instanceof Element) || !target.closest('#builder-download')) return
 			const data = window.__recipePdfData
 			if (!data || !data.components?.length) return
+			// Le nom est lu au moment du clic : il peut avoir été saisi après le
+			// dernier rendu du bloc.
+			const nameField = document.getElementById('builder-name')
+			const name = nameField ? nameField.value.trim() : ''
 			try {
 				const { jsPDF } = await import('jspdf')
-				buildRecipePdf(jsPDF, data)
+				buildRecipePdf(jsPDF, { ...data, name })
 			} catch (error) {
 				console.error('Export PDF impossible', error)
 			}
