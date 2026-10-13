@@ -1,7 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /*?p=
-Disallow: /*?author=
-Disallow: /*?cat=
-
-Sitemap: https://terres-sucrees.fr/sitemap-index.xml

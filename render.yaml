@@ -1,0 +1,49 @@
+# Configuration Render (Blueprint) — https://render.com/docs/blueprint-spec
+#
+# Ce site est un Static Site hébergé sur Render. Les redirections et les
+# en-têtes HTTP s'y déclarent ici (ou dans le Dashboard, onglets
+# « Redirects/Rewrites » et « Headers »).
+#
+# Sont inactifs sur Render, malgré leur présence dans le dépôt :
+#   - netlify.toml      (les 301 historiques y sont définis pour rien)
+#   - public/_headers   (la CSP qui y figure n'est jamais envoyée : vérifié en
+#                        production, l'en-tête Content-Security-Policy est absent)
+#
+# Contraintes Render à garder en tête :
+#   - une règle est ignorée si un fichier existe déjà au chemin demandé ;
+#   - une redirection est toujours un 301 (pas de champ `status`) ;
+#   - `source` est un chemin : les règles sur les paramètres d'URL (/?p=123,
+#     /?cat=…, /?author=…) ne sont pas exprimables ici — c'est robots.txt qui
+#     garde ces URLs hors de l'index ;
+#   - `*` en source capture la fin du chemin, réinjectée telle quelle dans
+#     `destination` ; `:nom` capture un segment.
+services:
+  - type: web
+    name: terres-sucrees
+    runtime: static
+    buildCommand: pnpm build
+    staticPublishPath: ./dist
+    headers:
+      # CSP reprise de public/_headers, en une seule ligne (YAML n'accepte pas
+      # les continuations « \ » du format Netlify).
+      - path: /*
+        name: Content-Security-Policy
+        value: "default-src 'self'; script-src 'self' https://goatcounter-terres-sucrees.onrender.com https://gc.zgo.at https://app.rybbit.io https://comments.terres-sucrees.fr; connect-src 'self' https://goatcounter-terres-sucrees.onrender.com; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
+    routes:
+      # Anciennes URLs WordPress datées (/2025/02/21/mousse-vanille/) -> /post/<slug>/
+      - type: redirect
+        source: /:year/:month/:day/:slug
+        destination: /post/:slug/
+      # Le tag s'écrivait avec une espace ET avec des tirets : une seule page
+      # subsiste, l'autre graphie redirige vers elle.
+      - type: redirect
+        source: /tags/gâteaux de voyage
+        destination: /tags/gâteaux-de-voyage/
+      - type: redirect
+        source: /tags/gâteaux%20de%20voyage
+        destination: /tags/gâteaux-de-voyage/
+      # Article renommé (son slug contenait « copy » et annonçait du chocolat
+      # pour une recette au citron).
+      - type: redirect
+        source: /post/cookies-chocolat-noisette-copy/
+        destination: /post/cookies-citron-noisette-citron-noir/

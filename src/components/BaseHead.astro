@@ -11,6 +11,11 @@ export interface Props {
 	noindex?: boolean
 	/** Force la balise canonical (ex. /all/1 doit pointer vers /). */
 	canonical?: string | undefined
+	/**
+	 * N'émet aucune balise canonical. Réservé à la page 404 : un canonical doit
+	 * désigner une URL réelle et indexable, or /404/ n'existe pas.
+	 */
+	noCanonical?: boolean
 }
 
 const {
@@ -19,9 +24,11 @@ const {
 	ogImage,
 	articleDate,
 	noindex = false,
-	canonical
+	canonical,
+	noCanonical = false
 } = Astro.props
-const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
+const pageURL = new URL(Astro.url.pathname, Astro.site).href
+const canonicalURL = canonical ?? pageURL
 const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url).href
 
 // Le nom du site est ajouté à la balise <title> : « Recette • Terres Sucrées ».
@@ -44,7 +51,7 @@ import { AstroFont } from 'astro-font'
 <meta name='generator' content={Astro.generator} />
 
 <!-- Canonical URL -->
-<link rel='canonical' href={canonicalURL} />
+{!noCanonical && <link rel='canonical' href={canonicalURL} />}
 
 <!-- Robots Meta -->
 {
