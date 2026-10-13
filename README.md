@@ -1,197 +1,155 @@
 <div align="center">
 
-<img src="public/project.png" alt="Screenshot" />
+# 🍰 Terres Sucrées
 
-<hr/>
+**Recettes de pâtisserie végétale**
 
-<h3 align="center">
- ⭐ Leave a star if you like this project! ⭐️
-</h3>
+[terres-sucrees.fr](https://terres-sucrees.fr/) · [Instagram](https://instagram.com/terres.sucrees)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fdanielcgilibert%2Fblog-template)
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/danielcgilibert/blog-template)
+<img src="public/project.png" alt="Terres Sucrées" />
 
 </div>
 
-## 📌 Table Of Contents
+## 🌱 Le projet
 
-1. [Demo](#-Demo)
-2. [CMS](#-Tina-CMS)
-3. [Features](#-Features)
-4. [Roadmap](#-Roadmap)
-5. [Stack](#-Stack)
-6. [Running locally](#-Running-Locally)
-7. [Configure](#-Configure)
-8. [Categories](#-Adding-a-category)
-9. [Posts](#-Adding-a-post)
-10. [Draft](#-Activating-draft-mode)
-11. [FrontMatter](#-Frontmatter)
-12. [CLI](#-Commands)
-13. [Contributors](#-Contributors)
+**Terres Sucrées** est un blog de pâtisserie végétale. Chaque recette est
+décomposée en **éléments modulaires** (fond, biscuit, croustillant, insert,
+mousse, glaçage, décor…) qui peuvent être assemblés pour composer de nouvelles
+créations.
 
-## 💻 Demo
+Le site rassemble :
 
-Check out the [Demo](https://blog-template-gray.vercel.app/), hosted on Vercel
-<br/>
+- un **catalogue de recettes** classées par saison ;
+- sur chaque recette, le **détail de ses éléments modulaires** (ingrédients et
+  étapes) ;
+- un outil **« Créer ma recette »** qui assemble les éléments et génère un PDF.
 
-https://github.com/danielcgilibert/blog-template/assets/44746462/56b8399e-cc5b-45a8-b9d2-d69833ecadb1
+## ✨ Fonctionnalités
 
-## 🦙 Tina CMS
-
-By default, this template comes pre-configured with Tina CMS.
-
-Now you can create your posts directly from the CMS without the need to do it manually.
-
-If you decide to use Tina, it's not necessary to add any properties to the Markdown files, Tina does it automatically.
-
-Example:
-
-https://github.com/danielcgilibert/blog-template/assets/44746462/51ae324c-d383-40be-9b16-db159d1af15d
-
-The documentation for Tina CMS can be found [here](https://tina.io/docs/)
-
-> Tina is completely optional, and you can remove it, and it will still function in the same way.
-
-## 💪 Features:
-
-<p align="center">
-  <a href="https://pagespeed.web.dev/analysis/https-blog-template-gray-vercel-app/7ovjfewos9?form_factor=mobile">
-    <img width="510" alt="openblog Lighthouse Score" src="public/openblog-lighthouse-score.svg">
-  <a>
-</p>
-    
-- ✅ Minimal styling
-- ✅ Mobile responsive
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and OpenGraph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-- ✅ Syntax highlighting
-- ✅ Image optimization
-- ✅ Table of contents
-- ✅ Dark mode
-- ✅ Reading Time
-- ✅ [Pagefind](https://pagefind.app/) static search library integration
-- ✅ Related posts
-- ✅ Share posts (Linkedin, twitter)
-- ✅ Draft mode
-- ✅ Copy code block
-- ✅ CMS in the repository (Tina CMS)
-- ✅ Pagination
-- ✅ ViewTransition (new)
-- ✅ Disqus comments (new)
-
-## 🛣️ Roadmap
-
-- ❌ Add post author
-- ❌ Add customization with colors
-- ❌ Add filters for reading time, date...
-- ❌ More sharing options
-- ❌ Internationalization (i18n)
+- ✅ Recettes saisonnières — catégories Printemps, Été, Automne, Hiver
+- ✅ Composants modulaires réutilisables entre les recettes
+- ✅ **Créer ma recette** : assemblage guidé (Tarte ou Entremet) et export PDF
+- ✅ Suggestions de saveurs compatibles entre les couches (« Recommandé »)
+- ✅ Recherche statique ([Pagefind](https://pagefind.app/), en production)
+- ✅ Flux RSS et sitemap
+- ✅ Table des matières et temps de lecture sur les recettes
+- ✅ Support Markdown & MDX avec coloration syntaxique
+- ✅ Mode sombre
+- ✅ Optimisation des images
+- ✅ CMS dans le dépôt (Tina CMS)
 
 ## ⚙️ Stack
 
-- [**ASTRO** + **Typescript**](https://astro.build/) - Astro is the all-in-one web framework designed for speed.
-- [**Tailwind CSS** + **Tailwind-Merge** + **clsx**](https://tailwindcss.com/) - Tailwind CSS is a utility-first CSS framework.
-- [**Tabler Icons**](https://tabler-icons.io/i/) - A open source SVG icons.
-- [**Eslint**](https://eslint.org/) - ESLint is an open source project that helps you find and fix problems.
-- [**Prettier**](https://prettier.io/) - Code formatter.
-- [**Search Library**](https://pagefind.app/) - Static search library integration.
-- [**Motion**](https://motion.dev/) - Motion One is the smallest fully-featured animation library for the web.
-- [**Tina CMS**](https://tina.io/) - CMS.
+- [**Astro** + **TypeScript**](https://astro.build/) — le framework tout-en-un pensé pour la vitesse.
+- [**Tailwind CSS** + **tailwind-merge** + **clsx**](https://tailwindcss.com/) — styles utilitaires.
+- [**MDX**](https://docs.astro.build/en/guides/integrations-guide/mdx/) — contenu enrichi.
+- [**Pagefind**](https://pagefind.app/) — recherche statique.
+- [**jsPDF**](https://github.com/parallax/jsPDF) — export PDF des recettes composées.
+- [**Motion**](https://motion.dev/) — animations.
+- [**Tina CMS**](https://tina.io/) — édition du contenu.
+- [**ESLint**](https://eslint.org/) + [**Prettier**](https://prettier.io/) + Husky — qualité de code.
 
-## 👨🏻‍💻 Running Locally
+## 🗂️ Structure
 
-**Recommended extensions for VSCode:**
-
-- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
-- [Astro](https://marketplace.visualstudio.com/items?itemName=astro-build.astro-vscode).
-
-1. Clone or [fork](https://github.com/danielcgilibert/blog-template/fork) the repository:
-
-```bash
-git@github.com:danielcgilibert/blog-template.git
+```
+├── public/                       # assets statiques (favicon, open-graph, robots.txt…)
+├── src/
+│   ├── assets/                   # images des recettes
+│   ├── components/               # composants Astro (PostCard, RecipeIngredientsDisplay, RecipeSlotSelect…)
+│   ├── content/
+│   │   ├── blog/                 # les recettes (.mdx)
+│   │   └── recipeIngredients/    # les éléments modulaires (.yml)
+│   ├── data/                     # site.config.ts, categories.ts, links.ts
+│   ├── layouts/
+│   ├── pages/                    # index, post, category, tags, creer-ma-recette, about…
+│   ├── styles/
+│   └── utils/
+├── tina/                         # configuration Tina CMS
+├── ingredients-flavors.json      # affinités de saveurs entre les couches
+└── astro.config.mjs
 ```
 
-2. Install dependencies:
+## 📄 Les recettes
 
-```bash
-pnpm install
+Une recette est un fichier `.mdx` dans **src/content/blog**. Le nom du fichier
+donne le slug de l'URL (`Tarte-fraise-basilic-.mdx` → `/post/Tarte-fraise-basilic-/`).
+
+Le frontmatter est validé par Zod (voir **src/content/config.ts**) :
+
+```yaml
+---
+title: 'Tarte fraise basilic 🌿'
+description: 'Une tarte fraise basilic, avec du pesto sucré !'
+pubDate: 2025-04-16
+heroImage: /src/assets/images/img_8210-scaled.jpg
+categories: [Printemps] # saison(s)
+tags: [fruits, tartes]
+draft: false # optionnel, absent = false
+recipeIngredients: # ids des éléments modulaires utilisés
+  - croustillant-amande-huile-olive
+  - gel-fraise
+  - pesto-sucre
+  - mousse-vanille
+---
 ```
 
-3. Run the development server:
+## 🧩 Les ingrédients modulaires
 
-```bash
-pnpm dev
+Chaque élément est un fichier `.yml` dans **src/content/recipeIngredients**.
+La `category` détermine la couche qu'il occupe dans le montage :
+
+`pâte` · `biscuit` · `sirop` · `croustillant` · `insert` · `mousse` · `glaçage` ·
+`décor` · `autre`
+
+```yaml
+name: 'Mousse vanille'
+category: mousse
+description: 'Mousse légère et vanillée montée à la crème végétale'
+ingredients:
+  - item: '250 ml de crème végétale à monter'
+flavor: [vanille] # saveurs portées par la préparation
+steps:
+  - 'Monter la crème en chantilly et la réserver au froid'
+source:
+  title: 'Terres Sucrées'
+  url: https://terres-sucrees.fr/
 ```
 
-## 📐 Configure
+Le fichier **ingredients-flavors.json** associe à chaque saveur ses saveurs
+compatibles ; il alimente les recommandations de la page _Créer ma recette_.
 
-- Edit the configuration file **src/data/site.config.ts** for the basic blog metadata.
-- Modify the files in the **/public** folder:
-  - favicon
-  - robots.txt -> update the Sitemap url to your own domain
-  - open-graph -> the open-graph is the image that will be displayed when sharing the blog link. For posts, the preview image is the post cover.
-- Edit the social networks in **src/data/links.ts**, change the URL to your social network.
+## 🛠️ Créer ma recette
 
-## 🗂️ Adding a category
+La page **/creer-ma-recette** permet de composer une recette à partir des
+éléments modulaires :
 
-To add a new category to your blog, simply go to the src/data/categories.ts file and add it to the array.
+1. Choisir le type de recette — **Tarte** ou **Entremet** ;
+2. Sélectionner un élément dans chaque catégorie (les couches nécessaires à la
+   complétude de la recette sont marquées comme telles) ;
+3. Les options dont les saveurs s'accordent avec les couches déjà choisies sont
+   signalées **« Recommandé »** ;
+4. Le nom se génère automatiquement (type + saveurs du montage) et reste
+   modifiable ;
+5. Une fois la recette complète, **Télécharger en PDF** exporte le montage et
+   ses préparations.
 
-Example:
+## 📐 Configuration
 
-```ts
-export  const  CATEGORIES  =  [
-'JavaScript',
-'React',
-'new category here'  <---
-]  as  const
-```
+- **src/data/site.config.ts** — métadonnées du site (URL, titre, description,
+  langue, pagination).
+- **src/data/links.ts** — réseaux sociaux affichés.
+- **src/data/categories.ts** — liste des saisons (`Printemps`, `Été`, `Automne`,
+  `Hiver`).
+- **public/** — favicon, `robots.txt` (penser à y mettre l'URL du sitemap),
+  open-graph.
 
-> 🚨 Zod checks whether the category is not correctly written or does not exist in the properties of the markdown document. **It will throw an error when building the application.** 🚨
+## 🚀 Déploiement
 
-## 📄 Adding a post
+Le site se déploie sur [Netlify](https://www.netlify.com/) (voir
+[netlify.toml](netlify.toml)), qui redirige les anciennes URLs WordPress
+(`?paged=`, `?cat=`, `/YYYY/MM/DD/slug/`…) vers les nouvelles pages.
 
-Adding a post is as simple as adding a .md or .mdx file to the blog folder at the path **src/content/blog**. The filename will be used to create the slug/URL of the page.
-
-For example, if you have a file named **jsx-and-react.md**, it will be transformed into: **http://yourdomain.com/post/jsx-and-react/**
-
-## 📝 Activating draft mode
-
-To activate draft mode, add the property **draft: true** to the file, and it will no longer be displayed on the blog.
-
-Example :
-
-```ts
-title: MacBook Pro 2022
-description: 'The new MacBook Pro 2022 is here. With the Apple M2 chip, a new design, and more, the new MacBook Pro is the best laptop Apple has ever made.'
-pubDate: 'Jul 02 2022'
-heroImage: '../../assets/bg.jpg'
-category: 'Category 1'
-tags: ['JavaScript', 'css', 'HTML5', 'GitHub']
-draft: true <---
-```
-
-## ⚡️ Frontmatter
-
-## Required properties:
-
-- Title
-- Description
-- pubDate
-- heroImage (post cover)
-- category (Choose a category from src/data/categories.ts)
-
-## Optional properties:
-
-- draft (no need to include it, by default it's false)
-- tags
-
-> The schema for posts is located at src/content/config.ts. You can modify any parameter, for example, by adding a maximum of 80 characters for titles: title: z.string().max(80).
-> For more information, refer to the zod documentation.
-
-## 🧞 Commands
+## 🧞 Commandes
 
 All commands are run from the root of the project, from a terminal:
 
@@ -205,9 +163,3 @@ All commands are run from the root of the project, from a terminal:
 | `pnpm run format`       | Format codes with Prettier                                                                                                       |
 | `pnpm run sync`         | Generates TypeScript types for all Astro modules. [Learn more](https://docs.astro.build/en/reference/cli-reference/#astro-sync). |
 | `pnpm run lint`         | Lint with ESLint                                                                                                                 |
-
-## 👋 Contributors
-
-<a href="https://github.com/danielcgilibert/blog-template/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=danielcgilibert/blog-template" />
-</a>
