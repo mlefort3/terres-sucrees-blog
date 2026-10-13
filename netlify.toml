@@ -50,3 +50,26 @@
   to = "/post/:slug/"
   status = 301
   force = true
+
+# Le tag « Gâteaux de voyage » et le tag « gâteaux-de-voyage » étaient deux
+# graphies du même tag : leurs pages ont fusionné, l'ancienne URL (celle avec
+# une espace) redirige vers l'identifiant d'URL canonique.
+[[redirects]]
+  from = "/tags/gâteaux de voyage"
+  to = "/tags/gâteaux-de-voyage/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/tags/gâteaux%20de%20voyage"
+  to = "/tags/gâteaux-de-voyage/"
+  status = 301
+  force = true
+
+# Article renommé : son slug contenait « copy » et annonçait du chocolat pour
+# une recette au citron. L'ancienne URL redirige vers la nouvelle.
+[[redirects]]
+  from = "/post/cookies-chocolat-noisette-copy/"
+  to = "/post/cookies-citron-noisette-citron-noir/"
+  status = 301
+  force = true

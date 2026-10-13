@@ -3,6 +3,10 @@ import ArrowLeft from './icons/ArrowLeft.astro'
 import ArrowRight from './icons/ArrowRight.astro'
 
 const { page } = Astro.props
+
+// `paginate` renvoie des URL sans « / » final alors que la balise canonical
+// pointe vers la forme avec « / » : on aligne les liens internes dessus.
+const canonical = (url: string) => (url.endsWith('/') ? url : `${url}/`)
 ---
 
 <div class='flex gap-5 md:gap-1 justify-around md:justify-end'>
@@ -10,7 +14,7 @@ const { page } = Astro.props
 	{
 		page.start > 0 && (
 			<a
-				href={page.url.prev}
+				href={canonical(page.url.prev)}
 				class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-ink-line dark:text-ink-muted dark:hover:bg-ink-raised dark:hover:text-ink-text'
 			>
 				<ArrowLeft />
@@ -23,7 +27,7 @@ const { page } = Astro.props
 	{
 		page.currentPage < page.lastPage && (
 			<a
-				href={page.url.next}
+				href={canonical(page.url.next)}
 				class='flex items-center justify-center px-8 md:px-4 h-10 ml-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-ink-line dark:text-ink-muted dark:hover:bg-ink-raised dark:hover:text-ink-text'
 			>
 				<ArrowRight />

@@ -117,9 +117,11 @@ import { AstroFont } from 'astro-font'
 					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Light.ttf')
 				},
 				{
+					// `Outfit-LightMedium.ttf` n'existe pas dans `public/fonts` : la face
+					// 300 était donc absente et chaque page déclenchait un 404.
 					weight: '300',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-LightMedium.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Light.ttf')
 				},
 				{
 					weight: '400',

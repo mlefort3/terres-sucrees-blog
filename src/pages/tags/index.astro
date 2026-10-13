@@ -5,13 +5,14 @@ import { getTags } from '@/utils'
 const tags = await getTags()
 ---
 
-<BaseLayout title='Catégories' gradient>
-	<TitlePage title='Catégories' />
+<BaseLayout title='Toutes les recettes par tag' gradient>
+	<TitlePage title='Toutes les recettes par tag' />
 	<div class='flex justify-center flex-wrap gap-4'>
 		{
+			/* `tag` est déjà un identifiant d'URL (voir `tagSlug`) */
 			tags.map((tag) => (
 				<a
-					href={`/tags/${tag}`}
+					href={`/tags/${tag}/`}
 					class='inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
 				>
 					#{tag}

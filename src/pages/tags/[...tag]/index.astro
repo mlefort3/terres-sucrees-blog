@@ -5,6 +5,8 @@ import TitlePage from '@/components/TitlePage'
 import { unsluglify, getTags, getPostByTag } from '@/utils'
 
 export async function getStaticPaths() {
+	// `getTags` renvoie des identifiants d'URL (voir `tagSlug`), donc deux
+	// graphies d'un même tag ne génèrent qu'une seule page.
 	const tags = await getTags()
 
 	return tags.map((tag) => ({
@@ -15,7 +17,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.props
 
-const unsluglifyNameTag = unsluglify(tag.toLowerCase())
+const unsluglifyNameTag = unsluglify(tag)
 
 const posts = await getPostByTag(tag)
 ---

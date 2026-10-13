@@ -1,11 +1,17 @@
 ---
+import { tagSlug } from '@/utils'
+
 export interface Props {
 	tag: string
 }
 const { tag } = Astro.props
+
+// `tagSlug` est l'identifiant d'URL utilisé par les pages de tag : le lien doit
+// pointer vers cette forme canonique (sans espace ni majuscule).
+const href = `/tags/${tagSlug(tag)}/`
 ---
 
-<a href={`/tags/${encodeURIComponent(tag.toLowerCase())}`} aria-label={tag}>
+<a href={href} aria-label={tag}>
 	<span
 		class='bg-primary font-semibold text-white shadow text-sm w-fit px-2 py-1 md:px-5 md:py-2 rounded-full hover:bg-secondary dark:hover:bg-secondary'
 	>

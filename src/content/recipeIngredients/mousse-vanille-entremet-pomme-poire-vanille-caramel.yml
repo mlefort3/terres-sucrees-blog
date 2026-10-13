@@ -1,9 +1,6 @@
 name: "Mousse vanille"
 category: mousse
 description: "Mousse vanille légère et aérienne"
-source:
-  title: "Terres Sucrées"
-  url: "https://terres-sucrees.fr/2025/02/21/mousse-vanille/"
 ingredients:
   - item: "250 ml de crème végétale à monter bien froide (au moins 30% de matières grasses)"
   - item: "140 ml de lait de soja à la vanille"

@@ -1,5 +1,13 @@
 import { getCollection } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
+import { sluglify } from './sluglify'
+
+/**
+ * Identifiant d'URL d'un tag. « Gâteaux de voyage » et « gâteaux-de-voyage »
+ * désignent le même tag : les deux graphies doivent produire une seule page,
+ * sinon Google voit deux pages de taxonomie concurrentes pour un même sujet.
+ */
+export const tagSlug = (tag: string) => sluglify(tag.trim().toLowerCase())
 
 export const getCategories = async () => {
 	const posts = await getCollection('blog')
@@ -31,28 +39,27 @@ export const getPosts = async (max?: number) => {
 
 export const getTags = async () => {
 	const posts = await getCollection('blog')
-	const tags = new Set()
+	const tags = new Set<string>()
 	posts
 		.filter((post) => !post.data.draft)
 		.forEach((post) => {
 			post.data.tags.forEach((tag) => {
-				if (tag != '') {
-					tags.add(tag.toLowerCase())
+				const slug = tagSlug(tag)
+				if (slug != '') {
+					tags.add(slug)
 				}
 			})
 		})
 
-	return Array.from(tags)
+	return Array.from(tags).sort()
 }
 
 export const getPostByTag = async (tag: string) => {
 	const posts = await getPosts()
-	const lowercaseTag = tag.toLowerCase()
-	return posts
-		.filter((post) => !post.data.draft)
-		.filter((post) => {
-			return post.data.tags.some((postTag) => postTag.toLowerCase() === lowercaseTag)
-		})
+	const tagSlugToMatch = tagSlug(tag)
+	return posts.filter((post) => {
+		return post.data.tags.some((postTag) => tagSlug(postTag) === tagSlugToMatch)
+	})
 }
 
 export const filterPostsByCategory = async (category: string) => {
