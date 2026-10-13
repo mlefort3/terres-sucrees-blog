@@ -8,6 +8,10 @@
 // The slot array of a kind is ordered from the bottom of the cake to the top:
 // that single order is the montage order. `primary` only decides whether the
 // dropdown shows up in the main grid or in the optional panel.
+//
+// Obligatory layers: the fond and the insert of a tarte, the biscuit of an
+// entremet — everything else is facultative (it shows a « Facultatif » badge
+// when it sits in the main grid).
 
 export type RecipeCategory =
 	| 'pâte'
@@ -92,7 +96,7 @@ export const RECIPE_KIND_SLOTS: Record<RecipeKind, RecipeSlot[]> = {
 			label: 'Mousse',
 			category: 'mousse',
 			primary: true,
-			required: true,
+			required: false,
 			hint: "La mousse, au-dessus de l'insert"
 		},
 		{
@@ -134,7 +138,7 @@ export const RECIPE_KIND_SLOTS: Record<RecipeKind, RecipeSlot[]> = {
 			label: 'Insert',
 			category: 'insert',
 			primary: true,
-			required: true,
+			required: false,
 			hint: "L'insert fruité"
 		},
 		{
@@ -142,7 +146,7 @@ export const RECIPE_KIND_SLOTS: Record<RecipeKind, RecipeSlot[]> = {
 			label: 'Mousse',
 			category: 'mousse',
 			primary: true,
-			required: true,
+			required: false,
 			hint: "La mousse, au-dessus de l'insert"
 		},
 		{

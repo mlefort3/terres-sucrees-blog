@@ -23,6 +23,10 @@ const fieldClass =
 	'w-full rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 pr-9 text-base placeholder:text-slate-400 dark:placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-primary'
 const optionClass =
 	'cursor-pointer px-3 py-2 text-sm text-slate-900 dark:text-ink-text hover:bg-slate-100 dark:hover:bg-ink-raised'
+// Le badge « Recommandé » est masqué par défaut : le script de la page le révèle
+// sur les options dont une saveur est recommandée avec la couche déjà choisie.
+const recommendedBadgeClass =
+	'shrink-0 rounded border border-primary/40 bg-primary/10 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary dark:border-primary_second/40 dark:bg-primary_second/10 dark:text-primary_second'
 ---
 
 <div class='flex flex-col gap-2'>
@@ -87,9 +91,12 @@ const optionClass =
 						aria-selected='false'
 						data-value={option.id}
 						data-label={option.name}
-						class={optionClass}
+						class={`${optionClass} flex items-center justify-between gap-2`}
 					>
-						{option.name}
+						<span>{option.name}</span>
+						<span data-rec-badge hidden class={recommendedBadgeClass}>
+							Recommandé
+						</span>
 					</li>
 				))
 			}
