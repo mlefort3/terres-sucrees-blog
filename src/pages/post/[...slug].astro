@@ -73,7 +73,11 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 			{
 				post.data.recipeIngredients && post.data.recipeIngredients.length > 0 && (
 					<div class='border-t border-slate-200 dark:border-ink-line pt-8 mt-8'>
-						<RecipeIngredientsDisplay recipeIngredientIds={post.data.recipeIngredients} />
+						<RecipeIngredientsDisplay
+							title={post.data.title}
+							description={post.data.description}
+							recipeIngredientIds={post.data.recipeIngredients}
+						/>
 					</div>
 				)
 			}

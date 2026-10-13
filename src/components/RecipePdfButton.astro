@@ -1,0 +1,49 @@
+---
+import type { RecipePdfComponent } from '../utils/recipePdf'
+
+interface Props {
+	title: string
+	description?: string | null
+	components: RecipePdfComponent[]
+}
+
+const { title, description = null, components } = Astro.props
+
+// Le PDF est construit côté client : les données de la recette voyagent dans un
+// attribut, relu au clic par le script ci-dessous.
+const payload = JSON.stringify({ name: title, description, components })
+---
+
+<button
+	type='button'
+	data-recipe-pdf={payload}
+	class='inline-flex items-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white transition hover:opacity-90'
+>
+	<svg class='h-4 w-4' fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+		<path
+			stroke-linecap='round'
+			stroke-linejoin='round'
+			stroke-width='2'
+			d='M12 3v12m0 0l-4-4m4 4l4-4M5 21h14'></path>
+	</svg>
+	Télécharger en PDF
+</button>
+
+<script>
+	import { downloadRecipePdf } from '../utils/recipePdf'
+	import type { RecipePdfData } from '../utils/recipePdf'
+
+	document.addEventListener('click', async (event) => {
+		const target = event.target
+		if (!(target instanceof Element)) return
+		const button = target.closest<HTMLElement>('[data-recipe-pdf]')
+		if (!button) return
+		try {
+			const data = JSON.parse(button.dataset.recipePdf || '{}') as RecipePdfData
+			if (!data.components?.length) return
+			await downloadRecipePdf(data)
+		} catch (error) {
+			console.error('Export PDF impossible', error)
+		}
+	})
+</script>
