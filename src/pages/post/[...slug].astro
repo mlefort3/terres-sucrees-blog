@@ -6,6 +6,7 @@ import ListRelatedPosts from '@/components/ListRelatedPosts'
 import Share from '@/components/Share'
 import TableOfContents from '@/components/TableOfContents'
 import RecipeIngredientsDisplay from '@/components/RecipeIngredientsDisplay'
+import RecipeJsonLd from '@/components/RecipeJsonLd'
 import { getPosts } from '@/utils'
 import SButton from '@/components/mdx/SButton'
 
@@ -41,6 +42,8 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 	headings={headings}
 	readTime={remarkPluginFrontmatter.minutesRead}
 >
+	<RecipeJsonLd post={post} />
+
 	<div class='grid grid-cols-1 md:grid-cols-[280px_1fr] gap-8 mt-8'>
 		<!-- aside  -->
 		<aside class='md:flex flex-col gap-8 hidden'>

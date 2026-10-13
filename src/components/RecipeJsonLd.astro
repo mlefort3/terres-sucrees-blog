@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { getCollection } from 'astro:content'
+import JsonLd from '@/components/JsonLd'
+import { absoluteUrl, recipeJsonLd } from '@/utils/seo'
+
+interface Props {
+	post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+const {
+	title,
+	description,
+	pubDate,
+	heroImage,
+	tags,
+	categories,
+	recipeIngredients = []
+} = post.data
+
+// Résout les éléments de recette référencés par l'article (mêmes données que
+// celles affichées par RecipeIngredientsDisplay).
+const allIngredients = await getCollection('recipeIngredients')
+const components = recipeIngredients
+	.map((id) => allIngredients.find((ingredient) => ingredient.id === id))
+	.filter((ingredient) => ingredient !== undefined)
+	.map((ingredient) => ({
+		name: ingredient.data.name,
+		ingredients: ingredient.data.ingredients.map((ing) => ({
+			item: ing.item,
+			quantity: ing.quantity ?? null
+		})),
+		steps: ingredient.data.steps
+	}))
+
+const data = recipeJsonLd({
+	title,
+	description,
+	url: absoluteUrl(`/post/${post.slug}/`),
+	image: heroImage ? absoluteUrl(heroImage.src) : undefined,
+	datePublished: pubDate.toISOString(),
+	categories: [...categories],
+	tags: [...tags],
+	components
+})
+---
+
+<JsonLd data={data} />

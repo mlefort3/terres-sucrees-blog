@@ -12,8 +12,11 @@ interface SiteConfig {
 export const siteConfig: SiteConfig = {
 	site: 'https://terres-sucrees.fr/', // Write here your website url
 	author: 'Terres Sucrées', // Site author
-	title: 'Toutes les recettes', // Site title.
-	description: 'Recettes de pâtisserie végétale.', // Description to display in the meta tags
+	title: 'Terres Sucrées — recettes de pâtisserie végane', // Site title.
+	// Toutes les recettes publiées sont véganes : on le dit d'entrée de jeu, car
+	// c'est la recherche principale à laquelle le site répond.
+	description:
+		'Recettes de pâtisserie végane : tartes, entremets et gâteaux 100 % végétaux, sans œufs ni produits laitiers.',
 	lang: 'fr-FR',
 	ogLocale: 'fr_FR',
 	shareMessage: 'Partager', // Message to share a post on social media

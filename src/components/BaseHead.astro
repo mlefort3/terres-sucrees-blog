@@ -9,6 +9,8 @@ export interface Props {
 	ogImage?: string | undefined
 	articleDate?: string | undefined
 	noindex?: boolean
+	/** Force la balise canonical (ex. /all/1 doit pointer vers /). */
+	canonical?: string | undefined
 }
 
 const {
@@ -16,14 +18,17 @@ const {
 	description = siteConfig.description,
 	ogImage,
 	articleDate,
-	noindex = false
+	noindex = false,
+	canonical
 } = Astro.props
-const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href
 const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url).href
 
-const titleSeparator = '•'
-
-const siteTitle = `${title}`.charAt(0).toUpperCase() + `${title}`.slice(1)
+// Le nom du site est ajouté à la balise <title> : « Recette • Terres Sucrées ».
+const capitalizedTitle = `${title}`.charAt(0).toUpperCase() + `${title}`.slice(1)
+const siteTitle = capitalizedTitle.includes(siteConfig.author)
+	? capitalizedTitle
+	: `${capitalizedTitle} | ${siteConfig.author}`
 
 import { join } from 'path'
 import { AstroFont } from 'astro-font'
@@ -42,7 +47,16 @@ import { AstroFont } from 'astro-font'
 <link rel='canonical' href={canonicalURL} />
 
 <!-- Robots Meta -->
-{noindex && <meta name='robots' content='noindex, follow' />}
+{
+	noindex ? (
+		<meta name='robots' content='noindex, follow' />
+	) : (
+		<meta
+			name='robots'
+			content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
+		/>
+	)
+}
 
 <!-- Primary Meta Tags -->
 <title>{siteTitle}</title>
@@ -57,10 +71,13 @@ import { AstroFont } from 'astro-font'
 
 <!-- Open Graph / Facebook -->
 <meta property='og:type' content={articleDate ? 'article' : 'website'} />
-<meta property='og:url' content={Astro.url} />
+<meta property='og:url' content={canonicalURL} />
+<meta property='og:locale' content={siteConfig.ogLocale} />
+<meta property='og:site_name' content={siteConfig.author} />
 <meta property='og:title' content={title} />
 <meta property='og:description' content={description} />
 <meta property='og:image' content={socialImageURL} />
+<meta property='og:image:alt' content={title} />
 {
 	articleDate && (
 		<>
@@ -72,10 +89,11 @@ import { AstroFont } from 'astro-font'
 
 <!-- Twitter -->
 <meta property='twitter:card' content='summary_large_image' />
-<meta property='twitter:url' content={Astro.url} />
+<meta property='twitter:url' content={canonicalURL} />
 <meta property='twitter:title' content={title} />
 <meta property='twitter:description' content={description} />
 <meta property='twitter:image' content={socialImageURL} />
+<meta property='twitter:image:alt' content={title} />
 
 <!-- RSS auto-discovery -->
 <link rel='alternate' type='application/rss+xml' title={siteConfig.title} href='/rss.xml' />

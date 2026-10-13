@@ -28,7 +28,17 @@ export default defineConfig({
 			},
 			drafts: true
 		}),
-		sitemap(),
+		sitemap({
+			// Les pages de liste paginées sont soit des doublons de la page d'accueil
+			// (/all/1), soit en noindex (page ≥ 2) : on les écarte du sitemap.
+			filter: (page) => {
+				const { pathname } = new URL(page)
+				if (/^\/all\/\d+\/?$/.test(pathname)) return false
+				const categoryPage = pathname.match(/^\/category\/[^/]+\/(\d+)\/?$/)
+				if (categoryPage && Number(categoryPage[1]) > 1) return false
+				return true
+			}
+		}),
 		tailwind()
 	]
 })
