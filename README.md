@@ -6,8 +6,6 @@
 
 [terres-sucrees.fr](https://terres-sucrees.fr/) · [Instagram](https://instagram.com/terres.sucrees)
 
-<img src="public/project.png" alt="Terres Sucrées" />
-
 </div>
 
 ## 🌱 Le projet
@@ -142,12 +140,6 @@ La page **/creer-ma-recette** permet de composer une recette à partir des
   `Hiver`).
 - **public/** — favicon, `robots.txt` (penser à y mettre l'URL du sitemap),
   open-graph.
-
-## 🚀 Déploiement
-
-Le site se déploie sur [Netlify](https://www.netlify.com/) (voir
-[netlify.toml](netlify.toml)), qui redirige les anciennes URLs WordPress
-(`?paged=`, `?cat=`, `/YYYY/MM/DD/slug/`…) vers les nouvelles pages.
 
 ## 🧞 Commandes
 
