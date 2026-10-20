@@ -16,19 +16,28 @@ import { SOCIALNETWORKS } from '@/data/links'
 			<a href='/'>
 				<img src='/images/logo.png' alt='Terres Sucrées' class='h-16 w-auto' />
 			</a>
+			{
+				/* Le sous-titre est réservé à partir de 768 px : sur téléphone, la place
+			    manque (titre + loupe + thème + menu) et « Terres Sucrées » passe déjà
+			    à la ligne. */
+			}
 			<div class='flex flex-col'>
 				<span class='text-3xl font-bold text-primary'><a href='/'>Terres Sucrées</a></span>
-				<span class='text-sm text-gray-500 dark:text-ink-muted ml-1'>
+				<span class='text-sm text-gray-500 dark:text-ink-muted ml-1 hidden md:block'>
 					Recettes de pâtisserie végétale
 				</span>
 			</div>
 		</div>
 
 		<!-- CENTER: Main Navigation -->
-		<nav class='hidden md:flex items-center gap-6'>
+		{
+			/* Quatre entrées en 768 px (logo + sous-titre à gauche, contrôles à droite) :
+			    sans resserrage, « À propos » passe à la ligne en tablette. */
+		}
+		<nav class='hidden md:flex items-center gap-3 lg:gap-6 whitespace-nowrap'>
 			<div class='relative group'>
 				<button
-					class='flex items-center gap-1 font-medium text-lg focus:outline-none cursor-pointer'
+					class='flex items-center gap-1 font-medium text-base lg:text-lg focus:outline-none cursor-pointer'
 				>
 					Créations
 					<svg
@@ -71,8 +80,24 @@ import { SOCIALNETWORKS } from '@/data/links'
 					</li>
 				</ul>
 			</div>
+			<a
+				href='/ingredients/'
+				class='font-medium text-base lg:text-lg hover:text-primary transition-colors'
+			>
+				Préparations
+			</a>
 
-			<a href='/about/' class='font-medium text-lg hover:text-primary transition-colors'>
+			<a
+				href='/creer-ma-recette/'
+				class='font-medium text-base lg:text-lg hover:text-primary transition-colors'
+			>
+				Créer ma recette
+			</a>
+
+			<a
+				href='/about/'
+				class='font-medium text-base lg:text-lg hover:text-primary transition-colors'
+			>
 				À propos
 			</a>
 		</nav>
@@ -108,6 +133,8 @@ import { SOCIALNETWORKS } from '@/data/links'
 		<HeaderLink href='/tags/tartes/'>Tartes</HeaderLink>
 		<HeaderLink href='/tags/gâteaux-de-voyage/'>Gâteaux de voyage</HeaderLink>
 		<HeaderLink href='/tags/'>Autres</HeaderLink>
+		<HeaderLink href='/ingredients/'>Préparations</HeaderLink>
+		<HeaderLink href='/creer-ma-recette/'>Créer ma recette</HeaderLink>
 		<div class='flex gap-3 mt-4'>
 			{
 				SOCIALNETWORKS.map((network) => (

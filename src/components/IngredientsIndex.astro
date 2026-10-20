@@ -1,208 +1,643 @@
 ---
-// Composant pour afficher un index/catalogue de tous les ingrédients de recettes
+// Catalogue filtrable et paginé des préparations (fonds, biscuits,
+// croustillants, inserts, mousses…), une ligne par préparation, chacune menant
+// à sa fiche détaillée (/ingredients/<id>/).
+//
+// Tout est rendu au build : les 179 lignes sont dans le HTML, la page fonctionne
+// donc sans JavaScript (tous les éléments restent visibles) et reste indexée en
+// entier. Filtrage et pagination se contentent de masquer des lignes, sans
+// reconstruire la liste.
+// La recherche porte sur le titre et sur le contenu (description, ingrédients,
+// étapes, notes, source) : ce texte est rangé dans un attribut `data-search`,
+// déjà normalisé (minuscules, sans accents) pour que le filtrage client soit
+// une simple inclusion, sans recalcul.
 import { getCollection } from 'astro:content'
+import ArrowUp from '@/components/icons/ArrowUp'
+import IngredientsPager from '@/components/IngredientsPager'
+// Seules les tailles servent au rendu : les classes de la pagination sont
+// utilisées par le script et par IngredientsPager.
+import { DEFAULT_PAGE_SIZE, PAGE_SIZES } from '@/utils/ingredientsPagination'
 
-interface Props {
-	showRecipesCount?: boolean
-}
+/**
+ * Ordre des types : du fond du montage vers le décor, comme les couches de
+ * « Créer ma recette » (voir RECIPE_KIND_SLOTS). Les types absents des données
+ * sont ignorés, les inattendus sont ajoutés à la fin.
+ */
+const CATEGORY_ORDER = [
+	'pâte',
+	'biscuit',
+	'sirop',
+	'croustillant',
+	'insert',
+	'mousse',
+	'glaçage',
+	'décor',
+	'autre'
+]
 
-const { showRecipesCount = true } = Astro.props
+/** « creme » doit trouver « Crème », « pecan » trouver « pécan ». */
+const normalize = (value: string) =>
+	value
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
 
-// Récupérer tous les ingrédients et les posts
-const allRecipeIngredients = await getCollection('recipeIngredients')
+const allIngredients = await getCollection('recipeIngredients')
 const allPosts = await getCollection('blog')
 
-// Pour chaque ingrédient, compter combien de recettes l'utilisent
-const ingredientsWithCount = allRecipeIngredients.map((ingredient) => {
-	const recipeCount = allPosts.filter((post) =>
-		post.data.recipeIngredients?.includes(ingredient.id)
-	).length
+// Seules les recettes publiées ont une page : les brouillons ne sont donc ni
+// comptés ni proposés dans les fiches (comme partout ailleurs sur le site).
+const publishedPosts = allPosts.filter((post) => !post.data.draft)
 
-	return {
-		...ingredient,
-		recipeCount
+// Recettes publiées qui utilisent chaque élément.
+const recipesByIngredient = new Map<string, { title: string; slug: string }[]>()
+for (const post of publishedPosts) {
+	for (const id of post.data.recipeIngredients ?? []) {
+		const recipes = recipesByIngredient.get(id) ?? []
+		recipes.push({ title: post.data.title, slug: post.slug })
+		recipesByIngredient.set(id, recipes)
 	}
-})
+}
 
-// Trier par nombre de recettes décroissant
-const sortedIngredients = ingredientsWithCount.sort((a, b) => b.recipeCount - a.recipeCount)
+const ingredients = allIngredients
+	.map((ingredient) => {
+		const recipes = recipesByIngredient.get(ingredient.id) ?? []
+		const items = ingredient.data.ingredients
+		const source = ingredient.data.source ?? null
+		const sourceLabel = source && typeof source !== 'string' ? source.title : (source ?? '')
+
+		return {
+			id: ingredient.id,
+			name: ingredient.data.name,
+			category: ingredient.data.category as string,
+			description: ingredient.data.description ?? null,
+			flavors: ingredient.data.flavor,
+			recipes: recipes.length,
+			// Texte indexé : tout ce qui est visible dans la fiche, à plat.
+			search: normalize(
+				[
+					ingredient.data.name,
+					ingredient.data.category,
+					ingredient.data.flavor.join(' '),
+					ingredient.data.description ?? '',
+					items.map((item) => `${item.item} ${item.quantity ?? ''}`).join(' '),
+					ingredient.data.steps.join(' '),
+					ingredient.data.notes ?? '',
+					sourceLabel
+				]
+					.filter(Boolean)
+					.join(' · ')
+					.replace(/\s+/g, ' ')
+			)
+		}
+	})
+	// Ordre alphabétique (ordre français : « é » se range avec « e ») : la liste
+	// sert de catalogue à parcourir, le nombre de recettes est un simple repère.
+	.sort((a, b) => a.name.localeCompare(b.name, 'fr'))
+
+const categoryCount = new Map<string, number>()
+const flavorCount = new Map<string, number>()
+for (const ingredient of ingredients) {
+	categoryCount.set(ingredient.category, (categoryCount.get(ingredient.category) ?? 0) + 1)
+	for (const flavor of ingredient.flavors) {
+		flavorCount.set(flavor, (flavorCount.get(flavor) ?? 0) + 1)
+	}
+}
+
+const orderedCategories = [
+	...CATEGORY_ORDER.filter((category) => categoryCount.has(category)),
+	...[...categoryCount.keys()].filter((category) => !CATEGORY_ORDER.includes(category)).sort()
+]
+const categories = orderedCategories.map((category) => ({
+	value: category,
+	count: categoryCount.get(category) ?? 0
+}))
+
+const flavors = [...flavorCount.entries()]
+	.sort((a, b) => a[0].localeCompare(b[0], 'fr'))
+	.map(([value, count]) => ({ value, count }))
+
+const fieldClass =
+	'w-full rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 text-base placeholder:text-slate-400 dark:placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-primary'
+const selectClass = `${fieldClass} appearance-none pr-9`
+const pageSizeClass =
+	'rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text appearance-none py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
+const typeBadgeClass =
+	'shrink-0 rounded-full border border-slate-300 dark:border-ink-line bg-slate-100 dark:bg-ink-raised px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-ink-muted'
+const flavorBadgeClass =
+	'rounded-full border border-primary/25 dark:border-primary_second/30 bg-primary/10 dark:bg-primary_second/10 px-2.5 py-1 text-xs font-medium text-primary dark:text-primary_second'
+const recipeBadgeClass =
+	'shrink-0 rounded-full bg-primary px-2.5 py-1 text-xs font-medium text-white whitespace-nowrap'
+// Flèche de fiche : pastille teintée dans le violet du site (#6F6BAE, la couleur
+// primaire) qui se remplit au survol de la ligne. Le glyphe garde #6F6BAE, d'où
+// la teinte déjà suffisante du fond en mode sombre (20 % : l'échelle d'opacité
+// de Tailwind n'a pas de pas à 15 %, la classe serait restée sans règle). Le
+// remplissage passe par `group-hover` — `.group:hover …`, plus spécifique que
+// les variantes `dark:` du fond — et la flèche glisse vers sa diagonale sauf si
+// l'utilisateur a demandé moins d'animations.
+const arrowBadgeClass =
+	'flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-200 ease-out group-hover:bg-primary group-hover:text-white dark:bg-primary/20'
+const arrowIconClass =
+	'transition-transform duration-200 ease-out motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5'
 ---
 
-<div class='ingredients-index'>
-	<h2 class='ingredients-title'>Index des ingrédients de recettes</h2>
-	<p class='ingredients-subtitle'>
-		Découvrez les {sortedIngredients.length} ingrédients modulaires utilisés dans nos recettes
-	</p>
+<div class='flex flex-col gap-6'>
+	<section
+		class='frost-surface bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
+	>
+		<div
+			class='grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,14rem)_minmax(0,14rem)_auto] md:items-end'
+		>
+			<label class='flex flex-col gap-2'>
+				<span class='font-semibold text-primary'>Recherche</span>
+				<div class='relative'>
+					<input
+						id='ingredients-search'
+						type='search'
+						autocomplete='off'
+						spellcheck='false'
+						placeholder='Titre, ingrédient, étape…'
+						class={`${fieldClass} pl-10`}
+					/>
+					<svg
+						class='pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 dark:text-ink-muted'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path
+							stroke-linecap='round'
+							stroke-linejoin='round'
+							stroke-width='2'
+							d='M21 21l-4.35-4.35M17 10.5A6.5 6.5 0 1 1 4 10.5a6.5 6.5 0 0 1 13 0z'></path>
+					</svg>
+				</div>
+			</label>
 
-	<div class='ingredients-list'>
+			<label class='flex flex-col gap-2'>
+				<span class='font-semibold text-primary'>Type</span>
+				<div class='relative'>
+					<select id='ingredients-category' class={selectClass}>
+						<option value=''>Tous les types</option>
+						{
+							categories.map((category) => (
+								<option value={category.value}>
+									{category.value} ({category.count})
+								</option>
+							))
+						}
+					</select>
+					<svg
+						class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+						></path>
+					</svg>
+				</div>
+			</label>
+
+			<label class='flex flex-col gap-2'>
+				<span class='font-semibold text-primary'>Saveur</span>
+				<div class='relative'>
+					<select id='ingredients-flavor' class={selectClass}>
+						<option value=''>Toutes les saveurs</option>
+						{
+							flavors.map((flavor) => (
+								<option value={flavor.value}>
+									{flavor.value} ({flavor.count})
+								</option>
+							))
+						}
+					</select>
+					<svg
+						class='pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+						></path>
+					</svg>
+				</div>
+			</label>
+
+			<button
+				id='ingredients-reset'
+				type='button'
+				class='h-11 px-4 rounded-lg border border-slate-300 dark:border-ink-line text-sm font-medium text-slate-700 dark:text-ink-body hover:bg-slate-100 dark:hover:bg-ink-raised transition'
+			>
+				Réinitialiser
+			</button>
+		</div>
+
+		<div class='mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3'>
+			<p
+				id='ingredients-count'
+				class='text-sm text-slate-500 dark:text-ink-muted'
+				aria-live='polite'
+			>
+				{ingredients.length} préparation{ingredients.length > 1 ? 's' : ''}
+			</p>
+
+			<label class='flex items-center gap-2 text-sm text-slate-500 dark:text-ink-muted'>
+				<span>Afficher</span>
+				<div class='relative'>
+					<select id='ingredients-page-size' class={pageSizeClass}>
+						{
+							PAGE_SIZES.map((size) => (
+								<option value={size} selected={size === DEFAULT_PAGE_SIZE}>
+									{size}
+								</option>
+							))
+						}
+					</select>
+					<svg
+						class='pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 dark:text-ink-muted'
+						fill='none'
+						stroke='currentColor'
+						viewBox='0 0 24 24'
+					>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'
+						></path>
+					</svg>
+				</div>
+				<span>par page</span>
+			</label>
+		</div>
+	</section>
+
+	<!-- Barre du haut : la liste fait plusieurs écrans de long, on pagine sans
+	     avoir à la parcourir. Les deux barres sont pilotées par le script et
+	     montrent donc toujours la même page. -->
+	<IngredientsPager label='Pagination des préparations (haut de liste)' />
+	<ul id='ingredients-grid' class='flex flex-col gap-3 list-none p-0 m-0'>
 		{
-			sortedIngredients.map((ingredient) => (
-				<div class='ingredient-entry'>
-					<div class='ingredient-header'>
-						<h3 class='ingredient-name'>{ingredient.data.name}</h3>
-						{showRecipesCount && ingredient.recipeCount > 0 && (
-							<span class='recipe-count'>
-								{ingredient.recipeCount} recette{ingredient.recipeCount > 1 ? 's' : ''}
-							</span>
+			ingredients.map((ingredient) => (
+				<li
+					class='ingredient-card group relative flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-ink-line bg-white dark:bg-ink-surface p-4 md:flex-row md:items-center md:gap-6 md:p-5 shadow-sm dark:shadow-none transition-colors hover:border-primary/50 dark:hover:border-primary_second/50 focus-within:border-primary dark:focus-within:border-primary_second'
+					data-category={ingredient.category}
+					data-flavors={ingredient.flavors.join('|')}
+					data-search={ingredient.search}
+				>
+					<div class='flex min-w-0 flex-1 flex-col gap-2'>
+						<div class='flex flex-wrap items-center gap-x-3 gap-y-2'>
+							<span class={typeBadgeClass}>{ingredient.category}</span>
+							<h3 class='text-lg font-semibold text-primary'>
+								{/* Lien étiré sur toute la ligne : la cible de clic couvre la ligne entière. */}
+								<a href={`/ingredients/${ingredient.id}/`} class='after:absolute after:inset-0'>
+									{ingredient.name}
+								</a>
+							</h3>
+						</div>
+
+						{ingredient.description && (
+							<p class='text-sm text-slate-600 dark:text-ink-body'>{ingredient.description}</p>
+						)}
+
+						{ingredient.flavors.length > 0 && (
+							<div class='flex flex-wrap gap-2'>
+								{ingredient.flavors.map((flavor) => (
+									<span class={flavorBadgeClass}>{flavor}</span>
+								))}
+							</div>
 						)}
 					</div>
 
-					{ingredient.data.description && (
-						<p class='ingredient-description'>{ingredient.data.description}</p>
-					)}
-
-					{ingredient.data.source && (
-						<p class='ingredient-source'>
-							Source:
-							{typeof ingredient.data.source === 'string' ? (
-								<em>{ingredient.data.source}</em>
-							) : (
-								<a href={ingredient.data.source.url} target='_blank' rel='noopener noreferrer'>
-									<em>{ingredient.data.source.title}</em>
-								</a>
-							)}
-						</p>
-					)}
-
-					<div class='ingredient-details'>
-						<div class='details-section'>
-							<p class='section-title'>Ingrédients :</p>
-							<ul class='items-list'>
-								{ingredient.data.ingredients.map((item) => (
-									<li>{item.item}</li>
-								))}
-							</ul>
-						</div>
-
-						<div class='details-section'>
-							<p class='section-title'>Étapes :</p>
-							<ol class='steps-list'>
-								{ingredient.data.steps.map((step) => (
-									<li>{step}</li>
-								))}
-							</ol>
-						</div>
+					<div class='flex shrink-0 items-center gap-3 md:gap-4'>
+						{ingredient.recipes > 0 && (
+							<span data-recipe-count class={recipeBadgeClass}>
+								{ingredient.recipes} recette{ingredient.recipes > 1 ? 's' : ''}
+							</span>
+						)}
+						<span class={arrowBadgeClass} aria-hidden='true'>
+							<ArrowUp width={17} height={17} class={arrowIconClass} />
+						</span>
 					</div>
-				</div>
+				</li>
 			))
 		}
-	</div>
+	</ul>
+
+	<IngredientsPager />
+
+	<p
+		id='ingredients-empty'
+		hidden
+		class='frost-surface rounded-2xl border border-dashed border-slate-300 dark:border-ink-line p-8 text-center text-slate-600 dark:text-ink-muted'
+	>
+		Aucun élément ne correspond à cette recherche.
+	</p>
 </div>
 
+<script>
+	// Filtrage et pagination côté navigateur. Les lignes sont déjà dans le DOM : on
+	// ne fait que les masquer, ce qui garde la page indexable, utilisable et
+	// indexée sans JavaScript (sans script, toutes les préparations s'affichent).
+	import {
+		DEFAULT_PAGE_SIZE,
+		PAGE_SIZES,
+		pagerActiveClass,
+		pagerGapClass,
+		pagerLinkClass,
+		pagerStatusClass
+	} from '@/utils/ingredientsPagination'
+
+	const searchInput = document.getElementById('ingredients-search')
+	const categorySelect = document.getElementById('ingredients-category')
+	const flavorSelect = document.getElementById('ingredients-flavor')
+	const pageSizeSelect = document.getElementById('ingredients-page-size')
+	const resetButton = document.getElementById('ingredients-reset')
+	const countLabel = document.getElementById('ingredients-count')
+	const emptyLabel = document.getElementById('ingredients-empty')
+	const list = document.getElementById('ingredients-grid')
+
+	// Les deux barres de pagination (au-dessus et en dessous de la liste) : leurs
+	// morceaux sont retrouvés une fois pour toutes, puis mis à jour ensemble.
+	const pagerParts = [...document.querySelectorAll<HTMLElement>('.ingredients-pager')].flatMap(
+		(pager) => {
+			const numbers = pager.querySelector<HTMLElement>('[data-pager="numbers"]')
+			const prev = pager.querySelector<HTMLAnchorElement>('[data-pager="prev"]')
+			const next = pager.querySelector<HTMLAnchorElement>('[data-pager="next"]')
+			return numbers && prev && next
+				? [{ pager, numbers, prev, next, label: pager.getAttribute('aria-label') ?? '' }]
+				: []
+		}
+	)
+
+	if (
+		searchInput instanceof HTMLInputElement &&
+		categorySelect instanceof HTMLSelectElement &&
+		flavorSelect instanceof HTMLSelectElement &&
+		pageSizeSelect instanceof HTMLSelectElement &&
+		list &&
+		countLabel &&
+		emptyLabel &&
+		pagerParts.length > 0
+	) {
+		const rows = [...list.querySelectorAll<HTMLLIElement>('.ingredient-card')]
+		const total = rows.length
+
+		// Taille de page et page courante : l'état est aussi dans l'URL, qui reste
+		// partageable (…/ingredients/?saveur=vanille&page=2&taille=50).
+		let pageSize = DEFAULT_PAGE_SIZE
+		let currentPage = 1
+		let lastPage = 1
+
+		// « creme » doit trouver « Crème », « pecan » trouver « pécan ». Le texte
+		// des lignes est déjà normalisé au build : seule la requête l'est ici.
+		const withoutAccents = (value: string) =>
+			value
+				.normalize('NFD')
+				.replace(/[\u0300-\u036f]/g, '')
+				.toLowerCase()
+
+		/** Lignes retenues par les filtres, dans l'ordre alphabétique du catalogue. */
+		const filterRows = (terms: string[], category: string, flavor: string) =>
+			rows.filter(
+				(row) =>
+					(!category || row.dataset.category === category) &&
+					(!flavor || (row.dataset.flavors ?? '').split('|').includes(flavor)) &&
+					terms.every((term) => (row.dataset.search ?? '').includes(term))
+			)
+
+		/**
+		 * Compteur : le total seul quand tout tient sur une page, la tranche affichée
+		 * (« 1–25 sur 179 préparations ») dès qu'il y en a plusieurs, et le total
+		 * entre parenthèses quand un filtre réduit la sélection.
+		 */
+		const countText = (first: number, last: number, matched: number) => {
+			const plural = (value: number) => (value > 1 ? 's' : '')
+			if (matched === 0) return `0 sur ${total} préparations`
+			if (lastPage === 1) {
+				return matched === total
+					? `${total} préparation${plural(total)}`
+					: `${matched} sur ${total} préparations`
+			}
+			const range = `${first}–${last} sur ${matched} préparation${plural(matched)}`
+			return matched === total ? range : `${range} (${total} au total)`
+		}
+
+		/** URL de la page demandée : filtres courants, plus page et taille. */
+		const urlFor = (page: number) => {
+			const params = new URLSearchParams()
+			const query = searchInput.value.trim()
+			if (query) params.set('q', query)
+			if (categorySelect.value) params.set('type', categorySelect.value)
+			if (flavorSelect.value) params.set('saveur', flavorSelect.value)
+			// Page 1 et 25 par page sont la vue par défaut : elles restent hors URL,
+			// comme les filtres avant la pagination.
+			if (page > 1) params.set('page', String(page))
+			if (pageSize !== DEFAULT_PAGE_SIZE) params.set('taille', String(pageSize))
+			const search = params.toString()
+			return search ? `?${search}` : location.pathname
+		}
+
+		const syncUrl = (mode: 'replace' | 'push' = 'replace') => {
+			const url = urlFor(currentPage)
+			if (mode === 'push') {
+				if (url !== `${location.pathname}${location.search}`) history.pushState(null, '', url)
+				return
+			}
+			history.replaceState(null, '', url)
+		}
+
+		/**
+		 * Pages à afficher : les extrémités, la page courante et ses deux voisines
+		 * (au plus 7 boutons avec les « … », soit 328 px : la ligne tient dès 520 px
+		 * de large, la limite de la barre réduite ci-dessous).
+		 */
+		const pageWindow = () => {
+			const shown = new Set([1, lastPage, currentPage - 1, currentPage, currentPage + 1])
+			return [...shown]
+				.filter((candidate) => candidate >= 1 && candidate <= lastPage)
+				.sort((a, b) => a - b)
+		}
+
+		/**
+		 * Contenu de la zone des numéros : les pages, « … » dans les trous. Construit
+		 * une fois, puis recopié dans chaque barre (un nœud ne vit que dans un parent).
+		 */
+		const pagerContents = () => {
+			// Sous 520 px, les numéros ne tiennent pas sur une ligne : la barre se
+			// réduit aux deux flèches et à l'état « Page 9 sur 18 ». Ce texte ne fait
+			// que doubler l'`aria-label` de la barre, d'où `aria-hidden`.
+			if (window.matchMedia('(max-width: 520px)').matches) {
+				const status = document.createElement('span')
+				status.className = pagerStatusClass
+				status.textContent = `Page ${currentPage} sur ${lastPage}`
+				status.setAttribute('aria-hidden', 'true')
+				return [status]
+			}
+
+			const nodes: Node[] = []
+			let previous = 0
+			for (const page of pageWindow()) {
+				if (page - previous > 1) {
+					const gap = document.createElement('span')
+					gap.className = pagerGapClass
+					gap.textContent = '…'
+					gap.setAttribute('aria-hidden', 'true')
+					nodes.push(gap)
+				}
+
+				if (page === currentPage) {
+					const active = document.createElement('span')
+					active.className = pagerActiveClass
+					active.textContent = String(page)
+					active.setAttribute('aria-current', 'page')
+					nodes.push(active)
+				} else {
+					const link = document.createElement('a')
+					link.className = pagerLinkClass
+					link.href = urlFor(page)
+					link.dataset.page = String(page)
+					link.setAttribute('aria-label', `Page ${page}`)
+					link.textContent = String(page)
+					nodes.push(link)
+				}
+				previous = page
+			}
+			return nodes
+		}
+
+		const renderPagers = () => {
+			if (lastPage <= 1) {
+				// Une seule page : aucune barre (donc pas de flèches grisées).
+				for (const part of pagerParts) part.pager.hidden = true
+				return
+			}
+
+			const contents = pagerContents()
+			for (const part of pagerParts) {
+				part.pager.hidden = false
+				part.pager.setAttribute('aria-label', `${part.label}, page ${currentPage} sur ${lastPage}`)
+				part.numbers.replaceChildren(...contents.map((node) => node.cloneNode(true)))
+				part.prev.hidden = currentPage <= 1
+				part.prev.href = urlFor(currentPage - 1)
+				part.prev.dataset.page = String(currentPage - 1)
+				part.next.hidden = currentPage >= lastPage
+				part.next.href = urlFor(currentPage + 1)
+				part.next.dataset.page = String(currentPage + 1)
+			}
+		}
+
+		const apply = () => {
+			const terms = withoutAccents(searchInput.value.trim()).split(/\s+/).filter(Boolean)
+			const matched = filterRows(terms, categorySelect.value, flavorSelect.value)
+			lastPage = Math.max(1, Math.ceil(matched.length / pageSize))
+			// Une page hors bornes (filtre plus strict, taille plus grande) retombe
+			// sur la dernière page disponible.
+			currentPage = Math.min(Math.max(currentPage, 1), lastPage)
+
+			const start = (currentPage - 1) * pageSize
+			const page = new Set(matched.slice(start, start + pageSize))
+			for (const row of rows) row.hidden = !page.has(row)
+
+			countLabel.textContent = countText(
+				start + 1,
+				Math.min(start + pageSize, matched.length),
+				matched.length
+			)
+			emptyLabel.hidden = matched.length > 0
+			renderPagers()
+		}
+
+		/**
+		 * Changement de page : l'URL empile une entrée (le retour revient à la page
+		 * précédente) et, si la liste est déjà déroulée, on remonte à son début
+		 * plutôt que d'atterrir en bas de la page suivante.
+		 */
+		const goToPage = (page: number) => {
+			const listIsAbove = list.getBoundingClientRect().top < 0
+			currentPage = Math.min(Math.max(page, 1), lastPage)
+			apply()
+			syncUrl('push')
+			if (listIsAbove) list.scrollIntoView({ block: 'start' })
+		}
+
+		// Un filtre ou une taille de page change la sélection : la pagination
+		// repart de la page 1 plutôt que de garder une position arbitraire.
+		const onSelectionChange = () => {
+			currentPage = 1
+			apply()
+			syncUrl()
+		}
+
+		// Sélection initiale lue dans l'URL : une valeur inconnue retombe sur
+		// « Tous les types / toutes les saveurs », 25 par page et la page 1.
+		const initial = new URLSearchParams(location.search)
+		searchInput.value = initial.get('q') ?? ''
+		categorySelect.value = initial.get('type') ?? ''
+		flavorSelect.value = initial.get('saveur') ?? ''
+		const initialSize = Number(initial.get('taille'))
+		pageSize = PAGE_SIZES.includes(initialSize) ? initialSize : DEFAULT_PAGE_SIZE
+		pageSizeSelect.value = String(pageSize)
+		currentPage = Number(initial.get('page')) || 1
+
+		searchInput.addEventListener('input', onSelectionChange)
+		categorySelect.addEventListener('change', onSelectionChange)
+		flavorSelect.addEventListener('change', onSelectionChange)
+		pageSizeSelect.addEventListener('change', () => {
+			const size = Number(pageSizeSelect.value)
+			pageSize = PAGE_SIZES.includes(size) ? size : DEFAULT_PAGE_SIZE
+			pageSizeSelect.value = String(pageSize)
+			onSelectionChange()
+		}) // Un clic sur une des barres ne recharge pas la page : la tranche demandée
+		// est déjà dans le DOM. Les liens restent de vraies URL (nouvel onglet,
+		// partage) et, sans JavaScript, de simples liens.
+		const onPagerClick = (event: Event) => {
+			if (!(event.target instanceof Element)) return
+			const link = event.target.closest<HTMLAnchorElement>('a[data-page]')
+			if (!link) return
+			event.preventDefault()
+			goToPage(Number(link.dataset.page))
+		}
+		for (const part of pagerParts) part.pager.addEventListener('click', onPagerClick)
+
+		resetButton?.addEventListener('click', () => {
+			searchInput.value = ''
+			categorySelect.value = ''
+			flavorSelect.value = ''
+			// La taille de page est un réglage d'affichage, pas un filtre : elle est
+			// conservée.
+			onSelectionChange()
+			searchInput.focus()
+		})
+
+		// La fenêtre de pages dépend de la largeur : on redessine les barres quand
+		// elle change (rotation du téléphone, fenêtre redimensionnée).
+		window.addEventListener('resize', renderPagers)
+
+		// La sélection se relance au retour dans l'historique… sans en ajouter :
+		// `replaceState` n'empile pas d'entrée, seules les pages empilées par
+		// `pushState` (et le retour depuis une autre page du site) déclenchent
+		// `popstate`.
+		window.addEventListener('popstate', () => {
+			const params = new URLSearchParams(location.search)
+			searchInput.value = params.get('q') ?? ''
+			categorySelect.value = params.get('type') ?? ''
+			flavorSelect.value = params.get('saveur') ?? ''
+			const size = Number(params.get('taille'))
+			pageSize = PAGE_SIZES.includes(size) ? size : DEFAULT_PAGE_SIZE
+			pageSizeSelect.value = String(pageSize)
+			currentPage = Number(params.get('page')) || 1
+			apply()
+		})
+
+		apply()
+		syncUrl()
+	}
+</script>
+
 <style>
-	.ingredients-index {
-		margin: 3rem 0;
-	}
-
-	.ingredients-title {
-		font-size: 1.875rem;
-		font-weight: 600;
-		margin-bottom: 0.5rem;
-	}
-
-	.ingredients-subtitle {
-		color: var(--color-text-secondary, #666);
-		margin-bottom: 2rem;
-		font-size: 1.05rem;
-	}
-
-	.ingredients-list {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
-
-	.ingredient-entry {
-		border: 1px solid var(--color-border, #e0e0e0);
-		border-radius: 0.5rem;
-		padding: 1.5rem;
-		transition: all 0.3s ease;
-	}
-
-	.ingredient-entry:hover {
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	}
-
-	.ingredient-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: baseline;
-		margin-bottom: 0.5rem;
-		gap: 1rem;
-	}
-
-	.ingredient-name {
-		font-size: 1.25rem;
-		font-weight: 600;
-		margin: 0;
-		color: var(--color-text-primary, #1f2937);
-	}
-
-	.recipe-count {
-		background-color: var(--color-accent, #4f46e5);
-		color: white;
-		padding: 0.25rem 0.75rem;
-		border-radius: 9999px;
-		font-size: 0.85rem;
-		font-weight: 500;
-		white-space: nowrap;
-	}
-
-	.ingredient-description {
-		color: var(--color-text-secondary, #666);
-		margin-bottom: 0.5rem;
-		font-style: italic;
-	}
-
-	.ingredient-source {
-		font-size: 0.9rem;
-		color: var(--color-text-secondary, #666);
-		margin-bottom: 1rem;
-	}
-
-	.ingredient-details {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-		gap: 1.5rem;
-		margin-top: 1rem;
-		padding-top: 1rem;
-		border-top: 1px solid var(--color-border, #e0e0e0);
-	}
-
-	.details-section {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.section-title {
-		font-weight: 600;
-		font-size: 0.95rem;
-		margin-bottom: 0.75rem;
-		color: var(--color-text-primary, #1f2937);
-	}
-
-	.items-list,
-	.steps-list {
-		margin: 0;
-		padding-left: 1.5rem;
-	}
-
-	.items-list li,
-	.steps-list li {
-		margin-bottom: 0.5rem;
-		font-size: 0.9rem;
-		color: var(--color-text-primary, #1f2937);
-		line-height: 1.5;
-	}
-
-	@media (max-width: 768px) {
-		.ingredient-header {
-			flex-direction: column;
-			align-items: flex-start;
-		}
-
-		.ingredient-details {
-			grid-template-columns: 1fr;
-		}
+	/* Le préflight place `[hidden]` dans la couche de base, que les utilitaires
+	   comme `flex` écrasent : sans cette règle, une ligne filtrée ou hors de la
+	   page courante resterait affichée. (Les barres de pagination, elles, ont la
+	   leur dans IngredientsPager.) */
+	.ingredient-card[hidden] {
+		display: none;
 	}
 </style>

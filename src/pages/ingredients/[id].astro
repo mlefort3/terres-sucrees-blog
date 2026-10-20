@@ -1,0 +1,175 @@
+---
+// Fiche détaillée d'un élément modulaire : /ingredients/<id>/
+//
+// Une page par fichier de src/content/recipeIngredients, comme les recettes ont
+// une page par fichier de src/content/blog. Elle reprend la préparation complète
+// (ingrédients et étapes) et liste les recettes publiées qui l'utilisent.
+import { getCollection } from 'astro:content'
+import BaseLayout from '@/layouts/BaseLayout'
+import ArrowLeft from '@/components/icons/ArrowLeft'
+import { getPosts } from '@/utils'
+
+export async function getStaticPaths() {
+	const ingredients = await getCollection('recipeIngredients')
+
+	return ingredients.map((ingredient) => ({
+		params: { id: ingredient.id },
+		props: { ingredient }
+	}))
+}
+
+const { ingredient } = Astro.props
+const { name, category, description, flavor, ingredients, steps, source, notes } = ingredient.data
+
+// Seules les recettes publiées ont une page : on les retrouve par leur id
+// d'élément, comme sur la fiche « Créer ma recette ». `getPosts` renvoie les
+// plus récentes d'abord, on repasse en ordre alphabétique pour la liste.
+const posts = await getPosts()
+const usedIn = posts
+	.filter((post) => (post.data.recipeIngredients ?? []).includes(ingredient.id))
+	.sort((a, b) => a.data.title.localeCompare(b.data.title, 'fr'))
+
+const typeBadgeClass =
+	'rounded-full border border-slate-300 dark:border-ink-line bg-slate-100 dark:bg-ink-raised px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-ink-muted'
+const flavorBadgeClass =
+	'rounded-full border border-primary/25 dark:border-primary_second/30 bg-primary/10 dark:bg-primary_second/10 px-2.5 py-1 text-xs font-medium text-primary dark:text-primary_second'
+const cardClass =
+	'frost-surface bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
+
+const pageDescription =
+	description ??
+	`${name}, une préparation (${category}) à assembler dans vos pâtisseries végétales.`
+---
+
+<BaseLayout title={name} description={pageDescription} gradient>
+	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
+		<a
+			href='/ingredients/'
+			class='inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline'
+		>
+			<ArrowLeft width={18} height={18} />
+			Toutes les préparations
+		</a>
+
+		<header class='mt-6 flex flex-col gap-4'>
+			<div class='flex flex-wrap items-center gap-3'>
+				<span class={typeBadgeClass}>{category}</span>
+				{
+					flavor.map((item) => (
+						<a href={`/ingredients/?saveur=${encodeURIComponent(item)}`} class={flavorBadgeClass}>
+							{item}
+						</a>
+					))
+				}
+			</div>
+			<h1 class='text-4xl md:text-5xl font-semibold'>{name}</h1>
+			{
+				description && (
+					<p class='max-w-3xl text-lg text-slate-600 dark:text-ink-muted'>{description}</p>
+				)
+			}
+			{
+				source && (
+					<p class='text-sm text-slate-600 dark:text-ink-muted italic'>
+						Basé sur la recette de{' '}
+						{typeof source === 'string' ? (
+							source
+						) : (
+							<a
+								href={source.url}
+								target='_blank'
+								rel='noopener noreferrer'
+								class='font-medium text-primary hover:underline'
+							>
+								{source.title}
+							</a>
+						)}
+					</p>
+				)
+			}
+		</header>
+
+		<hr class='my-8 md:my-10' />
+
+		<div class='grid gap-6 md:grid-cols-2 md:items-start'>
+			<section class={cardClass}>
+				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>Ingrédients</h2>
+				{
+					ingredients.length > 0 ? (
+						<ul class='space-y-3'>
+							{ingredients.map((item) => (
+								<li class='text-slate-700 dark:text-ink-body text-base'>
+									<span class='text-primary font-light'>– </span>
+									{item.item}
+									{item.quantity && (
+										<span class='text-slate-500 dark:text-ink-faint text-sm'>
+											{' '}
+											({item.quantity})
+										</span>
+									)}
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class='text-slate-500 dark:text-ink-faint'>Aucun ingrédient</p>
+					)
+				}
+			</section>
+
+			<section class={cardClass}>
+				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>Étapes</h2>
+				{
+					steps.length > 0 ? (
+						<ol class='space-y-3'>
+							{steps.map((step, index) => (
+								<li class='text-slate-700 dark:text-ink-body text-base'>
+									<span class='font-semibold text-primary'>{index + 1}. </span>
+									{step}
+								</li>
+							))}
+						</ol>
+					) : (
+						<p class='text-slate-500 dark:text-ink-faint'>Aucune étape</p>
+					)
+				}
+			</section>
+
+			{
+				notes && (
+					<section class={`${cardClass} md:col-span-2`}>
+						<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-3'>Note</h2>
+						<p class='text-slate-700 dark:text-ink-body text-base'>{notes}</p>
+					</section>
+				)
+			}
+
+			<section class={`${cardClass} md:col-span-2`}>
+				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>
+					{usedIn.length > 1 ? 'Utilisée dans' : 'Utilisé dans'}
+				</h2>
+				{
+					usedIn.length > 0 ? (
+						<ul class='flex flex-col gap-3'>
+							{usedIn.map((post) => (
+								<li>
+									<a href={`/post/${post.slug}/`} class='font-medium text-primary hover:underline'>
+										{post.data.title}
+									</a>
+									{post.data.description && (
+										<span class='block text-sm text-slate-600 dark:text-ink-muted'>
+											{post.data.description}
+										</span>
+									)}
+								</li>
+							))}
+						</ul>
+					) : (
+						<p class='text-slate-500 dark:text-ink-faint'>
+							Cet élément n'est encore utilisé dans aucune recette publiée.
+						</p>
+					)
+				}
+			</section>
+		</div>
+	</article>
+</BaseLayout>

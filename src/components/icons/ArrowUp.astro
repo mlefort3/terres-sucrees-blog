@@ -1,9 +1,19 @@
 ---
-const { width = 24, height = 24 } = Astro.props
+// Flèche « ouvrir la fiche » : diagonale vers le haut-droite, en trait (feather).
+//
+// `class` est acceptée pour laisser l'appelant animer la flèche seule (voir la
+// pastille du catalogue des préparations) sans dupliquer le dessin.
+export interface Props {
+	width?: number | string
+	height?: number | string
+	class?: string
+}
+
+const { width = 24, height = 24, class: className } = Astro.props
 ---
 
 <svg
-	class='feather feather-arrow-up-right'
+	class:list={['feather feather-arrow-up-right', className]}
 	fill='none'
 	height={height}
 	stroke='currentColor'

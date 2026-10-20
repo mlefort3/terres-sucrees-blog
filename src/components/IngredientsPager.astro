@@ -1,0 +1,62 @@
+---
+// Barre de pagination du catalogue des préparations.
+//
+// Le catalogue en affiche deux : une au-dessus de la liste, une en dessous, pour
+// que le changement de page reste à portée de clic sans remonter tout le
+// catalogue. Les deux sont pilotées par le même script (IngredientsIndex) et
+// affichent donc toujours la même page.
+//
+// Ce composant ne fournit que la structure : les numéros sont écrits côté
+// navigateur dans `[data-pager="numbers"]`, les flèches existent ici parce que
+// leurs icônes sont des composants Astro. Sans JavaScript, les barres restent
+// masquées (attribut `hidden`) et toutes les préparations restent affichées.
+import ArrowLeft from '@/components/icons/ArrowLeft'
+import ArrowRight from '@/components/icons/ArrowRight'
+import { pagerLinkClass } from '@/utils/ingredientsPagination'
+
+export interface Props {
+	/** Nom accessible de la barre : les deux barres doivent se distinguer. */
+	label?: string
+}
+
+const { label = 'Pagination des préparations' } = Astro.props
+const arrowClass = `${pagerLinkClass} shrink-0`
+---
+
+<nav
+	class='ingredients-pager flex flex-wrap items-center justify-start gap-2'
+	aria-label={label}
+	hidden
+>
+	<a
+		data-pager='prev'
+		href='/ingredients/'
+		rel='prev'
+		aria-label='Page précédente'
+		class={arrowClass}
+		hidden
+	>
+		<ArrowLeft width={18} height={18} />
+	</a>
+	<span data-pager='numbers' class='flex flex-wrap items-center gap-2'></span>
+	<a
+		data-pager='next'
+		href='/ingredients/'
+		rel='next'
+		aria-label='Page suivante'
+		class={arrowClass}
+		hidden
+	>
+		<ArrowRight width={18} height={18} />
+	</a>
+</nav>
+
+<style>
+	/* Le préflight place `[hidden]` dans la couche de base, que les utilitaires
+	   comme `flex` écrasent : sans ces règles, la barre et ses flèches resteraient
+	   visibles alors qu'il n'y a qu'une page. */
+	.ingredients-pager[hidden],
+	.ingredients-pager a[hidden] {
+		display: none;
+	}
+</style>

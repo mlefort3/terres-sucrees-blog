@@ -11,22 +11,23 @@
 ## 🌱 Le projet
 
 **Terres Sucrées** est un blog de pâtisserie végétale. Chaque recette est
-décomposée en **éléments modulaires** (fond, biscuit, croustillant, insert,
-mousse, glaçage, décor…) qui peuvent être assemblés pour composer de nouvelles
+décomposée en **préparations** (fond, biscuit, croustillant, insert, mousse,
+glaçage, décor…) qui peuvent être assemblées pour composer de nouvelles
 créations.
 
 Le site rassemble :
 
 - un **catalogue de recettes** classées par saison ;
-- sur chaque recette, le **détail de ses éléments modulaires** (ingrédients et
-  étapes) ;
-- un outil **« Créer ma recette »** qui assemble les éléments et génère un PDF.
+- sur chaque recette, le **détail de ses préparations** (ingrédients et étapes) ;
+- une page **Préparations** qui les catalogue, avec une fiche par préparation ;
+- un outil **« Créer ma recette »** qui assemble les préparations et génère un PDF.
 
 ## ✨ Fonctionnalités
 
 - ✅ Recettes saisonnières — catégories Printemps, Été, Automne, Hiver
-- ✅ Composants modulaires réutilisables entre les recettes
+- ✅ Préparations réutilisables entre les recettes
 - ✅ **Créer ma recette** : assemblage guidé (Tarte ou Entremet) et export PDF
+- ✅ **Préparations** : catalogue filtrable (mot-clé, saveur, type), paginé (10, 25, 50 ou 100 par page) et fiche détaillée par préparation
 - ✅ Suggestions de saveurs compatibles entre les couches (« Recommandé »)
 - ✅ Recherche statique ([Pagefind](https://pagefind.app/), en production)
 - ✅ Flux RSS et sitemap
@@ -50,16 +51,16 @@ Le site rassemble :
 ## 🗂️ Structure
 
 ```
-├── public/                       # assets statiques (favicon, open-graph, robots.txt…)
+├── public/                       # assets statiques (favicon, preview-banner, robots.txt…)
 ├── src/
 │   ├── assets/                   # images des recettes
 │   ├── components/               # composants Astro (PostCard, RecipeIngredientsDisplay, RecipeSlotSelect…)
 │   ├── content/
 │   │   ├── blog/                 # les recettes (.mdx)
-│   │   └── recipeIngredients/    # les éléments modulaires (.yml)
+│   │   └── recipeIngredients/    # les préparations (.yml)
 │   ├── data/                     # site.config.ts, categories.ts, links.ts
 │   ├── layouts/
-│   ├── pages/                    # index, post, category, tags, creer-ma-recette, about…
+│   ├── pages/                    # index, post, category, tags, ingredients, creer-ma-recette, about…
 │   ├── styles/
 │   └── utils/
 ├── tina/                         # configuration Tina CMS
@@ -83,7 +84,7 @@ heroImage: /src/assets/images/img_8210-scaled.jpg
 categories: [Printemps] # saison(s)
 tags: [fruits, tartes]
 draft: false # optionnel, absent = false
-recipeIngredients: # ids des éléments modulaires utilisés
+recipeIngredients: # ids des préparations utilisées
   - croustillant-amande-huile-olive
   - gel-fraise
   - pesto-sucre
@@ -91,9 +92,9 @@ recipeIngredients: # ids des éléments modulaires utilisés
 ---
 ```
 
-## 🧩 Les ingrédients modulaires
+## 🧩 Les préparations
 
-Chaque élément est un fichier `.yml` dans **src/content/recipeIngredients**.
+Chaque préparation est un fichier `.yml` dans **src/content/recipeIngredients**.
 La `category` détermine la couche qu'il occupe dans le montage :
 
 `pâte` · `biscuit` · `sirop` · `croustillant` · `insert` · `mousse` · `glaçage` ·
@@ -119,7 +120,7 @@ compatibles ; il alimente les recommandations de la page _Créer ma recette_.
 ## 🛠️ Créer ma recette
 
 La page **/creer-ma-recette** permet de composer une recette à partir des
-éléments modulaires :
+préparations :
 
 1. Choisir le type de recette — **Tarte** ou **Entremet** ;
 2. Sélectionner un élément dans chaque catégorie (les couches nécessaires à la
@@ -139,7 +140,7 @@ La page **/creer-ma-recette** permet de composer une recette à partir des
 - **src/data/categories.ts** — liste des saisons (`Printemps`, `Été`, `Automne`,
   `Hiver`).
 - **public/** — favicon, `robots.txt` (penser à y mettre l'URL du sitemap),
-  open-graph.
+  `preview-banner.png` (image d'aperçu des liens partagés).
 
 ## 🧞 Commandes
 

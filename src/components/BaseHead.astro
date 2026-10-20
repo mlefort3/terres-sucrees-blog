@@ -29,7 +29,7 @@ const {
 } = Astro.props
 const pageURL = new URL(Astro.url.pathname, Astro.site).href
 const canonicalURL = canonical ?? pageURL
-const socialImageURL = new URL(ogImage ? ogImage : '/open-graph.png', Astro.url).href
+const socialImageURL = new URL(ogImage ? ogImage : '/preview-banner.png', Astro.url).href
 
 // Le nom du site est ajouté à la balise <title> : « Recette • Terres Sucrées ».
 const capitalizedTitle = `${title}`.charAt(0).toUpperCase() + `${title}`.slice(1)
