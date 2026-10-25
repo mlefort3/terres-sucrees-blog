@@ -1,0 +1,28 @@
+name: "Mousse à la fève tonka"
+category: mousse
+description: "Mousse à la fève tonka"
+ingredients:
+  - item: "200 ml de lait de soja"
+  - item: "50 g de crème végétale (1)"
+  - item: "40 g de sucre"
+  - item: "5 g de pectine NH"
+  - item: "8 g de fécule de maïs"
+  - item: "1/3 de fève tonka râpée"
+  - item: "250 g de crème végétale 31% de matières grasses (2)"
+flavor:
+  - tonka
+steps:
+  - "Mélanger la crème (1), la fécule, le sucre, la pectine NH et la pincée de sel"
+  - "Chauffer le lait et la fève de tonka râpée"
+  - "Porter à ébullition"
+  - "Éteindre le feu et laisser infuser la tonka 20min (davantage si souhaité)"
+  - "Filtrer le tout, reporter le mélange à ébullition"
+  - "Ajouter en trois fois ce mélange sur le mélange fécule/crème"
+  - "Reverser le tout dans la casserole et mettre à chauffer sur feu moyen"
+  - "Mélanger en continu jusqu'à 1-2 min après épaississement"
+  - "Mixer le tout au mixeur plongeant"
+  - "Laisser refroidir jusqu'à ce que le mélange soit tiède (35/40 degrés)"
+  - "Monter la crème (2) en chantilly"
+  - "Ajouter une petite partie de la crème dans le mélange lait/fécule et mélanger jusqu'à ce que le mélange soit homogène"
+  - "Incorporer petit à petit le reste de la crème à la maryse, jusqu'à ce que le mélange soit homogène"
+  - "Laisser refroidir quelques heures au réfrigérateur, jusqu'à ce que la mousse se soit raffermie"
