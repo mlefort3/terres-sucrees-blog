@@ -1,12 +1,47 @@
 ---
 import { siteConfig } from '@/site-config'
+import { SOCIALNETWORKS } from '@/data/links'
 
 const today = new Date()
 ---
 
-<footer
-	class='flex justify-center items-center w-full px-16 h-28 border-t-2 border-transparent dark:border-ink-line dark:text-ink-muted'
->
-	&copy; {today.getFullYear()}
-	{siteConfig.author}. Tous droits réservés.
+<footer class='mt-8'>
+	<div
+		class='flex flex-col gap-8 rounded-2xl border-2 border-outline bg-white px-6 py-8 shadow-[6px_6px_0_0_#241e38] dark:border-ink-line dark:bg-ink-surface dark:shadow-[6px_6px_0_0_rgba(189,183,253,0.18)] md:flex-row md:items-center md:justify-between md:px-10'
+	>
+		<div class='flex flex-col gap-2'>
+			{
+				/* Même mot-symbole que dans l'en-tête : encre noire et « Sucrées »
+			   surligné du trait bleu de la marque. */
+			}
+			<a href='/' class='font-display text-3xl leading-none text-ink dark:text-ink-text'>
+				Terres <span class='pop-marker pop-marker--blue leading-none'>Sucrées</span>
+			</a>
+			<p class='max-w-sm text-sm text-ink/70 dark:text-ink-muted'>
+				Recettes de pâtisserie végétale, décomposées en préparations à assembler.
+			</p>
+		</div>
+
+		<div class='flex flex-col gap-4 md:items-end'>
+			<div class='flex flex-wrap gap-2'>
+				{
+					SOCIALNETWORKS.map((network) => (
+						<a
+							href={network.url}
+							target='_blank'
+							rel='noopener noreferrer'
+							aria-label={network.name}
+							class='flex h-9 w-9 items-center justify-center rounded-lg border-2 border-outline bg-white text-ink transition hover:-translate-y-0.5 hover:bg-butter hover:shadow-[2px_2px_0_0_#241e38] dark:border-ink-line dark:bg-ink dark:text-ink-text'
+						>
+							<network.icon />
+						</a>
+					))
+				}
+			</div>
+			<p class='text-xs font-semibold uppercase tracking-[0.16em] text-ink/50 dark:text-ink-faint'>
+				&copy; {today.getFullYear()}
+				{siteConfig.author} · 100 % végétal
+			</p>
+		</div>
+	</div>
 </footer>

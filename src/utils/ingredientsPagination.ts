@@ -21,9 +21,9 @@ export const DEFAULT_PAGE_SIZE = 25
 // Toujours 40 × 40 px (h-10 w-10) : la barre de pagination garde le même
 // gabarit, qu'un bouton porte un chiffre, une flèche ou les points de suspension.
 const pagerBase =
-	'flex h-10 w-10 items-center justify-center rounded-lg border text-sm font-medium transition'
+	'flex h-10 w-10 items-center justify-center rounded-lg border-2 text-sm font-bold transition'
 
-export const pagerLinkClass = `${pagerBase} border-slate-300 bg-white text-slate-700 hover:bg-slate-100 dark:border-ink-line dark:bg-ink-surface dark:text-ink-body dark:hover:bg-ink-raised`
+export const pagerLinkClass = `${pagerBase} border-[color:var(--pop-line)] bg-[color:var(--pop-surface)] text-[color:var(--pop-fg)] shadow-[2px_2px_0_0_var(--pop-shadow)] hover:-translate-y-0.5 hover:bg-butter hover:text-outline`
 
 /**
  * Page courante : pastille pleine, non cliquable (aria-current="page").
@@ -33,14 +33,14 @@ export const pagerLinkClass = `${pagerBase} border-slate-300 bg-white text-slate
  * en mode sombre.
  */
 export const pagerActiveClass =
-	'flex h-10 w-10 items-center justify-center rounded-lg border border-primary bg-primary text-sm font-medium text-white'
+	'flex h-10 w-10 items-center justify-center rounded-lg border-2 border-outline bg-primary text-sm font-bold text-white shadow-[2px_2px_0_0_var(--pop-shadow)] dark:border-ink-line'
 
 /**
  * Remplace les numéros du côté étroit de la barre : « Page 3 sur 8 ». Une
  * étiquette texte tient sur la ligne là où sept boutons ne tiennent pas.
  */
 export const pagerStatusClass =
-	'px-2 text-sm font-medium whitespace-nowrap text-slate-600 dark:text-ink-muted'
+	'px-2 text-[11px] font-bold uppercase tracking-[0.14em] whitespace-nowrap text-ink/60 dark:text-ink-muted'
 
 /** Trou entre deux pages affichées (« 1 2 … 7 8 »). */
 export const pagerGapClass =

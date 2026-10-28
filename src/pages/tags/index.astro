@@ -3,17 +3,31 @@ import BaseLayout from '@/layouts/BaseLayout'
 import TitlePage from '@/components/TitlePage'
 import { getTags } from '@/utils'
 const tags = await getTags()
+
+const tints = [
+	'pop-chip--blush',
+	'pop-chip--mint',
+	'pop-chip--butter',
+	'pop-chip--lilac',
+	'pop-chip--paper'
+]
 ---
 
 <BaseLayout title='Toutes les recettes par tag' gradient>
-	<TitlePage title='Toutes les recettes par tag' />
-	<div class='flex justify-center flex-wrap gap-4'>
+	<div class='flex flex-col gap-4'>
+		<span class='pop-chip pop-chip--lilac w-fit'>Mots-clés</span>
+		<TitlePage title='Toutes les recettes par tag' />
+		<p class='max-w-2xl text-base text-ink/70 dark:text-ink-body'>
+			Parcourez les créations par ingrédient, par texture ou par saison.
+		</p>
+	</div>
+	<div class='flex flex-wrap gap-3'>
 		{
 			/* `tag` est déjà un identifiant d'URL (voir `tagSlug`) */
-			tags.map((tag) => (
+			tags.map((tag, index) => (
 				<a
 					href={`/tags/${tag}/`}
-					class='inline-block bg-gray-200  rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'
+					class={`pop-chip !rounded-full !px-4 !py-2 !normal-case !text-sm ${tints[index % tints.length]} hover:-translate-y-0.5`}
 				>
 					#{tag}
 				</a>

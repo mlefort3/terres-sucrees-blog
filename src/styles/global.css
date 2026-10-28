@@ -2,34 +2,103 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-	/* body {
-		transition: background-color 0.5s ease;
-	} */
+/* ---------------------------------------------------------------------------
+   Terres Sucrées — feuille de style globale
 
-	/* Le header est fixe (h-20) : sans cet offset, une cible d'ancre atterrit
-	   sous le header et son titre reste masqué. */
+   Langage visuel : papier crème pointillé, contours à l'encre, ombres pleines
+   décalées (sans flou), titrage serif épais (Motter Corpus) et texte Manrope.
+   Couleurs : #6F6BAE, #f9f7f8, #708F7A, #b8d1b1, #bdb7fd, #fab7cf, #fce5a8.
+--------------------------------------------------------------------------- */
+
+:root {
+	--pop-paper: #f9f7f8; /* fond de page */
+	--pop-surface: #ffffff; /* cartes */
+	--pop-line: #241e38; /* contours, ombres pleines */
+	--pop-fg: #241e38; /* texte sur fond clair */
+	--pop-dot: rgba(36, 30, 56, 0.13); /* trame pointillée */
+	--pop-shadow: #241e38;
+	--pop-marker: #fce5a8; /* surlignage au marqueur */
+}
+
+html.dark {
+	--pop-paper: #151220;
+	--pop-surface: #1d1929;
+	--pop-line: #514973; /* assez clair pour se lire sur le fond sombre */
+	--pop-fg: #f3f0f7;
+	--pop-dot: rgba(189, 183, 253, 0.1);
+	/* Une ombre noire serait invisible sur ce fond : elle passe au lavande. */
+	--pop-shadow: rgba(189, 183, 253, 0.18);
+	--pop-marker: rgba(252, 229, 168, 0.26);
+}
+
+@layer base {
+	/* Le header est fixe : sans cet offset, une cible d'ancre atterrit dessous
+	   et son titre reste masqué. */
 	html {
-		scroll-padding-top: 6rem;
+		scroll-padding-top: 7.5rem;
+		color-scheme: light;
 	}
 
-	/* Barres de défilement et contrôles natifs accordés au thème sombre. */
 	html.dark {
 		color-scheme: dark;
+	}
+
+	body {
+		margin-left: calc(100vw - 100%); /* prevent layout shift */
+		/* Papier crème + trame de points, fixée pour ne pas glisser au défilement. */
+		background-color: var(--pop-paper);
+		background-image: radial-gradient(var(--pop-dot) 1.1px, transparent 1.1px);
+		background-size: 24px 24px;
+		background-attachment: fixed;
+		/* Manrope est chargée de 200 à 800 : aucun graisse synthétique. */
+		font-synthesis-weight: none;
+	}
+
+	/* Le titrage passe au serif épais ; Motter Corpus n'existe qu'en 400, donc
+	   aucune graisse synthétique non plus. */
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: theme('fontFamily.display');
+		font-weight: 400;
+		font-synthesis: none;
+		letter-spacing: -0.01em;
+	}
+
+	hr {
+		border: 0;
+		border-top: 2px dashed var(--pop-line);
+		opacity: 0.3;
+	}
+
+	::selection {
+		background: #fce5a8;
+		color: #241e38;
 	}
 
 	.prose code {
 		@apply text-base;
 	}
 
-	/* prose styles here */
+	/* Le filet de séparation des articles reprend le pointillé du site. */
+	.prose hr {
+		border-top-width: 2px;
+		border-top-style: dashed;
+		opacity: 0.3;
+	}
+
+	/* Le sélecteur d'origine visait tous les h2…h6 du document, y compris hors
+	   des articles : on le limite au contenu rédigé. */
 	.prose h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		@apply text-zinc-800 dark:text-ink-text   !important;
+	.prose h2,
+	.prose h3,
+	.prose h4,
+	.prose h5,
+	.prose h6 {
+		@apply text-ink dark:text-ink-text !important;
 	}
 
 	html.dark .shiki,
@@ -37,106 +106,342 @@
 		color: var(--shiki-dark) !important;
 		background-color: theme(colors.ink.surface) !important;
 	}
+}
 
-	/* Le mode sombre n'empile pas ombres et dégradés : les surfaces se
-	   détachent par leur teinte et un filet, comme dans les UI modernes. */
-	html.dark .prose {
-		--tw-prose-body: theme(colors.ink.body);
-		--tw-prose-headings: theme(colors.ink.text);
-		--tw-prose-lead: theme(colors.ink.body);
-		--tw-prose-bold: theme(colors.ink.text);
-		--tw-prose-counters: theme(colors.ink.muted);
-		--tw-prose-bullets: theme(colors.ink.faint);
-		--tw-prose-quotes: theme(colors.ink.text);
-		--tw-prose-captions: theme(colors.ink.faint);
-		--tw-prose-hr: theme(colors.ink.line);
-		--tw-prose-th-borders: theme(colors.ink.line);
-		--tw-prose-td-borders: theme(colors.ink.line);
+/* Prose des articles.
+
+   Le plugin typography pose ses propres variables dans la couche `components` :
+   les valeurs ci-dessous sont donc écrites hors couche (après les utilitaires)
+   pour que la palette du site l'emporte sur ses gris par défaut. */
+.prose {
+	--tw-prose-body: #3f3a52;
+	--tw-prose-headings: #241e38;
+	--tw-prose-lead: #4a4460;
+	--tw-prose-links: #6f6bae;
+	--tw-prose-bold: #241e38;
+	--tw-prose-counters: #6f6bae;
+	--tw-prose-bullets: #bdb7fd;
+	--tw-prose-hr: rgba(36, 30, 56, 0.2);
+	--tw-prose-quotes: #332d49;
+	--tw-prose-quote-borders: #bdb7fd;
+	--tw-prose-captions: #6c6683;
+	--tw-prose-code: #241e38;
+	--tw-prose-th-borders: #241e38;
+	--tw-prose-td-borders: rgba(36, 30, 56, 0.2);
+}
+
+html.dark .prose {
+	--tw-prose-body: #cfc9dd;
+	--tw-prose-headings: #f3f0f7;
+	--tw-prose-lead: #cfc9dd;
+	--tw-prose-links: #bdb7fd;
+	--tw-prose-bold: #f3f0f7;
+	--tw-prose-counters: #a9a2bd;
+	--tw-prose-bullets: #bdb7fd;
+	--tw-prose-quotes: #f3f0f7;
+	--tw-prose-quote-borders: #6f6bae;
+	--tw-prose-captions: #857ea0;
+	--tw-prose-hr: #3a3350;
+	--tw-prose-th-borders: #3a3350;
+	--tw-prose-td-borders: #3a3350;
+}
+
+/* ---------------------------------------------------------------------------
+   Surfaces, boutons et pastilles
+
+   Ces règles sont volontairement hors des couches Tailwind : elles doivent
+   l'emporter sur les utilitaires de couleur et d'ombre écrits dans les
+   composants (`bg-white`, `border-slate-200`, `hover:shadow-md`…), qui datent
+   de l'ancienne direction artistique.
+--------------------------------------------------------------------------- */
+
+/* Carte principale : un aplat de papier, un contour à l'encre et une ombre
+   pleine décalée. `.frost-surface` est conservée : c'est la classe déjà posée
+   un peu partout (articles, préparations, éditeur de recette). */
+.frost-surface,
+.pop-card {
+	background-color: var(--pop-surface);
+	/* Des cartes portaient un dégradé d'ancienne génération : on l'annule pour
+	   que l'aplat de papier reste uniforme. */
+	background-image: none;
+	border: 2px solid var(--pop-line);
+	border-radius: 1.5rem;
+	box-shadow: 6px 6px 0 0 var(--pop-shadow);
+}
+
+.pop-card {
+	transition:
+		transform 0.18s ease,
+		box-shadow 0.18s ease;
+}
+
+.pop-card:hover {
+	transform: translate(-2px, -2px);
+	box-shadow: 9px 9px 0 0 var(--pop-shadow);
+}
+
+html.dark .frost-surface,
+html.dark .pop-card {
+	background-color: var(--pop-surface);
+}
+
+/* Bloc « papier » sans ombre : panneaux imbriqués, encadrés facultatifs. */
+.pop-panel {
+	background-color: color-mix(in srgb, var(--pop-surface) 70%, transparent);
+	border: 2px dashed var(--pop-line);
+	border-radius: 1.15rem;
+}
+
+/* Bandeau clair posé sur un aplat coloré (titre de section). */
+.pop-strip {
+	background-color: #fce5a8;
+	color: #241e38;
+	border: 2px solid #241e38;
+	border-radius: 9999px;
+	box-shadow: 3px 3px 0 0 rgba(36, 30, 56, 0.9);
+}
+
+/* Boutons --------------------------------------------------------------- */
+
+/* Boutons et pastilles sont posés dans la couche `components` : leurs formes
+   restent surchargeables par les utilitaires (`hidden sm:inline-flex`, `h-11`,
+   `ml-auto`…), ce qui ne serait pas le cas hors couche. */
+@layer components {
+	.pop-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border: 2px solid var(--pop-line);
+		border-radius: 9999px;
+		background-color: #6f6bae;
+		color: #fff;
+		padding: 0.7rem 1.5rem;
+		font-weight: 700;
+		font-size: 0.95rem;
+		line-height: 1.2;
+		box-shadow: 4px 4px 0 0 var(--pop-shadow);
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease,
+			background-color 0.15s ease;
+	}
+
+	.pop-btn:hover {
+		transform: translate(-1px, -1px);
+		box-shadow: 6px 6px 0 0 var(--pop-shadow);
+		background-color: #615da4;
+	}
+
+	.pop-btn:active {
+		transform: translate(3px, 3px);
+		box-shadow: 1px 1px 0 0 var(--pop-shadow);
+	}
+
+	.pop-chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		border: 2px solid var(--pop-line);
+		border-radius: 0.6rem;
+		background-color: var(--pop-surface);
+		color: var(--pop-fg);
+		padding: 0.15rem 0.55rem;
+		font-size: 0.72rem;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		box-shadow: 2px 2px 0 0 var(--pop-shadow);
+		transition:
+			transform 0.15s ease,
+			box-shadow 0.15s ease;
 	}
 }
 
-.glass {
-	background: rgba(57, 56, 56, 0.52);
-	backdrop-filter: blur(13px) saturate(150%);
-	-webkit-backdrop-filter: blur(13px) saturate(150%);
+.pop-btn--paper {
+	background-color: var(--pop-surface);
+	color: var(--pop-fg);
+}
+
+.pop-btn--paper:hover {
+	background-color: #fce5a8;
+	color: #241e38;
+}
+
+.pop-btn--sage {
+	background-color: #708f7a;
+	color: #fff;
+}
+
+.pop-btn--sage:hover {
+	background-color: #62806c;
+}
+
+.pop-btn--sm {
+	padding: 0.45rem 1.05rem;
+	font-size: 0.82rem;
+	box-shadow: 3px 3px 0 0 var(--pop-shadow);
+}
+
+/* Pastille d'information (tag, type de préparation, saison…). */
+a.pop-chip:hover {
+	transform: translate(-1px, -1px);
+	box-shadow: 3px 3px 0 0 var(--pop-shadow);
+}
+
+.pop-chip--lilac {
+	background-color: #bdb7fd;
+	color: #241e38;
+}
+
+.pop-chip--mint {
+	background-color: #b8d1b1;
+	color: #241e38;
+}
+
+.pop-chip--blush {
+	background-color: #fab7cf;
+	color: #241e38;
+}
+
+.pop-chip--butter {
+	background-color: #fce5a8;
+	color: #241e38;
+}
+
+.pop-chip--grape {
+	background-color: #6f6bae;
+	color: #fff;
+}
+
+.pop-chip--sage {
+	background-color: #708f7a;
+	color: #fff;
+}
+
+/* Champs de formulaire --------------------------------------------------- */
+
+/* Champs de saisie : posés dans la couche `components` pour que les utilitaires
+   de padding (`pl-10` pour une icône, `pr-9` pour un chevron) puissent encore
+   décaler le texte : la couche `utilities` passe après. */
+@layer components {
+	.pop-field {
+		width: 100%;
+		border: 2px solid var(--pop-line);
+		border-radius: 0.85rem;
+		background-color: var(--pop-surface);
+		color: var(--pop-fg);
+		padding: 0.55rem 0.8rem;
+		font-size: 1rem;
+		box-shadow: 3px 3px 0 0 var(--pop-shadow);
+	}
+}
+
+.pop-field::placeholder {
+	color: color-mix(in srgb, var(--pop-fg) 45%, transparent);
+}
+
+.pop-field:focus {
+	outline: none;
+	border-color: #6f6bae;
+	box-shadow: 4px 4px 0 0 #6f6bae;
+}
+
+/* Titrage ---------------------------------------------------------------- */
+
+.pop-display {
+	font-family: theme('fontFamily.display');
+	font-weight: 400;
+	line-height: 0.98;
+	letter-spacing: -0.015em;
+	color: var(--pop-fg);
+}
+
+/* Surlignage au marqueur sous un mot : un aplat jaune légèrement incliné. */
+.pop-marker {
+	position: relative;
+	display: inline-block;
+	z-index: 0;
+}
+
+.pop-marker::after {
+	content: '';
+	position: absolute;
+	left: -0.08em;
+	right: -0.08em;
+	bottom: 0.1em;
+	height: 0.26em;
+	background-color: var(--pop-marker);
+	border-radius: 0.15em;
+	transform: rotate(-1.2deg);
 	z-index: -1;
 }
 
-/* Voile des cartes d'articles : teinté comme le fond plutôt que gris. */
-html.dark .glass {
-	background: linear-gradient(to top, rgba(18, 16, 26, 0.92), rgba(18, 16, 26, 0.35));
+/* Variante bleue du surlignage : même géométrie que le marqueur jaune, mais
+   tracée dans l'encre de la marque. En mode sombre elle passe au lavande pour
+   rester lisible sur le fond. */
+.pop-marker--blue {
+	--pop-marker: #6f6bae;
+}
+
+html.dark .pop-marker--blue {
+	--pop-marker: #bdb7fd;
+}
+
+/* Filet ondulé sous un titre de section. */
+.pop-underline {
+	background-image: linear-gradient(to right, #bdb7fd, #fab7cf);
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 100% 0.18em;
+}
+
+/* Trait de section : une ligne pointillée à l'encre. */
+.pop-rule {
+	border: 0;
+	border-top: 2px dashed var(--pop-line);
+	opacity: 0.35;
+}
+
+/* Ancien voile des cartes d'articles : plus utilisé, mais conservé pour les
+   éventuels contenus qui le poseraient encore. */
+.glass {
+	background: rgba(36, 30, 56, 0.72);
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
 }
 
 .shadow {
-	box-shadow: -5px 3px 8px 1px rgba(0, 0, 0, 0.12);
+	box-shadow: 4px 4px 0 0 var(--pop-shadow);
 }
 
-/* Pages « recettes » : halo radial qui remonte depuis le coin bas-droit sur un
-   fond essentiellement blanc, ou sombre en mode nuit. Le violet final est
-   #6f6bae en clair, #b57edc (lavande) en sombre. Le rayon (142 % ≈ √2) est calé
-   pour que le coin opposé tombe pile sur 100 %, donc plus rien n'est perdu hors
-   du cadre. Les arrêts sont resserrés vers le bord pour que le violet reste
-   lisible sur toute la frange (bord droit et bord bas), et pas seulement dans
-   le coin. Les arrêts étant relatifs au viewport et le fond fixé, le résultat
-   est identique sur une page courte et sur une page longue. */
+/* ---------------------------------------------------------------------------
+   Pages « recettes » : le papier reste au fond, réchauffé par un lavis de
+   lavande en haut à droite et de vert sauge à gauche. Le dégradé est fixé, donc
+   identique sur une page courte comme sur une page longue.
+--------------------------------------------------------------------------- */
 body.gradient-page {
-	background: radial-gradient(
-		142% 142% at 0% 0%,
-		#ffffff 0%,
-		#f8f7fd 55%,
-		#e2dff3 72%,
-		#a9a3d8 88%,
-		#6f6bae 100%
-	);
+	background-image:
+		radial-gradient(60rem 38rem at 92% -12%, rgba(189, 183, 253, 0.55), transparent 68%),
+		radial-gradient(48rem 32rem at -8% 12%, rgba(184, 209, 177, 0.45), transparent 68%),
+		radial-gradient(40rem 28rem at 20% 105%, rgba(250, 183, 207, 0.35), transparent 70%),
+		radial-gradient(var(--pop-dot) 1.1px, transparent 1.1px);
+	background-size:
+		auto,
+		auto,
+		auto,
+		24px 24px;
 	background-attachment: fixed;
 }
 
 html.dark body.gradient-page {
-	background: radial-gradient(
-		142% 142% at 0% 0%,
-		#14111f 0%,
-		#1d1837 50%,
-		#352c68 70%,
-		#7b5cba 86%,
-		#b57edc 100%
-	);
+	background-image:
+		radial-gradient(60rem 38rem at 92% -12%, rgba(111, 107, 174, 0.42), transparent 68%),
+		radial-gradient(48rem 32rem at -8% 12%, rgba(112, 143, 122, 0.26), transparent 68%),
+		radial-gradient(var(--pop-dot) 1.1px, transparent 1.1px);
+	background-size:
+		auto,
+		auto,
+		24px 24px;
 	background-attachment: fixed;
-}
-
-/* Cartes en verre : le fond étant désormais presque blanc, une simple
-   translucide blanche disparaîtrait. La carte se détache donc par un blanc
-   quasi opaque, un filet teinté et une ombre portée douce : c'est l'ombre qui
-   la fait « flotter » au-dessus du halo. Le filet est posé ici plutôt que par
-   une classe, car les cartes qui n'en déclaraient pas (PostCard) n'avaient
-   aucun contour. */
-body.gradient-page .frost-surface {
-	background: rgba(255, 255, 255, 0.92);
-	backdrop-filter: blur(12px) saturate(150%);
-	-webkit-backdrop-filter: blur(12px) saturate(150%);
-	border: 1px solid rgba(111, 107, 174, 0.34);
-	box-shadow:
-		0 16px 32px -18px rgba(77, 72, 140, 0.55),
-		0 4px 10px -4px rgba(77, 72, 140, 0.26);
-}
-
-html.dark body.gradient-page .frost-surface {
-	background: rgba(28, 25, 40, 0.86);
-	border-color: rgba(160, 152, 215, 0.45);
-	box-shadow:
-		0 16px 32px -18px rgba(0, 0, 0, 0.8),
-		0 4px 10px -4px rgba(0, 0, 0, 0.45);
-}
-
-/* Les utilitaires hover:shadow-md des composants sont neutralisés par la règle
-   ci-dessus (plus spécifique) : on rétablit le même relief au survol. */
-body.gradient-page .frost-surface:hover {
-	box-shadow:
-		0 22px 44px -20px rgba(77, 72, 140, 0.6),
-		0 4px 10px -4px rgba(77, 72, 140, 0.26);
-}
-
-html.dark body.gradient-page .frost-surface:hover {
-	box-shadow:
-		0 22px 44px -20px rgba(0, 0, 0, 0.85),
-		0 4px 10px -4px rgba(0, 0, 0, 0.45);
 }

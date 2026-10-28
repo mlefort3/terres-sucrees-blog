@@ -64,7 +64,9 @@ const finalToc = hasRecipeSection
 ---
 
 <nav class='w-full'>
-	<p class='font-bold mb-6 text-2xl text-primary dark:text-primary'>Table des matières</p>
+	<p class='mb-5 font-display text-xl leading-tight text-ink dark:text-ink-text'>
+		Table des matières
+	</p>
 	<ul class='[text-wrap:balance] flex flex-col gap-1'>
 		{finalToc.map((heading) => <TableOfContentsHeading heading={heading} />)}
 	</ul>

@@ -6,30 +6,35 @@ import SearchIcon from '@/components/icons/SearchIcon'
 ---
 
 <site-search id='search' class='ms-auto'>
-	<button data-open-modal disabled class='flex items-center justify-center rounded-md gap-1'>
+	<button
+		data-open-modal
+		disabled
+		aria-label='Rechercher'
+		class='flex h-9 w-9 items-center justify-center rounded-lg border-2 border-outline bg-white text-ink transition hover:-translate-y-0.5 hover:bg-butter hover:shadow-[2px_2px_0_0_#241e38] dark:border-ink-line dark:bg-ink-surface dark:text-ink-text dark:hover:bg-ink-raised'
+	>
 		<SearchIcon />
-		<!-- <span class='md:hidden text-2xl'> Search</span> -->
 	</button>
 	<dialog
 		aria-label='search'
-		class='h-full max-h-full w-full max-w-full border border-zinc-400 dark:border-ink-line bg-white dark:bg-ink-surface/95 backdrop-blur-xl shadow dark:shadow-none sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-md opacity-0'
+		class='h-full max-h-full w-full max-w-full border-2 border-outline bg-white shadow-[8px_8px_0_0_#241e38] dark:border-ink-line dark:bg-ink-surface dark:shadow-[8px_8px_0_0_rgba(189,183,253,0.18)] sm:mx-auto sm:mb-auto sm:mt-16 sm:h-max sm:max-h-[calc(100%-8rem)] sm:min-h-[15rem] sm:w-5/6 sm:max-w-[48rem] sm:rounded-2xl opacity-0'
 	>
-		<div class='dialog-frame flex flex-col gap-4 p-6 pt-12 sm:pt-6'>
-			<button
-				data-close-modal
-				class='ms-auto cursor-pointer rounded-full bg-black text-white px-4 py-2 dark:bg-ink-raised dark:text-ink-text dark:hover:bg-ink-line'
-				>Fermer</button
-			>
+		<div class='dialog-frame flex flex-col gap-5 p-6 pt-12 sm:pt-7'>
+			<div class='flex items-center justify-between gap-4'>
+				<span class='font-display text-2xl text-ink dark:text-ink-text'>Rechercher</span>
+				<button data-close-modal class='pop-btn pop-btn--paper pop-btn--sm cursor-pointer'>
+					Fermer
+				</button>
+			</div>
 			{
 				import.meta.env.DEV ? (
-					<div class='mx-auto text-center dark:text-white'>
+					<div class='mx-auto text-center text-ink/70 dark:text-ink-muted'>
 						<p>
-							Search is only available in production builds. <br />
-							Try building and previewing the site to test it out locally.
+							La recherche n'est disponible que dans la version de production. <br />
+							Construisez puis prévisualisez le site pour la tester en local.
 						</p>
 					</div>
 				) : (
-					<div class='search-container dark:text-white'>
+					<div class='search-container text-ink dark:text-ink-text'>
 						<div id='pagefind__search' />
 					</div>
 				)
@@ -124,11 +129,29 @@ import SearchIcon from '@/components/icons/SearchIcon'
 </script>
 
 <style is:global>
-	.dark {
-		--pagefind-ui-primary: #e9e7f0;
-		--pagefind-ui-text: #c7c4d6;
-		--pagefind-ui-background: #191722;
-		--pagefind-ui-border: #2c2938;
-		--pagefind-ui-tag: #232030;
+	/* Voile du dialogue : une encre violette translucide, pas le gris par défaut. */
+	dialog::backdrop {
+		background-color: rgba(36, 30, 56, 0.42);
+		backdrop-filter: blur(3px);
+		-webkit-backdrop-filter: blur(3px);
+	}
+
+	:root {
+		--pagefind-ui-primary: #6f6bae;
+		--pagefind-ui-text: #241e38;
+		--pagefind-ui-background: #fdfcfc;
+		--pagefind-ui-border: #241e38;
+		--pagefind-ui-tag: #fce5a8;
+		--pagefind-ui-border-width: 2px;
+		--pagefind-ui-border-radius: 10px;
+		--pagefind-ui-font: 'Manrope', system-ui, sans-serif;
+	}
+
+	html.dark {
+		--pagefind-ui-primary: #f3f0f7;
+		--pagefind-ui-text: #cfc9dd;
+		--pagefind-ui-background: #1d1929;
+		--pagefind-ui-border: #514973;
+		--pagefind-ui-tag: #bdb7fd;
 	}
 </style>

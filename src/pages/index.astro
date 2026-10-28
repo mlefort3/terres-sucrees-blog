@@ -2,8 +2,6 @@
 import BaseLayout from '@/layouts/BaseLayout'
 import ListPosts from '@/components/ListPosts'
 import ListCategories from '@/components/ListCategories'
-import TitlePage from '@/components/TitlePage'
-import Pagination from '@/components/Pagination'
 import { getPosts } from '@/utils'
 import { siteConfig } from '@/site-config'
 import JsonLd from '@/components/JsonLd'
@@ -11,6 +9,12 @@ import { homeJsonLd } from '@/utils/seo'
 import ArrowRight from 'src/components/icons/ArrowRight.astro'
 
 const allPosts = await getPosts()
+
+// Les trois étiquettes de l'accueil forment une série : même largeur et même
+// hauteur à partir de `sm`, pour que « Gâteaux de voyage » n'écrase pas les
+// deux autres. En dessous, elles gardent leur largeur naturelle afin de tenir
+// sur deux lignes au lieu de trois.
+const heroTagClass = 'pop-chip !normal-case !text-[0.8rem] justify-center sm:h-8 sm:w-[160px]'
 
 const firstPageSize = 5
 const otherPageSize = 6
@@ -25,23 +29,90 @@ const lastPage = 1 + totalOtherPages
 
 <BaseLayout title='Toutes les recettes véganes' description={siteConfig.description} gradient>
 	<JsonLd data={homeJsonLd()} />
-	<div class='flex flex-col gap-3'>
-		<TitlePage title='Toutes les recettes' />
-		<p class='max-w-3xl text-lg text-slate-600 dark:text-ink-muted'>
-			Toutes les pâtisseries du site sont véganes : 100 % végétal, sans œufs ni produits laitiers.
-		</p>
+
+	<!-- Bandeau d'accueil : une grande carte de papier, à la manière d'une
+	     affiche imprimée. Les pastilles sont légèrement inclinées. La carte occupe
+	     toute la largeur du conteneur, comme la grille des articles en dessous. -->
+	<section class='relative w-full'>
+		<div
+			class='relative rounded-[2rem] border-2 border-outline bg-white px-6 py-8 text-center shadow-[10px_10px_0_0_#241e38] dark:border-ink-line dark:bg-ink-surface dark:shadow-[10px_10px_0_0_rgba(189,183,253,0.18)] sm:px-14 sm:py-9 md:px-20'
+		>
+			<span class='pop-chip pop-chip--butter absolute -top-3 left-5 -rotate-3 sm:left-10'>
+				Pâtisserie végétale
+			</span>
+			<span
+				class='pop-chip pop-chip--lilac absolute -top-3 right-5 hidden rotate-3 sm:right-10 sm:inline-flex'
+			>
+				Fait maison
+			</span>
+			<h1
+				class='pop-display mx-auto max-w-3xl text-[2.2rem] leading-[0.94] sm:text-4xl md:text-[3.5rem]'
+			>
+				Toutes les <span class='pop-marker'>recettes</span>
+			</h1>
+
+			<p class='mx-auto mt-3 max-w-2xl text-[15px] leading-relaxed text-ink/70 dark:text-ink-body'>
+				Toutes les pâtisseries du site sont véganes : 100 % végétal, sans œufs ni produits laitiers.
+				Chaque recette se décompose en préparations à assembler librement.
+			</p>
+
+			<!-- Étiquettes cliquables : les grandes familles de créations. -->
+			<div class='mt-5 flex flex-wrap justify-center gap-3'>
+				<a
+					href='/tags/tartes/'
+					class={`${heroTagClass} pop-chip--blush -rotate-2 hover:-translate-y-1`}
+				>
+					Tartes
+				</a>
+				<a
+					href='/tags/entremets/'
+					class={`${heroTagClass} pop-chip--mint rotate-1 hover:-translate-y-1`}
+				>
+					Entremets
+				</a>
+				<a
+					href='/tags/gâteaux-de-voyage/'
+					class={`${heroTagClass} pop-chip--butter -rotate-1 hover:-translate-y-1`}
+				>
+					Gâteaux de voyage
+				</a>
+			</div>
+			<div
+				class='mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center'
+			>
+				<a href='/creer-ma-recette/' class='pop-btn'>
+					Créer ma recette
+					<ArrowRight />
+				</a>
+				<a href='/ingredients/' class='pop-btn pop-btn--paper'>Voir les préparations</a>
+			</div>
+
+			<p
+				class='mt-6 border-t-2 border-dashed border-outline/25 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-ink/45 dark:border-ink-line dark:text-ink-faint sm:text-[11px] sm:tracking-[0.2em]'
+			>
+				Sans œufs · Sans produits laitiers · De saison
+			</p>
+		</div>
+	</section>
+
+	<div class='flex flex-col gap-5'>
+		<div class='flex flex-wrap items-end justify-between gap-3'>
+			<h2 class='pop-display text-3xl sm:text-4xl'>Dernières créations</h2>
+			<span class='pop-chip pop-chip--grape'>
+				{allPosts.length} recette{allPosts.length > 1 ? 's' : ''}
+			</span>
+		</div>
+		<ListCategories />
 	</div>
-	<ListCategories />
+
 	<ListPosts FirstBig={true} posts={pageData} />
 
 	<!-- Pagination -->
-	<nav class='flex gap-5 md:gap-1 justify-around md:justify-end'>
+	<nav class='flex justify-end' aria-label='Pagination'>
 		{
 			currentPage < lastPage && (
-				<a
-					href={`/all/${currentPage + 1}/`}
-					class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-ink-line dark:text-ink-muted dark:hover:bg-ink-raised dark:hover:text-ink-text'
-				>
+				<a href={`/all/${currentPage + 1}/`} class='pop-btn pop-btn--sm'>
+					Recettes suivantes
 					<ArrowRight />
 				</a>
 			)

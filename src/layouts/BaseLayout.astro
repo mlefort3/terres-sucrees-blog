@@ -50,14 +50,14 @@ const {
 		<ProviderAnimations />
 	</head>
 
-	<body
-		class:list={[
-			'bg-white text-stone-950 dark:bg-ink dark:text-ink-text',
-			gradient && 'gradient-page'
-		]}
-	>
+	<body class:list={['font-body text-ink dark:text-ink-text', gradient && 'gradient-page']}>
+		<!-- Sur mobile, la grille est rognée horizontalement pour que les cartes
+		     inclinées ne créent pas de défilement latéral. On rogne donc l'axe X
+		     seul : un `overflow-hidden` complet coupait le haut des pastilles qui
+		     chevauchent le bord supérieur de la première carte (accueil).
+		     À partir de `md`, le conteneur est centré et laisse tout déborder. -->
 		<main
-			class='px-5 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-0 antialiased md:max-w-6xl grid gap-12 mt-32 overflow-hidden md:overflow-visible'
+			class='px-5 pb-16 sm:mx-auto sm:max-w-2xl sm:px-8 lg:px-0 antialiased md:max-w-6xl grid gap-12 mt-28 md:mt-36 overflow-x-clip md:overflow-visible'
 		>
 			<Header />
 			<slot />
@@ -65,10 +65,5 @@ const {
 		</main>
 		<TwSizeIndicator />
 		<EditBlog />
-		<style>
-			body {
-				margin-left: calc(100vw - 100%); /* prevent layout shift */
-			}
-		</style>
 	</body>
 </html>

@@ -9,29 +9,22 @@ const { page } = Astro.props
 const canonical = (url: string) => (url.endsWith('/') ? url : `${url}/`)
 ---
 
-<div class='flex gap-5 md:gap-1 justify-around md:justify-end'>
-	<!-- Previous Button -->
+<nav class='flex justify-between gap-3 md:justify-end' aria-label='Pagination'>
 	{
 		page.start > 0 && (
-			<a
-				href={canonical(page.url.prev)}
-				class='flex items-center justify-center px-8 md:px-4 h-10 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-ink-line dark:text-ink-muted dark:hover:bg-ink-raised dark:hover:text-ink-text'
-			>
+			<a href={canonical(page.url.prev)} class='pop-btn pop-btn--paper pop-btn--sm'>
 				<ArrowLeft />
+				<span class='hidden sm:inline'>Précédentes</span>
 			</a>
 		)
 	}
 
-	<!-- Next Button -->
-
 	{
 		page.currentPage < page.lastPage && (
-			<a
-				href={canonical(page.url.next)}
-				class='flex items-center justify-center px-8 md:px-4 h-10 ml-3 text-base font-medium text-black bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-transparent dark:border-ink-line dark:text-ink-muted dark:hover:bg-ink-raised dark:hover:text-ink-text'
-			>
+			<a href={canonical(page.url.next)} class='pop-btn pop-btn--sm ml-auto'>
+				<span class='hidden sm:inline'>Suivantes</span>
 				<ArrowRight />
 			</a>
 		)
 	}
-</div>
+</nav>

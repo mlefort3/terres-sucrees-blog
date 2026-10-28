@@ -1,6 +1,5 @@
 ---
 import Title from './Title.astro'
-import Shape from './icons/Shape.astro'
 type Props = {
 	title: string
 }
@@ -8,7 +7,12 @@ type Props = {
 const { title } = Astro.props
 ---
 
-<div class='flex justify-start items-center gap-2 title'>
-	<Shape />
-	<Title>{title}</Title>
+<div class='flex items-start gap-4 title'>
+	{/* Petit sceau en losange : rappelle les aplats pastel du site sans image. */}
+	<span
+		class='mt-3 hidden h-4 w-4 shrink-0 rotate-45 rounded-[3px] border-2 border-outline bg-blush dark:border-ink-line sm:block'
+		aria-hidden='true'></span>
+	<div class='flex flex-col gap-2'>
+		<Title>{title}</Title>
+	</div>
 </div>
