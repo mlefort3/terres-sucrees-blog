@@ -3,9 +3,10 @@ import type { CollectionEntry } from 'astro:content'
 import FormattedDate from '@/components/FormattedDate'
 import BaseLayout from '@/layouts/BaseLayout'
 import Tag from '@/components/Tag'
-import RecipeIngredientsDisplay from '@/components/RecipeIngredientsDisplay'
 import type { MarkdownHeading } from 'astro'
 import { Image } from 'astro:assets'
+import { seasonChipClass } from '@/data/categories'
+import { sluglify } from '@/utils'
 
 type Props = {
 	id: CollectionEntry<'blog'>['id']
@@ -15,7 +16,7 @@ type Props = {
 }
 
 const { data, readTime, headings, id } = Astro.props
-const { title, description, pubDate, heroImage, tags, recipeIngredients } = data
+const { title, description, pubDate, heroImage, tags, categories, recipeIngredients } = data
 
 const articleDate = pubDate.toISOString()
 
@@ -23,6 +24,11 @@ const articleDate = pubDate.toISOString()
 // métadonnées SEO, mais le <h1> reste le nom de la recette.
 const seoTitle = `${title} — recette végane`
 const seoDescription = `${description} Recette végane, sans œufs ni produits laitiers.`
+
+// Les saisons sont des catégories : leur pastille mène à la page qui liste
+// toutes les recettes de cette saison, la même cible que les filtres de saison
+// de l'accueil (`/category/automne/1/`).
+const categoryHref = (name: string) => `/category/${sluglify(name.trim().toLowerCase())}/1/`
 ---
 
 <BaseLayout
@@ -33,46 +39,63 @@ const seoDescription = `${description} Recette végane, sans œufs ni produits l
 	gradient={Boolean(recipeIngredients && recipeIngredients.length > 0)}
 >
 	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-			<div class='flex flex-col gap-2'>
-				<div class='flex items-center justify-center gap-x-1'>
-					<p class='text-center text-sm text-opacity-50'>
-						Publié le <FormattedDate date={pubDate} />
-					</p>
-					<p class='text-center text-sm text-opacity-50 font-bold'>
-						- {readTime.replace('read', 'de lecture')}
-					</p>
-				</div>
-				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>
-					{title}
-				</h1>
+		<header class='flex flex-col items-center gap-5 text-center'>
+			<div
+				class='flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-[11px] font-bold uppercase tracking-[0.16em] text-ink/50 dark:text-ink-faint'
+			>
+				<span class='flex items-center gap-1.5'>
+					Publié le <FormattedDate date={pubDate} />
+				</span>
+				<span aria-hidden='true' class='text-primary_second'>•</span>
+				<span>{readTime.replace('read', 'de lecture')}</span>
 			</div>
 
-			<div class='flex flex-wrap justify-center items-center gap-2 gap-y-4 md:gap-5 capitalize'>
+			<h1 class='pop-display max-w-4xl text-[2.5rem] leading-[0.96] sm:text-6xl md:text-[4.25rem]'>
+				{title}
+			</h1>
+
+			<p class='max-w-2xl text-base leading-relaxed text-ink/70 dark:text-ink-body'>
+				{description}
+			</p>
+
+			<div class='flex flex-wrap justify-center items-center gap-2'>
+				{
+					/* La saison porte la même pastille que sur les cartes de l'accueil,
+					   pour qu'une couleur = une saison partout sur le site. */
+				}
+				{
+					categories?.map((category: string) => (
+						<a
+							href={categoryHref(category)}
+							class={`pop-chip ${seasonChipClass(category)}`}
+							aria-label={`Toutes les recettes de la saison ${category}`}
+						>
+							{category}
+						</a>
+					))
+				}
 				{tags.map((tag) => <Tag tag={tag} />)}
 			</div>
 		</header>
 
-		<>
-			{
-				heroImage && (
+		{
+			heroImage && (
+				<div class='mx-auto mt-9 w-full overflow-hidden rounded-[1.75rem] border-2 border-outline shadow-[8px_8px_0_0_#241e38] dark:border-ink-line dark:shadow-[8px_8px_0_0_rgba(189,183,253,0.18)]'>
 					<Image
 						src={heroImage}
-						width={1000}
-						height={500}
+						width={1400}
+						height={800}
 						quality={100}
 						format='jpg'
 						loading='eager'
-						class='rounded-md w-full max-h-[300px]  md:max-h-[500px] my-8 object-cover'
+						class='max-h-[560px] w-full object-cover'
 						alt={`Photo de la recette : ${title}`}
 					/>
-				)
-			}
-		</>
+				</div>
+			)
+		}
 
-		<hr />
-
-		<div>
+		<div class='mt-10'>
 			<slot />
 		</div>
 	</article>
@@ -85,13 +108,13 @@ const seoDescription = `${description} Recette végane, sans œufs ni produits l
 			observer: IntersectionObserver
 		) {
 			entries.forEach((entry) => {
-				const index = document.querySelector(`aside a[href="#${entry.target.id}"]`)
+				const index = document.querySelector(`aside a[href=\"#${entry.target.id}\"]`)
 
 				if (entry.isIntersecting) {
 					index?.classList.remove('bg-slate-200', 'dark:bg-ink-raised') // remove bg
 					// `!text-primary` reste lisible sur la carte claire comme sur la carte
 					// sombre, contrairement à `text-white` qui disparaissait en mode clair ;
-					// le `!` lui permet de gagner face à `text-slate-900` de la carte.
+					// le `!` lui permet de gagner face à `text-ink` de la carte.
 					index?.classList.add('!text-primary', 'font-bold', 'transition-colors', 'duration-200')
 				} else {
 					index?.classList.remove(

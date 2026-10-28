@@ -187,7 +187,9 @@ const { Content, headings, remarkPluginFrontmatter } = await post.render()
 					(r.src = window.remark_config.host + '/web/' + e[o] + c),
 					d.appendChild(r))
 			}
-		})(window.remark_config.components || ['embed'], document)
+			// La configuration n'est posée qu'au chargement d'embed.js : sans ce garde,
+			// ce script lisait `undefined` et levait une TypeError au chargement.
+		})((window.remark_config && window.remark_config.components) || ['embed'], document)
 	</script>
 
 	<!-- Comments container -->

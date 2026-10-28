@@ -7,18 +7,17 @@ const description =
 ---
 
 <BaseLayout title='Préparations' description={description} gradient>
-	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-		<header class='mb-3 flex flex-col justify-center items-center gap-6'>
-			<div class='flex flex-col gap-2'>
-				<h1 class='text-center text-4xl md:text-6xl md:pb-2.5 font-semibold'>Les préparations</h1>
-				<p class='max-w-3xl text-center text-slate-600 dark:text-ink-muted'>
-					Toutes les préparations du site : fonds, biscuits, croustillants, inserts, mousses…
-					Filtrez par mot-clé, par saveur ou par type pour assembler une nouvelle création.
-				</p>
-			</div>
+	<article class='min-w-full md:py-4'>
+		<header class='flex flex-col gap-4'>
+			<span class='pop-chip pop-chip--mint w-fit'>Catalogue</span>
+			<h1 class='pop-display text-4xl sm:text-5xl md:text-6xl'>Les préparations</h1>
+			<p class='max-w-2xl text-base leading-relaxed text-ink/70 dark:text-ink-body'>
+				Toutes les préparations du site : fonds, biscuits, croustillants, inserts, mousses… Filtrez
+				par mot-clé, par saveur ou par type pour assembler une nouvelle création.
+			</p>
 		</header>
 
-		<hr class='my-8 md:my-10' />
+		<hr class='pop-rule my-8 md:my-10' />
 
 		<IngredientsIndex />
 	</article>

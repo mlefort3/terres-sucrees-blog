@@ -1,5 +1,6 @@
 ---
 import { cn, sluglify } from '@/utils'
+import { SEASON_STYLES } from '@/data/categories'
 
 const { name = 'Tout afficher', activeCategory } = Astro.props
 const currentPath = Astro.url.pathname
@@ -8,6 +9,10 @@ const unsluglifyNameCategory = sluglify(name.toLowerCase())
 const isActive =
 	activeCategory?.toLocaleLowerCase() === unsluglifyNameCategory ||
 	((currentPath === '/' || currentPath.startsWith('/all/')) && name === 'Tout afficher')
+
+// Les saisons affichent une puce de leur couleur : le filtre reprend ainsi la
+// teinte des pastilles portées par les cartes de recettes.
+const season = SEASON_STYLES[name.trim().toLowerCase()]
 
 // Les URL canoniques du site se terminent par « / » : les liens internes
 // doivent pointer vers cette forme pour éviter des doublons d'URL.
@@ -18,10 +23,17 @@ const href =
 <a
 	href={href}
 	class={cn(
-		`text-gray-600 dark:text-ink-body  pb-2.5 first-letter:uppercase font-medium hover:text-gray-800 border-b-2 border-opacity-0 dark:border-opacity-0 border-black dark:border-ink-text dark:hover:border-ink-text hover:border-opacity-100 transition-colors duration-150 ease-linear  `,
-		isActive &&
-			`border-black border-b-2 text-black z-10  dark:border-ink-text dark:text-ink-text dark:border-opacity-100 border-opacity-100`
+		'pop-chip !rounded-full !px-4 !py-1.5 !text-[0.78rem] !normal-case hover:-translate-y-0.5',
+		isActive && 'pop-chip--grape'
 	)}
 >
+	{
+		season && (
+			<span
+				class={cn('h-2 w-2 shrink-0 rounded-full border border-outline/70', season.dot)}
+				aria-hidden='true'
+			/>
+		)
+	}
 	{name}
 </a>

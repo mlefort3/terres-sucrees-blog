@@ -117,17 +117,14 @@ const flavors = [...flavorCount.entries()]
 	.sort((a, b) => a[0].localeCompare(b[0], 'fr'))
 	.map(([value, count]) => ({ value, count }))
 
-const fieldClass =
-	'w-full rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text px-3 py-2 text-base placeholder:text-slate-400 dark:placeholder:text-ink-faint focus:outline-none focus:ring-2 focus:ring-primary'
+const fieldClass = 'pop-field'
 const selectClass = `${fieldClass} appearance-none pr-9`
-const pageSizeClass =
-	'rounded-lg border border-slate-300 dark:border-ink-line bg-white dark:bg-ink-surface text-slate-900 dark:text-ink-text appearance-none py-2 pl-3 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary'
-const typeBadgeClass =
-	'shrink-0 rounded-full border border-slate-300 dark:border-ink-line bg-slate-100 dark:bg-ink-raised px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-ink-muted'
-const flavorBadgeClass =
-	'rounded-full border border-primary/25 dark:border-primary_second/30 bg-primary/10 dark:bg-primary_second/10 px-2.5 py-1 text-xs font-medium text-primary dark:text-primary_second'
-const recipeBadgeClass =
-	'shrink-0 rounded-full bg-primary px-2.5 py-1 text-xs font-medium text-white whitespace-nowrap'
+const pageSizeClass = 'pop-field !w-auto appearance-none !py-1.5 pl-3 pr-8 text-sm font-semibold'
+const typeBadgeClass = 'pop-chip shrink-0'
+const flavorBadgeClass = 'pop-chip pop-chip--butter !normal-case'
+const recipeBadgeClass = 'pop-chip pop-chip--grape shrink-0 whitespace-nowrap'
+const labelClass =
+	'text-[11px] font-bold uppercase tracking-[0.16em] text-ink/60 dark:text-ink-faint'
 // Flèche de fiche : pastille teintée dans le violet du site (#6F6BAE, la couleur
 // primaire) qui se remplit au survol de la ligne. Le glyphe garde #6F6BAE, d'où
 // la teinte déjà suffisante du fond en mode sombre (20 % : l'échelle d'opacité
@@ -136,7 +133,7 @@ const recipeBadgeClass =
 // les variantes `dark:` du fond — et la flèche glisse vers sa diagonale sauf si
 // l'utilisateur a demandé moins d'animations.
 const arrowBadgeClass =
-	'flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors duration-200 ease-out group-hover:bg-primary group-hover:text-white dark:bg-primary/20'
+	'flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 border-outline bg-lilac text-ink transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:shadow-[2px_2px_0_0_#241e38] dark:border-ink-line dark:bg-ink-raised dark:text-ink-text'
 const arrowIconClass =
 	'transition-transform duration-200 ease-out motion-safe:group-hover:-translate-y-0.5 motion-safe:group-hover:translate-x-0.5'
 ---
@@ -149,7 +146,7 @@ const arrowIconClass =
 			class='grid gap-4 md:grid-cols-[minmax(0,1fr)_minmax(0,14rem)_minmax(0,14rem)_auto] md:items-end'
 		>
 			<label class='flex flex-col gap-2'>
-				<span class='font-semibold text-primary'>Recherche</span>
+				<span class={labelClass}>Recherche</span>
 				<div class='relative'>
 					<input
 						id='ingredients-search'
@@ -160,7 +157,7 @@ const arrowIconClass =
 						class={`${fieldClass} pl-10`}
 					/>
 					<svg
-						class='pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500 dark:text-ink-muted'
+						class='pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-ink/40 dark:text-ink-muted'
 						fill='none'
 						stroke='currentColor'
 						viewBox='0 0 24 24'
@@ -175,7 +172,7 @@ const arrowIconClass =
 			</label>
 
 			<label class='flex flex-col gap-2'>
-				<span class='font-semibold text-primary'>Type</span>
+				<span class={labelClass}>Type</span>
 				<div class='relative'>
 					<select id='ingredients-category' class={selectClass}>
 						<option value=''>Tous les types</option>
@@ -200,7 +197,7 @@ const arrowIconClass =
 			</label>
 
 			<label class='flex flex-col gap-2'>
-				<span class='font-semibold text-primary'>Saveur</span>
+				<span class={labelClass}>Saveur</span>
 				<div class='relative'>
 					<select id='ingredients-flavor' class={selectClass}>
 						<option value=''>Toutes les saveurs</option>
@@ -224,11 +221,7 @@ const arrowIconClass =
 				</div>
 			</label>
 
-			<button
-				id='ingredients-reset'
-				type='button'
-				class='h-11 px-4 rounded-lg border border-slate-300 dark:border-ink-line text-sm font-medium text-slate-700 dark:text-ink-body hover:bg-slate-100 dark:hover:bg-ink-raised transition'
-			>
+			<button id='ingredients-reset' type='button' class='pop-btn pop-btn--paper pop-btn--sm h-11'>
 				Réinitialiser
 			</button>
 		</div>
@@ -236,13 +229,15 @@ const arrowIconClass =
 		<div class='mt-5 flex flex-wrap items-center justify-between gap-x-4 gap-y-3'>
 			<p
 				id='ingredients-count'
-				class='text-sm text-slate-500 dark:text-ink-muted'
+				class='text-[11px] font-bold uppercase tracking-[0.14em] text-ink/55 dark:text-ink-muted'
 				aria-live='polite'
 			>
 				{ingredients.length} préparation{ingredients.length > 1 ? 's' : ''}
 			</p>
 
-			<label class='flex items-center gap-2 text-sm text-slate-500 dark:text-ink-muted'>
+			<label
+				class='flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink/55 dark:text-ink-muted'
+			>
 				<span>Afficher</span>
 				<div class='relative'>
 					<select id='ingredients-page-size' class={pageSizeClass}>
@@ -277,7 +272,7 @@ const arrowIconClass =
 		{
 			ingredients.map((ingredient) => (
 				<li
-					class='ingredient-card group relative flex flex-col gap-3 rounded-2xl border border-slate-200 dark:border-ink-line bg-white dark:bg-ink-surface p-4 md:flex-row md:items-center md:gap-6 md:p-5 shadow-sm dark:shadow-none transition-colors hover:border-primary/50 dark:hover:border-primary_second/50 focus-within:border-primary dark:focus-within:border-primary_second'
+					class='ingredient-card group relative flex flex-col gap-3 rounded-xl border-2 border-outline bg-white p-4 shadow-[3px_3px_0_0_#241e38] transition hover:-translate-y-0.5 max-md:items-start md:flex-row md:items-center md:gap-6 md:p-5 dark:border-ink-line dark:bg-ink-surface dark:shadow-[3px_3px_0_0_rgba(189,183,253,0.18)]'
 					data-category={ingredient.category}
 					data-flavors={ingredient.flavors.join('|')}
 					data-search={ingredient.search}
@@ -285,7 +280,7 @@ const arrowIconClass =
 					<div class='flex min-w-0 flex-1 flex-col gap-2'>
 						<div class='flex flex-wrap items-center gap-x-3 gap-y-2'>
 							<span class={typeBadgeClass}>{ingredient.category}</span>
-							<h3 class='text-lg font-semibold text-primary'>
+							<h3 class='font-display text-xl text-ink dark:text-ink-text'>
 								{/* Lien étiré sur toute la ligne : la cible de clic couvre la ligne entière. */}
 								<a href={`/ingredients/${ingredient.id}/`} class='after:absolute after:inset-0'>
 									{ingredient.name}
@@ -294,7 +289,9 @@ const arrowIconClass =
 						</div>
 
 						{ingredient.description && (
-							<p class='text-sm text-slate-600 dark:text-ink-body'>{ingredient.description}</p>
+							<p class='text-sm leading-relaxed text-ink/65 dark:text-ink-body'>
+								{ingredient.description}
+							</p>
 						)}
 
 						{ingredient.flavors.length > 0 && (
@@ -326,7 +323,7 @@ const arrowIconClass =
 	<p
 		id='ingredients-empty'
 		hidden
-		class='frost-surface rounded-2xl border border-dashed border-slate-300 dark:border-ink-line p-8 text-center text-slate-600 dark:text-ink-muted'
+		class='pop-panel p-8 text-center text-ink/70 dark:text-ink-muted'
 	>
 		Aucun élément ne correspond à cette recherche.
 	</p>

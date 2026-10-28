@@ -29,12 +29,11 @@ const usedIn = posts
 	.filter((post) => (post.data.recipeIngredients ?? []).includes(ingredient.id))
 	.sort((a, b) => a.data.title.localeCompare(b.data.title, 'fr'))
 
-const typeBadgeClass =
-	'rounded-full border border-slate-300 dark:border-ink-line bg-slate-100 dark:bg-ink-raised px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-ink-muted'
-const flavorBadgeClass =
-	'rounded-full border border-primary/25 dark:border-primary_second/30 bg-primary/10 dark:bg-primary_second/10 px-2.5 py-1 text-xs font-medium text-primary dark:text-primary_second'
-const cardClass =
-	'frost-surface bg-white dark:bg-ink-surface rounded-2xl border border-slate-200 dark:border-ink-line p-6 md:p-8 shadow-sm dark:shadow-none'
+const typeBadgeClass = 'pop-chip'
+const flavorBadgeClass = 'pop-chip pop-chip--butter !normal-case'
+const cardClass = 'frost-surface p-6 md:p-8'
+const labelClass =
+	'mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-primary dark:text-primary_second'
 
 const pageDescription =
 	description ??
@@ -43,15 +42,12 @@ const pageDescription =
 
 <BaseLayout title={name} description={pageDescription} gradient>
 	<article class='min-w-full md:py-4 sm:max-w-none md:max-w-none'>
-		<a
-			href='/ingredients/'
-			class='inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline'
-		>
-			<ArrowLeft width={18} height={18} />
+		<a href='/ingredients/' class='pop-btn pop-btn--paper pop-btn--sm gap-2'>
+			<ArrowLeft width={16} height={16} />
 			Toutes les préparations
 		</a>
 
-		<header class='mt-6 flex flex-col gap-4'>
+		<header class='mt-7 flex flex-col gap-4'>
 			<div class='flex flex-wrap items-center gap-3'>
 				<span class={typeBadgeClass}>{category}</span>
 				{
@@ -62,15 +58,17 @@ const pageDescription =
 					))
 				}
 			</div>
-			<h1 class='text-4xl md:text-5xl font-semibold'>{name}</h1>
+			<h1 class='pop-display text-4xl sm:text-5xl md:text-6xl'>{name}</h1>
 			{
 				description && (
-					<p class='max-w-3xl text-lg text-slate-600 dark:text-ink-muted'>{description}</p>
+					<p class='max-w-2xl text-base leading-relaxed text-ink/70 dark:text-ink-body'>
+						{description}
+					</p>
 				)
 			}
 			{
 				source && (
-					<p class='text-sm text-slate-600 dark:text-ink-muted italic'>
+					<p class='text-sm italic text-ink/55 dark:text-ink-muted'>
 						Basé sur la recette de{' '}
 						{typeof source === 'string' ? (
 							source
@@ -89,17 +87,17 @@ const pageDescription =
 			}
 		</header>
 
-		<hr class='my-8 md:my-10' />
+		<hr class='pop-rule my-8 md:my-10' />
 
 		<div class='grid gap-6 md:grid-cols-2 md:items-start'>
 			<section class={cardClass}>
-				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>Ingrédients</h2>
+				<h2 class={labelClass}>Ingrédients</h2>
 				{
 					ingredients.length > 0 ? (
 						<ul class='space-y-3'>
 							{ingredients.map((item) => (
-								<li class='text-slate-700 dark:text-ink-body text-base'>
-									<span class='text-primary font-light'>– </span>
+								<li class='text-[15px] leading-relaxed text-ink/80 dark:text-ink-body'>
+									<span class='font-bold text-primary dark:text-primary_second'>– </span>
 									{item.item}
 									{item.quantity && (
 										<span class='text-slate-500 dark:text-ink-faint text-sm'>
@@ -117,13 +115,13 @@ const pageDescription =
 			</section>
 
 			<section class={cardClass}>
-				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>Étapes</h2>
+				<h2 class={labelClass}>Étapes</h2>
 				{
 					steps.length > 0 ? (
 						<ol class='space-y-3'>
 							{steps.map((step, index) => (
-								<li class='text-slate-700 dark:text-ink-body text-base'>
-									<span class='font-semibold text-primary'>{index + 1}. </span>
+								<li class='text-[15px] leading-relaxed text-ink/80 dark:text-ink-body'>
+									<span class='font-bold text-primary dark:text-primary_second'>{index + 1}. </span>
 									{step}
 								</li>
 							))}
@@ -137,14 +135,14 @@ const pageDescription =
 			{
 				notes && (
 					<section class={`${cardClass} md:col-span-2`}>
-						<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-3'>Note</h2>
-						<p class='text-slate-700 dark:text-ink-body text-base'>{notes}</p>
+						<h2 class={`${labelClass} mb-3`}>Note</h2>
+						<p class='text-[15px] leading-relaxed text-ink/80 dark:text-ink-body'>{notes}</p>
 					</section>
 				)
 			}
 
 			<section class={`${cardClass} md:col-span-2`}>
-				<h2 class='text-sm font-semibold uppercase tracking-wide text-primary mb-4'>
+				<h2 class={labelClass}>
 					{usedIn.length > 1 ? 'Utilisée dans' : 'Utilisé dans'}
 				</h2>
 				{

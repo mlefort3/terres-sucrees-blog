@@ -6,7 +6,7 @@ export interface Props {
 const { date } = Astro.props
 ---
 
-<time class='text-sm text-opacity-60' datetime={date.toISOString()}>
+<time class='font-semibold uppercase tracking-[0.12em]' datetime={date.toISOString()}>
 	{
 		date.toLocaleDateString('fr-fr', {
 			year: 'numeric',

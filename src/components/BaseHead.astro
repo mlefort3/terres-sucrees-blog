@@ -105,60 +105,56 @@ import { AstroFont } from 'astro-font'
 <!-- RSS auto-discovery -->
 <link rel='alternate' type='application/rss+xml' title={siteConfig.title} href='/rss.xml' />
 
+{
+	/* Manrope (grotesque) porte le texte, Motter Corpus le titrage. Toutes deux
+	   sont servies localement depuis `public/fonts` en woff2, ce qui remplace les
+	   neuf fichiers TTF d'Outfit (≈ 500 ko) par des sous-ensembles plus légers. */
+}
 <AstroFont
 	config={[
 		{
 			preload: true,
 			display: 'swap',
-			name: 'Outfit',
+			name: 'Manrope',
 			fallback: 'sans-serif',
 			src: [
 				{
-					weight: '100',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-ExtraLight.ttf')
-				},
-				{
-					weight: '200',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Light.ttf')
-				},
-				{
-					// `Outfit-LightMedium.ttf` n'existe pas dans `public/fonts` : la face
-					// 300 était donc absente et chaque page déclenchait un 404.
-					weight: '300',
-					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Light.ttf')
-				},
-				{
 					weight: '400',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Regular.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Regular.woff2')
 				},
 				{
 					weight: '500',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Medium.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Medium.woff2')
 				},
 				{
 					weight: '600',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-SemiBold.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'Manrope-SemiBold.woff2')
 				},
 				{
 					weight: '700',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Bold.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'Manrope-Bold.woff2')
 				},
 				{
 					weight: '800',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-ExtraBold.ttf')
-				},
+					path: join(process.cwd(), 'public', 'fonts', 'Manrope-ExtraBold.woff2')
+				}
+			]
+		},
+		{
+			preload: true,
+			display: 'swap',
+			name: 'Motter Corpus Std',
+			fallback: 'serif',
+			src: [
 				{
-					weight: '900',
+					weight: '400',
 					style: 'normal',
-					path: join(process.cwd(), 'public', 'fonts', 'Outfit-Black.ttf')
+					path: join(process.cwd(), 'public', 'fonts', 'MotterCorpusStd-Regular.woff2')
 				}
 			]
 		}

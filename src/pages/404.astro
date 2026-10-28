@@ -1,15 +1,19 @@
 ---
 // src/pages/404.astro
 import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
 ---
 
-<BaseLayout title='Page Not Found' noindex noCanonical>
-	<div class='flex flex-col items-center justify-center min-h-[60vh] text-center gap-4'>
-		<TitlePage title='404 – Page Not Found' />
-		<p class='text-gray-600 dark:text-ink-muted'>Oups ! La page que vous cherchez n’existe pas.</p>
-		<a href='/' class='px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition'>
-			Retour à l'accueil
-		</a>
-	</div>
+<BaseLayout title='Page introuvable' noindex noCanonical>
+	<section class='flex min-h-[60vh] flex-col items-center justify-center text-center'>
+		<div
+			class='w-full max-w-xl rounded-[2rem] border-2 border-outline bg-white px-6 py-12 shadow-[10px_10px_0_0_#241e38] dark:border-ink-line dark:bg-ink-surface dark:shadow-[10px_10px_0_0_rgba(189,183,253,0.18)]'
+		>
+			<p class='pop-display text-[5rem] leading-none text-primary dark:text-primary_second'>404</p>
+			<h1 class='pop-display mt-4 text-3xl sm:text-4xl'>Cette page a fondu au four</h1>
+			<p class='mx-auto mt-4 max-w-sm text-ink/65 dark:text-ink-body'>
+				La page que vous cherchez n'existe pas — ou la recette a été retirée du moule.
+			</p>
+			<a href='/' class='pop-btn mt-8'>Retour aux recettes</a>
+		</div>
+	</section>
 </BaseLayout>

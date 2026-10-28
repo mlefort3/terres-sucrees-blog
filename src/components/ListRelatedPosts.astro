@@ -10,42 +10,32 @@ type Props = {
 const { posts } = Astro.props
 ---
 
-<section class={cn(`grid gap-6 sm:grid-cols-2 lg:grid-cols-3`)}>
+<section class={cn('grid gap-4 sm:grid-cols-2 lg:grid-cols-3')}>
 	{
 		posts.length > 0 ? (
 			posts.map((post) => {
 				return (
 					<a
 						href={`/post/${post.slug}/`}
-						class='
-              group flex items-center gap-4 p-4 
-              rounded-xl
-              bg-[#e5e4f4] dark:bg-ink-raised
-              dark:border dark:border-ink-line
-              shadow-sm hover:shadow transition-shadow
-              dark:shadow-none dark:hover:shadow-none
-            '
+						class='group flex items-center gap-4 rounded-xl border-2 border-outline bg-white p-3 shadow-[3px_3px_0_0_#241e38] transition hover:-translate-y-0.5 hover:bg-butter dark:border-ink-line dark:bg-ink-surface dark:shadow-[3px_3px_0_0_rgba(189,183,253,0.18)] dark:hover:bg-ink-raised'
 					>
 						<Image
 							src={post.data.heroImage}
-							width={200}
-							height={200}
+							width={160}
+							height={160}
 							format='webp'
 							alt={`Photo de la recette : ${post.data.title}`}
-							class='w-16 h-16 rounded-full object-cover'
+							class='h-14 w-14 shrink-0 rounded-lg border-2 border-outline object-cover dark:border-ink-line'
 						/>
 
-						<h3
-							class='font-semibold text-lg group-hover:underline line-clamp-2 
-                       text-gray-900 dark:text-ink-text'
-						>
+						<h3 class='line-clamp-2 font-display text-lg leading-tight text-ink dark:text-ink-text'>
 							{post.data.title}
 						</h3>
 					</a>
 				)
 			})
 		) : (
-			<span class='text-gray-500 dark:text-ink-muted'>There are no related posts yet. 😢</span>
+			<span class='text-ink/60 dark:text-ink-muted'>There are no related posts yet. 😢</span>
 		)
 	}
 </section>

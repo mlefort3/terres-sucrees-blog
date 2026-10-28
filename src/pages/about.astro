@@ -1,12 +1,19 @@
 ---
 // src/pages/about.astro
 import BaseLayout from '@/layouts/BaseLayout'
-import TitlePage from '@/components/TitlePage'
 ---
 
 <BaseLayout title='À propos'>
-	<div class='flex flex-col items-center justify-center min-h-[60vh] text-center gap-4'>
-		<TitlePage title='À propos' />
+	<div class='flex flex-col items-center justify-center text-center'>
+		<span class='pop-chip pop-chip--blush'>Le projet</span>
+		<h1 class='pop-display mt-4 text-4xl sm:text-5xl md:text-6xl'>À propos</h1>
+		<p class='mt-4 max-w-xl text-base leading-relaxed text-ink/70 dark:text-ink-body'>
+			Terres Sucrées, c'est de la pâtisserie végétale décomposée en préparations : fonds, biscuits,
+			croustillants, inserts, mousses et glaçages à assembler librement.
+		</p>
+	</div>
+
+	<div class='pop-card mx-auto mt-10 w-full max-w-2xl p-3 sm:p-4'>
 		<blockquote
 			class='instagram-media'
 			data-instgrm-captioned
@@ -54,7 +61,8 @@ import TitlePage from '@/components/TitlePage'
 										></path></g
 									></g
 								></g
-							></svg>
+							></svg
+						>
 					</div><div style='padding-top: 8px;'>
 						<div
 							style=' color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;'
@@ -120,16 +128,15 @@ import TitlePage from '@/components/TitlePage'
 					<a
 						href='https://www.instagram.com/p/DNYa_x7h1pC/?utm_source=ig_embed&utm_campaign=loading'
 						style=' color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;'
-						target='_blank'>Une publication partagée par Terres Sucrées (@terres.sucrees)</a>
+						target='_blank'>Une publication partagée par Terres Sucrées (@terres.sucrees)</a
+					>
 				</p>
 			</div>
 		</blockquote>
 		<script async src='//www.instagram.com/embed.js'></script>
-		<a
-			href='https://www.instagram.com/p/DNYa_x7h1pC/'
-			class='px-4 py-2 rounded-lg bg-primary text-white hover:bg-primary-dark transition'
-		>
-			+ de détails sur Instagram
-		</a>
+	</div>
+
+	<div class='flex justify-center'>
+		<a href='https://www.instagram.com/p/DNYa_x7h1pC/' class='pop-btn'> Voir sur Instagram</a>
 	</div>
 </BaseLayout>
