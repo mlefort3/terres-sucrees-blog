@@ -4,13 +4,13 @@
 // Une page par fichier de src/content/recipeIngredients, comme les recettes ont
 // une page par fichier de src/content/blog. Elle reprend la préparation complète
 // (ingrédients et étapes) et liste les recettes publiées qui l'utilisent.
-import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import ArrowLeft from '@/components/icons/ArrowLeft'
-import { getPosts } from '@/utils'
+import { getPosts, getRecipeIngredients } from '@/utils'
 
 export async function getStaticPaths() {
-	const ingredients = await getCollection('recipeIngredients')
+	// Les préparations en brouillon n'ont pas de page.
+	const ingredients = await getRecipeIngredients()
 
 	return ingredients.map((ingredient) => ({
 		params: { id: ingredient.id },

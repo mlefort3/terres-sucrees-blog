@@ -1,7 +1,7 @@
 ---
-import { getCollection } from 'astro:content'
 import BaseLayout from '@/layouts/BaseLayout'
 import RecipeSlotSelect from '@/components/RecipeSlotSelect'
+import { getRecipeIngredients } from '@/utils'
 import ingredientFlavors from '../../ingredients-flavors.json'
 import {
 	RECIPE_KINDS,
@@ -12,8 +12,8 @@ import {
 	type RecipeSlot
 } from '../utils/recipeSlots'
 
-// Charge tous les éléments modulaires et range-les par catégorie.
-const allIngredients = await getCollection('recipeIngredients')
+// Charge les éléments modulaires publiés (brouillons exclus) et range-les par catégorie.
+const allIngredients = await getRecipeIngredients()
 
 type BuilderIngredient = {
 	id: string

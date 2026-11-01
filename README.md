@@ -114,6 +114,10 @@ source:
   url: https://terres-sucrees.fr/
 ```
 
+`draft: true` retire la préparation du site : sa fiche `/ingredients/<id>/`
+renvoie une 404 et elle disparaît du catalogue, des recettes qui l'utilisent,
+du sommaire, du JSON-LD et de l'export PDF.
+
 Le fichier **ingredients-flavors.json** associe à chaque saveur ses saveurs
 compatibles ; il alimente les recommandations de la page _Créer ma recette_.
 

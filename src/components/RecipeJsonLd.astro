@@ -1,8 +1,8 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { getCollection } from 'astro:content'
 import JsonLd from '@/components/JsonLd'
 import { absoluteUrl, recipeJsonLd } from '@/utils/seo'
+import { getRecipeIngredients } from '@/utils'
 
 interface Props {
 	post: CollectionEntry<'blog'>
@@ -20,8 +20,8 @@ const {
 } = post.data
 
 // Résout les éléments de recette référencés par l'article (mêmes données que
-// celles affichées par RecipeIngredientsDisplay).
-const allIngredients = await getCollection('recipeIngredients')
+// celles affichées par RecipeIngredientsDisplay, brouillons exclus).
+const allIngredients = await getRecipeIngredients()
 const components = recipeIngredients
 	.map((id) => allIngredients.find((ingredient) => ingredient.id === id))
 	.filter((ingredient) => ingredient !== undefined)

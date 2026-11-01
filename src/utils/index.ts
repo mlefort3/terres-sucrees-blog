@@ -9,3 +9,4 @@ export {
 	tagSlug
 } from './post'
 export { remarkReadingTime } from './readTime'
+export { getRecipeIngredients } from './recipeIngredients'

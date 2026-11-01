@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getRecipeIngredients } from '@/utils'
 import TableOfContentsHeading from '@/components/TabletOfContentsHeading'
 
 interface Props {
@@ -36,7 +36,7 @@ function buildToc(headings: TableOfContent[]) {
 // Charger les ingrédients de recettes si disponibles
 let ingredientsList = []
 if (recipeIngredients && recipeIngredients.length > 0) {
-	const allIngredients = await getCollection('recipeIngredients')
+	const allIngredients = await getRecipeIngredients()
 	ingredientsList = recipeIngredients
 		.map((id) => allIngredients.find((ing) => ing.id === id))
 		.filter((ing) => ing !== undefined)

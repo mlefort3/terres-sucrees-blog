@@ -1,6 +1,7 @@
 ---
 // Composant pour afficher l'index des recettes avec leurs ingrédients modulaires
 import { getCollection } from 'astro:content'
+import { getRecipeIngredients } from '@/utils'
 
 interface Props {
 	maxRecipes?: number
@@ -10,7 +11,7 @@ const { maxRecipes = 12 } = Astro.props
 
 // Récupérer tous les posts et les ingrédients
 const allPosts = await getCollection('blog')
-const allRecipeIngredients = await getCollection('recipeIngredients')
+const allRecipeIngredients = await getRecipeIngredients()
 
 // Filtrer les recettes (posts avec recipeIngredients)
 const recipePosts = allPosts

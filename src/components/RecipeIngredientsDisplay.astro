@@ -6,13 +6,13 @@ interface Props {
 	recipeIngredientIds: string[]
 }
 
-import { getCollection } from 'astro:content'
+import { getRecipeIngredients } from '@/utils'
 import RecipePdfButton from '@/components/RecipePdfButton'
 
 const { title, description = null, recipeIngredientIds = [] } = Astro.props
 
-// Charger tous les ingrédients de recettes disponibles
-const allRecipeIngredients = await getCollection('recipeIngredients')
+// Charger les préparations publiées (les brouillons sont ignorés)
+const allRecipeIngredients = await getRecipeIngredients()
 
 // Filtrer les ingrédients demandés
 const recipeIngredients = recipeIngredientIds

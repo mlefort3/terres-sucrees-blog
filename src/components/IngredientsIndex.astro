@@ -14,6 +14,7 @@
 import { getCollection } from 'astro:content'
 import ArrowUp from '@/components/icons/ArrowUp'
 import IngredientsPager from '@/components/IngredientsPager'
+import { getRecipeIngredients } from '@/utils'
 // Seules les tailles servent au rendu : les classes de la pagination sont
 // utilisées par le script et par IngredientsPager.
 import { DEFAULT_PAGE_SIZE, PAGE_SIZES } from '@/utils/ingredientsPagination'
@@ -42,7 +43,8 @@ const normalize = (value: string) =>
 		.replace(/[\u0300-\u036f]/g, '')
 		.toLowerCase()
 
-const allIngredients = await getCollection('recipeIngredients')
+// Les brouillons ne figurent pas au catalogue.
+const allIngredients = await getRecipeIngredients()
 const allPosts = await getCollection('blog')
 
 // Seules les recettes publiées ont une page : les brouillons ne sont donc ni

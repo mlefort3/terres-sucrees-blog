@@ -1,6 +1,7 @@
 name: "Breizh chocolate"
 category: autre
 description: "Tablette de chocolat noir garnie façon chocolat de Dubaï, version bretonne"
+draft: true
 source:
   title: "Journal des Femmes"
   url: "https://cuisine.journaldesfemmes.fr/recette/3217394-tablette-de-chocolat-de-dubai"
