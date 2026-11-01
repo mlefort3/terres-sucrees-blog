@@ -1,0 +1,26 @@
+name: "Croissant bicolore - Couche supérieure"
+category: autre
+description: "Couche supérieure (non tourée) d'un croissant bicolore"
+source: "Fou de Pâtisserie, n° 68, croissants bicolores"
+ingredients:
+  - item: "85 g de farine de gruau"
+  - item: "85 g de farine T55"
+  - item: "17 g de sucre"
+  - item: "2 g de sel fin"
+  - item: "6 g de levure fraîche de boulanger"
+  - item: "115 g de beurre vegan de tourage (j'utilise Be Better)"
+  - item: "85 g de lait de soja froid"
+  - item: "Le colorant de votre choix"
+flavor:
+  - neutre
+  - beurre
+steps:
+  - "Dans la cuve d'un robot, ajouter les farines."
+  - "Ajouter d'un côté le sel, le sucre et le beurre vegan en morceaux."
+  - "D'un autre côté, ajouter la levure fraîche en morceaux."
+  - "Ajouter le lait."
+  - "Pétrir 6 min à vitesse minimum."
+  - "Pétrir 4 min en 2ème vitesse."
+  - "La pâte doit pouvoir s'étirer sans se casser. Si ce n'est pas le cas, remettre 2min et vérifier à nouveau jusqu'à obtention de la consistance souhaitée."
+  - "Laisser 45 min à température ambiante, puis dégazer la pâte."
+  - "Laisser refroidir la pâte à croissant dégazée 1h30 au réfrigérateur."
