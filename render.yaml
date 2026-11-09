@@ -28,7 +28,7 @@ services:
       # les continuations « \ » du format Netlify).
       - path: /*
         name: Content-Security-Policy
-        value: "default-src 'self'; script-src 'self' https://goatcounter-terres-sucrees.onrender.com https://gc.zgo.at https://app.rybbit.io https://comments.terres-sucrees.fr; connect-src 'self' https://goatcounter-terres-sucrees.onrender.com; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
+        value: "default-src 'self'; script-src 'self' https://goatcounter-terres-sucrees.onrender.com https://gc.zgo.at https://app.rybbit.io https://comments.terres-sucrees.fr; connect-src 'self' https://goatcounter-terres-sucrees.onrender.com https://formsubmit.co; img-src 'self' data:; style-src 'self' 'unsafe-inline';"
     routes:
       # Anciennes URLs WordPress datées (/2025/02/21/mousse-vanille/) -> /post/<slug>/
       - type: redirect
