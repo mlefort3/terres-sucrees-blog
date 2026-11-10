@@ -61,6 +61,32 @@ export default defineConfig({
 						required: true
 					},
 					{
+						type: 'string',
+						name: 'prepTime',
+						label: 'Temps de préparation',
+						description:
+							'Temps actif au format ISO 8601, ex. « PT45M » ou « PT1H30M ». Repris dans les données structurées.',
+						ui: {
+							validate: (value?: string) =>
+								!value || /^PT(?=\d)(\d+H)?(\d+M)?(\d+S)?$/.test(value.trim())
+									? undefined
+									: 'Format ISO 8601 attendu, ex. « PT45M »'
+						}
+					},
+					{
+						type: 'string',
+						name: 'cookTime',
+						label: 'Temps de cuisson',
+						description:
+							'Temps au four ou sur le feu au format ISO 8601, ex. « PT20M » ou « PT1H ». Repris dans les données structurées.',
+						ui: {
+							validate: (value?: string) =>
+								!value || /^PT(?=\d)(\d+H)?(\d+M)?(\d+S)?$/.test(value.trim())
+									? undefined
+									: 'Format ISO 8601 attendu, ex. « PT20M »'
+						}
+					},
+					{
 						name: 'draft',
 						label: 'Draft',
 						type: 'boolean',
@@ -83,6 +109,17 @@ export default defineConfig({
 						label: 'Title',
 						isTitle: true,
 						required: true
+					},
+					{
+						type: 'string',
+						name: 'recipeIngredients',
+						label: 'Préparations de la recette',
+						description:
+							'Identifiants des préparations (fichiers de src/content/recipeIngredients, sans extension), ex. « pate-sucree ».',
+						list: true,
+						ui: {
+							component: 'tags'
+						}
 					},
 					{
 						type: 'rich-text',
