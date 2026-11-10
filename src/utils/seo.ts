@@ -72,6 +72,9 @@ export type RecipeJsonLdInput = {
 	url: string
 	image?: string
 	datePublished: string
+	/** Durées ISO 8601 (« PT30M ») : émises seulement si la recette les fournit. */
+	prepTime?: string
+	cookTime?: string
 	categories?: string[]
 	tags?: string[]
 	components: {
@@ -92,7 +95,13 @@ export const recipeJsonLd = (input: RecipeJsonLdInput) => {
 	const instructions = input.components.map((component) => ({
 		'@type': 'HowToSection',
 		name: component.name,
-		itemListElement: component.steps.map((step) => ({ '@type': 'HowToStep', text: step }))
+		// Google demande une image ou une vidéo sur chaque étape : on reprend la
+		// photo de la recette, seule image disponible pour l'ensemble des étapes.
+		itemListElement: component.steps.map((step) => ({
+			'@type': 'HowToStep',
+			text: step,
+			...(input.image ? { image: input.image } : {})
+		}))
 	}))
 
 	const category = input.categories?.[0]
@@ -117,6 +126,8 @@ export const recipeJsonLd = (input: RecipeJsonLdInput) => {
 				author: organizationNode(),
 				publisher: organizationNode(),
 				datePublished: input.datePublished,
+				...(input.prepTime ? { prepTime: input.prepTime } : {}),
+				...(input.cookTime ? { cookTime: input.cookTime } : {}),
 				inLanguage: siteConfig.lang,
 				recipeCategory: ['Dessert', 'Pâtisserie végane'],
 				recipeCuisine: 'Française',

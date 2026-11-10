@@ -1,6 +1,11 @@
 import { defineCollection, z } from 'astro:content'
 import { CATEGORIES } from '@/data/categories'
 
+// Durée ISO 8601 attendue par les données structurées (« PT45M », « PT1H30M »).
+const isoDuration = z
+	.string()
+	.regex(/^PT(?=\d)(\d+H)?(\d+M)?(\d+S)?$/, 'Durée ISO 8601 attendue, ex. « PT45M »')
+
 const blog = defineCollection({
 	// Type-check frontmatter using a schema
 	schema: ({ image }) =>
@@ -12,6 +17,10 @@ const blog = defineCollection({
 				.string()
 				.or(z.date())
 				.transform((val) => new Date(val)),
+			// Temps de préparation et de cuisson, repris dans le JSON-LD (Google les
+			// recommande ensemble). Absents : aucune durée n'est déclarée.
+			prepTime: isoDuration.optional(),
+			cookTime: isoDuration.optional(),
 			heroImage: image(),
 			categories: z.array(z.enum(CATEGORIES)),
 			tags: z.array(z.string()),
