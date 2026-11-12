@@ -1,0 +1,309 @@
+---
+// Sélecteur de date du site : un déclencheur habillé comme les autres champs
+// et un calendrier dessiné avec la palette « pop » (contours à l'encre, ombres
+// pleines, survol beurre).
+//
+// Le champ natif n'est pas supprimé : il porte le `name`, la validation `min`
+// et la valeur ISO envoyée au formulaire. Sans JavaScript, il reste visible et
+// utilisable ; le script le masque ensuite au profit du déclencheur.
+interface Props {
+	/** Nom du champ dans le formulaire (et libellé par défaut). */
+	name: string
+	label: string
+	/** Première date sélectionnable, au format `AAAA-MM-JJ`. */
+	min?: string
+	placeholder?: string
+}
+
+const { name, label, min = '', placeholder = 'jj/mm/aaaa' } = Astro.props
+
+const slug = name
+	.normalize('NFD')
+	.replace(/[\u0300-\u036f]/g, '')
+	.toLowerCase()
+	.replace(/[^a-z0-9]+/g, '-')
+	.replace(/(^-|-$)/g, '')
+
+const labelId = `${slug}-label`
+const errorId = `${slug}-error`
+const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
+---
+
+<div class='flex flex-col gap-2'>
+	<span id={labelId} class='text-sm font-bold'>{label}</span>
+
+	<div class='relative' data-datepicker data-min={min} data-placeholder={placeholder}>
+		<!-- Repli sans JavaScript : le champ date du navigateur, habillé par
+		     `.pop-field--date`. -->
+		<input
+			type='date'
+			name={name}
+			class='pop-field pop-field--date pop-field-native'
+			min={min || undefined}
+			required
+			data-datepicker-native
+		/>
+
+		<button
+			type='button'
+			id={`${slug}-trigger`}
+			class='pop-field pop-field-trigger'
+			aria-haspopup='dialog'
+			aria-expanded='false'
+			aria-labelledby={labelId}
+			aria-describedby={errorId}
+			hidden
+			data-datepicker-trigger
+		>
+			<span data-datepicker-value data-empty>{placeholder}</span>
+			<svg
+				class='pop-field-icon'
+				fill='none'
+				stroke='currentColor'
+				viewBox='0 0 24 24'
+				aria-hidden='true'
+			>
+				<rect x='3.5' y='5.5' width='17' height='15' rx='3' stroke-width='2'></rect>
+				<path
+					stroke-linecap='round'
+					stroke-linejoin='round'
+					stroke-width='2'
+					d='M3.5 10.5h17M8 3.5v4M16 3.5v4'></path>
+			</svg>
+		</button>
+
+		<p id={errorId} class='pop-field-error' hidden data-datepicker-error>
+			Choisissez une date de retrait.
+		</p>
+
+		<div
+			class='pop-calendar'
+			role='dialog'
+			aria-modal='false'
+			aria-labelledby={labelId}
+			hidden
+			data-datepicker-popover
+		>
+			<div class='pop-calendar-head'>
+				<button
+					type='button'
+					class='pop-calendar-nav'
+					aria-label='Mois précédent'
+					data-datepicker-prev
+				>
+					<svg fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+						<path
+							stroke-linecap='round'
+							stroke-linejoin='round'
+							stroke-width='2.5'
+							d='M15 18l-6-6 6-6'></path>
+					</svg>
+				</button>
+				<p class='pop-calendar-title' aria-live='polite' data-datepicker-title></p>
+				<button
+					type='button'
+					class='pop-calendar-nav'
+					aria-label='Mois suivant'
+					data-datepicker-next
+				>
+					<svg fill='none' stroke='currentColor' viewBox='0 0 24 24' aria-hidden='true'>
+						<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M9 6l6 6-6 6'
+						></path>
+					</svg>
+				</button>
+			</div>
+
+			<div class='pop-calendar-weekdays' aria-hidden='true'>
+				{weekdays.map((day) => <span>{day}</span>)}
+			</div>
+
+			<div class='pop-calendar-grid' data-datepicker-grid></div>
+
+			<div class='pop-calendar-foot'>
+				<button type='button' class='pop-calendar-action' data-datepicker-today>
+					Aujourd'hui
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	const pad = (value: number) => String(value).padStart(2, '0')
+	const toIso = (date: Date) =>
+		`${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`
+	const toDisplay = (iso: string) => {
+		const [year, month, day] = iso.split('-')
+		return `${day}/${month}/${year}`
+	}
+	const toLongDate = (date: Date) =>
+		date.toLocaleDateString('fr-FR', {
+			weekday: 'long',
+			day: 'numeric',
+			month: 'long',
+			year: 'numeric'
+		})
+
+	document.querySelectorAll<HTMLElement>('[data-datepicker]').forEach((root) => {
+		const native = root.querySelector<HTMLInputElement>('[data-datepicker-native]')
+		const trigger = root.querySelector<HTMLButtonElement>('[data-datepicker-trigger]')
+		const valueLabel = root.querySelector<HTMLElement>('[data-datepicker-value]')
+		const popover = root.querySelector<HTMLElement>('[data-datepicker-popover]')
+		const title = root.querySelector<HTMLElement>('[data-datepicker-title]')
+		const grid = root.querySelector<HTMLElement>('[data-datepicker-grid]')
+		const prev = root.querySelector<HTMLButtonElement>('[data-datepicker-prev]')
+		const next = root.querySelector<HTMLButtonElement>('[data-datepicker-next]')
+		const todayButton = root.querySelector<HTMLButtonElement>('[data-datepicker-today]')
+		const error = root.querySelector<HTMLElement>('[data-datepicker-error]')
+
+		if (!native || !trigger || !valueLabel || !popover || !title || !grid || !prev || !next) return
+
+		const min = root.dataset.min ?? ''
+		let selected = /^\d{4}-\d{2}-\d{2}$/.test(native.value) ? native.value : ''
+		let view = selected ? new Date(`${selected}T12:00:00`) : new Date()
+		view = new Date(view.getFullYear(), view.getMonth(), 1)
+
+		// Le champ natif garde `name` et sa valeur ISO, mais plus `required` :
+		// masqué, le navigateur ne saurait pas où poser sa bulle. La vérification
+		// se fait donc ici, avec le message du site.
+		native.removeAttribute('required')
+		trigger.hidden = false
+		root.classList.add('is-enhanced')
+
+		const clearError = () => {
+			if (error) error.hidden = true
+			trigger.removeAttribute('aria-invalid')
+		}
+
+		const showError = () => {
+			if (error) error.hidden = false
+			trigger.setAttribute('aria-invalid', 'true')
+			trigger.focus()
+		}
+
+		const close = (focusTrigger = false) => {
+			popover.hidden = true
+			trigger.setAttribute('aria-expanded', 'false')
+			if (focusTrigger) trigger.focus()
+		}
+
+		const render = () => {
+			const year = view.getFullYear()
+			const month = view.getMonth()
+			const todayIso = toIso(new Date())
+
+			title.textContent = view.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+
+			// La semaine commence le lundi : dimanche (0) devient la 7ᵉ case.
+			const offset = (new Date(year, month, 1).getDay() + 6) % 7
+			const daysInMonth = new Date(year, month + 1, 0).getDate()
+
+			grid.replaceChildren()
+
+			for (let blank = 0; blank < offset; blank++) {
+				const cell = document.createElement('span')
+				cell.className = 'pop-calendar-blank'
+				cell.setAttribute('aria-hidden', 'true')
+				grid.append(cell)
+			}
+
+			for (let day = 1; day <= daysInMonth; day++) {
+				const date = new Date(year, month, day)
+				const iso = toIso(date)
+				const button = document.createElement('button')
+
+				button.type = 'button'
+				button.className = 'pop-calendar-day'
+				button.textContent = String(day)
+				button.dataset.date = iso
+				button.setAttribute('aria-label', toLongDate(date))
+				if (iso === todayIso) button.dataset.today = ''
+				if (iso === selected) button.setAttribute('aria-pressed', 'true')
+				if (min && iso < min) button.disabled = true
+
+				button.addEventListener('click', () => select(iso))
+				grid.append(button)
+			}
+
+			// Un mois entièrement antérieur à la date minimale reste hors d'atteinte.
+			prev.disabled = Boolean(min) && toIso(new Date(year, month, 0)) < min
+			if (todayButton) todayButton.disabled = Boolean(min) && todayIso < min
+		}
+
+		const open = () => {
+			const base = selected ? new Date(`${selected}T12:00:00`) : new Date()
+			view = new Date(base.getFullYear(), base.getMonth(), 1)
+			render()
+			popover.hidden = false
+			trigger.setAttribute('aria-expanded', 'true')
+
+			const focusTarget =
+				popover.querySelector<HTMLButtonElement>('[aria-pressed="true"]') ??
+				popover.querySelector<HTMLButtonElement>('[data-today]:not(:disabled)') ??
+				popover.querySelector<HTMLButtonElement>('.pop-calendar-day:not(:disabled)')
+			focusTarget?.focus()
+		}
+
+		const select = (iso: string) => {
+			selected = iso
+			native.value = iso
+			native.dispatchEvent(new Event('input', { bubbles: true }))
+			native.dispatchEvent(new Event('change', { bubbles: true }))
+			valueLabel.textContent = toDisplay(iso)
+			valueLabel.removeAttribute('data-empty')
+			clearError()
+			close(true)
+		}
+
+		trigger.addEventListener('click', () => (popover.hidden ? open() : close()))
+
+		prev.addEventListener('click', () => {
+			view = new Date(view.getFullYear(), view.getMonth() - 1, 1)
+			render()
+		})
+
+		next.addEventListener('click', () => {
+			view = new Date(view.getFullYear(), view.getMonth() + 1, 1)
+			render()
+		})
+
+		todayButton?.addEventListener('click', () => select(toIso(new Date())))
+
+		// Une saisie directe dans le champ natif (autocomplétion, lecteur d'écran)
+		// doit aussi rafraîchir l'étiquette du déclencheur.
+		native.addEventListener('change', () => {
+			if (!native.value) return
+			selected = native.value
+			valueLabel.textContent = toDisplay(native.value)
+			valueLabel.removeAttribute('data-empty')
+		})
+
+		root.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape' || popover.hidden) return
+			event.stopPropagation()
+			close(true)
+		})
+
+		document.addEventListener('pointerdown', (event) => {
+			if (popover.hidden) return
+			if (!root.contains(event.target as Node)) close()
+		})
+
+		// La date de retrait est obligatoire : le formulaire ne part pas sans elle.
+		// L'écoute se pose sur `document` en phase de capture pour passer avant
+		// l'envoi AJAX de la page, quel que soit l'ordre de chargement des
+		// scripts ; `stopPropagation` empêche cet envoi de se déclencher quand la
+		// date manque.
+		const form = root.closest('form')
+		document.addEventListener(
+			'submit',
+			(event) => {
+				if (event.target !== form || selected) return
+				event.preventDefault()
+				event.stopPropagation()
+				showError()
+			},
+			true
+		)
+	})
+</script>

@@ -1,0 +1,250 @@
+---
+// Menu déroulant du site : même déclencheur que le sélecteur de date et une
+// liste en papier (contour à l'encre, ombre pleine, survol beurre, coche
+// lavande sur l'option retenue). Le `<select>` natif reste dans le document :
+// il porte le `name`, la validation et sert de repli sans JavaScript.
+interface Props {
+	/** Nom du champ dans le formulaire. */
+	name: string
+	label: string
+	options: { value: string; label: string }[]
+	placeholder?: string
+	errorMessage?: string
+}
+
+const {
+	name,
+	label,
+	options,
+	placeholder = 'Choisir…',
+	errorMessage = 'Choisissez une option.'
+} = Astro.props
+
+const slug = name
+	.normalize('NFD')
+	.replace(/[\u0300-\u036f]/g, '')
+	.toLowerCase()
+	.replace(/[^a-z0-9]+/g, '-')
+	.replace(/(^-|-$)/g, '')
+
+const labelId = `${slug}-label`
+const errorId = `${slug}-error`
+---
+
+<div class='flex flex-col gap-2'>
+	<span id={labelId} class='text-sm font-bold'>{label}</span>
+
+	<div class='relative' data-select data-placeholder={placeholder}>
+		<select
+			name={name}
+			class='pop-field pop-field-native'
+			aria-labelledby={labelId}
+			required
+			data-select-native
+		>
+			<option value='' selected disabled>{placeholder}</option>
+			{options.map((option) => <option value={option.value}>{option.label}</option>)}
+		</select>
+
+		<button
+			type='button'
+			id={`${slug}-trigger`}
+			class='pop-field pop-field-trigger'
+			aria-haspopup='listbox'
+			aria-expanded='false'
+			aria-labelledby={labelId}
+			aria-describedby={errorId}
+			hidden
+			data-select-trigger
+		>
+			<span data-select-value data-empty>{placeholder}</span>
+			<svg
+				class='pop-field-icon'
+				fill='none'
+				stroke='currentColor'
+				viewBox='0 0 24 24'
+				aria-hidden='true'
+			>
+				<path stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M19 9l-7 7-7-7'
+				></path>
+			</svg>
+		</button>
+
+		<p id={errorId} class='pop-field-error' hidden data-select-error>
+			{errorMessage}
+		</p>
+
+		<ul class='pop-dropdown' role='listbox' aria-labelledby={labelId} hidden data-select-listbox>
+		</ul>
+	</div>
+</div>
+
+<script>
+	document.querySelectorAll<HTMLElement>('[data-select]').forEach((root) => {
+		const native = root.querySelector<HTMLSelectElement>('[data-select-native]')
+		const trigger = root.querySelector<HTMLButtonElement>('[data-select-trigger]')
+		const valueLabel = root.querySelector<HTMLElement>('[data-select-value]')
+		const listbox = root.querySelector<HTMLElement>('[data-select-listbox]')
+		const error = root.querySelector<HTMLElement>('[data-select-error]')
+		if (!native || !trigger || !valueLabel || !listbox) return
+
+		const placeholder = root.dataset.placeholder ?? 'Choisir…'
+		const options = [...native.options]
+			.filter((option) => !option.disabled && option.value !== '')
+			.map((option) => ({ value: option.value, label: option.text }))
+
+		// Le champ natif reste la valeur envoyée, mais plus `required` : masqué,
+		// le navigateur ne saurait pas où poser sa bulle. La vérification se fait
+		// ici, avec le message du site.
+		native.removeAttribute('required')
+		trigger.hidden = false
+		root.classList.add('is-enhanced')
+
+		const items = options.map((option) => {
+			const item = document.createElement('li')
+			item.className = 'pop-dropdown-option'
+			item.setAttribute('role', 'option')
+			item.setAttribute('aria-selected', String(option.value === native.value))
+			item.dataset.value = option.value
+			item.tabIndex = -1
+
+			const text = document.createElement('span')
+			text.textContent = option.label
+
+			const check = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+			check.setAttribute('class', 'pop-dropdown-check')
+			check.setAttribute('viewBox', '0 0 24 24')
+			check.setAttribute('fill', 'none')
+			check.setAttribute('stroke', 'currentColor')
+			check.setAttribute('aria-hidden', 'true')
+
+			const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+			path.setAttribute('d', 'M5 13l4 4L19 7')
+			path.setAttribute('stroke-linecap', 'round')
+			path.setAttribute('stroke-linejoin', 'round')
+			path.setAttribute('stroke-width', '2.5')
+			check.append(path)
+
+			item.append(text, check)
+			item.addEventListener('click', () => choose(option.value))
+			listbox.append(item)
+			return item
+		})
+
+		const clearError = () => {
+			if (error) error.hidden = true
+			trigger.removeAttribute('aria-invalid')
+		}
+
+		const showError = () => {
+			if (error) error.hidden = false
+			trigger.setAttribute('aria-invalid', 'true')
+			trigger.focus()
+		}
+
+		const syncLabel = () => {
+			const chosen = options.find((option) => option.value === native.value)
+			valueLabel.textContent = chosen?.label ?? placeholder
+			if (chosen) valueLabel.removeAttribute('data-empty')
+			else valueLabel.setAttribute('data-empty', '')
+		}
+
+		const markSelection = () => {
+			items.forEach((item) => {
+				item.setAttribute('aria-selected', String(item.dataset.value === native.value))
+			})
+		}
+
+		const close = (focusTrigger = false) => {
+			listbox.hidden = true
+			trigger.setAttribute('aria-expanded', 'false')
+			if (focusTrigger) trigger.focus()
+		}
+
+		const open = () => {
+			markSelection()
+			listbox.hidden = false
+			trigger.setAttribute('aria-expanded', 'true')
+			const current =
+				items.find((item) => item.getAttribute('aria-selected') === 'true') ?? items[0]
+			current?.focus()
+		}
+
+		const choose = (value: string) => {
+			native.value = value
+			native.dispatchEvent(new Event('input', { bubbles: true }))
+			native.dispatchEvent(new Event('change', { bubbles: true }))
+			syncLabel()
+			markSelection()
+			clearError()
+			close(true)
+		}
+
+		trigger.addEventListener('click', () => (listbox.hidden ? open() : close()))
+
+		trigger.addEventListener('keydown', (event) => {
+			if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return
+			event.preventDefault()
+			open()
+		})
+
+		// Flèches et validation au clavier, sur la liste elle-même.
+		listbox.addEventListener('keydown', (event) => {
+			const index = items.indexOf(document.activeElement as HTMLElement)
+			if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+				event.preventDefault()
+				const step = event.key === 'ArrowDown' ? 1 : -1
+				const next = (index + step + items.length) % items.length
+				items[next]?.focus()
+				return
+			}
+			if (event.key === 'Home' || event.key === 'End') {
+				event.preventDefault()
+				;(event.key === 'Home' ? items[0] : items[items.length - 1])?.focus()
+				return
+			}
+			if (event.key === 'Enter' || event.key === ' ') {
+				event.preventDefault()
+				const item = items[index]
+				if (item?.dataset.value) choose(item.dataset.value)
+				return
+			}
+			if (event.key === 'Escape') {
+				event.stopPropagation()
+				close(true)
+			}
+		})
+
+		// Une modification extérieure (autocomplétion) doit suivre l'affichage.
+		native.addEventListener('change', () => {
+			syncLabel()
+			markSelection()
+		})
+
+		root.addEventListener('keydown', (event) => {
+			if (event.key !== 'Escape' || listbox.hidden) return
+			event.stopPropagation()
+			close(true)
+		})
+
+		document.addEventListener('pointerdown', (event) => {
+			if (listbox.hidden) return
+			if (!root.contains(event.target as Node)) close()
+		})
+
+		// Le choix est obligatoire : le formulaire ne part pas sans lui. L'écoute
+		// est posée sur `document` en capture pour passer avant l'envoi AJAX de la
+		// page ; `stopPropagation` empêche cet envoi quand le champ est vide.
+		const form = root.closest('form')
+		document.addEventListener(
+			'submit',
+			(event) => {
+				if (event.target !== form || native.value) return
+				event.preventDefault()
+				event.stopPropagation()
+				showError()
+			},
+			true
+		)
+	})
+</script>

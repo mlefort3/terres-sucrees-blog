@@ -1,6 +1,8 @@
 ---
 // src/pages/order.astro
 import BaseLayout from '@/layouts/BaseLayout'
+import DatePicker from '@/components/DatePicker'
+import PopSelect from '@/components/PopSelect'
 
 // Le site est statique (Render) : aucun serveur ne peut envoyer d'e-mail.
 // FormSubmit relaie donc le formulaire vers la boîte de réception de la
@@ -13,8 +15,13 @@ const ORDER_EMAIL = 'terres.sucrees@gmail.com'
 const FORM_ACTION = `https://formsubmit.co/${ORDER_EMAIL}`
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ORDER_EMAIL}`
 
-// La date de retrait ne peut pas être passée.
-const today = new Date().toISOString().slice(0, 10)
+// La date de retrait souhaitée ne peut pas être passée. La date est calculée
+// en heure locale : `toISOString()` bascule en UTC et renverrait encore la
+// veille entre minuit et deux heures du matin.
+const now = new Date()
+const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(
+	now.getDate()
+).padStart(2, '0')}`
 ---
 
 <BaseLayout title='Commande'>
@@ -76,12 +83,22 @@ const today = new Date().toISOString().slice(0, 10)
 				/>
 			</label>
 
-			<label class='flex flex-col gap-2'>
-				<span class='text-sm font-bold'>Date de retrait</span>
-				<input type='date' name='Date de retrait' class='pop-field' min={today} required />
-			</label>
+			<DatePicker name='Date de retrait souhaitée' label='Date de retrait souhaitée' min={today} />
 
-			<label class='flex flex-col gap-2'>
+			<PopSelect
+				name='Méthode de retrait'
+				label='Méthode de retrait'
+				placeholder='Choisir une méthode…'
+				errorMessage='Choisissez une méthode de retrait.'
+				options={[
+					{ value: 'En main propre sur Paris', label: 'En main propre sur Paris' },
+					// Le port est annoncé dans l'option ; la valeur envoyée reste
+					// « Envoi postal », c'est elle que lit le calcul du total.
+					{ value: 'Envoi postal', label: 'Envoi postal (+4 €)' }
+				]}
+			/>
+
+			<label class='flex flex-col gap-2 sm:col-span-2'>
 				<span class='text-sm font-bold'>Quantité de tablettes</span>
 				<input
 					type='number'
@@ -102,8 +119,36 @@ const today = new Date().toISOString().slice(0, 10)
 				name='Informations complémentaires'
 				class='pop-field resize-y'
 				rows='4'
-				placeholder='Heure de retrait souhaitée, précisions sur votre commande…'></textarea>
+				placeholder='Détails sur le retrait souhaité, précisions sur votre commande…'></textarea>
 		</label>
+
+		<!-- Le total est calculé par le script : masqué tant qu'il n'a pas pu
+		     l'être, pour ne jamais afficher un prix périmé. -->
+		<div
+			data-price-panel
+			hidden
+			class='pop-panel mt-5 flex items-center justify-between gap-3 px-4 py-3'
+		>
+			<!-- `min-w-0` laisse la légende se replier : le montant reste sur sa
+			     ligne, calé à droite et centré verticalement. -->
+			<div class='flex min-w-0 flex-1 flex-col gap-0.5'>
+				<span
+					class='text-[11px] font-bold uppercase tracking-[0.16em] text-ink/60 dark:text-ink-faint'
+				>
+					Total estimé
+				</span>
+				<p id='order-price-detail' class='text-xs leading-snug text-ink/60 dark:text-ink-faint'></p>
+			</div>
+			<!-- Motter Corpus réserve la place d'un descendent que « 13,00 € »
+			     n'utilise pas : les chiffres optent 3 px trop haut. Ce décalage,
+			     exprimé en `em`, les recentre sur la ligne du bloc de gauche. -->
+			<p
+				id='order-total'
+				class='pop-display shrink-0 translate-y-[0.1em] whitespace-nowrap text-right text-3xl'
+				aria-live='polite'
+			>
+			</p>
+		</div>
 
 		<p class='mt-4 text-xs leading-relaxed text-ink/60 dark:text-ink-faint'>
 			Tous les champs sont obligatoires, sauf les informations complémentaires. Vos informations
@@ -152,8 +197,9 @@ const today = new Date().toISOString().slice(0, 10)
 	>
 		<span class='pop-chip pop-chip--mint'>Commande envoyée</span>
 		<p class='mt-3 text-sm leading-relaxed text-ink/70 dark:text-ink-body'>
-			Merci ! Votre commande de tablettes Breizh chocolat nous est bien parvenue. Nous vous
-			rappelons au numéro indiqué pour la confirmer et convenir du retrait.
+			Merci ! Votre commande de tablettes Breizh chocolat nous est bien parvenue. Elle ne sera
+			définitive qu'une fois confirmée : un message vous parviendra pour la valider et convenir du
+			retrait.
 		</p>
 	</div>
 </BaseLayout>
@@ -162,6 +208,49 @@ const today = new Date().toISOString().slice(0, 10)
 	const form = document.getElementById('order-form') as HTMLFormElement | null
 	const status = document.getElementById('order-status')
 	const success = document.getElementById('order-success')
+
+	// Prix ---------------------------------------------------------------
+
+	// Grille tarifaire : 13 € la tablette seule, 12,50 € dès la deuxième, 12 €
+	// dès la troisième, 11 € dès la cinquième et 10 € dès la dixième. Ces paliers
+	// reproduisent au centime près les totaux annoncés (25 €, 36 €, 55 €, 100 €).
+	const unitPrice = (count: number) => {
+		if (count >= 10) return 10
+		if (count >= 5) return 11
+		if (count >= 3) return 12
+		if (count === 2) return 12.5
+		return 13
+	}
+	const POSTAL_FEE = 4
+	const euros = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' })
+
+	const quantity = form?.querySelector<HTMLInputElement>('input[name="Quantité de tablettes"]')
+	const method = form?.querySelector<HTMLSelectElement>('select[name="Méthode de retrait"]')
+	const pricePanel = document.querySelector<HTMLElement>('[data-price-panel]')
+	const totalOutput = document.getElementById('order-total')
+	const detailOutput = document.getElementById('order-price-detail')
+
+	const updatePrice = () => {
+		if (!quantity || !totalOutput || !pricePanel) return
+
+		const count = Math.max(1, Math.floor(Number(quantity.value) || 1))
+		const unit = unitPrice(count)
+		const postal = method?.value === 'Envoi postal'
+
+		totalOutput.textContent = euros.format(count * unit + (postal ? POSTAL_FEE : 0))
+		if (detailOutput) {
+			const rows = [`${count} tablette${count > 1 ? 's' : ''} × ${euros.format(unit)}`]
+			if (postal) rows.push(`envoi postal +${euros.format(POSTAL_FEE)}`)
+			detailOutput.textContent = rows.join(' · ')
+		}
+		pricePanel.hidden = false
+	}
+
+	quantity?.addEventListener('input', updatePrice)
+	quantity?.addEventListener('change', updatePrice)
+	// Le menu de retrait notifie son `<select>` natif : le port y est déjà ajouté.
+	method?.addEventListener('change', updatePrice)
+	updatePrice()
 
 	if (form && status && success) {
 		const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]')
