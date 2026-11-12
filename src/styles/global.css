@@ -708,6 +708,10 @@ html.dark .pop-dropdown-option:focus {
 	margin-top: 0.55rem;
 }
 
+.pop-calendar-foot[hidden] {
+	display: none;
+}
+
 .pop-calendar-action {
 	padding: 0.3rem 0.5rem;
 	border: 0;

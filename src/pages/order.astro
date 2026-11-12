@@ -15,13 +15,17 @@ const ORDER_EMAIL = 'terres.sucrees@gmail.com'
 const FORM_ACTION = `https://formsubmit.co/${ORDER_EMAIL}`
 const FORM_ENDPOINT = `https://formsubmit.co/ajax/${ORDER_EMAIL}`
 
-// La date de retrait souhaitée ne peut pas être passée. La date est calculée
-// en heure locale : `toISOString()` bascule en UTC et renverrait encore la
-// veille entre minuit et deux heures du matin.
+// La date de retrait souhaitée demande une semaine de délai : aucune date avant
+// aujourd'hui + 7 jours n'est proposée, les suivantes restent libres. Les dates
+// sont calculées en heure locale : `toISOString()` bascule en UTC et renverrait
+// encore la veille entre minuit et deux heures du matin.
+const toIsoDate = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+		date.getDate()
+	).padStart(2, '0')}`
+
 const now = new Date()
-const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(
-	now.getDate()
-).padStart(2, '0')}`
+const firstDate = toIsoDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 7))
 ---
 
 <BaseLayout title='Commande'>
@@ -83,7 +87,11 @@ const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0'
 				/>
 			</label>
 
-			<DatePicker name='Date de retrait souhaitée' label='Date de retrait souhaitée' min={today} />
+			<DatePicker
+				name='Date de retrait souhaitée'
+				label='Date de retrait souhaitée'
+				min={firstDate}
+			/>
 
 			<PopSelect
 				name='Méthode de retrait'

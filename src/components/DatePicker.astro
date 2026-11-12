@@ -12,10 +12,12 @@ interface Props {
 	label: string
 	/** Première date sélectionnable, au format `AAAA-MM-JJ`. */
 	min?: string
+	/** Dernière date sélectionnable, au format `AAAA-MM-JJ`. */
+	max?: string
 	placeholder?: string
 }
 
-const { name, label, min = '', placeholder = 'jj/mm/aaaa' } = Astro.props
+const { name, label, min = '', max = '', placeholder = 'jj/mm/aaaa' } = Astro.props
 
 const slug = name
 	.normalize('NFD')
@@ -32,7 +34,13 @@ const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 <div class='flex flex-col gap-2'>
 	<span id={labelId} class='text-sm font-bold'>{label}</span>
 
-	<div class='relative' data-datepicker data-min={min} data-placeholder={placeholder}>
+	<div
+		class='relative'
+		data-datepicker
+		data-min={min}
+		data-max={max}
+		data-placeholder={placeholder}
+	>
 		<!-- Repli sans JavaScript : le champ date du navigateur, habillé par
 		     `.pop-field--date`. -->
 		<input
@@ -40,6 +48,7 @@ const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 			name={name}
 			class='pop-field pop-field--date pop-field-native'
 			min={min || undefined}
+			max={max || undefined}
 			required
 			data-datepicker-native
 		/>
@@ -159,14 +168,22 @@ const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 		if (!native || !trigger || !valueLabel || !popover || !title || !grid || !prev || !next) return
 
 		const min = root.dataset.min ?? ''
-		let selected = /^\d{4}-\d{2}-\d{2}$/.test(native.value) ? native.value : ''
+		const max = root.dataset.max ?? ''
+		// Une date restaurée par le navigateur hors de la fenêtre autorisée ne doit
+		// pas être conservée.
+		const inRange = (iso: string) => Boolean(iso) && (!min || iso >= min) && (!max || iso <= max)
+		let selected = inRange(native.value) ? native.value : ''
+		if (!selected) native.value = ''
 		let view = selected ? new Date(`${selected}T12:00:00`) : new Date()
 		view = new Date(view.getFullYear(), view.getMonth(), 1)
 
-		// Le champ natif garde `name` et sa valeur ISO, mais plus `required` :
-		// masqué, le navigateur ne saurait pas où poser sa bulle. La vérification
-		// se fait donc ici, avec le message du site.
+		// Le champ natif garde `name` et sa valeur ISO, mais plus `required` ni ses
+		// bornes : masqué, le navigateur ne saurait pas où poser sa bulle et
+		// bloquerait l'envoi sans la moindre explication. La fenêtre autorisée est
+		// vérifiée ici, avec le message du site.
 		native.removeAttribute('required')
+		native.removeAttribute('min')
+		native.removeAttribute('max')
 		trigger.hidden = false
 		root.classList.add('is-enhanced')
 
@@ -219,19 +236,29 @@ const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 				button.setAttribute('aria-label', toLongDate(date))
 				if (iso === todayIso) button.dataset.today = ''
 				if (iso === selected) button.setAttribute('aria-pressed', 'true')
-				if (min && iso < min) button.disabled = true
+				if (!inRange(iso)) button.disabled = true
 
 				button.addEventListener('click', () => select(iso))
 				grid.append(button)
 			}
 
-			// Un mois entièrement antérieur à la date minimale reste hors d'atteinte.
+			// Un mois entièrement hors de la fenêtre autorisée reste hors d'atteinte.
 			prev.disabled = Boolean(min) && toIso(new Date(year, month, 0)) < min
-			if (todayButton) todayButton.disabled = Boolean(min) && todayIso < min
+			next.disabled = Boolean(max) && toIso(new Date(year, month + 1, 1)) > max
+
+			// Le raccourci « Aujourd'hui » disparaît quand la fenêtre ne le couvre
+			// pas (retrait seulement la semaine suivante, par exemple).
+			if (todayButton?.parentElement) todayButton.parentElement.hidden = !inRange(todayIso)
 		}
 
 		const open = () => {
-			const base = selected ? new Date(`${selected}T12:00:00`) : new Date()
+			// Sans date retenue, le calendrier s'ouvre sur la première date permise
+			// plutôt que sur le mois en cours, qui peut être entièrement fermé.
+			const base = selected
+				? new Date(`${selected}T12:00:00`)
+				: min
+					? new Date(`${min}T12:00:00`)
+					: new Date()
 			view = new Date(base.getFullYear(), base.getMonth(), 1)
 			render()
 			popover.hidden = false
@@ -298,7 +325,7 @@ const weekdays = ['lun', 'mar', 'mer', 'jeu', 'ven', 'sam', 'dim']
 		document.addEventListener(
 			'submit',
 			(event) => {
-				if (event.target !== form || selected) return
+				if (event.target !== form || inRange(selected)) return
 				event.preventDefault()
 				event.stopPropagation()
 				showError()
