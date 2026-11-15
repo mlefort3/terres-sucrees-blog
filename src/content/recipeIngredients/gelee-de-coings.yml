@@ -1,0 +1,15 @@
+name: "Gelée de coings"
+category: insert
+description: "Gelée de coings à partir de purée de coings. Vous pouvez trouver des recettes sur internet pour faire votre propre gelée de coings sans pectine, car le fruit en contient."
+ingredients:
+  - item: "300 g de purée de coings"
+  - item: "40 g de sucre"
+  - item: "4 g de pectine NH"
+flavor:
+  - coing
+steps:
+  - "Mélanger le sucre et la pectine"
+  - "Mettre à chauffer la purée de coings"
+  - "Ajouter le mélange sucre/pectine et bien mélanger"
+  - "Porter à ébullition pour 1-2 min"
+  - "Réserver"
